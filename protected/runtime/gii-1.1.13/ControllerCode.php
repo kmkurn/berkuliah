@@ -2,5 +2,5 @@
 return array (
   'template' => 'default',
   'baseClass' => 'Controller',
-  'actions' => 'index,login,logout',
+  'actions' => 'index search batchdelete',
 );

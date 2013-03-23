@@ -9,7 +9,8 @@ class SiteController extends Controller
 
 	public function actionLogin()
 	{
-		$this->render('login');
+		// $this->render('login');
+		$this->redirect(array('home/index'));
 	}
 
 	public function actionLogout()
