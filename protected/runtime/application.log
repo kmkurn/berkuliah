@@ -1,0 +1,31 @@
+2013/03/23 11:54:56 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/home/fushar/public_html/berkuliah/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /home/fushar/public_html/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /home/fushar/public_html/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/home/fushar/pu...')
+#1 /home/fushar/public_html/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /home/fushar/public_html/yii/framework/gii/GiiModule.php(142): CAssetManager->publish('/home/fushar/pu...')
+#3 /home/fushar/public_html/yii/framework/base/CComponent.php(111): GiiModule->getAssetsUrl()
+#4 /home/fushar/public_html/yii/framework/base/CModule.php(105): CComponent->__get('assetsUrl')
+#5 /home/fushar/public_html/yii/framework/gii/views/layouts/main.php(5): CModule->__get('assetsUrl')
+#6 /home/fushar/public_html/yii/framework/web/CBaseController.php(126): require('/home/fushar/pu...')
+#7 /home/fushar/public_html/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/fushar/pu...', Array, true)
+#8 /home/fushar/public_html/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/home/fushar/pu...', Array, true)
+#9 /home/fushar/public_html/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div class="con...')
+#10 /home/fushar/public_html/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div class="con...')
+#11 /home/fushar/public_html/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#12 /home/fushar/public_html/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#13 /home/fushar/public_html/yii/framework/gii/views/layouts/column1.php(7): CBaseController->endContent()
+#14 /home/fushar/public_html/yii/framework/web/CBaseController.php(126): require('/home/fushar/pu...')
+#15 /home/fushar/public_html/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/fushar/pu...', Array, true)
+#16 /home/fushar/public_html/yii/framework/web/CController.php(784): CBaseController->renderFile('/home/fushar/pu...', Array, true)
+#17 /home/fushar/public_html/yii/framework/gii/controllers/DefaultController.php(47): CController->render('login', Array)
+#18 /home/fushar/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionLogin()
+#19 /home/fushar/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /home/fushar/public_html/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#21 /home/fushar/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /home/fushar/public_html/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#23 /home/fushar/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/default/log...')
+#24 /home/fushar/public_html/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#25 /home/fushar/public_html/berkuliah/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/berkuliah/index.php?r=gii/default/login
+---
