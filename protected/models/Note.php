@@ -79,14 +79,14 @@ class Note extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'description' => 'Description',
-			'type' => 'Type',
-			'location' => 'Location',
-			'course_id' => 'Course',
-			'student_id' => 'Student',
-			'upload_timestamp' => 'Upload Timestamp',
-			'edit_timestamp' => 'Edit Timestamp',
+			'title' => 'Judul',
+			'description' => 'Deskripsi',
+			'type' => 'Jenis',
+			'location' => 'Lokasi',
+			'course_id' => 'Mata Kuliah',
+			'student_id' => 'Mahasiswa',
+			'upload_timestamp' => 'Waktu Unggah',
+			'edit_timestamp' => 'Waktu Sunting',
 		);
 	}
 
