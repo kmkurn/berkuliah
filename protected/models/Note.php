@@ -54,7 +54,7 @@ class Note extends CActiveRecord
 			array('description, edit_timestamp', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, description, type, location, course_id, student_id, upload_timestamp, edit_timestamp', 'safe', 'on'=>'search'),
+			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -101,11 +101,9 @@ class Note extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('type',$this->type);
-		$criteria->compare('location',$this->location,true);
 		$criteria->compare('course_id',$this->course_id);
 		$criteria->compare('student_id',$this->student_id);
 		$criteria->compare('upload_timestamp',$this->upload_timestamp,true);
