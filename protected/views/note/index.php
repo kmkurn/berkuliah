@@ -20,10 +20,7 @@ $this->menu=array(
 
 	<div class="row">
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Cari'); ?>
+		<?php echo CHtml::submitButton('Cari', array('class' => 'row buttons')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
