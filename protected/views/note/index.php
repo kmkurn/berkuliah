@@ -1,6 +1,7 @@
 <?php
 /* @var $this NoteController */
 /* @var $model Note */
+/* @var $usernames array of student names */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
@@ -39,6 +40,7 @@ $('.search-button').click(function(){
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_advanced-search', array(
 	'model' => $model,
+	'usernames' => $usernames,
 )); ?>
 </div>
 

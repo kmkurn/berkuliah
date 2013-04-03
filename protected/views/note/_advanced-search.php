@@ -16,38 +16,24 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
 		<?php echo $form->dropDownList($model,'type', $model->getTypeOptions()); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'location'); ?>
-		<?php echo $form->textField($model,'location',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'course_id'); ?>
-		<?php echo $form->textField($model,'course_id'); ?>
+		<?php echo $form->dropDownList($model,'course_id', CHtml::listData(
+		Course::model()->findAll(), 'id', 'name'), array('prompt' => 'Pilih mata kuliah')); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'student_id'); ?>
-		<?php echo $form->textField($model,'student_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'upload_timestamp'); ?>
-		<?php echo $form->textField($model,'upload_timestamp'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'edit_timestamp'); ?>
-		<?php echo $form->textField($model,'edit_timestamp'); ?>
+		<?php $this->widget('CAutoComplete', array(
+			'model' => $model,
+			'attribute' => 'student_id',
+			'data' => $usernames,
+			'htmlOptions' => array('size' => 25, 'value' => ''),
+		)); ?>
 	</div>
 
 	<div class="row buttons">
