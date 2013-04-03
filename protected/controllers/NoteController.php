@@ -123,11 +123,14 @@ class NoteController extends Controller
 	public function actionIndex()
 	{
 		$model = new Note('search');
-		$dataProvider=new CActiveDataProvider('Note');
-		if (isset($_GET['Note']))
+		if (isset($_POST['Note']))
 		{
-			$model->attributes = $_GET['Note'];
+			$model->attributes = $_POST['Note'];
 			$dataProvider = $model->search();
+		}
+		else
+		{
+			$dataProvider=new CActiveDataProvider('Note');
 		}
 
 		$dataProvider->setPagination(array(
