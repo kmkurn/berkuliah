@@ -122,8 +122,19 @@ class NoteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$model = new Note('search');
 		$dataProvider=new CActiveDataProvider('Note');
+		if (isset($_GET['Note']))
+		{
+			$model->attributes = $_GET['Note'];
+			$dataProvider = $model->search();
+		}
+
+		$dataProvider->setPagination(array(
+			'pageSize' => 1,
+		));
 		$this->render('index',array(
+			'model' => $model,
 			'dataProvider'=>$dataProvider,
 		));
 	}
