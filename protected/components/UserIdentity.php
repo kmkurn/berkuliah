@@ -5,8 +5,15 @@
  * It contains the authentication method that checks if the provided
  * data can identity the user.
  */
-class UserIdentity extends CUserIdentity
+class UserIdentity extends CBaseUserIdentity
 {
+	private $id;
+
+	public function __construct()
+	{
+
+	}
+
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -17,17 +24,33 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);
-		if(!isset($users[$this->username]))
-			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		elseif($users[$this->username]!==$this->password)
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else
-			$this->errorCode=self::ERROR_NONE;
-		return !$this->errorCode;
+		// TODO : Call CAS
+		$username = 'ashar.fuadi';
+		
+		$student = Student::model()->findByAttributes(array('username' => $username));
+		if (! $student)
+		{
+			$student = new Student();
+			$student->username = $username;
+		}
+		$student->last_login_timestamp = date('Y-m-d H:i:s');
+
+		$student->save();
+
+		$this->id = $student->id;
+		$this->setState('username', $username);
+		$this->setState('is_admin', $student->is_admin);
+
+		return true;
+	}
+
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function getName()
+	{
+		return $this->getState('username');
 	}
 }

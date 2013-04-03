@@ -1,2 +1,2 @@
-assets/
+assets/!.gitignore
 protected/runtime/!.gitignore
