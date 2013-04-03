@@ -22,7 +22,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
+		<?php echo $form->dropDownList($model,'type', $model->getTypeOptions()); ?>
 	</div>
 
 	<div class="row">
