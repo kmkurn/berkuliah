@@ -56,4 +56,15 @@ class NoteTest extends CDbTestCase
 		$retrievedNote = Note::model()->findByPk($deletedNote->id);
 		$this->assertEquals($retrievedNote, NULL);
 	}
+
+	public function testGetTypeOptions()
+	{
+		$note = $this->notes('note1');
+		$options = $note->getTypeOptions();
+		$this->assertTrue(is_array($options));
+		$this->assertEquals(count($options), 3);
+		$this->assertTrue(in_array('PDF', $options));
+		$this->assertTrue(in_array('Gambar', $options));
+		$this->assertTrue(in_array('Teks', $options));
+	}
 }

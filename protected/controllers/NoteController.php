@@ -16,6 +16,7 @@ class NoteController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+			'getStudentId + index', // get student id first on advanced search scenario
 		);
 	}
 
@@ -132,13 +133,21 @@ class NoteController extends Controller
 		{
 			$dataProvider=new CActiveDataProvider('Note');
 		}
-
 		$dataProvider->setPagination(array(
 			'pageSize' => 1,
 		));
+		
+		$students = Student::model()->findAll();
+		$usernames = array();
+		foreach ($students as $student)
+		{
+			$usernames[] = $student->username;
+		}
+
 		$this->render('index',array(
 			'model' => $model,
 			'dataProvider'=>$dataProvider,
+			'usernames' => $usernames,
 		));
 	}
 
@@ -183,5 +192,24 @@ class NoteController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	/**
+	 * Retrieves student id based on username
+	 * @param  CFilterChain $filterChain the filter chain
+	 */
+	public function filterGetStudentId($filterChain)
+	{
+		if (isset($_POST['Note']['student_id']))
+		{
+			$username = $_POST['Note']['student_id'];
+			$student = Student::model()->findByAttributes(array('username' => $username));
+			if ($student !== NULL)
+			{
+				$_POST['Note']['student_id'] = $student->id;
+			}
+		}
+
+		$filterChain->run();
 	}
 }

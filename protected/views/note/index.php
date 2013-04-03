@@ -1,5 +1,7 @@
 <?php
 /* @var $this NoteController */
+/* @var $model Note */
+/* @var $usernames array of student names */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
@@ -10,6 +12,13 @@ $this->menu=array(
 	array('label'=>'Create Note', 'url'=>array('create')),
 	array('label'=>'Manage Note', 'url'=>array('admin')),
 );
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+");
 ?>
 
 <h1>Notes</h1>
@@ -24,6 +33,16 @@ $this->menu=array(
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<br>
+
+<?php echo CHtml::link('Pencarian Lanjutan','#',array('class'=>'search-button')); ?>
+<div class="search-form" style="display:none">
+<?php $this->renderPartial('_advanced-search', array(
+	'model' => $model,
+	'usernames' => $usernames,
+)); ?>
+</div>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

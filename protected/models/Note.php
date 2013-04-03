@@ -22,6 +22,13 @@
 class Note extends CActiveRecord
 {
 	/**
+	 * Constants that define note type
+	 */
+	const TYPE_PDF = 0;
+	const TYPE_JPG = 1;
+	const TYPE_TXT = 2;
+	
+	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Note the static model class
@@ -112,5 +119,18 @@ class Note extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * Retrieves an array of all valid types of a note
+	 * @return array the array of types
+	 */
+	public function getTypeOptions()
+	{
+		return array(
+			self::TYPE_PDF => 'PDF',
+			self::TYPE_JPG => 'Gambar',
+			self::TYPE_TXT => 'Teks',
+		);
 	}
 }
