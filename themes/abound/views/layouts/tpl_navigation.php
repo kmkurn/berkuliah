@@ -8,26 +8,52 @@
           </a>
      
           <!-- Be sure to leave the brand out there if you want it shown -->
-          <a class="brand" href="#">abound <small>admin theme v1.1</small></a>
-          
+          <a class="brand"><small>masuk sebagai Annisa Prida R</small>
+	</a>  
           <div class="nav-collapse">
-			<?php $this->widget('zii.widgets.CMenu',array(
+			
+
+			    <?php
+			ob_start();
+			    $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+					'id'=>'mydialog',
+					// additional javascript options for the dialog plugin
+					'options'=>array(
+						'title'=>'Unggah Foto',
+						'autoOpen'=>false,
+					),
+				));
+
+			  	echo(CHtml::label('Pilih berkas', 'name'));
+				echo(CHtml::fileField('name','',array('class'=>'btn')));
+
+			$this->endWidget('zii.widgets.jui.CJuiDialog');
+
+			// the link that may open the dialog
+			$dialog_button = '<button type="button" class="btn btn-primary" data-loading-text="Loading...">Open dialog</button>';
+			echo CHtml::link($dialog_button, '#', array(
+			   'onclick'=>'$("#mydialog").dialog("open"); return false;',
+			));
+				?>
+			<?php
+			
+			$this->widget('zii.widgets.CMenu',array(
                     'htmlOptions'=>array('class'=>'pull-right nav'),
                     'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
-					'itemCssClass'=>'item-test',
+				'itemCssClass'=>'item-test',
                     'encodeLabel'=>false,
                     'items'=>array(
-                        array('label'=>'Dashboard', 'url'=>array('/site/index')),
+                        array('label'=>'Beranda', 'url'=>array('/site/index')),
                         array('label'=>'Graphs & Charts', 'url'=>array('/site/page', 'view'=>'graphs')),
-                        array('label'=>'Forms', 'url'=>array('/site/page', 'view'=>'forms')),
-                        array('label'=>'Tables', 'url'=>array('/site/page', 'view'=>'tables')),
-						array('label'=>'Interface', 'url'=>array('/site/page', 'view'=>'interface')),
+                        array('label'=>'entah', 'url'=>array('/site/page', 'view'=>'forms')),
+                        array('label'=>'Buat berkas baru', 'url'=>array('/site/page', 'view'=>'unggah')),
+						array('label'=>'Minta berkas', 'url'=>array('/site/page', 'view'=>'interface')),
                         array('label'=>'Typography', 'url'=>array('/site/page', 'view'=>'typography')),
                         /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
-                        array('label'=>'My Account <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        array('label'=>'Akun <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
-                            array('label'=>'My Messages <span class="badge badge-warning pull-right">26</span>', 'url'=>'#'),
-							array('label'=>'My Tasks <span class="badge badge-important pull-right">112</span>', 'url'=>'#'),
+                            array('label'=>'Dasbor <span class="badge badge-warning pull-right">26</span>', 'url'=>array('/site/page', 'view'=>'Dasbor')),
+							array('label'=>'Foto <span class="badge badge-important pull-right">112</span>',  'url'=>'#'),
 							array('label'=>'My Invoices <span class="badge badge-info pull-right">12</span>', 'url'=>'#'),
 							array('label'=>'Separated link', 'url'=>'#'),
 							array('label'=>'One more separated link', 'url'=>'#'),
@@ -56,7 +82,7 @@
           	</div>
            <form class="navbar-search pull-right" action="">
            	 
-           <input type="text" class="search-query span2" placeholder="Search">
+           <input type="text" class="search-query span2" placeholder="Cari">
            
            </form>
     	</div><!-- container -->
