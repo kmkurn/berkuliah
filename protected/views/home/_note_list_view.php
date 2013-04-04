@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
-	<?php echo CHtml::encode($data->type); ?>
+	<?php echo CHtml::encode($data->getTypeText()); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('location')); ?>:</b>
@@ -34,7 +34,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('upload_timestamp')); ?>:</b>
-	<?php echo CHtml::encode($data->upload_timestamp); ?>
+	<?php // TO-DO: set locale ?>
+	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
 	<br />
 	
 	<?php /*

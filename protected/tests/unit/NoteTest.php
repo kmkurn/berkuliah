@@ -67,4 +67,16 @@ class NoteTest extends CDbTestCase
 		$this->assertTrue(in_array('Gambar', $options));
 		$this->assertTrue(in_array('Teks', $options));
 	}
+
+	public function testGetTypeText()
+	{
+		$note = $this->notes('note1');
+		$this->assertEquals($note->getTypeText(), 'PDF');
+		$note = $this->notes('note2');
+		$this->assertEquals($note->getTypeText(), 'Gambar');
+		$note = $this->notes('note3');
+		$this->assertEquals($note->getTypeText(), 'Teks');
+		$note->type = 4;
+		$this->assertEquals($note->getTypeText(), 'Jenis tidak diketahui');
+	}
 }
