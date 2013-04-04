@@ -80,7 +80,7 @@ class SiteController extends Controller
 		$identity = new UserIdentity();
 		if($identity->authenticate())
 		Yii::app()->user->login($identity);
-		$this->redirect(Yii::app()->homeUrl);
+		$this->redirect(array('home/index'));
 	}
 
 	/**
