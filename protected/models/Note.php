@@ -133,4 +133,21 @@ class Note extends CActiveRecord
 			self::TYPE_TXT => 'Teks',
 		);
 	}
+
+	/**
+	 * Retrieves the text for this model type
+	 * @return string the text for this model type
+	 */
+	public function getTypeText()
+	{
+		$typeOptions = $this->getTypeOptions();
+		if (isset($typeOptions[$this->type]))
+		{
+			return $typeOptions[$this->type];
+		}
+		else
+		{
+			return 'Jenis tidak diketahui';
+		}
+	}
 }
