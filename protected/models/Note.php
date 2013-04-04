@@ -91,7 +91,7 @@ class Note extends CActiveRecord
 			'type' => 'Jenis',
 			'location' => 'Lokasi',
 			'course_id' => 'Mata Kuliah',
-			'student_id' => 'Mahasiswa',
+			'student_id' => 'Pengunggah',
 			'upload_timestamp' => 'Waktu Unggah',
 			'edit_timestamp' => 'Waktu Sunting',
 		);

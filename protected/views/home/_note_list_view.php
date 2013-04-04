@@ -5,25 +5,37 @@
 
 <div class="view">
 
+	<?php /*
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
 
+	*/ ?>
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
-	<?php echo CHtml::encode($data->title); ?>
+	<?php echo CHtml::link(CHtml::encode($data->title), array('note/view', 'id' => $data->id)); ?>
 	<br />
+
+	<?php /*
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
+	
+	*/ ?>
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
 	<?php echo CHtml::encode($data->getTypeText()); ?>
 	<br />
-
+	
+	<?php /*
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('location')); ?>:</b>
 	<?php echo CHtml::encode($data->location); ?>
 	<br />
+	
+	*/ ?>
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('course_id')); ?>:</b>
 	<?php echo CHtml::encode($data->course->name); ?>
