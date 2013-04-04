@@ -1,2 +1,4 @@
 assets/!.gitignore
 protected/runtime/!.gitignore
+
+.DS_Store
