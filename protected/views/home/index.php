@@ -1,12 +1,11 @@
 <?php
 
 $this->breadcrumbs=array(
-	'Notes',
+	'Daftar Semua Berkas',
 );
 
 $this->menu=array(
-	array('label'=>'Create Note', 'url'=>array('create')),
-	array('label'=>'Manage Note', 'url'=>array('admin')),
+	array('label'=>'Unggah Berkas Baru', 'url'=>array('noteupload/index')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -16,8 +15,6 @@ $('.search-button').click(function(){
 });
 ");
 ?>
-
-<h1>Notes</h1>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'search-form',
@@ -32,7 +29,7 @@ $('.search-button').click(function(){
 
 <br>
 
-<?php echo CHtml::link('Pencarian Lanjutan','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Pencarian Mode Lanjutan','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_advanced-search', array(
 	'model' => $model,
@@ -42,5 +39,5 @@ $('.search-button').click(function(){
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
+	'itemView'=>'_note_list_view',
 )); ?>
