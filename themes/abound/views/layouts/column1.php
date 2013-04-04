@@ -4,7 +4,7 @@
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
             'links'=>$this->breadcrumbs,
-			'homeLink'=>CHtml::link('Dashboard'),
+			'homeLink'=>CHtml::link('Beranda','/yii/testdrive/'),
 			'htmlOptions'=>array('class'=>'breadcrumb')
         )); ?><!-- breadcrumbs -->
     <?php endif?>

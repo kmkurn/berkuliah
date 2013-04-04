@@ -75,8 +75,8 @@
     <?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
             'links'=>$this->breadcrumbs,
-			'homeLink'=>CHtml::link('Dashboard'),
-			'htmlOptions'=>array('class'=>'breadcrumb')
+			'homeLink'=>CHtml::link('Beranda','/yii/testdrive/'),
+			'htmlOptions'=>array('class'=>'/site/index/')
         )); ?><!-- breadcrumbs -->
     <?php endif?>
     
