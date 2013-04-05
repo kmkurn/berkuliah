@@ -150,4 +150,14 @@ class Note extends CActiveRecord
 			return 'Jenis tidak diketahui';
 		}
 	}
+
+	public function getDownloadTimestamp($studentId)
+	{
+		$sql = "SELECT timestamp FROM bk_download_info WHERE student_id=:studentId AND note_id=:noteId;";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(':studentId', $studentId, PDO::PARAM_INT);
+		$command->bindValue(':noteId', $this->id, PDO::PARAM_INT);
+		$result = $command->queryRow();
+		return $result['timestamp'];
+	}
 }

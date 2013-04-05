@@ -2,51 +2,73 @@
 
 class DashboardController extends Controller
 {
-	public function actionIndex()
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
 	{
-		$this->render('index');
+		return array(
+			'accessControl', // perform access control for dashboard operations
+		);
 	}
 
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+				'actions'=>array('index','profile','uploads'),
+				'users'=>array('@'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+
+	/**
+	 * Redirects to actionProfile()
+	 */
+	public function actionIndex()
+	{
+		$this->redirect(array('dashboard/profile'));
+	}
+
+	/**
+	 * List all uploaded files by this user
+	 */
 	public function actionUploads()
 	{
 		$dataProvider = new CActiveDataProvider('Note', array(
 			'criteria' => array(
-				'condition' => 'student_id = :sid',
-				'params' => array(':sid' => Yii::app()->user->id),
+				'condition' => 'student_id = :studentId',
+				'params' => array(':studentId' => Yii::app()->user->id),
 			),
 			'pagination' => array(
 				'pageSize' => 1,
 			),
 		));
+
 		$this->render('uploads', array(
 			'dataProvider' => $dataProvider,
 		));
 	}
 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	public function actionProfile()
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
+		$student = Student::model()->findByPk(Yii::app()->user->id);
+		$downloadsDataProvider = new CArrayDataProvider($student->bkNotes, array(
+			'pagination' => array(
+				'pageSize' => 1,
 			),
-		);
-	}
+		));
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+		$this->render('profile', array(
+			'downloadsDataProvider' => $downloadsDataProvider,
+		));
 	}
-	*/
 }
