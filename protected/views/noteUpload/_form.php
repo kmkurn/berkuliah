@@ -1,5 +1,4 @@
 <?php
-echo 'asdfdsfdsfdsf';
 /* @var $this NoteController */
 /* @var $model Note */
 /* @var $form CActiveForm */
@@ -30,17 +29,30 @@ echo 'asdfdsfdsfdsf';
 
 
 	<div class="row">
-		<?php echo 'Fakultas' ?>
-		<?php echo CHtml::dropDownList('temp_faculty_id', '', CHtml::listData(
-		Faculty::model()->findAll(), 'id', 'name'), array('prompt' => 'Pilih fakultas')); ?>
+		<?php echo CHtml::label('Fakultas', false); ?>
+		<?php echo CHtml::dropDownList('temp_faculty_id', '',
+			       CHtml::listData(Faculty::model()->findAll(), 'id', 'name'),
+			       array('prompt' => 'Pilih fakultas',
+			             'ajax' => array('type' => 'POST',
+			             	             'url' => array('noteUpload/updateCourses'),
+			             	             'update' => '#courses',
+			             	             'data' => array('temp_faculty_id' => 'js:this.value')
+			                           		 ))); ?>
+	</div>
+
+	<div id="courses" class="row">
+
+	<?php echo $form->labelEx($model,'course_id'); ?>
+	<?php echo $form->dropDownList($model, 'course_id', array(), 
+			   array('prompt' => 'Pilih mata kuliah')); ?>
+
+	<?php echo $form->error($model,'course_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'course_id'); ?>
-		<?php echo $form->textField($model,'course_id'); ?>
-		<?php echo $form->error($model,'course_id'); ?>
+		atau masukkan mata kuliah baru: 
+		<?php echo CHtml::textField('new_course'); ?>
 	</div>
-
 
 	<div class="row">
 		<?php echo 'Berkas'; ?>
