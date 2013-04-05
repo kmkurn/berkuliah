@@ -54,11 +54,9 @@ class Note extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, type, location, course_id, student_id, upload_timestamp', 'required'),
-			array('type, course_id, student_id', 'numerical', 'integerOnly'=>true),
+			array('title, course_id', 'required'),
 			array('title', 'length', 'max'=>128),
-			array('location', 'length', 'max'=>64),
-			array('description, edit_timestamp', 'safe'),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp', 'safe', 'on'=>'search'),
