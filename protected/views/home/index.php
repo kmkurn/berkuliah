@@ -16,22 +16,15 @@ $('.search-button').click(function(){
 ");
 ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'search-form',
+<?php $this->renderPartial('_basic', array(
+	'model' => $model,
 )); ?>
 
-	<div class="row">
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo CHtml::submitButton('Cari', array('class' => 'row buttons')); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-<br>
+<br />
 
 <?php echo CHtml::link('Pencarian Mode Lanjutan','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_advanced-search', array(
+<?php $this->renderPartial('_advanced', array(
 	'model' => $model,
 	'usernames' => $usernames,
 )); ?>

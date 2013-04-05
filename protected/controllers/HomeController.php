@@ -15,7 +15,6 @@ class HomeController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 			'getStudentId + index', // get student id first on advanced search scenario
 		);
 	}
@@ -28,16 +27,8 @@ class HomeController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+			array('allow', // allow authenticated user to list all files
+				'actions'=>array('index'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -63,7 +54,7 @@ class HomeController extends Controller
 			$dataProvider=new CActiveDataProvider('Note');
 		}
 		$dataProvider->setPagination(array(
-			'pageSize' => 100,
+			'pageSize' => 2,
 		));
 		
 		$students = Student::model()->findAll();
