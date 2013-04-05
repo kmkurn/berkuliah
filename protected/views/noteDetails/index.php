@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 
 <h1>Halaman Rinci Berkas #<?php echo $model->id; ?></h1>
 
-<p><?php echo CHtml::link('Unduh', array('noteDetails/download', $model->id)); ?></p>
+<p><?php echo CHtml::link('Unduh', array('noteDetails/download', 'id' => $model->id)); ?></p>
 
 <div class="view">
 
