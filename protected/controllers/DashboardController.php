@@ -21,7 +21,7 @@ class DashboardController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('index','profile','uploads'),
+				'actions'=>array('index','profile','uploads', 'uploadPhoto'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -71,4 +71,36 @@ class DashboardController extends Controller
 			'downloadsDataProvider' => $downloadsDataProvider,
 		));
 	}
-}
+
+	public function actionUploadPhoto()
+	{
+		if (isset($_FILES['photo']))
+		{
+			if (empty($_FILES['photo']['name']))
+			{
+				Yii::app()->user->setFlash('message', 'You must choose a file.');
+				$this->redirect(array('dashboard/uploadPhoto'));
+			}
+
+			$photo = CUploadedFile::getInstanceByName('photo');
+
+			if ($photo->extensionName != 'jpg')
+			{
+				Yii::app()->user->setFlash('message', "You must choose a '.jpg' file.");
+				$this->redirect(array('dashboard/uploadPhoto'));
+			}
+			if ($photo->size > 100 * 1024)
+			{
+				Yii::app()->user->setFlash('message', 'Your file must not exceed 100 KB');
+				$this->redirect(array('dashboard/uploadPhoto'));
+			}
+
+			$photo->saveAs('photos/' . Yii::app()->user->id . '.jpg');
+			Yii::app()->user->setFlash('message', "Photo successfully uploaded.");
+			$this->redirect(array('dashboard/uploadPhoto'));
+
+		}
+
+		$this->render('uploadPhoto');
+	}
+};

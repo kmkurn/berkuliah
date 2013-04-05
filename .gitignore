@@ -1,4 +1,5 @@
 assets/!.gitignore
 protected/runtime/!.gitignore
 notes/*
+photos/*
 .DS_Store
