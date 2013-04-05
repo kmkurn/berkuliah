@@ -2,11 +2,11 @@
 /* @var $this DashboardController */
 
 $this->breadcrumbs=array(
-	'Dashboard'=>array('/dashboard'),
-	'Uploads',
+	'Dasbor'=>array('/dashboard'),
+	'Unggahan',
 );
 ?>
-<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
+<h1>Daftar Unggahan <?php echo Yii::app()->user->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
