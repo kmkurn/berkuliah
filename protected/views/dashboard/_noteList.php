@@ -5,10 +5,6 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::encode($data->id); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->title), array('noteDetails/index', 'id'=>$data->id)); ?>
 	<br />
@@ -22,7 +18,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('upload_timestamp')); ?>:</b>
-	<?php echo CHtml::encode($data->upload_timestamp); ?>
+	<?php // TO-DO: set locale ?>
+	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
 	<br />
 	
 	<?php /*
