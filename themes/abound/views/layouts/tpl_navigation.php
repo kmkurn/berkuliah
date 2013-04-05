@@ -52,7 +52,7 @@
                         /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
                         array('label'=>'Akun <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
-                            array('label'=>'Dasbor <span class="badge badge-warning pull-right">26</span>', 'url'=>array('/site/page', 'view'=>'Dasbor')),
+                            array('label'=>'Dasbor <span class="badge badge-warning pull-right">26</span>', 'url'=>array('/site/page', 'view'=>'dasbor')),
 							array('label'=>'Foto <span class="badge badge-important pull-right">112</span>',  'url'=>'#'),
 							array('label'=>'My Invoices <span class="badge badge-info pull-right">12</span>', 'url'=>'#'),
 							array('label'=>'Separated link', 'url'=>'#'),
