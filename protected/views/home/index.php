@@ -39,5 +39,5 @@ $('.search-button').click(function(){
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_note_list_view',
+	'itemView'=>'_note',
 )); ?>
