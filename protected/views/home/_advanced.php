@@ -28,10 +28,10 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'student_id'); ?>
-		<?php $this->widget('CAutoComplete', array(
+		<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 			'model' => $model,
 			'attribute' => 'student_id',
-			'data' => $usernames,
+			'source' => $usernames,
 			'htmlOptions' => array('size' => 25, 'value' => ''),
 		)); ?>
 	</div>
