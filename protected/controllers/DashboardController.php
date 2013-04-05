@@ -2,17 +2,17 @@
 
 class DashboardController extends Controller
 {
-	public function actionIndex($sid)
+	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
-	public function actionUploads($sid)
+	public function actionUploads()
 	{
 		$dataProvider = new CActiveDataProvider('Note', array(
 			'criteria' => array(
 				'condition' => 'student_id = :sid',
-				'params' => array(':sid' => $sid),
+				'params' => array(':sid' => Yii::app()->user->id),
 			),
 			'pagination' => array(
 				'pageSize' => 1,
