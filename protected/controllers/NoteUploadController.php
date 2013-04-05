@@ -10,48 +10,51 @@ class NoteUploadController extends Controller
 		{
 			$model->attributes = $_POST['Note'];
 
-			if ( ! $_POST['temp_faculty_id'])
+			if (empty($_POST['temp_faculty_id']))
 			{
 				Yii::app()->user->setFlash('message', 'You must specify faculty.');
 				$this->redirect(array('noteUpload/index'));
 			}
 
-			if ($model['course_id'] === null && $_POST['new_course'] == null)
+			if (empty($model->course_id) && empty($_POST['new_course']))
 			{
 				Yii::app()->user->setFlash('message', 'You must specify course.');
 				$this->redirect(array('noteUpload/index'));
 			}
 
-			if ($model['course_id'] === null)
+			if (empty($model->course_id))
 			{
 				$course = new Course();
 				$course->name = $_POST['new_course'];
 				$course->faculty_id = $_POST['temp_faculty_id'];
 				$course->save();
 
-				$model['course_id'] = $course->id;
+				$model->course_id = $course->id;
 			}
 
 			$model->student_id = Yii::app()->user->id;
 			$model->upload_timestamp = date('Y-m-d H:i:s');
 
-			$model->save();
-			
 			$file = CUploadedFile::getInstanceByName('file');
-			if ($file !== null)
+			if ($file !== NULL)
 			{
 				$ext = $file->extensionName;
 				
-				if ($ext != 'pdf' && $ext != 'jpg')
+				if (!Note::isExtensionAllowed($ext))
 				{
 					Yii::app()->user->setFlash('message', 'File extension must be PDF or JPG.');
 					$this->redirect(array('noteUpload/index'));
 				}
 
+				$model->type = Note::getTypeFromExtension($ext);
+				$model->save();
 				$file->saveAs('notes/' . $model->id . '.' . $ext);
 			}
 			else
 			{
+				$model->type = Note::TYPE_TXT;
+				$model()->save();
+
 				touch('notes/' . $model->id . '.html');
 				file_put_contents('notes/' . $model->id . '.html', $_POST['raw_text']);
 			}

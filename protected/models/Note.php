@@ -22,7 +22,7 @@
 class Note extends CActiveRecord
 {
 	/**
-	 * Constants that define note type
+	 * Constants that define note type/extension
 	 */
 	const TYPE_PDF = 0;
 	const TYPE_JPG = 1;
@@ -56,7 +56,7 @@ class Note extends CActiveRecord
 		return array(
 			array('title', 'required'),
 			array('title', 'length', 'max'=>128),
-			array('description', 'safe'),
+			array('course_id, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp', 'safe', 'on'=>'search'),
@@ -157,5 +157,46 @@ class Note extends CActiveRecord
 		$command->bindValue(':noteId', $this->id, PDO::PARAM_INT);
 		$result = $command->queryRow();
 		return $result['timestamp'];
+	}
+
+	/**
+	 * Retrieves an array of all valid extensions of a note
+	 * @return array the array of extensions
+	 */
+	public static function getValidExtensions()
+	{
+		return array(
+			self::TYPE_PDF => 'pdf',
+			self::TYPE_JPG => 'jpg',
+			self::TYPE_TXT => 'html',
+		);
+	}
+
+	public static function isExtensionAllowed($extension)
+	{
+		$validExtensions = self::getValidExtensions();
+
+		return in_array($extension, $validExtensions);
+	}
+
+	public static function getTypeFromExtension($extension)
+	{
+		$validExtensions = self::getValidExtensions();
+		foreach ($validExtensions as $id => $ext)
+		{
+			if ($extension === $ext)
+			{
+				return $id;
+			}
+		}
+
+		return -1;
+	}
+
+	public static function getExtensionFromType($type)
+	{
+		$validExtensions = self::getValidExtensions();
+
+		return $validExtensions[$type];
 	}
 }
