@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Unggah Berkas Baru', 'url'=>array('noteupload/index')),
+	array('label'=>'Unggah Berkas Baru', 'url'=>array('noteUpload/index')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
