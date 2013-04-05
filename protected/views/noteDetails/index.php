@@ -37,11 +37,13 @@ $this->breadcrumbs=array(
 
 
 	<b><?php echo CHtml::encode($model->getAttributeLabel('upload_timestamp')); ?>:</b>
-	<?php echo CHtml::encode($model->upload_timestamp); ?>
+	<?php // TO-DO: set locale ?>
+	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?>
 	<br />
 	
 	<b><?php echo CHtml::encode($model->getAttributeLabel('edit_timestamp')); ?>:</b>
-	<?php echo CHtml::encode($model->edit_timestamp); ?>
+	<?php // TO-DO: set locale ?>
+	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->edit_timestamp))); ?>
 	<br />
 
 
