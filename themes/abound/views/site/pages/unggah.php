@@ -54,7 +54,15 @@ echo"</td><td>";
 	        'upImgUrl'=>$this->createUrl('request/uploadFile'), // NB! Access restricted by IP        'upImgExt'=>'jpg,jpeg,gif,png',
 	    ),
 	));
-	echo"</td></td></table>";
+	echo"</td><tr><td></td><td>";
+	  $this->Beginwidget('zii.widgets.jui.CJuiButton', array(
+    'name'=>'button',
+    'caption'=>'Unggah',
+    'value'=>'asddd',
+    'onclick'=>new CJavaScriptExpression('function(){alert("tombol ubah ditekan"); this.blur(); return false;}'),
+  ));
+  $this->endWidget();
+	echo "</td></tr></table>";
 	?>
     
     <?php $this->endWidget();?>
