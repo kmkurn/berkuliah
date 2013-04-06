@@ -502,7 +502,8 @@ footer {
 /*Style switcher*/
 .style-switcher
 {
-	padding-top:13px;
+	padding-top:10px;
+	padding-left:100px;
 }
 .style-switcher span.style
 {
