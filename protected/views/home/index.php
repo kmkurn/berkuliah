@@ -1,7 +1,7 @@
 <?php
 
 $this->breadcrumbs=array(
-	'Daftar Semua Berkas',
+	'Daftar Berkas',
 );
 
 $this->menu=array(

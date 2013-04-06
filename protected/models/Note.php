@@ -120,6 +120,14 @@ class Note extends CActiveRecord
 	}
 
 	/**
+	 * Update the note edit timestamp to current time
+	 */
+	public function updateEditTimestamp()
+	{
+		$this->edit_timestamp = date('Y-m-d H:i:s');
+	}
+
+	/**
 	 * Retrieves an array of all valid types of a note
 	 * @return array the array of types
 	 */

@@ -69,8 +69,8 @@ class Course extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'faculty_id' => 'Faculty',
+			'name' => 'Nama',
+			'faculty_id' => 'Fakultas',
 		);
 	}
 
