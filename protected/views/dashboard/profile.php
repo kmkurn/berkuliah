@@ -3,7 +3,7 @@
 /* @var $downloadsDataProvider CArrayDataProvider */
 
 $this->breadcrumbs=array(
-	'Dashboard',
+	'Dasbor',
 );
 ?>
 <h1>Sejarah Kegiatan <?php echo Yii::app()->user->name; ?></h1>

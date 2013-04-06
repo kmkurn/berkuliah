@@ -1,37 +1,40 @@
 <?php 
+/* @var $this DashboardController */
+/* @var $model PhotoUploadForm */
+/* @var $form CActiveForm */
 
 $this->breadcrumbs=array(
-	'Ubah Foto Profil',
+	'Dasbor' => array('profile'),
+	'Ubah Foto',
 );
 
 ?>
 
-<h1>Ubah Foto Profil</h1>
+<h1>Ubah Foto</h1>
 
-<?php
-
-if (Yii::app()->user->hasFlash('message'))
-	echo '<h3>' . Yii::app()->user->getFlash('message') . "</h3>\n";
-
-?>
-
+<?php if (Yii::app()->user->hasFlash('message')): ?>
+<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
+<?php endif; ?>
 
 <div class="form">
 
-<?php echo CHtml::beginForm('', 'post', array(
-	'id'=>'uploadPhoto',
-	'enctype' => 'multipart/form-data')); ?>
+<?php $form = $this->beginWidget('CActiveForm', array(
+	'id' => 'photo-upload-form',
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
+)); ?>
 
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<div class="row">
-		<?php echo CHtml::label('Foto', false); ?>
-		<?php echo CHtml::fileField('photo'); ?>
+		<?php echo $form->labelEx($model, 'photo'); ?>
+		<?php echo $form->fileField($model, 'photo'); ?>
+		<?php echo $form->error($model, 'photo'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Ubah'); ?>
+		<?php echo CHtml::submitButton('Simpan'); ?>
 	</div>
 
-<?php echo CHtml::endForm(); ?>
+<?php $this->endWidget(); ?>
 
 </div>
