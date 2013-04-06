@@ -14,6 +14,7 @@ $this->breadcrumbs=array(
 
 <?php if ($canEdit) : ?>
 <p><?php echo CHtml::link('Ubah', array('noteDetails/edit', 'id' => $model->id)); ?></p>
+<p><?php echo CHtml::link('Hapus', array('noteDetails/delete', 'id' => $model->id), array('onclick' => 'return confirm("Anda yakin ingin menghapus berkas ini?");')); ?></p>
 <?php endif; ?>
 
 <div class="view">

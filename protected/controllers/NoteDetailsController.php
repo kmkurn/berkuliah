@@ -53,6 +53,16 @@ class NoteDetailsController extends Controller
 		$this->render('edit', array('model' => $model));
 	}
 
+	public function actionDelete($id)
+	{
+		$model = $this->loadModel($id);
+		$model->delete();
+		unlink('notes/' . $model->id . '.' . Note::getExtensionFromType($model->type));
+		
+		Yii::app()->user->setFlash('message', 'Berkas berhasil dihapus.');
+		$this->redirect(array('home/index'));
+	}
+
 	public function actionDownload($id)
 	{
 		$model = $this->loadModel($id);
