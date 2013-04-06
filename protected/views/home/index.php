@@ -30,6 +30,10 @@ $('.search-button').click(function(){
 )); ?>
 </div>
 
+<?php if (Yii::app()->user->hasFlash('message')) :?>
+<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
+<?php endif; ?>
+
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_note',

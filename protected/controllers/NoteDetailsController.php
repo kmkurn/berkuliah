@@ -9,6 +9,7 @@ class NoteDetailsController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for viewing note details
+			'checkNoteOwner + edit, delete'
 		);
 	}
 
@@ -21,7 +22,7 @@ class NoteDetailsController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('index', 'download', 'edit'),
+				'actions'=>array('index', 'download', 'edit', 'delete'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -41,8 +42,6 @@ class NoteDetailsController extends Controller
 	public function actionEdit($id)
 	{
 		$model = $this->loadModel($id);
-		if ($model->student_id != Yii::app()->user->id)
-			throw new CHttpException(403,'You are not authorized to perform this action.');
 		
 		if (isset($_POST['Note']))
 		{
@@ -52,6 +51,16 @@ class NoteDetailsController extends Controller
 				$this->redirect(array('noteDetails/index','id' => $model->id));
 		}
 		$this->render('edit', array('model' => $model));
+	}
+
+	public function actionDelete($id)
+	{
+		$model = $this->loadModel($id);
+		$model->delete();
+		unlink('notes/' . $model->id . '.' . Note::getExtensionFromType($model->type));
+		
+		Yii::app()->user->setFlash('message', 'Berkas berhasil dihapus.');
+		$this->redirect(array('home/index'));
 	}
 
 	public function actionDownload($id)
@@ -80,8 +89,21 @@ class NoteDetailsController extends Controller
 	{
 		$model = Note::model()->findByPk($id);
 		if ($model === NULL)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Berkas catatan yang dimaksud tidak ada.');
 
 		return $model;
+	}
+
+	public function filterCheckNoteOwner($filterChain)
+	{
+		if (isset($_GET['id']))
+		{
+			$model = $this->loadModel($_GET['id']);
+			if ($model->student_id != Yii::app()->user->id)
+				throw new CHttpException(403, 'Berkas ini bukan milik Anda.');
+			$filterChain->run();
+		}
+		else
+			throw new CHttpException(404,'Berkas catatan belum dinyatakan.');
 	}
 }
