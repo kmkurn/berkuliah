@@ -34,7 +34,16 @@ $('.search-button').click(function(){
 <h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
 <?php endif; ?>
 
+
+<?php if (Yii::app()->user->getState('is_admin'))
+		echo CHtml::beginForm(array('batchDelete')); ?>
+
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_note',
 )); ?>
+
+<?php if (Yii::app()->user->getState('is_admin'))
+		echo CHtml::submitButton('Hapus Berkas', array('onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");'));
+		echo CHtml::endForm();
+?>
