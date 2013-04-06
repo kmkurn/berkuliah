@@ -29,9 +29,9 @@
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Sunting'); ?>
+		<?php echo CHtml::submitButton('Simpan'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+</div>

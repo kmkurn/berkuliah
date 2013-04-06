@@ -3,28 +3,28 @@
 /* @var $model Note */
 
 $this->breadcrumbs=array(
-	'Berkas ' . $model->id,
+	'Daftar Berkas' => array('home/index'),
+	$model->title,
 );
 
 ?>
 
-<h1>Halaman Rinci Berkas #<?php echo $model->id; ?></h1>
+<h1><?php echo $model->title; ?></h1>
 
-<p><?php echo CHtml::link('Unduh', array('noteDetails/download', 'id' => $model->id)); ?></p>
+<p><?php echo CHtml::link('Unduh', array('download', 'id' => $model->id)); ?></p>
 
-<?php if ($canEdit) : ?>
-<p><?php echo CHtml::link('Ubah', array('noteDetails/edit', 'id' => $model->id)); ?></p>
-<p><?php echo CHtml::link('Hapus', array('noteDetails/delete', 'id' => $model->id), array('onclick' => 'return confirm("Anda yakin ingin menghapus berkas ini?");')); ?></p>
+<?php if ($model->student_id === Yii::app()->user->id): ?>
+<p><?php echo CHtml::link('Sunting', array('edit', 'id' => $model->id)); ?></p>
+<p><?php echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array('confirm' => 'Anda yakin ingin menghapus berkas ini?')); ?></p>
 <?php endif; ?>
 
 <div class="view">
-
 
 	<b><?php echo CHtml::encode($model->getAttributeLabel('title')); ?>:</b>
 	<?php echo CHtml::encode($model->title); ?>
 	<br />
 
-	<b><?php echo CHtml::encode('Oleh'); ?>:</b>
+	<b><?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?>:</b>
 	<?php echo CHtml::encode($model->student->username); ?>
 	<br />
 
@@ -36,7 +36,7 @@ $this->breadcrumbs=array(
 	<?php echo CHtml::encode($model->course->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode('Fakultas'); ?>:</b>
+	<b><?php echo CHtml::encode($model->course->getAttributeLabel('faculty_id')); ?>:</b>
 	<?php echo CHtml::encode($model->course->faculty->name); ?>
 	<br />
 
@@ -50,6 +50,5 @@ $this->breadcrumbs=array(
 	<?php // TO-DO: set locale ?>
 	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->edit_timestamp))); ?>
 	<br />
-
 
 </div>

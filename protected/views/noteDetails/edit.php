@@ -3,18 +3,19 @@
 /* @var $model Note */
 
 $this->breadcrumbs=array(
-	'Sunting Berkas',
+	'Daftar Berkas' => array('home/index'),
+	$model->title => array('index', 'id' => $model->id),
+	'Sunting',
 );
 
 ?>
 
-<h1>Sunting Berkas #<?php echo $model->id; ?></h1>
+<h1><?php echo $model->title; ?></h1>
 
-<?php
+<?php if (Yii::app()->user->hasFlash('message')): ?>
+<h5><?php echo Yii::app()->user->getFlash('message'); ?></h5>
+<?php endif; ?>
 
-if (Yii::app()->user->hasFlash('message'))
-	echo '<h3>' . Yii::app()->user->getFlash('message') . "</h3>\n";
-
-?>
-
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array(
+	'model'=>$model,
+)); ?>
