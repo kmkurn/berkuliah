@@ -2,8 +2,8 @@
         <div class="subnav navbar navbar-fixed-bottom">
             <div class="navbar-inner">
                 <div class="container">
-                    Karya <a href=# target="_new">C3</a>. Proyek Perangkat Lunak.<br /><small> 2013 </small>
-                </div>
+                    <b><a href=# target="_new">C3-Proyek Perangkat Lunak<br />2013 </a></b>
+	          	</div>
             </div>
         </div>      
 	</footer>

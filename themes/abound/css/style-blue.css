@@ -73,3 +73,7 @@ ul.yiiPager .selected a {
   text-shadow:#CCCCCC 0 0 0;
   font-weight:bold;
 }
+
+.subnav .navbar .navbar-fixed-bottom .navbar-inner .container{
+	 background-color:  #ffffff;
+}
