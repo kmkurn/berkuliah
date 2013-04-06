@@ -28,7 +28,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to list all files
-				'actions'=>array('index'),
+				'actions'=>array('index', 'batchDelete'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -69,6 +69,21 @@ class HomeController extends Controller
 			'dataProvider'=>$dataProvider,
 			'usernames' => $usernames,
 		));
+	}
+
+	public function actionBatchDelete()
+	{
+		if (isset($_POST['deleteNote']))
+		{
+			foreach ($_POST['deleteNote'] as $id)
+			{
+				$model = Note::model()->findByPk($id);
+				$model->delete();
+			}
+
+			Yii::app()->user->setFlash('message', 'Berkas-berkas berhasil dihapus.');
+		}
+		$this->redirect(array('index'));
 	}
 
 	/**
