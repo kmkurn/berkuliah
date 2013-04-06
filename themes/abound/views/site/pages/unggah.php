@@ -6,66 +6,59 @@ $this->breadcrumbs=array(
 	'Buat berkas baru',
 );
 ?>
-
 <div class="page-header">
-	<h1>Unggah</h1>
 </div>
-
 <div class="row-fluid">
-  <div class="span6">
-  
+	<div id ="rinci">
 <?php
 	$this->beginWidget('zii.widgets.CPortlet', array(
-		'title'=>"Text fields",
-	));
-	
+	'title'=>"Buat Berkas baru"));
 ?>
+
 <?php
+echo"<table class='table table-hover'><tr><td width='270'>";
 echo(CHtml::beginForm());
-
 echo(CHtml::label('Judul', 'judul'));
+echo"</td><td>";
 echo(CHtml::textField('judul'));
-
 echo(CHtml::endForm());
-?>
-
-
-    </div>
-    <div class="span6">
-    <?php
-    echo(CHtml::label('Fakultas', 'fakultas'));
+echo"</td></tr>";
+echo"<tr><td width='270'>";
+echo(CHtml::label('Fakultas', 'fakultas'));
+echo"</td><td>";
 	echo(CHtml::listBox('fakultas','',array('1'=>'Kedokteran','2'=>'Kedokteran gigi','3'=>'Matematika & IPA','4'=>'Teknik','5'=>'Hukum','6'=>'Ekonomi','7'=>'Ilmu Budaya','8'=>'Psikologi','9'=>'Ilmu sosial & Ilmu Politik','10'=>'Kesehatan Masyarakat','11'=>'Ilmu Komputer','12'=>'Keperawatan','13'=>'Farmasi')));
-	
+	echo"</td></tr>";
+	echo"<tr><td width='270'>";
 	echo(CHtml::label('Deskripsi', 'name'));
-	echo(CHtml::textArea('name','.input-block-level',array('class'=>'input-block-level','rows'=>'3')));
-	
+	echo"</td><td width='320'>";
+	echo(CHtml::textArea('name','',array('class'=>'input-block-level','rows'=>'3')));
+	echo"</td></tr>";
+	echo"<tr><td width='270'>";
 	echo(CHtml::label('Pilih Berkas', 'name'));
+	echo"</td><td>";
 	echo(CHtml::fileField('name','',array('class'=>'btn')));
-
-	?>
-    <?php $this->endWidget();?>
-    </div>
-</div>
-
-<div class="row-fluid">
-  	<div class="span12">
-    <?php
-	$this->beginWidget('zii.widgets.CPortlet', array(
-		'title'=>"atau masukkan teks",
+	echo"</td></tr>";
+	echo"<tr><td width='270'>";
+	echo(CHtml::label('Atau masukkan teks', 'opsi'));
+	echo"</td><td>";
+	$this->widget('ext.widgets.xheditor.XHeditor',array(
+	    'model'=>$model,
+	    'modelAttribute'=>'content',
+	    'config'=>array(
+	        'id'=>'xheditor_1',
+	        'tools'=>'mfull', // mini, simple, mfull, full or from XHeditor::$_tools, tool names are case sensitive
+	        'skin'=>'default', // default, nostyle, o2007blue, o2007silver, vista
+	        'width'=>'740px',
+	        'height'=>'300px',
+	       // 'loadCSS'=>XHtml::cssUrl('editor.css'),
+	        'upImgUrl'=>$this->createUrl('request/uploadFile'), // NB! Access restricted by IP        'upImgExt'=>'jpg,jpeg,gif,png',
+	    ),
 	));
-	
-	?>
-    <?php
-	echo(CHtml::textArea('name','.input-block-level',array('class'=>'input-block-level','rows'=>'7')));
-	$this->widget('zii.widgets.jui.CJuiButton', array(
-		'name'=>'button2',
-		'caption'=>'Unggah',
-		'value'=>'asd2',
-		'htmlOptions'=>array('class'=>'btn btn-info'),
-		'onclick'=>new CJavaScriptExpression('function(){alert("Save button has been clicked"); this.blur(); return false;}'),
-	));
+	echo"</td></td></table>";
 	?>
     
     <?php $this->endWidget();?>
+</div>
+</div>
     </div>
 </div>
