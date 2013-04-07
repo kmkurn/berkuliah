@@ -8,33 +8,33 @@ $this->pageTitle=Yii::app()->name;
 
 <p>Ini adalah situs untuk berbagi catatan kuliah dan berkas soal</p>
 <div id="artikel">
-<?php
-	$this->beginWidget('zii.widgets.CPortlet', array(
-		'title'=>"Artikel Pengguna Terbaik",
-	));
-	
-?>
-	
-<blockquote class="pull-right">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <p><small>Icha</small><cite title="Source Title">   Januari</cite>
-  </p>
+  <?php
+  $this->beginWidget('zii.widgets.CPortlet', array(
+    'title'=>"Artikel Pengguna Terbaik",
+    ));
   
+    ?>
+    
+    <blockquote class="pull-right">
+      <p>Terima kasih berKuliah. Kini berbagi catatan menjadi lebih mudah. </p>
+      <p><small>Icha</small><cite title="Source Title">   Januari</cite>
+      </p>
+      
     </blockquote>
     <p></p>
     <blockquote>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <p>Dengan berkuliah, tidak bingung lagi untuk mencari soal-soal tahun lalu. </p>
       <p><small>Prida</small><cite title="Source Title">Desember</cite>
-    </blockquote>
+      </blockquote>
     </p>
-<p></p>
-</div>  
-<?php $this->endWidget();?>
-<div id="twitter">
-<a class="twitter-timeline" href="https://twitter.com/berkuliah" data-widget-id="320141241616572417">Tweets by @berkuliah</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <p></p>
+  </div>  
+  <?php $this->endWidget();?>
+  <div id="twitter">
+    <a class="twitter-timeline" href="https://twitter.com/berkuliah" data-widget-id="320141241616572417">Tweets by @berkuliah</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-</div>
+  </div>
 
 <!--<p>You may change the content of this page by modifying the following two files:</p>
 <ul>
