@@ -1,10 +1,14 @@
 	<footer>
-        <div class="subnav navbar navbar-fixed-bottom">
-            <div class="navbar-inner">
-                <div class="container">
-                    <b><a href=# target="_new">C3-Proyek Perangkat Lunak<br />2013 </a></b>
-	          	</div>
-            </div>
-        </div>      
+		<div class="subnav navbar navbar-fixed-bottom">
+			<div class="navbar-inner">
+				<div class="container">
+					<b>
+						
+						<h7><b><a href="http://localhost/berkuliah/index.php?r=site/page&view=tentangKami">C3 Proyek Perangkat Lunak</a></b></h7>
+						<br/>
+						2013
+				</div>
+			</div>
+		</div>      
 	</footer>
 
