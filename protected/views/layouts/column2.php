@@ -12,7 +12,6 @@
 			'title'=>'Operations',
 			));
 		$this->widget('zii.widgets.CMenu', array(
-			'visible'=>!Yii::app()->user->isGuest,
 			'items'=>$this->menu,
 			'htmlOptions'=>array('class'=>'operations'),
 			));
