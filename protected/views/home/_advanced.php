@@ -17,7 +17,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type', $model->getTypeOptions()); ?>
+		<?php echo $form->dropDownList($model,'type', Note::getTypeNames()); ?>
 	</div>
 
 	<div class="row">

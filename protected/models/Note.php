@@ -127,36 +127,6 @@ class Note extends CActiveRecord
 		$this->edit_timestamp = date('Y-m-d H:i:s');
 	}
 
-	/**
-	 * Retrieves an array of all valid types of a note
-	 * @return array the array of types
-	 */
-	public function getTypeOptions()
-	{
-		return array(
-			self::TYPE_PDF => 'PDF',
-			self::TYPE_JPG => 'Gambar',
-			self::TYPE_TXT => 'Teks',
-		);
-	}
-
-	/**
-	 * Retrieves the text for this model type
-	 * @return string the text for this model type
-	 */
-	public function getTypeText()
-	{
-		$typeOptions = $this->getTypeOptions();
-		if (isset($typeOptions[$this->type]))
-		{
-			return $typeOptions[$this->type];
-		}
-		else
-		{
-			return 'Jenis tidak diketahui';
-		}
-	}
-
 	public function getDownloadTimestamp($studentId)
 	{
 		$sql = "SELECT timestamp FROM bk_download_info WHERE student_id=:studentId AND note_id=:noteId;";
@@ -167,32 +137,30 @@ class Note extends CActiveRecord
 		return $result['timestamp'];
 	}
 
-	/**
-	 * Retrieves an array of all valid extensions of a note
-	 * @return array the array of extensions
-	 */
-	public static function getValidExtensions()
+	public static function getAllowedTypes()
 	{
 		return array(
-			self::TYPE_PDF => 'pdf',
-			self::TYPE_JPG => 'jpg',
-			self::TYPE_TXT => 'html',
+			array('extension' => 'pdf', 'name' => 'PDF'),
+			array('extension' => 'jpg', 'name' => 'Gambar'),
+			array('extension' => 'txt', 'name' => 'Teks'),
 		);
 	}
 
-	public static function isExtensionAllowed($extension)
+	public static function getTypeNames()
 	{
-		$validExtensions = self::getValidExtensions();
-
-		return in_array($extension, $validExtensions);
+		$allowedTypes = self::getAllowedTypes();
+		$res = array();
+		foreach ($allowedTypes as $info)
+			$res[] = $info['name'];
+		return $res;
 	}
 
 	public static function getTypeFromExtension($extension)
 	{
-		$validExtensions = self::getValidExtensions();
-		foreach ($validExtensions as $id => $ext)
+		$allowedTypes = self::getAllowedTypes();
+		foreach ($allowedTypes as $id => $info)
 		{
-			if ($extension === $ext)
+			if ($extension === $info['extension'])
 			{
 				return $id;
 			}
@@ -203,8 +171,7 @@ class Note extends CActiveRecord
 
 	public static function getExtensionFromType($type)
 	{
-		$validExtensions = self::getValidExtensions();
-
-		return $validExtensions[$type];
+		$allowedTypes = self::getAllowedTypes();
+		return $allowedTypes[$type]['extension'];
 	}
 }
