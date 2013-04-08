@@ -88,7 +88,7 @@ class NoteUploadForm extends CFormModel
 
 	public function saveNote($note_id)
 	{
-		if (empty($this->new_course_name))
+		if (empty($this->raw_file_text))
 		{
 			$noteFile = CUploadedFile::getInstance($this, 'file');
 			$noteFile->saveAs('notes/' . $note_id . '.' . $noteFile->extensionName);
