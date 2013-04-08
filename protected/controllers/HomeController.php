@@ -54,7 +54,7 @@ class HomeController extends Controller
 			$dataProvider=new CActiveDataProvider('Note');
 		}
 		$dataProvider->setPagination(array(
-			'pageSize' => 2,
+			'pageSize' => 4,
 		));
 		
 		$students = Student::model()->findAll();

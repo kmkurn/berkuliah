@@ -71,7 +71,7 @@ class Note extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bkStudents' => array(self::MANY_MANY, 'Student', 'bk_download_info(note_id, student_id)'),
+			'downloaders' => array(self::MANY_MANY, 'Student', 'bk_download_info(note_id, student_id)'),
 			'course' => array(self::BELONGS_TO, 'Course', 'course_id'),
 			'student' => array(self::BELONGS_TO, 'Student', 'student_id'),
 		);
@@ -127,6 +127,11 @@ class Note extends CActiveRecord
 		$this->edit_timestamp = date('Y-m-d H:i:s');
 	}
 
+	/**
+	 * Get download timestamp of this note by a given student
+	 * @param  int $studentId the student id
+	 * @return string the download timestamp
+	 */
 	public function getDownloadTimestamp($studentId)
 	{
 		$sql = "SELECT timestamp FROM bk_download_info WHERE student_id=:studentId AND note_id=:noteId;";
@@ -137,6 +142,10 @@ class Note extends CActiveRecord
 		return $result['timestamp'];
 	}
 
+	/**
+	 * Get the allowed types extension and their text
+	 * @return array the allowed types extension and text
+	 */
 	public static function getAllowedTypes()
 	{
 		return array(
@@ -146,6 +155,10 @@ class Note extends CActiveRecord
 		);
 	}
 
+	/**
+	 * Get the allowed types text
+	 * @return array the allowed types text
+	 */
 	public static function getTypeNames()
 	{
 		$allowedTypes = self::getAllowedTypes();
@@ -155,6 +168,11 @@ class Note extends CActiveRecord
 		return $res;
 	}
 
+	/**
+	 * Get the type id of a given extension
+	 * @param  string $extension the extension
+	 * @return int the type id associated with the extension
+	 */
 	public static function getTypeFromExtension($extension)
 	{
 		$allowedTypes = self::getAllowedTypes();
@@ -169,9 +187,15 @@ class Note extends CActiveRecord
 		return -1;
 	}
 
+	/**
+	 * Get the extension of a given type id
+	 * @param  int $type the type id
+	 * @return string the extension associated with the type id
+	 */
 	public static function getExtensionFromType($type)
 	{
 		$allowedTypes = self::getAllowedTypes();
+		
 		return $allowedTypes[$type]['extension'];
 	}
 }

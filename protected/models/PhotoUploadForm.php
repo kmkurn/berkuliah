@@ -53,6 +53,7 @@ class PhotoUploadForm extends CFormModel
 
 	/**
 	 * Generate random string for filename
+	 * @return string the random string
 	 */
 	private function randomString()
 	{
