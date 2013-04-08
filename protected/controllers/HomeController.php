@@ -28,7 +28,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to list all files
-				'actions'=>array('index', 'batchDelete'),
+				'actions'=>array('index', 'batchDelete', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -116,5 +116,15 @@ class HomeController extends Controller
 		}
 
 		$filterChain->run();
+	}
+
+	public function actionUpdateCourses()
+	{
+		$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
+		
+		echo CHtml::label('Mata Kuliah', false);
+		echo CHtml::dropDownList('Note[course_id]', '',
+			CHtml::listData($courses, 'id', 'name'), 
+			   array('prompt' => '(semua)'));
 	}
 }
