@@ -66,6 +66,4 @@ class NoteUploadController extends Controller
 			CHtml::listData($courses, 'id', 'name'), 
 			   array('prompt' => 'Pilih mata kuliah'));
 	}
-
-	// Uncomment the following methods and override them if needed
 }

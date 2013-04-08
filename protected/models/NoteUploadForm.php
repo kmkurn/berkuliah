@@ -55,7 +55,11 @@ class NoteUploadForm extends CFormModel
 			$validator = new CFileValidator();
 			$validator->attributes = array('file');
 			$validator->maxSize = 100 * 1024;
-			$validator->types = array('jpg', 'pdf');
+
+			$allowedTypes = Note::getAllowedTypes();
+			foreach ($allowedTypes as $info)
+				$validator->types[] = $info['extension'];
+			
 			$validator->validate($this);
 		}
 	}
@@ -74,16 +78,13 @@ class NoteUploadForm extends CFormModel
 
 	public function getNoteType()
 	{
-		if (empty($this->new_course_name))
-			return 2;
-		else
+		$extension = 'txt';
+		if (empty($this->raw_file_text))
 		{
 			$noteFile = CUploadedFile::getInstance($this, 'file');
-			if ($noteFile->extensionName == 'pdf')
-				return 0;
-			else
-				return 1;
+			$extension = $noteFile->extensionName;
 		}
+		return Note::getTypeFromExtension($extension);
 	}
 
 	public function saveNote($note_id)
