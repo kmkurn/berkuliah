@@ -92,7 +92,7 @@ $this->breadcrumbs=array(
                     ?>
                     <?php
                     $this->widget('ext.widgets.xheditor.XHeditor',array(
-                      'model'=>$model,
+                      //'model'=>$model,
                       'modelAttribute'=>'content',
                       'config'=>array(
                         'id'=>'xheditor_1',
