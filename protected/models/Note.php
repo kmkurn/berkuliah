@@ -21,13 +21,8 @@
  */
 class Note extends CActiveRecord
 {
-	/**
-	 * Constants that define note type/extension
-	 */
-	const TYPE_PDF = 0;
-	const TYPE_JPG = 1;
-	const TYPE_TXT = 2;
-	
+	public $advanced_faculty_id;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -59,7 +54,7 @@ class Note extends CActiveRecord
 			array('course_id, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp', 'safe', 'on'=>'search'),
+			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp, advanced_faculty_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -92,6 +87,7 @@ class Note extends CActiveRecord
 			'student_id' => 'Oleh',
 			'upload_timestamp' => 'Waktu Unggah',
 			'edit_timestamp' => 'Waktu Sunting',
+			'advanced_faculty_id' => 'Fakultas',
 		);
 	}
 
@@ -106,13 +102,18 @@ class Note extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->with = array(
+			'course.faculty' => array('select' => 'id'),
+		);
+
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('type',$this->type);
-		$criteria->compare('course_id',$this->course_id);
+		$criteria->compare('type',$this->type, true);
+		$criteria->compare('course_id',$this->course_id, true);
 		$criteria->compare('student_id',$this->student_id);
 		$criteria->compare('upload_timestamp',$this->upload_timestamp,true);
 		$criteria->compare('edit_timestamp',$this->edit_timestamp,true);
+		$criteria->compare('faculty.id',$this->advanced_faculty_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
