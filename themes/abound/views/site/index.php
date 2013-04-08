@@ -31,8 +31,8 @@ $this->pageTitle=Yii::app()->name;
   </div>  
   <?php $this->endWidget();?>
   <div id="twitter">
-    <a class="twitter-timeline" href="https://twitter.com/berkuliah" data-widget-id="320141241616572417">Tweets by @berkuliah</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/berkuliah"  data-widget-id="321252419063390209">Tweets by @berkuliah</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
   </div>
 
