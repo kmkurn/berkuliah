@@ -20,14 +20,7 @@
  * @property Student $student
  */
 class Note extends CActiveRecord
-{
-	/**
-	 * Constants that define note type/extension
-	 */
-	const TYPE_PDF = 0;
-	const TYPE_JPG = 1;
-	const TYPE_TXT = 2;
-	
+{	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
