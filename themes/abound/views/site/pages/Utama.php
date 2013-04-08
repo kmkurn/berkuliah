@@ -28,6 +28,7 @@ $this->breadcrumbs=array(
     <?php
     $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
       'id'=>'dialogCariLanjutan',
+      //'position'=>array('top'=500),
     // additional javascript options for the dialog plugin
       'options'=>array(
         'title'=>'Pencarian mode lanjutan',
@@ -41,6 +42,7 @@ $this->breadcrumbs=array(
 
     $this->widget('zii.widgets.CMenu',array(
    // 'htmlOptions'=>array('class'=>'pull-right nav'),
+
       'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
       'itemCssClass'=>'item-test',
       'encodeLabel'=>false,
@@ -54,9 +56,52 @@ $this->breadcrumbs=array(
         array('label'=>'JPG','url'=>'#'),
         )))));
 
+    echo(CHtml::label('Fakultas', 'name'));
+
+    $this->widget('zii.widgets.CMenu',array(
+   // 'htmlOptions'=>array('class'=>'pull-right nav'),
+
+      'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
+      'itemCssClass'=>'item-test',
+      'encodeLabel'=>false,
+      'items'=>array(
+        /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
+     array('label'=>'Pilih fakultas <span class="caret"></span>', 'url'=> '#',
+      'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"), 'linkOptions' => array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"),
+     'items'=>array(   
+        array('label'=>'Kedokteran','url'=>'#'),
+        array('label'=>'Kedokteran Gigi','url'=>'#'),
+        array('label'=>'Matematika & IPA','url'=>'#'),
+         array('label'=>'Teknik','url'=>'#'),
+        array('label'=>'Hukum','url'=>'#'),
+        array('label'=>'Ekonomi','url'=>'#'),
+         array('label'=>'Ilmu Budaya','url'=>'#'),
+        array('label'=>'Psikologi','url'=>'#'),
+        array('label'=>'Ilmu sosial & Ilmu Politik','url'=>'#'),
+         array('label'=>'Kesehatan Masyarakat','url'=>'#'),
+        array('label'=>'Ilmu Komputer','url'=>'#'),
+        array('label'=>'Keperawatan','url'=>'#'),
+        array('label'=>'Farmasi','url'=>'#'),
+        )))));
+
 
       echo(CHtml::label('Mata kuliah', 'name'));
-      echo(CHtml::textField('name'));
+
+      $this->widget('zii.widgets.CMenu',array(
+   // 'htmlOptions'=>array('class'=>'pull-right nav'),
+      'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
+      'itemCssClass'=>'item-test',
+      'encodeLabel'=>false,
+      'items'=>array(
+        /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
+     array('label'=>'Pilih mata kuliah <span class="caret"></span>', 'url'=> '#',
+      'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"), 'linkOptions' => array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"),
+     'items'=>array(   
+        array('label'=>'aa','url'=>'#'),
+        array('label'=>'bb','url'=>'#'),
+        array('label'=>'cc','url'=>'#'),
+        )))));
+
       echo(CHtml::label('Oleh', 'name'));
       echo(CHtml::textField('name'));
       echo(CHtml::label('Tanggal', 'name'));
