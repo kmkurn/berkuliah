@@ -17,13 +17,25 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type', Note::getTypeNames()); ?>
+		<?php echo $form->dropDownList($model,'type', Note::getTypeNames(), array('prompt' => '(semua)')); ?>
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'advanced_faculty_id'); ?>
+		<?php echo $form->dropDownList($model,'advanced_faculty_id', CHtml::listData(
+		Faculty::model()->findAll(), 'id', 'name'),
+		array('prompt' => '(semua)',
+			  'ajax' => array('type' => 'POST',
+			             	             'url' => array('home/updateCourses'),
+			             	             'update' => '#courses',
+			             	             'data' => array('faculty_id' => 'js:this.value')
+			                           		 ))); ?>
+	</div>
+
+	<div class="row" id="courses">
 		<?php echo $form->label($model,'course_id'); ?>
-		<?php echo $form->dropDownList($model,'course_id', CHtml::listData(
-		Course::model()->findAll(), 'id', 'name'), array('prompt' => 'Pilih mata kuliah')); ?>
+		<?php echo $form->dropDownList($model,'course_id', array(),
+		array('prompt' => '(semua)')); ?>
 	</div>
 
 	<div class="row">
