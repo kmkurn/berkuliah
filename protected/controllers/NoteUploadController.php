@@ -21,7 +21,7 @@ class NoteUploadController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('index'),
+				'actions'=>array('index', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -40,7 +40,6 @@ class NoteUploadController extends Controller
 			if ($model->validate())
 			{
 				$model->saveNewCourse();
-				
 				$note = new Note();
 				$note->attributes = $model->attributes;
 				$note->student_id = Yii::app()->user->id;
@@ -48,7 +47,6 @@ class NoteUploadController extends Controller
 				$note->type = $model->getNoteType();
 
 				$note->save();
-
 
 				$model->saveNote($note->id);
 
@@ -67,8 +65,6 @@ class NoteUploadController extends Controller
 		echo CHtml::dropDownList('NoteUploadForm[course_id]', '',
 			CHtml::listData($courses, 'id', 'name'), 
 			   array('prompt' => 'Pilih mata kuliah'));
-
-		//echo $form->error($model,'course_id');
 	}
 
 	// Uncomment the following methods and override them if needed
