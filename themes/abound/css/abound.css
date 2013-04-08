@@ -246,7 +246,7 @@ text-align: center !important;
 /*Side Nav*/
 .sidebar-nav {
   padding:0!important;
-
+  width: 200px;
 }
 
 .row-fluid > .span-fixed-sidebar {
@@ -555,4 +555,14 @@ footer {
   float: left;
   margin-left: 0px;
   max-width: 874px;
+}
+
+#foto{
+  margin-left:43px;
+}
+
+#okCari{
+  float:right;
+  margin-top: -55px;
+  margin-right:100px;
 }

@@ -4,7 +4,9 @@
 				<div class="container">
 					<b>
 						
-						<h7><b><a href="http://localhost/berkuliah/index.php?r=site/page&view=tentangKami">C3 Proyek Perangkat Lunak</a></b></h7>
+						<h7><b><?php
+							echo CHtml::link("C3 Proyek Perangkat Lunak", array('page', 'view'=>'tentangKami'));
+						 ?></a></b></h7>
 						<br/>
 						2013
 				</div>

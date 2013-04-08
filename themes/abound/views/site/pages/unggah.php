@@ -42,7 +42,7 @@ $this->breadcrumbs=array(
 				echo(CHtml::label('Atau masukkan teks', 'opsi'));
 				echo"</td><td>";
 				$this->widget('ext.widgets.xheditor.XHeditor',array(
-					'model'=>$model,
+					//'model'=>$model,
 					'modelAttribute'=>'content',
 					'config'=>array(
 						'id'=>'xheditor_1',

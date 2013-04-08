@@ -3,8 +3,16 @@
 
 <div class="row-fluid">
 	<div class="span3">
-		<br/><br/><br/><br/><br/><br/>
+		<br/>
+
+		<div id="foto">
+
+
+			<?php
+				echo CHtml::image("assets/url.png",'alt',array("width"=>110,"height"=>110));
+			?>
 		
+		</div><br/>
 		<div class="well sidebar-nav">
 			<?php
 			$this->widget('zii.widgets.CMenu', array(
