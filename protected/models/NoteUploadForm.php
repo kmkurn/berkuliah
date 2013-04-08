@@ -16,8 +16,6 @@ class NoteUploadForm extends CFormModel
 
 	/**
 	 * Declares the validation rules.
-	 * The rules state that username and password are required,
-	 * and password needs to be authenticated.
 	 */
 	public function rules()
 	{
@@ -31,6 +29,9 @@ class NoteUploadForm extends CFormModel
 		);
 	}
 
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
 	public function attributeLabels()
 	{
 		return array(
@@ -42,12 +43,24 @@ class NoteUploadForm extends CFormModel
 		);
 	}
 
+	/**
+	 * Checks whether the user has selected the course or insert a new course name
+	 * @param  string $attribute
+	 * @param  array $params
+	 */
 	public function checkCourse($attribute, $params)
 	{
 		if (empty($this->course_id) && empty($this->new_course_name))
+		{
 			$this->addError('course_id', 'Mata Kuliah cannot be blank.');
+		}
 	}
 
+	/**
+	 * Checks whether the uploaded note size less than 100 KB and its type is allowed
+	 * @param  string $attribute
+	 * @param  array $params
+	 */
 	public function checkNote($attribute, $params)
 	{
 		if (empty($this->raw_file_text))
@@ -64,6 +77,9 @@ class NoteUploadForm extends CFormModel
 		}
 	}
 
+	/**
+	 * Save the new course inserted by user
+	 */
 	public function saveNewCourse()
 	{
 		if (empty($this->course_id))
@@ -76,6 +92,10 @@ class NoteUploadForm extends CFormModel
 		}
 	}
 
+	/**
+	 * Get the note type
+	 * @return int the type id of this note
+	 */
 	public function getNoteType()
 	{
 		$extension = 'txt';
@@ -87,6 +107,10 @@ class NoteUploadForm extends CFormModel
 		return Note::getTypeFromExtension($extension);
 	}
 
+	/**
+	 * Save the uploaded note
+	 * @param  int $note_id the note id
+	 */
 	public function saveNote($note_id)
 	{
 		if (empty($this->raw_file_text))

@@ -59,11 +59,18 @@ class NoteUploadController extends Controller
 
 	public function actionUpdateCourses()
 	{
-		$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
-		
-		echo CHtml::label('Mata Kuliah', false);
-		echo CHtml::dropDownList('NoteUploadForm[course_id]', '',
-			CHtml::listData($courses, 'id', 'name'), 
-			   array('prompt' => 'Pilih mata kuliah'));
+		if (isset($_POST['faculty_id']))
+		{
+			$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
+			
+			echo CHtml::label('Mata Kuliah', false);
+			echo CHtml::dropDownList('NoteUploadForm[course_id]', '',
+				CHtml::listData($courses, 'id', 'name'), 
+				   array('prompt' => 'Pilih mata kuliah'));
+		}
+		else
+		{
+			throw new CHttpException(400, 'Your request is invalid.');
+		}
 	}
 }

@@ -38,9 +38,10 @@ $('.search-button').click(function(){
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::beginForm(array('batchDelete')); ?>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_note',
+	'numColumns' => 2,
 )); ?>
 
 <?php if (Yii::app()->user->getState('is_admin'))
