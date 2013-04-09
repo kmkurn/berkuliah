@@ -11,6 +11,12 @@ $this->breadcrumbs=array(
 <div class="page-header">
 </div>
 
+<?php if (Yii::app()->user->hasFlash('message')): ?>
+<div class="alert alert-success" style="width: 424px">
+	<?php echo Yii::app()->user->getFlash('message'); ?>
+</div>
+<?php endif; ?>
+
 <div class="row-fluid">
 	<div class="span6">
 		<div id="rinci">
