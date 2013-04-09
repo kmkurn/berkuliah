@@ -120,40 +120,16 @@ $this->breadcrumbs=array(
                 <tr>
                   <td>Lapor berkas</td>
                   <td>:</td>
-                  <td>lalala</td>
+                  <td>flag</td>
                 </tr>
                 <tr>
                   <td>Tinjau berkas</td>
                   <td>:</td>
-                  <td><?php
-                  $this->beginWidget('zii.widgets.CPortlet', array(
-    //'title'=>"atau masukkan teks",
-                    ));
-                  
-                    ?>
-                    <?php
-
-                    $this->widget('ext.widgets.xheditor.XHeditor',array(
-                      //'model'=>$model,
-                      'modelAttribute'=>'content',
-                      'config'=>array(
-                        'id'=>'xheditor_1',
-          'tools'=>'mfull', // mini, simple, mfull, full or from XHeditor::$_tools, tool names are case sensitive
-          'skin'=>'default', // default, nostyle, o2007blue, o2007silver, vista
-          'width'=>'740px',
-          'height'=>'300px',
-         // 'loadCSS'=>XHtml::cssUrl('editor.css'),
-          'upImgUrl'=>$this->createUrl('request/uploadFile'), // NB! Access restricted by IP        'upImgExt'=>'jpg,jpeg,gif,png',
-          ),
-                      ));
-                      ?>
-                      
-                      <?php $this->endWidget();?>
+                  <td>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <?php $this->endWidget();?>
             </div>
             <div class="span6">
 

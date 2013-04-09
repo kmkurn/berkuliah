@@ -22,20 +22,19 @@ $this->breadcrumbs=array(
     ?>
   </div>
   <div id="modeLanjutan">
-    <?php
-
-    ?>
-    <?php
-    $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-      'id'=>'dialogCariLanjutan',
-      //'position'=>array('top'=500),
-    // additional javascript options for the dialog plugin
-      'options'=>array(
-        'title'=>'Pencarian mode lanjutan',
-        'autoOpen'=>false,
-        ),
-      ));
-    echo(CHtml::label('Judul', 'name1'));
+    
+    <a href="#myModal" role="button" class="btn" data-toggle="modal">Penelusuran lanjutan</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Penelusuran Lanjutan</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <?php
+echo(CHtml::label('Judul', 'name1'));
     echo(CHtml::textField('name1'));
     echo(CHtml::label('Jenis', 'name'));
 
@@ -117,11 +116,6 @@ $this->breadcrumbs=array(
           'input' =>'placeholder:"Cari";'
           ),
         ));
-
-
-?>
-<br/>
-<?php
       $this->Beginwidget('zii.widgets.jui.CJuiButton', array(
         'name'=>'button5',
         'caption'=>'Ok',
@@ -130,14 +124,15 @@ $this->breadcrumbs=array(
         ));
       $this->endWidget();
 
-      $this->endWidget('zii.widgets.jui.CJuiDialog');
-
 // the link that may open the dialog
-      $dialog_button = '<button type="button" data-loading-text="Loading...">Pencarian mode lanjutan</button>';
-      echo CHtml::link($dialog_button, '#', array(
-       'onclick'=>'$("#dialogCariLanjutan").dialog("option","position","bottom").dialog("open"); return false;',
-       ));
        ?>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Batal</button>
+    <button class="btn btn-primary">Telusur</button>
+  </div>
+</div>
 
 
      </div>
