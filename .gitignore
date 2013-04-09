@@ -1,4 +1,4 @@
 protected/runtime/!.gitignore
 notes/*
-photos/*
+photos/!user.png
 .DS_Store

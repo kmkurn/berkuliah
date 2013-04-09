@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 		<table class='table table-hover'>
 			<tr>
 				<td width='150' height='150'>
-					<?php echo CHtml::image('photos/' . $photo, 'foto pengguna', array("width"=>200)); ?>
+					<?php echo CHtml::image('photos/' . (Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo')), 'foto pengguna', array("width"=>200)); ?>
 				</td>
 
 				<td>

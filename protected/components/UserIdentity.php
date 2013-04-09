@@ -40,6 +40,7 @@ class UserIdentity extends CBaseUserIdentity
 		$this->id = $student->id;
 		$this->setState('username', $username);
 		$this->setState('is_admin', $student->is_admin);
+		$this->setState('photo', $student->photo);
 
 		return true;
 	}
