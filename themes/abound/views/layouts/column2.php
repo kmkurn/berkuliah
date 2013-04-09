@@ -4,7 +4,7 @@
 	<div class="span3">
 		<br />
 		<div id="foto">
-			<?php echo CHtml::image("assets/url.png",'alt',array("width"=>110,"height"=>110)); ?>
+			<?php echo CHtml::image('photos/' . (Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo')), 'fotoku', array("width"=>110)); ?>
 		</div>
 		<br />
 		<div class="well sidebar-nav">

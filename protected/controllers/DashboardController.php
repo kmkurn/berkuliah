@@ -72,6 +72,8 @@ class DashboardController extends Controller
 			if ($model->validate())
 			{
 				$model->savePhoto();
+				$student = Student::model()->findByPk(Yii::app()->user->id);
+				Yii::app()->user->setState('photo', $student->photo);
 				Yii::app()->user->setFlash('message', 'Foto berhasil diunggah.');
 				Yii::app()->user->setFlash('messageType', 'success');
 			}
