@@ -1,11 +1,15 @@
 <?php
+/* @var $this HomeController */
+/* @var $model Note */
+/* @var $usernames array */
+/* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
 	'Daftar Berkas',
 );
 
 $this->menu=array(
-	array('label'=>'Unggah Berkas Baru', 'url'=>array('noteUpload/index')),
+	array('label'=>'Unggah Berkas', 'url'=>array('noteUpload/index')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

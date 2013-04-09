@@ -39,7 +39,7 @@ class HomeController extends Controller
 
 	
 	/**
-	 * Lists all models.
+	 * Lists all notes.
 	 */
 	public function actionIndex()
 	{
@@ -71,6 +71,9 @@ class HomeController extends Controller
 		));
 	}
 
+	/**
+	 * Deletes notes in batch mode.
+	 */
 	public function actionBatchDelete()
 	{
 		if (isset($_POST['deleteNote']))
@@ -118,6 +121,9 @@ class HomeController extends Controller
 		$filterChain->run();
 	}
 
+	/**
+	 * Performs update courses in dropdown list.
+	 */
 	public function actionUpdateCourses()
 	{
 		$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));

@@ -39,7 +39,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * List all activities of current user
+	 * Lists all activities of current user.
 	 */
 	public function actionProfile()
 	{
@@ -56,7 +56,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * List all uploaded files by this user
+	 * Lists all uploaded files by this user.
 	 */
 	public function actionUploads()
 	{
@@ -76,7 +76,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Upload a new profile photo
+	 * Uploads a new profile photo.
 	 */
 	public function actionUploadPhoto()
 	{

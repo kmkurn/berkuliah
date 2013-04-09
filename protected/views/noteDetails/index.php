@@ -48,7 +48,11 @@ $this->breadcrumbs=array(
 	
 	<b><?php echo CHtml::encode($model->getAttributeLabel('edit_timestamp')); ?>:</b>
 	<?php // TO-DO: set locale ?>
+	<?php if ($model->edit_timestamp === NULL): ?>
+	<?php echo CHtml::encode('-'); ?>
+	<?php else: ?>
 	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->edit_timestamp))); ?>
+	<?php endif; ?>
 	<br />
 
 </div>
