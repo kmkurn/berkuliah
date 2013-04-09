@@ -78,7 +78,7 @@ class HomeController extends Controller
 	{
 		if (isset($_POST['deleteNote']))
 		{
-			foreach ($_POST['deleteNote'] as $id)
+			foreach ($_POST['deleteNote'] as $id => $value)
 			{
 				$model = Note::model()->findByPk($id);
 				$model->delete();
