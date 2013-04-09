@@ -25,11 +25,11 @@ $this->breadcrumbs=array(
 			)); ?>
 
 			<table class="table table-hover">
-				<tbody width='270'>
+				<tbody>
 					<tr>
 						<td width='150'><?php echo CHtml::encode($model->getAttributeLabel('title')); ?></td>
 						<td>:</td>
-						<td width='270'><?php echo CHtml::encode($model->title); ?></td>
+						<td width='350'><?php echo CHtml::encode($model->title); ?></td>
 					</tr>
 					<tr>
 						<td><?php echo CHtml::encode($model->getAttributeLabel('course_id')); ?></td>
