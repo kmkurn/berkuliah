@@ -21,7 +21,7 @@ class PhotoUploadForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'photo' => 'Foto',
+			'photo' => 'Ganti Foto',
 		);
 	}
 

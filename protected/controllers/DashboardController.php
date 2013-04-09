@@ -3,6 +3,12 @@
 class DashboardController extends Controller
 {
 	/**
+	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+	 * using two-column layout. See 'protected/views/layouts/column2.php'.
+	 */
+	public $layout='//layouts/column2';
+
+	/**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -89,11 +95,20 @@ class DashboardController extends Controller
 			{
 				$model->savePhoto();
 				Yii::app()->user->setFlash('message', 'Foto berhasil diunggah.');
+				Yii::app()->user->setFlash('messageType', 'success');
+			}
+			else
+			{
+				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
+				Yii::app()->user->setFlash('messageType', 'danger');
 			}
 		}
 
+		$myPhoto = Student::model()->findByPk(Yii::app()->user->id);
+
 		$this->render('uploadPhoto', array(
 			'model' => $model,
+			'photo' => $myPhoto->photo,
 		));
 	}
 };
