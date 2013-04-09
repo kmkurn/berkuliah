@@ -1,5 +1,6 @@
 <?php
 /* @var $this DashboardController */
+/* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
 	'Dasbor'=>array('profile'),

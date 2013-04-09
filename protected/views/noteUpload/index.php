@@ -3,7 +3,7 @@
 /* @var $model Note */
 
 $this->breadcrumbs=array(
-	'Unggah Berkas Baru',
+	'Unggah Berkas',
 );
 
 ?>

@@ -32,7 +32,7 @@ class NoteDetailsController extends Controller
 	}	
 
 	/**
-	 * View the detailed information of a note
+	 * Views the detailed information of a note.
 	 * @param  int $id the note id
 	 */
 	public function actionIndex($id)
@@ -45,7 +45,7 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
-	 * Edit a note
+	 * Edits a note.
 	 * @param  int $id the note id
 	 */
 	public function actionEdit($id)
@@ -55,7 +55,7 @@ class NoteDetailsController extends Controller
 		if (isset($_POST['Note']))
 		{
 			$model->attributes = $_POST['Note'];
-			$model->updateEditTimestamp();
+			$model->edit_timestamp = date('Y-m-d H:i:s');
 			if ($model->save())
 			{
 				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
@@ -68,7 +68,7 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
-	 * Delete a note
+	 * Deletes a note.
 	 * @param  int $id the note id
 	 */
 	public function actionDelete($id)
@@ -83,7 +83,7 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
-	 * Download a note
+	 * Downloads a note.
 	 * @param  int $id the note id
 	 */
 	public function actionDownload($id)
@@ -98,7 +98,7 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
-	 * Store the download information
+	 * Stores the download information.
 	 * @param  int $id id of the downloaded note
 	 * @return  int the number of affected rows
 	 */
@@ -114,7 +114,7 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
-	 * Load the note model
+	 * Loads the note model.
 	 * @param  int $id the note id
 	 * @return Note the note object associated with the given id
 	 */
@@ -130,7 +130,7 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
-	 * Filter to assure only the note owner can edit or delete the note
+	 * A filter to assure only the note owner can edit or delete the note.
 	 * @param  CFilterChain $filterChain the filter chain
 	 */
 	public function filterCheckNoteOwner($filterChain)

@@ -44,7 +44,7 @@ class NoteUploadForm extends CFormModel
 	}
 
 	/**
-	 * Checks whether the user has selected the course or insert a new course name
+	 * Checks whether the user has selected the course or insert a new course name.
 	 * @param  string $attribute
 	 * @param  array $params
 	 */
@@ -57,7 +57,7 @@ class NoteUploadForm extends CFormModel
 	}
 
 	/**
-	 * Checks whether the uploaded note size less than 100 KB and its type is allowed
+	 * Checks whether the uploaded note size less than 100 KB and its type is allowed.
 	 * @param  string $attribute
 	 * @param  array $params
 	 */
@@ -78,7 +78,7 @@ class NoteUploadForm extends CFormModel
 	}
 
 	/**
-	 * Save the new course inserted by user
+	 * Saves the new course inserted by user.
 	 */
 	public function saveNewCourse()
 	{
@@ -93,7 +93,7 @@ class NoteUploadForm extends CFormModel
 	}
 
 	/**
-	 * Get the note type
+	 * Retrieves the note type.
 	 * @return int the type id of this note
 	 */
 	public function getNoteType()
@@ -108,7 +108,7 @@ class NoteUploadForm extends CFormModel
 	}
 
 	/**
-	 * Save the uploaded note
+	 * Saves the uploaded note.
 	 * @param  int $note_id the note id
 	 */
 	public function saveNote($note_id)

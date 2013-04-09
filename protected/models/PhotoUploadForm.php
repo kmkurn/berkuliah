@@ -26,7 +26,7 @@ class PhotoUploadForm extends CFormModel
 	}
 
 	/**
-	 * Save the uploaded photo and store its information in db
+	 * Saves the uploaded photo and store its information in DB.
 	 */
 	public function savePhoto()
 	{
@@ -52,7 +52,7 @@ class PhotoUploadForm extends CFormModel
 	}
 
 	/**
-	 * Generate random string for filename
+	 * Generates random string for filename.
 	 * @return string the random string
 	 */
 	private function randomString()

@@ -30,6 +30,9 @@ class NoteUploadController extends Controller
 		);
 	}
 
+	/**
+	 * Uploads a note.
+	 */
 	public function actionIndex()
 	{
 		$model = new NoteUploadForm();
@@ -57,6 +60,9 @@ class NoteUploadController extends Controller
 		$this->render('index', array('model' => $model));
 	}
 
+	/**
+	 * Performs update courses in dropdown list.
+	 */
 	public function actionUpdateCourses()
 	{
 		if (isset($_POST['faculty_id']))
