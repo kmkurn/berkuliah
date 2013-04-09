@@ -12,10 +12,6 @@ $this->breadcrumbs=array(
 
 <h1><?php echo $model->title; ?></h1>
 
-<?php if (Yii::app()->user->hasFlash('message')): ?>
-<h5><?php echo Yii::app()->user->getFlash('message'); ?></h5>
-<?php endif; ?>
-
 <?php $this->renderPartial('_form', array(
 	'model'=>$model,
 )); ?>

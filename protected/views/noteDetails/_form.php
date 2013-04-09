@@ -29,7 +29,8 @@
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Simpan'); ?>
+		<?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary btn-mini')); ?>
+		<?php echo CHtml::link('Kembali', array('index', 'id' => $model->id), array('class' => 'btn btn-mini')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

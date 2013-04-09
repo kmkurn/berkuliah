@@ -11,6 +11,10 @@ $this->breadcrumbs=array(
 
 <h1><?php echo $model->title; ?></h1>
 
+<?php if (Yii::app()->user->hasFlash('message')) :?>
+<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
+<?php endif; ?>
+
 <p><?php echo CHtml::link('Unduh', array('download', 'id' => $model->id)); ?></p>
 
 <?php if ($model->student_id === Yii::app()->user->id): ?>
