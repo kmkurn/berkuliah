@@ -85,6 +85,7 @@ class HomeController extends Controller
 			}
 
 			Yii::app()->user->setFlash('message', 'Berkas-berkas berhasil dihapus.');
+			Yii::app()->user->setFlash('messageType', 'success');
 		}
 		$this->redirect(array('index'));
 	}
