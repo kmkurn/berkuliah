@@ -30,7 +30,7 @@ body {
 /* Desktops and laptops ----------- */
 @media only screen 
 and (min-width : 1224px) {
-	.container-fluid{padding-top: 100px;}
+	.container-fluid{padding-top: 30px;}
 	.navbar .brand {margin-left:-90px;}
 	.style-switcher{margin-left:-70px;}
 }
