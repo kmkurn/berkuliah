@@ -9,7 +9,10 @@
 	));
 ?>
 
-	<?php $form=$this->beginWidget('CActiveForm'); ?>
+	<?php $form = $this->beginWidget('CActiveForm', array(
+		'id' => 'photo-upload-form',
+		'htmlOptions' => array('enctype' => 'multipart/form-data'),
+	)); ?>
 	<table class='table table-hover'>
 		<tr>
 			<td width="270"><?php echo $form->labelEx($model, 'title'); ?></td>
