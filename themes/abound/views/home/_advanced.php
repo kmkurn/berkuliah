@@ -4,66 +4,71 @@
 /* @var $form CActiveForm */
 ?>
 
-<div id="modeLanjutan">
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-<?php
-$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-	'id'=>'search-dialog',
-    'options'=>array(
-        'title'=>'Pencarian mode lanjutan',
-        'autoOpen'=>false,
-        'height'=>250,
-    ),
-)); ?>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Penelusuran Lanjutan</h3>
+	</div><!-- modal-header -->
 
-	<?php $form=$this->beginWidget('CActiveForm', array(
-		'id' => 'advanced-search-form'
-	)); ?>
+	<div class="modal-body">
 
-		<div class="field">
-			<?php echo $form->label($model,'title'); ?>
-			<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128)); ?>
-		</div>
+		<?php $form=$this->beginWidget('CActiveForm', array(
+			'id' => 'advanced-search-form'
+		)); ?>
 
-		<div class="field">
-			<?php echo $form->label($model,'type'); ?>
-			<?php echo $form->dropDownList($model,'type', Note::getTypeNames(), array('prompt' => '(semua)')); ?>
-		</div>
+			<div class="field">
+				<?php echo $form->label($model,'title'); ?>
+				<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128)); ?>
+			</div>
 
-		<div class="field">
-			<?php echo $form->label($model,'advanced_faculty_id'); ?>
-			<?php echo $form->dropDownList($model,'advanced_faculty_id', CHtml::listData(
-			Faculty::model()->findAll(), 'id', 'name'),
-			array('prompt' => '(semua)',
-				  'ajax' => array('type' => 'POST',
-				             	             'url' => array('home/updateCourses'),
-				             	             'update' => '#courses',
-				             	             'data' => array('faculty_id' => 'js:this.value')
-				                           		 ))); ?>
-		</div>
+			<div class="field">
+				<?php echo $form->label($model,'type'); ?>
+				<?php echo $form->dropDownList($model,'type', Note::getTypeNames(), array('prompt' => '(semua)')); ?>
+			</div>
 
-		<div class="field" id="courses">
-			<?php echo $form->label($model,'course_id'); ?>
-			<?php echo $form->dropDownList($model,'course_id', array(),
-			array('prompt' => '(semua)')); ?>
-		</div>
+			<div class="field">
+				<?php echo $form->label($model,'advanced_faculty_id'); ?>
+				<?php echo $form->dropDownList($model,'advanced_faculty_id', CHtml::listData(
+				Faculty::model()->findAll(), 'id', 'name'),
+				array('prompt' => '(semua)',
+					  'ajax' => array('type' => 'POST',
+					             	             'url' => array('home/updateCourses'),
+					             	             'update' => '#courses',
+					             	             'data' => array('faculty_id' => 'js:this.value')
+					                           		 ))); ?>
+			</div>
 
-		<div class="field">
-			<?php echo $form->label($model,'student_id'); ?>
-			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'model' => $model,
-				'attribute' => 'student_id',
-				'source' => $usernames,
-				'htmlOptions' => array('size' => 25, 'value' => ''),
-			)); ?>
-		</div>
+			<div class="field" id="courses">
+				<?php echo $form->label($model,'course_id'); ?>
+				<?php echo $form->dropDownList($model,'course_id', array(),
+				array('prompt' => '(semua)')); ?>
+			</div>
 
-		<div class="field buttons">
-			<?php echo CHtml::submitButton('Cari'); ?>
-		</div>
+			<div class="field">
+				<?php echo $form->label($model,'student_id'); ?>
+				<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+					'model' => $model,
+					'attribute' => 'student_id',
+					'source' => $usernames,
+					'htmlOptions' => array('size' => 25, 'value' => ''),
+				)); ?>
+			</div>
 
-	<?php $this->endWidget(); ?>
+			<div class="modal-footer">
+				<?php echo CHtml::button('Batal', array(
+					'class' => 'btn',
+					'data-dismiss' => 'modal',
+					'aria-hidden' => 'true',
+				)); ?>
+				<?php echo CHtml::button('Cari', array(
+					'class' => 'btn btn-primary',
+					'type' => 'submit',
+				)); ?>
+			</div>
 
-<?php $this->endWidget('zii.widgets.jui.CJuiDialog'); ?>
+		<?php $this->endWidget(); ?>
 
-</div>
+	</div><!-- modal-body -->
+
+</div><!-- #myModal -->
