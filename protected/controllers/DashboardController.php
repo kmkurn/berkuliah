@@ -21,7 +21,7 @@ class DashboardController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('index', 'profile', 'uploads', 'uploadPhoto'),
+				'actions'=>array('index', 'uploadPhoto'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -35,43 +35,20 @@ class DashboardController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->redirect(array('profile'));
-	}
-
-	/**
-	 * Lists all activities of current user.
-	 */
-	public function actionProfile()
-	{
 		$student = Student::model()->findByPk(Yii::app()->user->id);
-		$downloadsDataProvider = new CArrayDataProvider($student->downloads, array(
-			'pagination' => array(
-				'pageSize' => 1,
-			),
+		$downloadsDataProvider = $student->getDownloadHistory();
+		$uploadsDataProvider = $student->getUploadList();
+
+		$downloadsDataProvider->setPagination(array(
+			'pageSize' => 5,
+		));
+		$uploadsDataProvider->setPagination(array(
+			'pageSize' => 5,
 		));
 
-		$this->render('profile', array(
+		$this->render('index', array(
 			'downloadsDataProvider' => $downloadsDataProvider,
-		));
-	}
-
-	/**
-	 * Lists all uploaded files by this user.
-	 */
-	public function actionUploads()
-	{
-		$dataProvider = new CActiveDataProvider('Note', array(
-			'criteria' => array(
-				'condition' => 'student_id=:studentId',
-				'params' => array(':studentId' => Yii::app()->user->id),
-			),
-			'pagination' => array(
-				'pageSize' => 1,
-			),
-		));
-
-		$this->render('uploads', array(
-			'dataProvider' => $dataProvider,
+			'uploadsDataProvider' => $uploadsDataProvider,
 		));
 	}
 

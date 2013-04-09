@@ -100,4 +100,31 @@ class Student extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 * Retrieves download history of this user.
+	 * @return CArrayDataProvider the download history
+	 */
+	public function getDownloadHistory()
+	{
+		$dataProvider = new CArrayDataProvider($this->downloads);
+
+		return $dataProvider;
+	}
+
+	/**
+	 * Retrieves list of files uploaded by this user.
+	 * @return CActiveDataProvider the list of files
+	 */
+	public function getUploadList()
+	{
+		$dataProvider = new CActiveDataProvider('Note', array(
+			'criteria' => array(
+				'condition' => 'student_id=:studentId',
+				'params' => array(':studentId' => $this->id),
+			),
+		));
+
+		return $dataProvider;
+	}
 }
