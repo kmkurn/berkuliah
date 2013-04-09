@@ -6,8 +6,6 @@ $this->breadcrumbs=array(
 	'Akun','Foto'
 	);
 	?>
-	<div class="page-header">
-	</div>
 	<div class="row-fluid">
 		<div class="span9">
 			<?php
@@ -35,4 +33,3 @@ $this->breadcrumbs=array(
 				?>
 			</div>
 		</div>
-
