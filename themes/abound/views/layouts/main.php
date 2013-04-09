@@ -44,12 +44,12 @@
       <!-- Require the navigation -->
       <?php require_once('tpl_navigation.php'); ?>
     </section><!-- navigation-main -->
-    <section class="main-body">
+    <section class="main-body"><div id="hidecontainerfluid">
       <div class="container-fluid">
       <!-- Include content pages -->
       <?php echo $content; ?>
       </div><!-- container-fluid -->
-    </section>
+    </section></div>
     <!-- Require the footer -->
     <?php //require_once('tpl_footer.php'); ?>
     <footer>

@@ -84,7 +84,8 @@ $this->breadcrumbs=array(
 	<div class="page-header">
 	</div>
 	<div class="row-fluid">
-		<div class="span12">
+<div id="contentDasbor">
+		<div class="span12"><div id="dasborUtama">
 			<?php
 			$this->beginWidget('zii.widgets.CPortlet', array(
 				'title'=>"Dasbor",
@@ -104,6 +105,7 @@ $this->breadcrumbs=array(
 					));
 					?>
 					<?php $this->endWidget();?>
-				</div>
+				</div></div>
 			</div>
+		</div>
 

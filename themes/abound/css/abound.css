@@ -327,7 +327,7 @@ text-align: center !important;
 	background-repeat:repeat no-repeat;
 	box-shadow:rgba(0, 0, 0, 0.0980392) 0 1px 2px inset;
 	overflow:hidden;
-  
+
 }
 
 .ui-progressbar .ui-widget-header{
@@ -390,7 +390,7 @@ text-align: center !important;
   -webkit-background-size:40px;
   background-color:#149BDF;
   background-image:-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.14902) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.14902) 50%, rgba(255, 255, 255, 0.14902) 75%, transparent 75%, transparent);
-  background-repeat:repeat;
+background-repeat:repeat;
 }
 
 .active.ui-progressbar .ui-widget-header {
@@ -568,3 +568,12 @@ footer {
   margin-top: -55px;
   margin-right:100px;
 }
+
+#contentDasbor{
+  margin-left: -30px;
+}
+
+#dasborUtama{
+  width:900px;
+}
+
