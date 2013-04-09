@@ -135,7 +135,7 @@ $this->breadcrumbs=array(
 // the link that may open the dialog
       $dialog_button = '<button type="button" data-loading-text="Loading...">Pencarian mode lanjutan</button>';
       echo CHtml::link($dialog_button, '#', array(
-       'onclick'=>'$("#dialogCariLanjutan").dialog("open"); return false;',
+       'onclick'=>'$("#dialogCariLanjutan").dialog("option","position","bottom").dialog("open"); return false;',
        ));
        ?>
 
