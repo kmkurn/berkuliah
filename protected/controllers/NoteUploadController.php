@@ -3,6 +3,12 @@
 class NoteUploadController extends Controller
 {
 	/**
+	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+	 * using two-column layout. See 'protected/views/layouts/column2.php'.
+	 */
+	public $layout='//layouts/column2';
+
+	/**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -69,7 +75,6 @@ class NoteUploadController extends Controller
 		{
 			$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
 			
-			echo CHtml::label('Mata Kuliah', false);
 			echo CHtml::dropDownList('NoteUploadForm[course_id]', '',
 				CHtml::listData($courses, 'id', 'name'), 
 				   array('prompt' => 'Pilih mata kuliah'));
