@@ -208,6 +208,7 @@ text-align: center !important;
  }
  /*Navbar*/
  .navbar-fixed-top {
+  position: relative;
   top:0;
   left:0;
 }
@@ -326,6 +327,7 @@ text-align: center !important;
 	background-repeat:repeat no-repeat;
 	box-shadow:rgba(0, 0, 0, 0.0980392) 0 1px 2px inset;
 	overflow:hidden;
+  
 }
 
 .ui-progressbar .ui-widget-header{
