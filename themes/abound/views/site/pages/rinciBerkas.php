@@ -92,8 +92,6 @@ $this->breadcrumbs=array(
               </table>
               <?php $this->endWidget();?>
             </div>
-            <div class="span6">
-
-            </div>
+          </div>
           </div>
 
