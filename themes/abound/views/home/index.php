@@ -35,8 +35,6 @@ $('#search-link').click(function(){
 	'usernames' => $usernames,
 )); ?>
 
-<?php echo CHtml::link('Pencarian lanjutan', '#', array('id' => 'search-link')); ?>
-
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::beginForm(array('batchDelete')); ?>
 
