@@ -65,12 +65,11 @@ class NoteDetailsController extends Controller
 			if ($model->save())
 			{
 				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
+				$this->redirect(array('index', 'id' => $id));
 			}
 		}
 
-		$this->render('edit', array(
-			'model' => $model,
-		));
+		$this->render('edit', array('model' => $model));
 	}
 
 	/**
