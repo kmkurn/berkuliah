@@ -51,7 +51,7 @@
  </div>
 </div>
 </div>
-<div class="style-switcher pull-left">
+<div class="style-switcher pull-right">
  <a href="javascript:chooseStyle('none', 60)" checked="checked"><span class="style" style="background-color:#0088CC;"></span></a>
  <a href="javascript:chooseStyle('style2', 60)"><span class="style" style="background-color:#7c5706;"></span></a>
  <a href="javascript:chooseStyle('style3', 60)"><span class="style" style="background-color:#468847;"></span></a>

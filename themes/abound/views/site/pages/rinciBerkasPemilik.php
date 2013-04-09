@@ -120,11 +120,12 @@ $this->breadcrumbs=array(
                 <tr>
                   <td>Lapor berkas</td>
                   <td>:</td>
-                  <td>lalala</td>
+                  <td>flag</td>
                 </tr>
                 <tr>
                   <td>Tinjau berkas</td>
                   <td>:</td>
+<<<<<<< HEAD
                   <td><?php
                   $this->beginWidget('zii.widgets.CPortlet', array(
     //'title'=>"atau masukkan teks",
@@ -133,11 +134,13 @@ $this->breadcrumbs=array(
                     ?>
                       
                       <?php $this->endWidget();?>
+=======
+                  <td>
+>>>>>>> ganti-popup
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <?php $this->endWidget();?>
             </div>
             <div class="span6">
 

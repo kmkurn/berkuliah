@@ -41,7 +41,27 @@ $this->breadcrumbs=array(
 				echo"<tr><td width='270'>";
 				echo(CHtml::label('Atau masukkan teks', 'opsi'));
 				echo"</td><td>";
+<<<<<<< HEAD
 				
+=======
+				/*$this->widget('ext.widgets.xheditor.XHeditor',array(
+					//'model'=>$model,
+					'modelAttribute'=>'content',
+					'config'=>array(
+						'id'=>'xheditor_1',
+	        'tools'=>'mfull', // mini, simple, mfull, full or from XHeditor::$_tools, tool names are case sensitive
+	        'skin'=>'default', // default, nostyle, o2007blue, o2007silver, vista
+	        'width'=>'740px',
+	        'height'=>'300px',
+	       // 'loadCSS'=>XHtml::cssUrl('editor.css'),
+	        //'upImgUrl'=>$this->createUrl('request/uploadFile'), // NB! Access restricted by IP        'upImgExt'=>'jpg,jpeg,gif,png',
+	        ),
+					));*/
+
+
+echo CHtml::link('open dialog', '#', array(
+'onclick' => '$("#mydialog").dialog("open"); return false;',));				
+>>>>>>> ganti-popup
 				echo"</td><tr><td></td><td>";
 				$this->Beginwidget('zii.widgets.jui.CJuiButton', array(
 					'name'=>'button',

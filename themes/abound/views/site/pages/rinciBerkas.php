@@ -84,23 +84,13 @@ $this->breadcrumbs=array(
                 <tr>
                   <td>Tinjau berkas</td>
                   <td>:</td>
-                  <td><?php
-                  $this->beginWidget('zii.widgets.CPortlet', array(
-    //'title'=>"atau masukkan teks",
-                    ));
-                  
-                    ?>
-                   
-                      
-                      <?php $this->endWidget();?>
+                  <td>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <?php $this->endWidget();?>
             </div>
-            <div class="span6">
-
-            </div>
+          </div>
           </div>
 
