@@ -60,16 +60,16 @@ ul.yiiPager > li > a{
 }
 
 ul.yiiPager .selected a {
-  background-color:#0578ED;
-  background-image: -moz-linear-gradient(top, #0578ED, #0578ED);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0578ED), to(#0578ED));
-  background-image: -webkit-linear-gradient(top, #0578ED, #0578ED);
+  background-color:#99F1FF;
+  background-image: -moz-linear-gradient(top, #99F1FF, #99F1FF);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#99F1FF), to(#99F1FF));
+  background-image: -webkit-linear-gradient(top, #057, #0578ED);
   background-image: -o-linear-gradient(top, #0578ED, #0578ED);
   background-image: linear-gradient(to bottom, #0578ED, #0578ED);
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0578ED', endColorstr='#0578ED', GradientType=0);
   background-repeat: repeat-x;
   border-color:#0578ED;
-  color:#0578ED !important;
+  color:#ffffff !important;
   text-shadow:#CCCCCC 0 0 0;
   font-weight:bold;
 }
