@@ -140,7 +140,7 @@ $this->breadcrumbs=array(
        ?>
 
 
-     </div>
+     </div><!-- modeLanjutan -->
      <div class="page-header">
      </div>
      <div class="row-fluid">
