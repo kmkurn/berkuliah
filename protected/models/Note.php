@@ -86,7 +86,7 @@ class Note extends CActiveRecord
 			'course_id' => 'Mata Kuliah',
 			'student_id' => 'Oleh',
 			'upload_timestamp' => 'Waktu Unggah',
-			'edit_timestamp' => 'Waktu Sunting',
+			'edit_timestamp' => 'Terakhir Sunting',
 			'advanced_faculty_id' => 'Fakultas',
 		);
 	}
@@ -121,15 +121,7 @@ class Note extends CActiveRecord
 	}
 
 	/**
-	 * Update the note edit timestamp to current time
-	 */
-	public function updateEditTimestamp()
-	{
-		$this->edit_timestamp = date('Y-m-d H:i:s');
-	}
-
-	/**
-	 * Get download timestamp of this note by a given student
+	 * Retrieves the download timestamp of this note by a given student.
 	 * @param  int $studentId the student id
 	 * @return string the download timestamp
 	 */
@@ -144,7 +136,7 @@ class Note extends CActiveRecord
 	}
 
 	/**
-	 * Get the allowed types extension and their text
+	 * Retrieves the allowed types extension and their text.
 	 * @return array the allowed types extension and text
 	 */
 	public static function getAllowedTypes()
@@ -157,7 +149,7 @@ class Note extends CActiveRecord
 	}
 
 	/**
-	 * Get the allowed types text
+	 * Retrieves the allowed types text.
 	 * @return array the allowed types text
 	 */
 	public static function getTypeNames()
@@ -170,7 +162,7 @@ class Note extends CActiveRecord
 	}
 
 	/**
-	 * Get the type id of a given extension
+	 * Retrieves the type id of a given extension.
 	 * @param  string $extension the extension
 	 * @return int the type id associated with the extension
 	 */
@@ -189,7 +181,7 @@ class Note extends CActiveRecord
 	}
 
 	/**
-	 * Get the extension of a given type id
+	 * Retrieves the extension of a given type id.
 	 * @param  int $type the type id
 	 * @return string the extension associated with the type id
 	 */
