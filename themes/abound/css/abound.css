@@ -554,9 +554,10 @@ footer {
 }
 
 #rinci{
+  text-align: left;
   float: left;
-  margin-left: 0px;
-  max-width: 874px;
+  margin-left:-20px;
+  width: 874px;
 }
 
 #foto{
@@ -571,9 +572,10 @@ footer {
 
 #contentDasbor{
   margin-left: -30px;
+  width: 874px;
 }
 
-#dasborUtama{
-  width:900px;
+#beranda{
+  width:800px;
+  margin-left:290px;
 }
-

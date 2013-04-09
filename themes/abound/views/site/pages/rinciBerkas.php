@@ -20,11 +20,11 @@ $this->breadcrumbs=array(
           ?>
           <table class="table table-hover">
             
-            <tbody width='270'>
+            <tbody>
               <tr >
-                <td width='150'>Judul</td>
-                <td>:</td>
-                <td width='220'>Least square solutions</td>
+                <td>Judul</td>
+                <td width="2px">:</td>
+                <td>Least square solutions</td>
               </tr>
               <tr>
                 <td>Mata kuliah</td>
@@ -47,7 +47,7 @@ $this->breadcrumbs=array(
                 <td>abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh abcdefgh </td>
               </tr>
               <tr>
-                <td width='150'>
+                <td>
                 </td>
                 <td>
                 </td>

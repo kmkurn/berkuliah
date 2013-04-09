@@ -21,7 +21,7 @@
 		</div>
 		<br />
 	</div><!-- span3 -->
-	<div class="span7">
+	<div id="beranda">
 		<?php if (isset($this->breadcrumbs)): ?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links' => $this->breadcrumbs,
