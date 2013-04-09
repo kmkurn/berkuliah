@@ -4,6 +4,12 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php if (Yii::app()->user->hasFlash('message')): ?>
+<div style="width: 524px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+	<?php echo Yii::app()->user->getFlash('message'); ?>
+</div>
+<?php endif; ?>
+
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
 	'title' => 'Sunting Berkas'
 	));

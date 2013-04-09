@@ -60,7 +60,13 @@ class NoteUploadController extends Controller
 				$model->saveNote($note->id);
 
 				Yii::app()->user->setFlash('message', 'Berkas berhasil diunggah.');
+				Yii::app()->user->setFlash('messageType', 'success');
 				$this->redirect(array('home/index'));
+			}
+			else
+			{
+				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
+				Yii::app()->user->setFlash('messageType', 'danger');
 			}
 		}
 		$this->render('index', array('model' => $model));

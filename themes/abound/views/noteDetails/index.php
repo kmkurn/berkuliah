@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 </div>
 
 <?php if (Yii::app()->user->hasFlash('message')): ?>
-<div class="alert alert-success" style="width: 424px">
+<div style="width: 424px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 	<?php echo Yii::app()->user->getFlash('message'); ?>
 </div>
 <?php endif; ?>

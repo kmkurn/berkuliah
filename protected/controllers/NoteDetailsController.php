@@ -61,11 +61,18 @@ class NoteDetailsController extends Controller
 		if (isset($_POST['Note']))
 		{
 			$model->attributes = $_POST['Note'];
-			$model->edit_timestamp = date('Y-m-d H:i:s');
-			if ($model->save())
+			if ($model->validate())
 			{
+				$model->edit_timestamp = date('Y-m-d H:i:s');
+				$model->save();
 				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
+				Yii::app()->user->setFlash('messageType', 'success');
 				$this->redirect(array('index', 'id' => $id));
+			}
+			else
+			{
+				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
+				Yii::app()->user->setFlash('messageType', 'danger');
 			}
 		}
 
@@ -84,6 +91,7 @@ class NoteDetailsController extends Controller
 		unlink('notes/' . $model->id . '.' . Note::getExtensionFromType($model->type));
 		
 		Yii::app()->user->setFlash('message', 'Berkas berhasil dihapus.');
+		Yii::app()->user->setFlash('messageType', 'success');
 		$this->redirect(array('home/index'));
 	}
 

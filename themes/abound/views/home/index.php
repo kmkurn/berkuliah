@@ -31,15 +31,18 @@ $('#search-link').click(function(){
 
 <?php echo CHtml::link('Pencarian lanjutan', '#', array('id' => 'search-link')); ?>
 
-<?php if (Yii::app()->user->hasFlash('message')) :?>
-<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
-<?php endif; ?>
-
 
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::beginForm(array('batchDelete')); ?>
 
-<div class="page-header"></div>
+<div class="page-header">
+</div>
+
+<?php if (Yii::app()->user->hasFlash('message')): ?>
+<div style="width: 850px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+	<?php echo Yii::app()->user->getFlash('message'); ?>
+</div>
+<?php endif; ?>
 
 <div class="span12">
 	<div id="rinci">
