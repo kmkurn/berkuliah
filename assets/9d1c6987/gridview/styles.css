@@ -109,7 +109,9 @@
 .grid-view .pager
 {
 	margin: 5px 0 0 0;
-	text-align: right;
+	line-height:100px;
+	padding-bottom:100px;
+	vertical-align:middle;
 }
 
 .grid-view .empty

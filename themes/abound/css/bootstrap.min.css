@@ -1107,7 +1107,7 @@ input[type="color"],
 input,
 textarea,
 .uneditable-input {
-  width: 206px;
+  width: 270px;
 }
 
 textarea {
@@ -1197,7 +1197,7 @@ input[type="file"] {
 }
 
 select {
-  width: 220px;
+  width: 280px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
@@ -5115,12 +5115,15 @@ input[type="submit"].btn.btn-mini {
   text-align: center;
   list-style: none;
   *zoom: 1;
+  line-height:10px;
+  vertical-align:middle;
+  padding-bottom: 100px; 
 }
 
 .pager:before,
 .pager:after {
   display: table;
-  line-height: 0;
+  line-height: 0px;
   content: "";
 }
 
@@ -5191,9 +5194,9 @@ input[type="submit"].btn.btn-mini {
 .modal {
   position: fixed;
   top: 10%;
-  left: 50%;
+  left: 60%;
   z-index: 1050;
-  width: 560px;
+  width: 350px;
   margin-left: -280px;
   background-color: #ffffff;
   border: 1px solid #999;
@@ -5238,10 +5241,11 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal-body {
-  position: relative;
-  max-height: 400px;
-  padding: 15px;
+  padding: 30px;
   overflow-y: auto;
+  max-height:380px;
+  max-width:500px;
+
 }
 
 .modal-form {
