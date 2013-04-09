@@ -57,7 +57,7 @@ class NoteUploadForm extends CFormModel
 	}
 
 	/**
-	 * Checks whether the uploaded note size less than 100 KB and its type is allowed.
+	 * Checks whether the uploaded note size less than 500 KB and its type is allowed.
 	 * @param  string $attribute
 	 * @param  array $params
 	 */
@@ -67,7 +67,7 @@ class NoteUploadForm extends CFormModel
 		{
 			$validator = new CFileValidator();
 			$validator->attributes = array('file');
-			$validator->maxSize = 100 * 1024;
+			$validator->maxSize = 500 * 1024;
 
 			$allowedTypes = Note::getAllowedTypes();
 			foreach ($allowedTypes as $info)
