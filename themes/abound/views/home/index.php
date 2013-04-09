@@ -24,6 +24,12 @@ $('#search-link').click(function(){
 	'model' => $model,
 )); ?>
 
+<?php echo CHtml::link('Pencarian lanjutan', '#myModal', array(
+	'role' => 'button',
+	'class' => 'btn',
+	'data-toggle' => 'modal',
+)); ?>
+
 <?php $this->renderPartial('_advanced', array(
 	'model' => $model,
 	'usernames' => $usernames,
@@ -31,6 +37,9 @@ $('#search-link').click(function(){
 
 <?php echo CHtml::link('Pencarian lanjutan', '#', array('id' => 'search-link')); ?>
 
+<?php if (Yii::app()->user->hasFlash('message')) :?>
+<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
+<?php endif; ?>
 
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::beginForm(array('batchDelete')); ?>
@@ -57,8 +66,8 @@ $('#search-link').click(function(){
 
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::submitButton('Hapus Berkas', array(
-			'onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");',
-			'class' => 'btn btn-danger',
+				'onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");',
+				'class' => 'btn btn-danger',
 			));
 		echo CHtml::endForm();
 ?>
