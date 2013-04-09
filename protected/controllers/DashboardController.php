@@ -32,7 +32,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Redirects to actionProfile()
+	 * Displays this user's history.
 	 */
 	public function actionIndex()
 	{
