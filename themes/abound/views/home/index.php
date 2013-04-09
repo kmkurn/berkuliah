@@ -37,10 +37,6 @@ $('#search-link').click(function(){
 
 <?php echo CHtml::link('Pencarian lanjutan', '#', array('id' => 'search-link')); ?>
 
-<?php if (Yii::app()->user->hasFlash('message')) :?>
-<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
-<?php endif; ?>
-
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::beginForm(array('batchDelete')); ?>
 
