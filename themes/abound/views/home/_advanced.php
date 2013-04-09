@@ -16,12 +16,10 @@
 		<?php $form=$this->beginWidget('CActiveForm', array(
 			'id' => 'advanced-search-form'
 		)); ?>
-
 			<div class="field">
 				<?php echo $form->label($model,'title'); ?>
-				<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128)); ?>
+				<?php echo $form->textField($model,'title',array('size'=>100,'maxlength'=>90)); ?>
 			</div>
-
 			<div class="field">
 				<?php echo $form->label($model,'type'); ?>
 				<?php echo $form->dropDownList($model,'type', Note::getTypeNames(), array('prompt' => '(semua)')); ?>
@@ -51,7 +49,7 @@
 					'model' => $model,
 					'attribute' => 'student_id',
 					'source' => $usernames,
-					'htmlOptions' => array('size' => 25, 'value' => ''),
+					'htmlOptions' => array('size' => 10, 'value' => ''),
 				)); ?>
 			</div>
 
