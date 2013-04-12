@@ -62,40 +62,18 @@ $this->breadcrumbs=array(
 						<td>
 						</td>
 						<td>
-						<?php
-						$this->beginWidget('zii.widgets.jui.CJuiButton', array(
-						'name'=>'downloadButton',
-						'buttonType' => 'link',
-						'caption'=>'Unduh',
-						'htmlOptions'=> array('class'=>'btn btn-mini btn-primary'),
-						'url' => array('download', 'id' => $model->id),
-						));
-						$this->endWidget();
-						?>
+						<?php echo CHtml::link('Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
+					
 
 						<?php if ($model->student_id === Yii::app()->user->id):
-						$this->beginWidget('zii.widgets.jui.CJuiButton', array(
-						'name'=>'editButton',
-						'buttonType' => 'link',
-						'caption'=>'Sunting',
-						'htmlOptions'=>array('class'=>'btn btn-mini btn-success'),
-						'url' => array('edit', 'id' => $model->id),
-						));
-						$this->endWidget();
+							echo CHtml::link('Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success'));
 						endif; ?>
 
 						<?php if ($model->student_id === Yii::app()->user->id):
-						$this->beginWidget('zii.widgets.jui.CJuiButton', array(
-						'name'=>'deleteButton',
-						'buttonType' => 'link',
-						'caption'=>'Hapus',
-						'value'=>'asd3',
-						'htmlOptions'=>array('class'=>'btn btn-mini btn-danger'),
-						'url' => array('delete', 'id' => $model->id),
-						'onclick' => new CJavaScriptExpression('function(){return confirm("Apakah Anda yakin ingin menghapus berkas ini?");}'),
-						));
-						$this->endWidget();
+							echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array('class' => 'btn btn-danger',
+																											'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?'));
 						endif; ?>
+
 						</td>
 					</tr>
 					<!--

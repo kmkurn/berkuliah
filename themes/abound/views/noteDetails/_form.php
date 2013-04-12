@@ -32,23 +32,10 @@
 		<tr>
 			<td></td>
 			<td>
-			<?php
-			$this->beginWidget('zii.widgets.jui.CJuiButton', array(
-				'name'=>'saveButton',
-				'buttonType' => 'submit',
-				'caption' => 'Simpan',
-				'htmlOptions'=> array('class'=>'btn btn-mini btn-primary'),
-			));
-			$this->endWidget(); ?>
-			<?php
-			$this->beginWidget('zii.widgets.jui.CJuiButton', array(
-				'name'=>'backButton',
-				'buttonType' => 'link',
-				'caption' => 'Kembali',
-				'url' => array('index', 'id' => $model->id),
-				'htmlOptions'=> array('class'=>'btn btn-mini'),
-			));
-			$this->endWidget(); ?>
+
+			<?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary')); ?>
+			<?php echo CHtml::link('Batal', array('index', 'id' => $model->id), array('class' => 'btn')); ?>
+			
 			</td>
 		</tr>
 		<?php $this->endWidget();?>
