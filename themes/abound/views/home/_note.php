@@ -4,10 +4,10 @@
 ?>
 
 <?php if (Yii::app()->user->getState('is_admin')) echo CHtml::checkBox('deleteNote[' . $data->id . ']'); ?>
-
-<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon')); ?>
+<div id="iconBerkas">
+<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon',"width"=>50,"height"=>50)); ?>
+</div>
 <br />
-
 <b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
 <?php echo CHtml::link(CHtml::encode($data->title), array('noteDetails/index', 'id'=>$data->id)); ?>
 <br />

@@ -24,7 +24,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 <br/>
 
 <div class="row-fluid">
-	<div class="span6">
+	<div class="span9">
 		<?php $this->renderPartial('_basic', array(
 			'model' => $model,
 			)); ?>
