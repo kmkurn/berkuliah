@@ -99,9 +99,15 @@ class NoteDetailsController extends Controller
 
 		$this->updateDownloadInfo($id);
 
-		$fileName = $model->id . '.' . Note::getExtensionFromType($model->type);
+		$extension = Note::getExtensionFromType($model->type);
+		$fileName = $model->id . '.' . $extension;
 		$filePath = 'notes/' . $fileName;
-		CHttpRequest::sendFile($model->title, file_get_contents($filePath), NULL, false);
+		$mimeType = NULL;
+		if ($extension === 'html')
+		{
+			$mimeType = 'text/html';
+		}
+		CHttpRequest::sendFile($model->title, file_get_contents($filePath), $mimeType, false);
 	}
 
 	/**
