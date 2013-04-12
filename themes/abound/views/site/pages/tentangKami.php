@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
     <div class="carousel-inner">
       <div class="item active">
         <a href="">  <?php
-        echo CHtml::image('assets/header.png','alt');
+        echo CHtml::image('images/header.png','alt');
         ?>
       </a>
 
@@ -21,7 +21,7 @@ $this->breadcrumbs=array(
     <div class="item">
       <a href="">
         <?php
-        echo CHtml::image('assets/kemal.png',' ');
+        echo CHtml::image('images/kemal.png',' ');
         ?>
       </a>
 
@@ -31,7 +31,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="item">
      <?php
-     echo CHtml::image('assets/ashar.png',' ');
+     echo CHtml::image('images/ashar.png',' ');
      ?>
    </a>
    <div class="carousel-caption">
@@ -40,7 +40,7 @@ $this->breadcrumbs=array(
 </div>
 <div class="item">
   <?php 
-  echo CHtml::image('assets/merci.png',' ');
+  echo CHtml::image('images/merci.png',' ');
   ?>
 </a>
 <div class="carousel-caption">
@@ -49,7 +49,7 @@ $this->breadcrumbs=array(
 </div>
 <div class="item">
  <?php
- echo CHtml::image('assets/icha.png',' ');
+ echo CHtml::image('images/icha.png',' ');
  ?>
 </a>
 <div class="carousel-caption">

@@ -143,7 +143,7 @@ class Note extends CActiveRecord
 	{
 		$extension = self::getExtensionFromType($this->type);
 
-		return 'assets/' . $extension . '.svg';
+		return 'images/' . $extension . '.svg';
 	}
 
 	/**
