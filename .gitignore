@@ -1,4 +1,6 @@
-protected/runtime/!.gitignore
-notes/*
+assets/!.gitignore
+notes/!.gitignore
+photos/!.gitignore
 photos/!user.png
+protected/runtime/!.gitignore
 .DS_Store
