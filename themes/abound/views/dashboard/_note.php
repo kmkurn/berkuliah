@@ -8,7 +8,7 @@
 	<table>
 		<tr>
 			<td>
-				<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon')); ?>
+				<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon','height'=>'30', 'width'=>'30')); ?>
 			</td>
 			<td>
 				<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
