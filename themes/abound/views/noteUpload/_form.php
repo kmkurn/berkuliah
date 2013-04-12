@@ -80,14 +80,8 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 		<tr>
 			<td></td>
 			<td>
-			<?php
-			$this->beginWidget('zii.widgets.jui.CJuiButton', array(
-				'name'=>'uploadButton',
-				'buttonType' => 'submit',
-				'caption' => 'Unggah',
-				'htmlOptions'=> array('class'=>'btn btn-mini btn-primary'),
-			));
-			$this->endWidget(); ?>
+			<?php echo CHtml::submitButton('Unggah', array('class' => 'btn btn-primary')); ?>
+			<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 			</td>
 		</tr>
 
