@@ -8,7 +8,7 @@
 
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">Penelusuran Lanjutan</h3>
+		<h3 id="myModalLabel">Pencarian Lanjutan</h3>
 	</div><!-- modal-header -->
 
 	<div class="modal-body">
