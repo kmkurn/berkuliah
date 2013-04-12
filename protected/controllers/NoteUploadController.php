@@ -59,6 +59,7 @@ class NoteUploadController extends Controller
 			}
 			else
 			{
+				$model->faculty_id = NULL;
 				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
 				Yii::app()->user->setFlash('messageType', 'danger');
 			}

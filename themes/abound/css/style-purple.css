@@ -19,6 +19,7 @@
 .navbar .nav > li > a {
   color:#eee;
   text-shadow:#ccc 0 0 0;
+  background-color: #a00a69;
 }
 
 .navbar .operations > li > a {

@@ -23,6 +23,7 @@
 
 .navbar .operations > li > a {
   color:#1d2e7b;
+  background-color: #d85515;
 }
 
 .navbar-inverse .nav .active > a,
