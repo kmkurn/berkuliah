@@ -98,7 +98,7 @@ class NoteUploadForm extends CFormModel
 	 */
 	public function getNoteType()
 	{
-		$extension = 'txt';
+		$extension = 'html';
 		if (empty($this->raw_file_text))
 		{
 			$noteFile = CUploadedFile::getInstance($this, 'file');
