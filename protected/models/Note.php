@@ -155,7 +155,7 @@ class Note extends CActiveRecord
 		return array(
 			array('extension' => 'pdf', 'name' => 'PDF'),
 			array('extension' => 'jpg', 'name' => 'Gambar'),
-			array('extension' => 'txt', 'name' => 'Teks'),
+			array('extension' => 'html', 'name' => 'Teks'),
 		);
 	}
 

@@ -2,6 +2,19 @@
 /* @var $this NoteController */
 /* @var $model Note */
 /* @var $form CActiveForm */
+
+Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/tiny_mce/tiny_mce.js');
+Yii::app()->getClientScript()->registerScript('tiny_mce',
+	'tinyMCE.init({
+	theme: "advanced",
+	mode: "exact",
+	elements: "NoteUploadForm[raw_file_text]",
+	width: "500",
+	height: "400",
+	relative_urls: false, 
+    remove_script_host: false
+});'
+);
 ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
