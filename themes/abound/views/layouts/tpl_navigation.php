@@ -24,7 +24,7 @@
     'encodeLabel'=>false,
     'items'=>array(
       /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
-      array('visible'=>!Yii::app()->user->isGuest,'label'=>'Akun <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+      array('visible'=>!Yii::app()->user->isGuest,'label'=>'<i class="icon icon-user icon-white"></i>'.Yii::app()->user->name, 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
         'items'=>array(
          array('label'=>'<i class="icon icon-cog"></i>Pengaturan Foto',  'url'=>array('/site/page', 'view'=>'foto')),
          array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
@@ -33,19 +33,6 @@
       ),
     ));
    $this->endWidget('zii.widgets.CMenu'); 
-
-   $this->beginWidget('zii.widgets.CMenu',array(
-    'htmlOptions'=>array('class'=>'pull-left nav'),
-           // 'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
-    'itemCssClass'=>'item-test',
-    'encodeLabel'=>false,
-    'items'=>array(
-      /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
-      array('visible'=>!Yii::app()->user->isGuest,'label'=>'<i class="icon icon-user icon-white"></i>','url'=>'#'),
-      array('visible'=>!Yii::app()->user->isGuest,'label'=>Yii::app()->user->name, 'url'=>'#'),
-      ),
-    ));
-   $this->endWidget('zii.widgets.CMenu');
    ?>
 
  </div>
@@ -54,7 +41,7 @@
 <div class="style-switcher pull-right">
  <a href="javascript:chooseStyle('none', 60)" checked="checked"><span class="style" style="background-color:#0578ED;"></span></a>
  <a href="javascript:chooseStyle('style2', 60)"><span class="style" style="background-color:#f5352e;"></span></a>
- <a href="javascript:chooseStyle('style3', 60)"><span class="style" style="background-color:#13EB70;"></span></a>
+ <a href="javascript:chooseStyle('style3', 60)"><span class="style" style="background-color:#A0F80C;"></span></a>
  <a href="javascript:chooseStyle('style4', 60)"><span class="style" style="background-color:#4e4e4e;"></span></a>
  <a href="javascript:chooseStyle('style5', 60)"><span class="style" style="background-color:#d85515;"></span></a>
  <a href="javascript:chooseStyle('style6', 60)"><span class="style" style="background-color:#a00a69;"></span></a>
