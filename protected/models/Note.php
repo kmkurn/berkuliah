@@ -136,6 +136,17 @@ class Note extends CActiveRecord
 	}
 
 	/**
+	 * Retrieves the icon file name associated with this note type
+	 * @return string the icon file name
+	 */
+	public function getTypeIcon()
+	{
+		$extension = self::getExtensionFromType($this->type);
+
+		return 'assets/' . $extension . '.svg';
+	}
+
+	/**
 	 * Retrieves the allowed types extension and their text.
 	 * @return array the allowed types extension and text
 	 */
