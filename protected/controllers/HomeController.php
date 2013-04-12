@@ -50,6 +50,9 @@ class HomeController extends Controller
 		$dataProvider->setPagination(array(
 			'pageSize' => 4,
 		));
+		$dataProvider->setCriteria(array(
+			'order' => 'upload_timestamp DESC',
+		));
 		
 		$students = Student::model()->findAll();
 		$usernames = array();
