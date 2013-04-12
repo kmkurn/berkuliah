@@ -48,7 +48,7 @@ $('#search-link').click(function(){
 <?php endif; ?>
 
 <div class="span12">
-	<div id="rinci">
+	<div id="daftarBerkas">
 		<?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',
@@ -57,7 +57,9 @@ $('#search-link').click(function(){
 		)); ?>
 	</div>
 </div>
-
+<br/>
+<dic id="span6">
+<div id="tombolHapusBerkas">
 <?php if (Yii::app()->user->getState('is_admin'))
 		echo CHtml::submitButton('Hapus Berkas', array(
 				'onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");',
@@ -65,3 +67,5 @@ $('#search-link').click(function(){
 			));
 		echo CHtml::endForm();
 ?>
+</div>
+</div
