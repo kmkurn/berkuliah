@@ -13,8 +13,8 @@ $this->breadcrumbs=array(
 <div class="page-header"></div>
 
 <div class="row-fluid">
-	<div id="contentDasbor">
-		
+	<div class="span6">
+		<div id="rinci">
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
 			'title' => 'Sejarah Kegiatan ' . Yii::app()->user->name,
 		)); ?>
@@ -39,6 +39,6 @@ $this->breadcrumbs=array(
 			)); ?>
 
 		<?php $this->endWidget(); ?>
-
+		</div>
 	</div><!-- span9 -->
 </div><!-- row-fluid -->
