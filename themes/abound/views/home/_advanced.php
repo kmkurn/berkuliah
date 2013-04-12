@@ -54,14 +54,14 @@
 			</div>
 
 			<div class="modal-footer">
+				<?php echo CHtml::button('Cari', array(
+					'class' => 'btn btn-primary',
+					'type' => 'submit',
+				)); ?>
 				<?php echo CHtml::button('Batal', array(
 					'class' => 'btn',
 					'data-dismiss' => 'modal',
 					'aria-hidden' => 'true',
-				)); ?>
-				<?php echo CHtml::button('Cari', array(
-					'class' => 'btn btn-primary',
-					'type' => 'submit',
 				)); ?>
 			</div>
 
