@@ -579,3 +579,17 @@ footer {
   width:800px;
   margin-left:290px;
 }
+
+#daftarBerkas{
+  text-align: left;
+  float: left;
+  margin-left:-20px;
+  width: 600px;
+  height: 300px;
+}
+
+#tombolHapusBerkas{
+  padding:left;
+  margin-left: 200px;
+  margin-top: 0px
+}

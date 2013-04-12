@@ -78,9 +78,38 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		$identity = new UserIdentity();
-		if($identity->authenticate())
-		Yii::app()->user->login($identity);
+		Yii::import('application.vendors.CAS.*');
+
+		include_once('CAS/Autoload.php');
+		spl_autoload_unregister(array('YiiBase', 'autoload'));
+		spl_autoload_register(array('YiiBase', 'autoload'));
+		include_once('CAS.php');
+
+		phpCAS::setDebug();
+		phpCAS::client(CAS_VERSION_2_0, 'sso.ui.ac.id', 443, 'cas');
+		phpCAS::setNoCasServerValidation();
+		phpCAS::forceAuthentication();
+		phpCAS::checkAuthentication();
+		
+		$username = phpCAS::getUser();
+		$identity = new UserIdentity($username);
+
+		if ($identity->authenticate())
+			Yii::app()->user->login($identity);
+
+		$this->redirect(array('home/index'));
+	}
+
+	/**
+	 * Displays the dummy login page
+	 */
+	public function actionDummyLogin()
+	{
+		$identity = new DummyUserIdentity();
+
+		if ($identity->authenticate())
+			Yii::app()->user->login($identity);
+
 		$this->redirect(array('home/index'));
 	}
 
@@ -88,6 +117,24 @@ class SiteController extends Controller
 	 * Logs out the current user and redirect to homepage.
 	 */
 	public function actionLogout()
+	{
+		Yii::import('application.vendors.CAS.*');
+		
+		include_once('CAS/Autoload.php');
+		spl_autoload_unregister(array('YiiBase', 'autoload'));
+		spl_autoload_register(array('YiiBase', 'autoload'));
+		include_once('CAS.php');
+
+		phpCAS::setDebug();
+		phpCAS::client(CAS_VERSION_2_0, 'sso.ui.ac.id', 443, 'cas');
+		phpCAS::setNoCasServerValidation();
+		phpCAS::logout();
+		
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	public function actionDummyLogout()
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);

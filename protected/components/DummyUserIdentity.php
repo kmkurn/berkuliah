@@ -5,14 +5,13 @@
  * It contains the authentication method that checks if the provided
  * data can identity the user.
  */
-class UserIdentity extends CBaseUserIdentity
+class DummyUserIdentity extends CBaseUserIdentity
 {
 	private $id;
-	private $username;
 
-	public function __construct($username)
+	public function __construct()
 	{
-		$this->username = $username;
+
 	}
 
 	/**
@@ -25,6 +24,8 @@ class UserIdentity extends CBaseUserIdentity
 	 */
 	public function authenticate()
 	{
+		$username = 'dummy.user';
+		
 		$student = Student::model()->findByAttributes(array('username' => $username));
 		if (! $student)
 		{
