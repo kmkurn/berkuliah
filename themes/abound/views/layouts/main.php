@@ -57,7 +57,7 @@
             <div class="navbar-inner">
                 <div class="container">
                     Copyright &copy; <?php echo date('Y'); ?> by 
-                    <h7><?php echo CHtml::link('Kelompok C3', array('page', 'view'=>'tentangKami')); ?></h7>.<br/>
+                    <h7><?php echo CHtml::link('Kelompok C3', array('site/page', 'view'=>'tentangKami')); ?></h7>.<br/>
                     All Rights Reserved.<br/>
                     <?php echo Yii::powered(); ?>
                     <br />
