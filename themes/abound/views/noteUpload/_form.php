@@ -22,6 +22,8 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 	));
 ?>
 
+	<label>Isian dengan tanda * harus diisi.</label>
+
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'photo-upload-form',
 		'htmlOptions' => array('enctype' => 'multipart/form-data'),
@@ -54,25 +56,25 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 		</tr>
 
 		<tr>
-			<td><?php echo $form->labelEx($model, 'course_id'); ?></td>
+			<td><?php echo $form->labelEx($model, 'course_id'); ?> <label>*</label></td>
 			<td><span id="courses"><?php echo $form->dropDownList($model, 'course_id', array(), 
 				array('prompt' => 'Pilih mata kuliah')); ?></span>
 				<?php echo $form->error($model, 'course_id'); ?></td>
 		</tr>
 
 		<tr>
-			<td>atau masukkan mata kuliah baru:</td>
+			<td><label><em>atau masukkan mata kuliah baru</em></label></td>
 			<td><?php echo $form->textField($model, 'new_course_name'); ?></td>
 		</tr>
 
 		<tr>
-			<td><?php echo $form->labelEx($model, 'file'); ?></td>
+			<td><?php echo $form->labelEx($model, 'file'); ?> <label>*</label></td>
 			<td><?php echo $form->fileField($model, 'file'); ?>
 				<?php echo $form->error($model, 'file'); ?></td>
 		</tr>
 
 		<tr>
-			<td>atau ketikkan catatan Anda:</td>
+			<td><label><em>atau ketikkan catatan Anda</em></label></td>
 			<td><?php echo $form->textArea($model, 'raw_file_text'); ?>
 				<?php echo $form->error($model, 'raw_file_text'); ?></td>
 		</tr>
