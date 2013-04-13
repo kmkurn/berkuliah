@@ -21,11 +21,11 @@ class NoteUploadForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('title, description, faculty_id', 'required'),
+			array('title, faculty_id', 'required'),
 			// password needs to be authenticated
 			array('course_id', 'checkCourse'),
 			array('file', 'checkNote'),
-			array('new_course_name, raw_file_text', 'safe'),
+			array('description, new_course_name, raw_file_text', 'safe'),
 		);
 	}
 
