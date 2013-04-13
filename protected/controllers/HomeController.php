@@ -45,7 +45,11 @@ class HomeController extends Controller
 		}
 		else
 		{
-			$dataProvider=new CActiveDataProvider('Note');
+			$dataProvider=new CActiveDataProvider('Note', array(
+				'criteria' => array(
+					'order' => 'upload_timestamp DESC',
+				),
+			));
 		}
 		$dataProvider->setPagination(array(
 			'pageSize' => 4,
