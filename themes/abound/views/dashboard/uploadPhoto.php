@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 
 $this->breadcrumbs=array(
-	'Akun','Foto'
+	Yii::app()->user->name, 'Pengaturan Foto'
 );
 ?>
 	
