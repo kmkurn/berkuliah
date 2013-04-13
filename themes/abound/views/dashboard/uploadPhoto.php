@@ -37,7 +37,9 @@ $this->breadcrumbs=array(
 				<?php echo $form->fileField($model, 'photo'); ?>
 				<?php echo $form->error($model, 'photo'); ?>
 				<br />
+				<br />
 				<?php echo CHtml::button('Ganti', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
+				<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 				</td>
 			</tr>
 		</table>
