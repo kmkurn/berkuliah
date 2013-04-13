@@ -103,7 +103,7 @@ class Note extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->with = array(
-			'course.faculty' => array('select' => 'id'),
+			'course.faculty' => array('select' => 'id, name'),
 		);
 
 		$criteria->compare('title',$this->title,true);
