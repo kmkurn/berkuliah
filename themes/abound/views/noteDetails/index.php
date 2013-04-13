@@ -15,7 +15,7 @@ $this->breadcrumbs=array(
 
 <div class="row-fluid">
 		<?php if (Yii::app()->user->hasFlash('message')): ?>
-		<div style="width: 424px; margin-left:292px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+		<div style="width: 754px; margin-left:292px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 			<?php echo Yii::app()->user->getFlash('message'); ?>
 		</div>
 		<?php endif; ?>
