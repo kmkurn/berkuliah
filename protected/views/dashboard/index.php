@@ -1,7 +1,7 @@
 <?php
 /* @var $this DashboardController */
 /* @var $downloadsDataProvider CArrayDataProvider */
-/* @var $uploadsDataProvider CActiveDataProvider */
+/* @var $uploadsDataProvider CArrayDataProvider */
 
 $this->pageTitle=Yii::app()->name . ' - Dasbor';
 
