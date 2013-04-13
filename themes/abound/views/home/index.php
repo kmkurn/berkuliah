@@ -63,7 +63,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 
 		<br/>
 
-		<div id ="tombolHapusBerkas">
+		<div id="tombolHapusBerkas">
 			<?php if (Yii::app()->user->getState('is_admin'))
 				echo CHtml::submitButton('Hapus Berkas', array(
 					'onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");',
