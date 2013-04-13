@@ -45,7 +45,7 @@ $('.search-button').click(function(){
 <?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_note',
-	'numColumns' => 2,
+	'numColumns' => 4,
 )); ?>
 
 <?php if (Yii::app()->user->getState('is_admin'))
