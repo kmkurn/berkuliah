@@ -1,6 +1,6 @@
 body {
 	margin-top:100px;
-	font-size:12px;
+	font-size:13px;
 	padding-bottom: 40px;
 	
 }
@@ -49,7 +49,7 @@ h1,h2,h3,h4, .portlet > .portlet-decoration, .sidebar-nav > ul > li > a, .navbar
 }
 
 .portlet > .portlet-decoration, .sidebar-nav > ul > li > a, .navbar li > a, th{
-	font-size:14px!important;
+	font-size:13px!important;
 }
 /* Start Portlets*/
 .portlet{

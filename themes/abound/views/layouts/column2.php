@@ -12,9 +12,9 @@
 			$this->widget('zii.widgets.CMenu', array(
 				'encodeLabel' => false,
 				'items' => array(
-					array('label' => '<i class="icon icon-home"></i>Daftar Berkas', 'url' => array('home/index')),
-					array('label' => '<i class="icon icon-tasks"></i>Dasbor', 'url' => array('dashboard/index')),
-					array('label' => '<i class="icon icon-circle-arrow-up"></i>Unggah Berkas', 'url' => array('noteUpload/index')),
+					array('label' => '<i class="icon icon-file"></i> Daftar Berkas', 'url' => array('home/index')),
+					array('label' => '<i class="icon icon-tasks"></i> Dasbor', 'url' => array('dashboard/index')),
+					array('label' => '<i class="icon icon-upload"></i> Unggah Catatan', 'url' => array('noteUpload/index')),
 					// array('label' => '<i class="icon icon-comment"></i>Minta Berkas', 'url' => array('/site/page', 'view' => 'interface')),
 				)
 			)); ?>

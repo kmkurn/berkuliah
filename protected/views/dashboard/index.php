@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
 	<div class="span9">
 		
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
-			'title' => 'Sejarah Kegiatan ' . Yii::app()->user->name,
+			'title' => '<i class="icon icon-tasks"></i> Sejarah Kegiatan ' . Yii::app()->user->name,
 		)); ?>
 
 			<?php $this->widget('CTabView', array(
