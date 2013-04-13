@@ -22,40 +22,45 @@ $this->breadcrumbs=array(
 		<div class="span6">
 		<div id="rinci">
 			<?php $this->beginWidget('zii.widgets.CPortlet', array(
-				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN BERKAS</strong>',
+				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN CATATAN</strong>',
 			)); ?>
 
 			<table class="table table-hover">
 				<tbody>
 					<tr>
-						<td ><?php echo CHtml::encode($model->getAttributeLabel('title')); ?></td>
+						<td><i class="icon icon-tag"></i> <?php echo CHtml::encode($model->getAttributeLabel('title')); ?></td>
 						<td width='2px'>:</td>
-						<td ><?php echo CHtml::encode($model->title); ?></td>
+						<td><strong><?php echo CHtml::encode($model->title); ?></strong></td>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::encode($model->getAttributeLabel('course_id')); ?></td>
+						<td><i class="icon icon-user"></i> <?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?></td>
 						<td>:</td>
-						<td><?php echo CHtml::encode($model->course->name); ?></td>
+						<td><?php echo CHtml::encode($model->student->username); ?></td>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::encode($model->course->getAttributeLabel('faculty_id')); ?></td>
+						<td><i class="icon icon-briefcase"></i> <?php echo CHtml::encode($model->course->getAttributeLabel('faculty_id')); ?></td>
 						<td>:</td>
 						<td><?php echo CHtml::encode($model->course->faculty->name); ?></td>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::encode($model->getAttributeLabel('upload_timestamp')); ?></td>
+						<td><i class="icon icon-book"></i> <?php echo CHtml::encode($model->getAttributeLabel('course_id')); ?></td>
 						<td>:</td>
-						<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
+						<td><?php echo CHtml::encode($model->course->name); ?></td>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::encode($model->getAttributeLabel('edit_timestamp')); ?></td>
-						<td>:</td>
-						<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
-					</tr>
-					<tr>
-						<td><?php echo CHtml::encode($model->getAttributeLabel('description')); ?></td>
+						<td><i class="icon icon-zoom-in"></i> <?php echo CHtml::encode($model->getAttributeLabel('description')); ?></td>
 						<td>:</td>
 						<td><?php echo CHtml::encode($model->description); ?></td>
+					</tr>
+					<tr>
+						<td><i class="icon icon-time"></i> <?php echo CHtml::encode($model->getAttributeLabel('upload_timestamp')); ?></td>
+						<td>:</td>
+						<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
+					</tr>
+					<tr>
+						<td><i class="icon icon-time"></i> <?php echo CHtml::encode($model->getAttributeLabel('edit_timestamp')); ?></td>
+						<td>:</td>
+						<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
 					</tr>
 					<tr>
 						<td width='150'>
@@ -65,7 +70,6 @@ $this->breadcrumbs=array(
 						<td>
 						<?php echo CHtml::link('Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
 					
-
 						<?php if ($model->student_id === Yii::app()->user->id):
 							echo CHtml::link('Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success'));
 						endif; ?>
@@ -77,21 +81,7 @@ $this->breadcrumbs=array(
 
 						</td>
 					</tr>
-					<!--
-					<tr>
-						<td>Rating</td>
-						<td>:</td>
-						<td>
-						<?php $this->widget('CStarRating', array(
-						'name'=>'rating2',
-						'value'=> 0,
-						'readOnly'=> true,
-						));
-
-						?>
-						</td>
-					</tr>
-					-->
+					
 				</tbody>
 			</table>
 			<?php $this->endWidget();?>

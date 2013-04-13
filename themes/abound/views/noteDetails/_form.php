@@ -11,20 +11,20 @@
 <?php endif; ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<strong>Halaman Sunting Berkas</strong>'
+	'title' => '<i class="icon icon-pencil"></i> <strong>SUNTING CATATAN</strong>'
 	));
 ?>
 	<label>Isian dengan tanda * harus diisi.</label>
 	<table class='table table-hover'>
 	<?php $form=$this->beginWidget('CActiveForm'); ?>
 		<tr>
-			<td width="270"><?php echo $form->labelEx($model, 'title'); ?></td>
+			<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'title'); ?></td>
 			<td><?php echo $form->textField($model, 'title', array('maxlength'=>128)); ?>
 				<?php echo $form->error($model, 'title'); ?></td>
 		</tr>
 
 		<tr>
-			<td width="270"><?php echo $form->labelEx($model, 'description'); ?></td>
+			<td width="270"><i class="icon icon-zoom-in"></i> <?php echo $form->labelEx($model, 'description'); ?></td>
 			<td><?php echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
 				<?php echo $form->error($model, 'description'); ?></td>
 		</tr>
