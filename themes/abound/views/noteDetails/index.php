@@ -11,14 +11,15 @@ $this->breadcrumbs=array(
 <div class="page-header">
 </div>
 
-<?php if (Yii::app()->user->hasFlash('message')): ?>
-<div style="width: 424px; margin-left:262px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
-	<?php echo Yii::app()->user->getFlash('message'); ?>
-</div>
-<?php endif; ?>
+
 
 <div class="row-fluid">
-	<div class="span6">
+		<?php if (Yii::app()->user->hasFlash('message')): ?>
+		<div style="width: 424px; margin-left:292px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+			<?php echo Yii::app()->user->getFlash('message'); ?>
+		</div>
+		<?php endif; ?>
+		<div class="span6">
 		<div id="rinci">
 			<?php $this->beginWidget('zii.widgets.CPortlet', array(
 				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN BERKAS</strong>',
