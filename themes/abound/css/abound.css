@@ -561,8 +561,8 @@ footer {
 #rinci{
   text-align: left;
   float: left;
-  margin-left:-20px;
-  width: 800px;
+  margin-right: 40px;
+  width: 914px;
 }
 
 #foto{
@@ -575,15 +575,15 @@ footer {
   margin-right:100px;
 }
 
-#contentDasbor{
-  margin-left: -30px;
-  width: 874px;
+#dasbor{
+  margin-right: 100px;
+  width: 928px;
 }
 
 #daftarBerkas{
   text-align: left;
   float: left;
-  margin-left:-20px;
+  margin-left:28px;
   width: 600px;
   height: 300px;
 }
@@ -596,4 +596,10 @@ footer {
 
 #iconBerkas{
   text-align: center;
+}
+
+#uploadForm{
+  width: 918px;
+  margin-left: 278px;
+  margin-right: 50px;
 }
