@@ -2,7 +2,7 @@ body {
 	margin-top:100px;
 	font-size:13px;
 	padding-bottom: 40px;
-	
+  
 }
 
 .container-fluid{padding-top: 20px;}
@@ -558,6 +558,13 @@ footer {
   max-width: 550px;
 }
 
+#rinci{
+  text-align: left;
+  float: left;
+  margin-right: 40px;
+  width: 914px;
+}
+
 #foto{
   margin-left:43px;
 }
@@ -583,7 +590,7 @@ footer {
 
 #tombolHapusBerkas{
   padding:left;
-  margin-left: 3px;
+  margin-left: 370px;
   margin-top: -10px;
 }
 
