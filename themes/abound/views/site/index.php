@@ -5,7 +5,7 @@ $this->pageTitle=Yii::app()->name;
 ?>
 <blockquote class="pull-left">
   <p>Ini adalah situs untuk berbagi catatan kuliah dan berkas soal</p>
-      <p><small>Berkuliah<cite title="Source Title">.com</cite></small>
+      <p><small><cite title="Source Title">BerKuliah</cite></small>
       </p>
 </blockquote>
 <div class="row-fluid">
