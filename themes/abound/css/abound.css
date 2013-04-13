@@ -542,13 +542,10 @@ footer {
 /*"twitter_timeline"*/
 #twitter{
   width:50px;
-  padding:right;
-  float:right;
   max-height: 90px;
-  margin-bottom: 0px;
+  margin-bottom: 50px;
   width: 200px;
-  margin-top: -270px;
-  margin-right: -230px;
+  float:right;
 }
 
 #artikel{
