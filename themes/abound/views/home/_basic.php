@@ -7,12 +7,10 @@
 	'id'=>'search-form',
 	'method' => 'get',
 )); ?>
-
 	<?php echo $form->textField($model,'title',array(
 		'size' => 60,
 		'maxlength' => 128,
-		'class' => 'search-query span10',
+		'class' => 'search-query span12',
 		'placeholder' => 'Cari judul',
 	)); ?>
-
 <?php $this->endWidget(); ?>
