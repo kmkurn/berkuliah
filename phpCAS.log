@@ -54,3 +54,104 @@ F4EF .|    -
 7AF6 .|    |    |    -
 7AF6 .|    |    -
 7AF6 .|    -
+7C2F .START phpCAS-1.3.2 ****************** [CAS.php:450]
+7C2F .=> phpCAS::client('2.0', 'sso.ui.ac.id', 443, 'cas') [SiteController.php:128]
+7C2F .|    => CAS_Client::__construct('2.0', false, 'sso.ui.ac.id', 443, 'cas', true) [CAS.php:347]
+7C2F .|    |    Starting a new session [Client.php:792]
+7C2F .|    <= ''
+7C2F .<= ''
+7C2F .=> phpCAS::setNoCasServerValidation() [SiteController.php:129]
+7C2F .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1669]
+7C2F .<= ''
+7C2F .=> phpCAS::logout() [SiteController.php:130]
+7C2F .|    => CAS_Client::logout(array ()) [CAS.php:1467]
+7C2F .|    |    Prepare redirect to : https://sso.ui.ac.id/cas/logout [Client.php:1433]
+7C2F .|    |    exit()
+7C2F .|    |    -
+7C2F .|    -
+301B .START phpCAS-1.3.2 ****************** [CAS.php:450]
+301B .=> phpCAS::client('2.0', 'sso.ui.ac.id', 443, 'cas') [SiteController.php:128]
+301B .|    => CAS_Client::__construct('2.0', false, 'sso.ui.ac.id', 443, 'cas', true) [CAS.php:347]
+301B .|    |    Starting a new session [Client.php:792]
+301B .|    <= ''
+301B .<= ''
+301B .=> phpCAS::setNoCasServerValidation() [SiteController.php:129]
+301B .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1669]
+301B .<= ''
+301B .=> phpCAS::logout() [SiteController.php:130]
+301B .|    => CAS_Client::logout(array ()) [CAS.php:1467]
+301B .|    |    Prepare redirect to : https://sso.ui.ac.id/cas/logout [Client.php:1433]
+301B .|    |    exit()
+301B .|    |    -
+301B .|    -
+7AD7 .START phpCAS-1.3.2 ****************** [CAS.php:450]
+7AD7 .=> phpCAS::client('2.0', 'sso.ui.ac.id', 443, 'cas') [SiteController.php:88]
+7AD7 .|    => CAS_Client::__construct('2.0', false, 'sso.ui.ac.id', 443, 'cas', true) [CAS.php:347]
+7AD7 .|    |    Starting a new session [Client.php:792]
+7AD7 .|    <= ''
+7AD7 .<= ''
+7AD7 .=> phpCAS::setNoCasServerValidation() [SiteController.php:89]
+7AD7 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1669]
+7AD7 .<= ''
+7AD7 .=> phpCAS::forceAuthentication() [SiteController.php:90]
+7AD7 .|    => CAS_Client::forceAuthentication() [CAS.php:1101]
+7AD7 .|    |    => CAS_Client::isAuthenticated() [Client.php:1083]
+7AD7 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1189]
+7AD7 .|    |    |    |    no user found [Client.php:1375]
+7AD7 .|    |    |    <= false
+7AD7 .|    |    |    no ticket found [Client.php:1258]
+7AD7 .|    |    <= false
+7AD7 .|    |    => CAS_Client::redirectToCas(false) [Client.php:1092]
+7AD7 .|    |    |    => CAS_Client::getServerLoginURL(false, false) [Client.php:1396]
+7AD7 .|    |    |    |    => CAS_Client::getURL() [Client.php:328]
+7AD7 .|    |    |    |    |    Final URI: http://localhost/berkuliah/index-frontend.php?r=site/login [Client.php:3071]
+7AD7 .|    |    |    |    <= 'http://localhost/berkuliah/index-frontend.php?r=site/login'
+7AD7 .|    |    |    <= 'https://sso.ui.ac.id/cas/login?service=http%3A%2F%2Flocalhost%2Fberkuliah%2Findex-frontend.php%3Fr%3Dsite%2Flogin'
+7AD7 .|    |    |    Redirect to : https://sso.ui.ac.id/cas/login?service=http%3A%2F%2Flocalhost%2Fberkuliah%2Findex-frontend.php%3Fr%3Dsite%2Flogin [Client.php:1402]
+7AD7 .|    |    |    exit()
+7AD7 .|    |    |    -
+7AD7 .|    |    -
+7AD7 .|    -
+8C20 .START phpCAS-1.3.2 ****************** [CAS.php:450]
+8C20 .=> phpCAS::client('2.0', 'sso.ui.ac.id', 443, 'cas') [SiteController.php:128]
+8C20 .|    => CAS_Client::__construct('2.0', false, 'sso.ui.ac.id', 443, 'cas', true) [CAS.php:347]
+8C20 .|    |    Starting a new session [Client.php:792]
+8C20 .|    <= ''
+8C20 .<= ''
+8C20 .=> phpCAS::setNoCasServerValidation() [SiteController.php:129]
+8C20 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1669]
+8C20 .<= ''
+8C20 .=> phpCAS::logout() [SiteController.php:130]
+8C20 .|    => CAS_Client::logout(array ()) [CAS.php:1467]
+8C20 .|    |    Prepare redirect to : https://sso.ui.ac.id/cas/logout [Client.php:1433]
+8C20 .|    |    exit()
+8C20 .|    |    -
+8C20 .|    -
+7EC3 .START phpCAS-1.3.2 ****************** [CAS.php:450]
+7EC3 .=> phpCAS::client('2.0', 'sso.ui.ac.id', 443, 'cas') [SiteController.php:88]
+7EC3 .|    => CAS_Client::__construct('2.0', false, 'sso.ui.ac.id', 443, 'cas', true) [CAS.php:347]
+7EC3 .|    |    Starting a new session [Client.php:792]
+7EC3 .|    <= ''
+7EC3 .<= ''
+7EC3 .=> phpCAS::setNoCasServerValidation() [SiteController.php:89]
+7EC3 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1669]
+7EC3 .<= ''
+7EC3 .=> phpCAS::forceAuthentication() [SiteController.php:90]
+7EC3 .|    => CAS_Client::forceAuthentication() [CAS.php:1101]
+7EC3 .|    |    => CAS_Client::isAuthenticated() [Client.php:1083]
+7EC3 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1189]
+7EC3 .|    |    |    |    no user found [Client.php:1375]
+7EC3 .|    |    |    <= false
+7EC3 .|    |    |    no ticket found [Client.php:1258]
+7EC3 .|    |    <= false
+7EC3 .|    |    => CAS_Client::redirectToCas(false) [Client.php:1092]
+7EC3 .|    |    |    => CAS_Client::getServerLoginURL(false, false) [Client.php:1396]
+7EC3 .|    |    |    |    => CAS_Client::getURL() [Client.php:328]
+7EC3 .|    |    |    |    |    Final URI: http://localhost/berkuliah/index-frontend.php?r=site/login [Client.php:3071]
+7EC3 .|    |    |    |    <= 'http://localhost/berkuliah/index-frontend.php?r=site/login'
+7EC3 .|    |    |    <= 'https://sso.ui.ac.id/cas/login?service=http%3A%2F%2Flocalhost%2Fberkuliah%2Findex-frontend.php%3Fr%3Dsite%2Flogin'
+7EC3 .|    |    |    Redirect to : https://sso.ui.ac.id/cas/login?service=http%3A%2F%2Flocalhost%2Fberkuliah%2Findex-frontend.php%3Fr%3Dsite%2Flogin [Client.php:1402]
+7EC3 .|    |    |    exit()
+7EC3 .|    |    |    -
+7EC3 .|    |    -
+7EC3 .|    -
