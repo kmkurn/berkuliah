@@ -144,7 +144,7 @@ class Note extends CActiveRecord
 	{
 		$extension = self::getExtensionFromType($this->type);
 
-		return 'images/' . $extension . '.svg';
+		return Yii::app()->baseUrl . '/images/' . $extension . '.svg';
 	}
 
 	/**

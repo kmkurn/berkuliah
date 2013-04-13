@@ -1,6 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<?php
- echo CHtml::image('images/header.png',' ');
+ echo CHtml::image(Yii::app()->baseUrl . '/images/header.png',' ');
  ?>
  <div class="navbar-inner"> 
   <div class="container">
