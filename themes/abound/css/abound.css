@@ -537,20 +537,21 @@ footer {
 
 /*"twitter_timeline"*/
 #twitter{
-  padding-left:500px;
-  float-top:0px;
-  margin-left: 150px;
-  margin-top: 10px;
+  width:50px;
+  padding:right;
+  float:right;
   max-height: 90px;
   margin-bottom: 0px;
   width: 200px;
+  margin-top: -270px;
+  margin-right: -230px;
 }
 
 #artikel{
   float: left;
   margin-left: 0px;
   margin-top:10px;
-  max-width: 600px;
+  max-width: 550px;
 }
 
 #rinci{
@@ -585,7 +586,7 @@ footer {
 
 #tombolHapusBerkas{
   padding:left;
-  margin-left: 200px;
+  margin-left: 250px;
   margin-top: -100px
 }
 

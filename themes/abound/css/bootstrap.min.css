@@ -805,9 +805,9 @@ h4 small {
 }
 
 .page-header {
-  padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 7px;
+  margin: 20px 0 30px 260px;
+  border-bottom: 3px dotted #eeeeee;
 }
 
 ul,
