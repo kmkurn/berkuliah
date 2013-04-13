@@ -19,11 +19,14 @@
 .navbar .nav > li > a {
   color:#eee;
   text-shadow:#ccc 0 0 0;
-  background-color: #EA2E2D;
 }
 
 .navbar .operations > li > a {
   color:#1d2e7b;
+}
+
+.navbar .operations > li > a:hover {
+ background-color: #EA2E2D;
 }
 
 .navbar-inverse .nav .active > a,

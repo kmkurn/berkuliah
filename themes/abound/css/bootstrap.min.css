@@ -805,9 +805,9 @@ h4 small {
 }
 
 .page-header {
-  padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 7px;
+  margin: 20px 0 30px 260px;
+  border-bottom: 3px dotted #eeeeee;
 }
 
 ul,
@@ -5115,9 +5115,8 @@ input[type="submit"].btn.btn-mini {
   text-align: center;
   list-style: none;
   *zoom: 1;
-  line-height:10px;
   vertical-align:middle;
-  padding-bottom: 100px; 
+  padding-bottom: 80px; 
 }
 
 .pager:before,

@@ -23,7 +23,6 @@
 
 .navbar .operations > li > a {
   color:#1d2e7b;
-  background-color: #d85515;
 }
 
 .navbar-inverse .nav .active > a,
@@ -52,12 +51,12 @@
 }
 
 a, a:hover, .sidebar-nav ul > li > a, .sidebar-nav ul > li > a:hover, .summary-number {
-	color: #d85515;
+  color: #d85515;
 }
 
 ul.yiiPager > li > a{
-	color: #d85515!important;
-	
+  color: #d85515!important;
+  
 }
 
 ul.yiiPager .selected a {

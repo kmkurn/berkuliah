@@ -21,10 +21,10 @@
         $cs->registerCssFile($baseUrl.'/css/abound.css');
         ?>
         <!-- styles for style switcher -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/css/style-blue.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/css/style-grey.css" />
         <link rel="alternate stylesheet" type="text/css" media="screen" title="style2" href="<?php echo $baseUrl;?>/css/style-brown.css" />
         <link rel="alternate stylesheet" type="text/css" media="screen" title="style3" href="<?php echo $baseUrl;?>/css/style-green.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style4" href="<?php echo $baseUrl;?>/css/style-grey.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style4" href="<?php echo $baseUrl;?>/css/style-blue.css" />
         <link rel="alternate stylesheet" type="text/css" media="screen" title="style5" href="<?php echo $baseUrl;?>/css/style-orange.css" />
         <link rel="alternate stylesheet" type="text/css" media="screen" title="style6" href="<?php echo $baseUrl;?>/css/style-purple.css" />
         <link rel="alternate stylesheet" type="text/css" media="screen" title="style7" href="<?php echo $baseUrl;?>/css/style-red.css" />
