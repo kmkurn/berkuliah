@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 	<div class="span9">
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
-			'title' => "Pengaturan Foto",
+			'title' => '<i class="icon icon-picture"></i> <strong>PENGATURAN FOTO</strong>',
 		));
 	?>
 		<?php $form = $this->beginWidget('CActiveForm', array(
@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 		<table class='table table-hover'>
 			<tr>
 				<td width='150' height='150'>
-					<?php echo CHtml::image('photos/' . (Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo')), 'foto pengguna', array("width"=>200)); ?>
+					<?php echo CHtml::image('photos/' . (Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo')), 'foto pengguna', array("width"=>150)); ?>
 				</td>
 
 				<td>
@@ -38,13 +38,7 @@ $this->breadcrumbs=array(
 				<?php echo $form->fileField($model, 'photo'); ?>
 				<?php echo $form->error($model, 'photo'); ?>
 				<br />
-				<?php
-				$this->widget('zii.widgets.jui.CJuiButton', array(
-				'name'=>'saveButton',
-				'buttonType' => 'submit',
-				'caption' => 'Ganti',
-				'htmlOptions'=> array('class'=>'btn btn-mini btn-primary'),
-				)); ?>
+				<?php echo CHtml::button('Ganti', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
 				</td>
 			</tr>
 		</table>
