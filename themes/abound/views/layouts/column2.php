@@ -14,7 +14,7 @@
 				'items' => array(
 					array('label' => '<i class="icon icon-file"></i> Daftar Berkas', 'url' => array('home/index')),
 					array('label' => '<i class="icon icon-tasks"></i> Dasbor', 'url' => array('dashboard/index')),
-					array('label' => '<i class="icon icon-upload"></i> Unggah Catatan', 'url' => array('noteUpload/index')),
+					array('label' => '<i class="icon icon-upload"></i> Unggah Berkas', 'url' => array('noteUpload/index')),
 					// array('label' => '<i class="icon icon-comment"></i>Minta Berkas', 'url' => array('/site/page', 'view' => 'interface')),
 				)
 			)); ?>
