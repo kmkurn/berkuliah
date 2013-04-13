@@ -17,6 +17,12 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 );
 ?>
 
+<?php if (Yii::app()->user->hasFlash('message')): ?>
+<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+	<?php echo Yii::app()->user->getFlash('message'); ?>
+</div>
+<?php endif; ?>
+
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
 	'title' => '<i class="icon-upload"></i> <strong>UNGGAH CATATAN BARU</strong>'
 	));

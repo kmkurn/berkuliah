@@ -46,8 +46,8 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 		?>
 
 		<?php if (Yii::app()->user->hasFlash('message')): ?>
-
-			<div style="width: 850px; margin-top: 10px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+			<br />
+			<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 				<?php echo Yii::app()->user->getFlash('message'); ?>
 			</div>
 
