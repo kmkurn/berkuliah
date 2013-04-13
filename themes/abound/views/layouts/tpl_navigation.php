@@ -24,12 +24,12 @@
     'encodeLabel'=>false,
     'items'=>array(
       /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
-      array('visible'=>!Yii::app()->user->isGuest,'label'=>'<i class="icon icon-user icon-white"></i> '.Yii::app()->user->name, 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+      array('visible'=>!Yii::app()->user->isGuest,'label'=>'<i class="icon icon-user icon-white"></i> '. Yii::app()->user->name, 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
         'items'=>array(
          array('label'=>'<i class="icon icon-picture"></i> Pengaturan Foto',  'url'=>array('dashboard/uploadPhoto')),
          array('label'=>'<i class="icon icon-user icon-off"></i> Logout', 'url'=>array('site/logout'), 'visible'=>!Yii::app()->user->isGuest)
          )),
-      array('label'=>'<i class="icon icon-user icon-user"></i> Login', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest), 
+      array('label'=>'<i class="icon icon-user icon-user icon-white"></i> Login', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest), 
       ),
     ));
    $this->endWidget('zii.widgets.CMenu'); 

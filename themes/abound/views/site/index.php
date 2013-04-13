@@ -4,7 +4,7 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 <blockquote class="pull-left">
-  <p>Ini adalah situs untuk berbagi catatan kuliah dan berkas soal</p>
+  <p>Ini adalah situs untuk berbagi berkas kuliah dan arsip soal.</p>
       <p><small><cite title="Source Title">BerKuliah</cite></small>
       </p>
 </blockquote>
@@ -13,7 +13,7 @@ $this->pageTitle=Yii::app()->name;
     <div id="artikel">
     <?php
       $this->beginWidget('zii.widgets.CPortlet', array(
-        'title'=>"Artikel Pengguna Terbaik",
+        'title' => '<strong>Pengguna Terbaik Bulan Ini: dummy.user</strong>',
       ));
     ?>
     <?php echo CHtml::image(Yii::app()->baseUrl . '/images/coming-soon.jpg','Coming soon'); ?>
