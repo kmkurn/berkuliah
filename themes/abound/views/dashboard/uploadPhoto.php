@@ -9,14 +9,13 @@ $this->breadcrumbs=array(
 <div class="page-header">
 </div>
 
-<?php if (Yii::app()->user->hasFlash('message')): ?>
-<div style="width: 650px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
-	<?php echo Yii::app()->user->getFlash('message'); ?>
-</div>
-<?php endif; ?>
-
 <div class="row-fluid">
 	<div class="span9">
+		<?php if (Yii::app()->user->hasFlash('message')): ?>
+		<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+			<?php echo Yii::app()->user->getFlash('message'); ?>
+		</div>
+		<?php endif; ?>
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
 			'title' => '<i class="icon icon-picture"></i> <strong>PENGATURAN FOTO</strong>',
