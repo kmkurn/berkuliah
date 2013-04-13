@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
     <div class="carousel-inner">
       <div class="item active">
         <a href="">  <?php
-        echo CHtml::image('images/header.png','alt');
+        echo CHtml::image(Yii::app()->baseUrl . '/images/header.png','alt');
         ?>
       </a>
 
@@ -22,7 +22,7 @@ $this->breadcrumbs=array(
     <div class="item">
       <a href="">
         <?php
-        echo CHtml::image('images/kemal.png',' ');
+        echo CHtml::image(Yii::app()->baseUrl . '/images/kemal.png',' ');
         ?>
       </a>
 
@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="item">
      <?php
-     echo CHtml::image('images/ashar.png',' ');
+     echo CHtml::image(Yii::app()->baseUrl . '/images/ashar.png',' ');
      ?>
    </a>
    <div class="carousel-caption">
@@ -41,7 +41,7 @@ $this->breadcrumbs=array(
 </div>
 <div class="item">
   <?php 
-  echo CHtml::image('images/merci.png',' ');
+  echo CHtml::image(Yii::app()->baseUrl . '/images/merci.png',' ');
   ?>
 </a>
 <div class="carousel-caption">
@@ -50,7 +50,7 @@ $this->breadcrumbs=array(
 </div>
 <div class="item">
  <?php
- echo CHtml::image('images/icha.png',' ');
+ echo CHtml::image(Yii::app()->baseUrl . '/images/icha.png',' ');
  ?>
 </a>
 <div class="carousel-caption">
