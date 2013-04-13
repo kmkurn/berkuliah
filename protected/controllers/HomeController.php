@@ -52,7 +52,7 @@ class HomeController extends Controller
 			));
 		}
 		$dataProvider->setPagination(array(
-			'pageSize' => 4,
+			'pageSize' => 16,
 		));
 		
 		$students = Student::model()->findAll();

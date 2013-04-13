@@ -51,7 +51,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 		<?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
 		'dataProvider'=>$dataProvider,
 		'itemView'=>'_note',
-		'numColumns' => 5,
+		'numColumns' => 4,
 		'itemsCssClass' => 'table table-bordered',
 		'dataCssClass' => 'dataBerkas',
 		'rowCssClass' => 'barisBerkas'
