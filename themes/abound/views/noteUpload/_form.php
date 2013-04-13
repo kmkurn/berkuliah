@@ -18,7 +18,7 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => 'Unggah Berkas'
+	'title' => '<i class="icon-upload"></i> <strong>UNGGAH CATATAN BARU</strong>'
 	));
 ?>
 
@@ -82,7 +82,7 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 		<tr>
 			<td></td>
 			<td>
-			<?php echo CHtml::submitButton('Unggah', array('class' => 'btn btn-primary')); ?>
+			<?php echo CHtml::button('Unggah', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
 			<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 			</td>
 		</tr>

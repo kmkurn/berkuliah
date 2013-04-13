@@ -11,7 +11,7 @@
 <?php endif; ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => 'Sunting Berkas'
+	'title' => '<strong>Halaman Sunting Berkas</strong>'
 	));
 ?>
 	<label>Isian dengan tanda * harus diisi.</label>
