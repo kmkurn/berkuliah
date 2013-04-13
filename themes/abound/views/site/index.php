@@ -15,18 +15,7 @@ $this->pageTitle=Yii::app()->name;
   
     ?>
     <blockquote class="pull-right">
-      <p>Terima kasih berKuliah. Kini berbagi catatan menjadi lebih mudah. </p>
-      <p><small>Icha</small><cite title="Source Title">   Januari</cite>
-      </p>
-      
-    </blockquote>
-    <p></p>
-    <blockquote>
-      <p>Dengan berkuliah, tidak bingung lagi untuk mencari soal-soal tahun lalu. </p>
-      <p><small>Prida</small><cite title="Source Title">Desember</cite>
-      </blockquote>
-    </p>
-    <p></p> 
+  <?php CHtml::image(Yii::app()->baseUrl . '/images/coming-soon.jpg','Coming soon'); ?>
   <?php $this->endWidget();?>
   <div id="twitter">
     <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/berkuliah"  data-widget-id="321252419063390209">Tweets by @berkuliah</a>
