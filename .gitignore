@@ -9,3 +9,5 @@ photos/!user.png
 protected/runtime/!.gitignore
 # For Mac OSX
 .DS_Store
+# Ignore log file
+*.log
