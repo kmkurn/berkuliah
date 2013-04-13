@@ -107,23 +107,21 @@ class Student extends CActiveRecord
 	 */
 	public function getDownloadHistory()
 	{
-		$dataProvider = new CArrayDataProvider($this->downloads);
+		$sql = "SELECT * FROM bk_download_info AS info, bk_note AS note WHERE info.student_id=:studentId AND info.note_id=note.id;";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(':studentId', Yii::app()->user->id, PDO::PARAM_INT);
+		$dataProvider = new CArrayDataProvider($command->queryAll());
 
 		return $dataProvider;
 	}
 
 	/**
 	 * Retrieves list of files uploaded by this user.
-	 * @return CActiveDataProvider the list of files
+	 * @return CArrayDataProvider the list of files
 	 */
 	public function getUploadList()
 	{
-		$dataProvider = new CActiveDataProvider('Note', array(
-			'criteria' => array(
-				'condition' => 'student_id=:studentId',
-				'params' => array(':studentId' => $this->id),
-			),
-		));
+		$dataProvider = new CArrayDataProvider($this->notes);
 
 		return $dataProvider;
 	}
