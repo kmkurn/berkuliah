@@ -30,20 +30,20 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 	)); ?>
 	<table class='table table-hover'>
 		<tr>
-			<td width="270"><?php echo $form->labelEx($model, 'title'); ?></td>
+			<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'title'); ?></td>
 			<td><?php echo $form->textField($model, 'title', array('maxlength'=>128)); ?>
 				<?php echo $form->error($model, 'title'); ?></td>
 		</tr>
 
 		<tr>
-			<td><?php echo $form->labelEx($model, 'description'); ?></td>
+			<td><i class="icon icon-zoom-in"></i> <?php echo $form->labelEx($model, 'description'); ?></td>
 			<td><?php echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
 				<?php echo $form->error($model, 'description'); ?></td>
 		</tr>
 
 
 		<tr>
-			<td><?php echo $form->labelEx($model, 'faculty_id'); ?></td>
+			<td><i class="icon icon-briefcase"></i> <?php echo $form->labelEx($model, 'faculty_id'); ?></td>
 			<td><?php echo $form->dropDownList($model, 'faculty_id',
 			       CHtml::listData(Faculty::model()->findAll(), 'id', 'name'),
 			       array('prompt' => 'Pilih fakultas',
@@ -56,7 +56,7 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 		</tr>
 
 		<tr>
-			<td><?php echo $form->labelEx($model, 'course_id'); ?> <label>*</label></td>
+			<td><i class="icon icon-book"></i> <?php echo $form->labelEx($model, 'course_id'); ?> <label>*</label></td>
 			<td><span id="courses"><?php echo $form->dropDownList($model, 'course_id', array(), 
 				array('prompt' => 'Pilih mata kuliah')); ?></span>
 				<?php echo $form->error($model, 'course_id'); ?></td>
@@ -68,7 +68,7 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 		</tr>
 
 		<tr>
-			<td><?php echo $form->labelEx($model, 'file'); ?> <label>*</label></td>
+			<td><i class="icon icon-file"></i> <?php echo $form->labelEx($model, 'file'); ?> <label>*</label></td>
 			<td><?php echo $form->fileField($model, 'file'); ?>
 				<?php echo $form->error($model, 'file'); ?></td>
 		</tr>
