@@ -14,7 +14,8 @@
 	<div class="modal-body">
 
 		<?php $form=$this->beginWidget('CActiveForm', array(
-			'id' => 'advanced-search-form'
+			'id' => 'advanced-search-form',
+			'method' => 'get',
 		)); ?>
 			<div class="field">
 				<?php echo $form->label($model,'title'); ?>

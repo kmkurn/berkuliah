@@ -38,9 +38,9 @@ class HomeController extends Controller
 	public function actionIndex()
 	{
 		$model = new Note('search');
-		if (isset($_POST['Note']))
+		if (isset($_GET['Note']))
 		{
-			$model->attributes = $_POST['Note'];
+			$model->attributes = $_GET['Note'];
 			$dataProvider = $model->search();
 		}
 		else
@@ -49,9 +49,6 @@ class HomeController extends Controller
 		}
 		$dataProvider->setPagination(array(
 			'pageSize' => 4,
-		));
-		$dataProvider->setCriteria(array(
-			'order' => 'upload_timestamp DESC',
 		));
 		
 		$students = Student::model()->findAll();

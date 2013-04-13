@@ -114,6 +114,7 @@ class Note extends CActiveRecord
 		$criteria->compare('upload_timestamp',$this->upload_timestamp,true);
 		$criteria->compare('edit_timestamp',$this->edit_timestamp,true);
 		$criteria->compare('faculty.id',$this->advanced_faculty_id,true);
+		$criteria->order = 'upload_timestamp DESC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

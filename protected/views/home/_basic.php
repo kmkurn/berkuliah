@@ -5,6 +5,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'search-form',
+	'method' => 'get',
 )); ?>
 
 	<div class="row">

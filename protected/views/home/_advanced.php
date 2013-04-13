@@ -7,7 +7,8 @@
 <div class="wide form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id' => 'advanced-search-form'
+	'id' => 'advanced-search-form',
+	'method' => 'get',
 )); ?>
 
 	<div class="row">
