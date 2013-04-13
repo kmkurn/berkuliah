@@ -44,7 +44,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 		echo CHtml::beginForm(array('batchDelete')); ?>
 
 		<?php if (Yii::app()->user->hasFlash('message')): ?>
-		<div style="width: 850px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
+		<div style="width: 850px; margin-top: 10px" class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 		<?php echo Yii::app()->user->getFlash('message'); ?>
 		</div>
 		<?php endif; ?>
