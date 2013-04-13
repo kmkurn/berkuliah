@@ -19,8 +19,7 @@ $this->breadcrumbs=array(
 			<?php echo Yii::app()->user->getFlash('message'); ?>
 		</div>
 		<?php endif; ?>
-		<div class="span6">
-		<div id="rinci">
+		<div class="span9">
 			<?php $this->beginWidget('zii.widgets.CPortlet', array(
 				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN CATATAN</strong>',
 			)); ?>
@@ -87,4 +86,3 @@ $this->breadcrumbs=array(
 			<?php $this->endWidget();?>
 		</div>
 	</div>
-</div>
