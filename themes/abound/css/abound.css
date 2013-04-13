@@ -535,6 +535,10 @@ footer {
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
+.errorMessage {
+  color: red;
+}
+
 /*"twitter_timeline"*/
 #twitter{
   padding-left:500px;

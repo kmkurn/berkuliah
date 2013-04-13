@@ -14,7 +14,7 @@
 	'title' => 'Sunting Berkas'
 	));
 ?>
-
+	<label>Isian dengan tanda * harus diisi.</label>
 	<table class='table table-hover'>
 	<?php $form=$this->beginWidget('CActiveForm'); ?>
 		<tr>
