@@ -107,7 +107,7 @@ class NoteDetailsController extends Controller
 		{
 			$mimeType = 'text/html';
 		}
-		CHttpRequest::sendFile($model->title, file_get_contents($filePath), $mimeType, false);
+		Yii::app()->request->sendFile($model->title, file_get_contents($filePath), $mimeType, false);
 	}
 
 	/**
