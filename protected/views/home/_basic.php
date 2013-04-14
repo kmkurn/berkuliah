@@ -5,6 +5,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'search-form',
+	'action' => $this->createUrl('index'),
 	'method' => 'get',
 )); ?>
 
