@@ -1,6 +1,6 @@
 <?php
 /* @var $this DashboardController */
-/* @var $downloadsDataProvider CArrayDataProvider */
+/* @var $downloadsDataProvider CActiveDataProvider */
 /* @var $uploadsDataProvider CActiveDataProvider */
 
 $this->pageTitle=Yii::app()->name . ' - Dasbor';

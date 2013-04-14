@@ -35,15 +35,28 @@ class DashboardController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$student = Student::model()->findByPk(Yii::app()->user->id);
-		$downloadsDataProvider = new CArrayDataProvider($student->downloadInfos);
-		$uploadsDataProvider = new CArrayDataProvider($student->notes);
-
-		$downloadsDataProvider->setPagination(array(
-			'pageSize' => 5,
+		$downloadsDataProvider = new CActiveDataProvider('DownloadInfo', array(
+			'criteria' => array(
+				'condition' => 'student_id=:studentId',
+				'params' => array(
+					':studentId' => Yii::app()->user->id,
+				),
+			),
+			'pagination' => array(
+				'pageSize' => 5,
+			),
 		));
-		$uploadsDataProvider->setPagination(array(
-			'pageSize' => 5,
+
+		$uploadsDataProvider = new CActiveDataProvider('Note', array(
+			'criteria' => array(
+				'condition' => 'student_id=:studentId',
+				'params' => array(
+					':studentId' => Yii::app()->user->id,
+				),
+			),
+			'pagination' => array(
+				'pageSize' => 5,
+			),
 		));
 
 		$this->render('index', array(
