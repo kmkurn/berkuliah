@@ -12,14 +12,14 @@ $this->breadcrumbs=array(
 <h1><?php echo $model->title; ?></h1>
 
 <?php if (Yii::app()->user->hasFlash('message')) :?>
-<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
+	<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
 <?php endif; ?>
 
 <p><?php echo CHtml::link('Unduh', array('download', 'id' => $model->id)); ?></p>
 
 <?php if ($model->student_id === Yii::app()->user->id): ?>
-<p><?php echo CHtml::link('Sunting', array('edit', 'id' => $model->id)); ?></p>
-<p><?php echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array('confirm' => 'Anda yakin ingin menghapus berkas ini?')); ?></p>
+	<p><?php echo CHtml::link('Sunting', array('edit', 'id' => $model->id)); ?></p>
+	<p><?php echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array('confirm' => 'Anda yakin ingin menghapus berkas ini?')); ?></p>
 <?php endif; ?>
 
 <div class="view">
@@ -53,9 +53,9 @@ $this->breadcrumbs=array(
 	<b><?php echo CHtml::encode($model->getAttributeLabel('edit_timestamp')); ?>:</b>
 	<?php // TO-DO: set locale ?>
 	<?php if ($model->edit_timestamp === NULL): ?>
-	<?php echo CHtml::encode('-'); ?>
+		<?php echo CHtml::encode('-'); ?>
 	<?php else: ?>
-	<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->edit_timestamp))); ?>
+		<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->edit_timestamp))); ?>
 	<?php endif; ?>
 	<br />
 

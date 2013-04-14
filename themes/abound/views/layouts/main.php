@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Berkuliah.com, sarana berbagi catatan dan berkas soal">
     <meta name="author" content="C3-2013">
-    <!-- <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'> -->
 
         <?php
         $baseUrl = Yii::app()->theme->baseUrl; 
@@ -49,21 +48,19 @@
       <!-- Include content pages -->
       <?php echo $content; ?>
       </div><!-- container-fluid -->
-    </section></div>
-    <!-- Require the footer -->
-    <?php //require_once('tpl_footer.php'); ?>
+    </div></section>
     <footer>
         <div class="subnav navbar navbar-fixed-bottom">
             <div class="navbar-inner-footer">
                 <div class="container">
                     Copyright &copy; <?php echo date('Y'); ?> by 
-                    <h7><?php echo CHtml::link('Kelompok C3', array('site/page', 'view'=>'tentangKami')); ?></h7>.<br/>
+                    <h7><?php echo CHtml::link('Kelompok C3', array('site/page', 'view'=>'about')); ?></h7>.<br/>
                     All Rights Reserved.<br/>
                     <?php echo Yii::powered(); ?>
                     <br />
-                </div>
-            </div>
-        </div>      
+                </div><!-- container -->
+            </div><!-- navbar-inner-footer -->
+        </div><!-- subnav navbar navbar-fixed-bottom -->
     </footer>
   </body>
 </html>

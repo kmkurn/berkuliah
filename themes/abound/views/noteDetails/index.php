@@ -8,24 +8,21 @@ $this->breadcrumbs=array(
 );
 
 ?>
-<div class="page-header">
-</div>
 
-
+<div class="page-header"></div>
 
 <div class="row-fluid">
-		
-		<div class="span9">
+	<div class="span9">
 
-			<?php if (Yii::app()->user->hasFlash('message')): ?>
+		<?php if (Yii::app()->user->hasFlash('message')): ?>
 			<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 				<?php echo Yii::app()->user->getFlash('message'); ?>
 			</div>
-			<?php endif; ?>
-			
-			<?php $this->beginWidget('zii.widgets.CPortlet', array(
-				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN BERKAS</strong>',
-			)); ?>
+		<?php endif; ?>
+		
+		<?php $this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN BERKAS</strong>',
+		)); ?>
 
 			<table class="table table-hover">
 				<tbody>
@@ -65,27 +62,27 @@ $this->breadcrumbs=array(
 						<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
 					</tr>
 					<tr>
-						<td width='150'>
-						</td>
+						<td width='150'></td>
+						<td></td>
 						<td>
-						</td>
-						<td>
-						<?php echo CHtml::link('Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
+							<?php echo CHtml::link('Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
 					
-						<?php if ($model->student_id === Yii::app()->user->id):
-							echo CHtml::link('Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success'));
-						endif; ?>
+							<?php if ($model->student_id === Yii::app()->user->id): ?>
+								<?php echo CHtml::link('Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
+							<?php endif; ?>
 
-						<?php if ($model->student_id === Yii::app()->user->id):
-							echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array('class' => 'btn btn-danger',
-																											'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?'));
-						endif; ?>
-
+							<?php if ($model->student_id === Yii::app()->user->id): ?>
+								<?php echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array(
+									'class' => 'btn btn-danger',
+									'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?',
+								)); ?>
+							<?php endif; ?>
 						</td>
 					</tr>
-					
 				</tbody>
 			</table>
-			<?php $this->endWidget();?>
-		</div>
-	</div>
+
+		<?php $this->endWidget();?>
+
+	</div><!-- span9 -->
+</div><!-- row-fluid -->

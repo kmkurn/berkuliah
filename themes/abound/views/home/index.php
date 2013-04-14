@@ -18,8 +18,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 ");
 ?>
 
-<div class="page-header">
-</div>
+<div class="page-header"></div>
 
 <br/>
 
@@ -50,15 +49,16 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 			<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 				<?php echo Yii::app()->user->getFlash('message'); ?>
 			</div>
-
 		<?php endif; ?>
+
+		<br />
 
 		<?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',
 			'numColumns' => 4,
 			'itemsCssClass' => 'table table-bordered',
-			'emptyText' => '<br />Hasil pencarian tidak ditemukan.',
+			'emptyText' => 'Hasil pencarian tidak ditemukan.',
 		)); ?>
 
 		<br/>
@@ -66,7 +66,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 		<div id="tombolHapusBerkas">
 			<?php if (Yii::app()->user->getState('is_admin'))
 				echo CHtml::submitButton('Hapus Berkas', array(
-					'onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");',
+					'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
 					'class' => 'btn btn-danger',
 				));
 			?>
@@ -74,5 +74,5 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 
 		<?php echo CHtml::endForm(); ?>
 
-	</div>
-</div>
+	</div><!-- span9 -->
+</div><!-- row-fluid -->

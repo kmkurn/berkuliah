@@ -1,6 +1,6 @@
 <?php
 /* @var $this DashboardController */
-/* @var $downloadsDataProvider CArrayDataProvider */
+/* @var $downloadsDataProvider CActiveDataProvider */
 ?>
 
 <h4>Sejarah Pengunduhan</h4>

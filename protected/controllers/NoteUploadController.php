@@ -8,7 +8,7 @@ class NoteUploadController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl',
+			'accessControl', // perform access control for uploading a new note
 		);
 	}
 
@@ -64,7 +64,10 @@ class NoteUploadController extends Controller
 				Yii::app()->user->setFlash('messageType', 'danger');
 			}
 		}
-		$this->render('index', array('model' => $model));
+
+		$this->render('index', array(
+			'model' => $model,
+		));
 	}
 
 	/**

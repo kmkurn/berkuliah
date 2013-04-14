@@ -27,15 +27,18 @@ $('.search-button').click(function(){
 <br />
 
 <?php echo CHtml::link('Pencarian Mode Lanjutan','#',array('class'=>'search-button')); ?>
+
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_advanced', array(
-	'model' => $model,
-	'usernames' => $usernames,
-)); ?>
+
+	<?php $this->renderPartial('_advanced', array(
+		'model' => $model,
+		'usernames' => $usernames,
+	)); ?>
+
 </div>
 
 <?php if (Yii::app()->user->hasFlash('message')) :?>
-<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
+	<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
 <?php endif; ?>
 
 

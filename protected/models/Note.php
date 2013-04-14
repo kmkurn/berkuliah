@@ -122,29 +122,23 @@ class Note extends CActiveRecord
 	}
 
 	/**
-	 * Retrieves the download timestamp of this note by a given student.
-	 * @param  int $studentId the student id
-	 * @return string the download timestamp
-	 */
-	public function getDownloadTimestamp($studentId)
-	{
-		$sql = "SELECT timestamp FROM bk_download_info WHERE student_id=:studentId AND note_id=:noteId;";
-		$command = Yii::app()->db->createCommand($sql);
-		$command->bindValue(':studentId', $studentId, PDO::PARAM_INT);
-		$command->bindValue(':noteId', $this->id, PDO::PARAM_INT);
-		$result = $command->queryRow();
-		return $result['timestamp'];
-	}
-
-	/**
 	 * Retrieves the icon file name associated with this note type
 	 * @return string the icon file name
 	 */
 	public function getTypeIcon()
 	{
-		$extension = self::getExtensionFromType($this->type);
+		return Yii::app()->baseUrl . '/images/' . $this->extension . '.svg';
+	}
 
-		return Yii::app()->baseUrl . '/images/' . $extension . '.svg';
+	/**
+	 * Retrieves this model extension.
+	 * @return string the extension
+	 */
+	public function getExtension()
+	{
+		$allowedTypes = self::getAllowedTypes();
+		
+		return $allowedTypes[$this->type]['extension'];
 	}
 
 	/**
@@ -190,17 +184,5 @@ class Note extends CActiveRecord
 		}
 
 		return -1;
-	}
-
-	/**
-	 * Retrieves the extension of a given type id.
-	 * @param  int $type the type id
-	 * @return string the extension associated with the type id
-	 */
-	public static function getExtensionFromType($type)
-	{
-		$allowedTypes = self::getAllowedTypes();
-		
-		return $allowedTypes[$type]['extension'];
 	}
 }

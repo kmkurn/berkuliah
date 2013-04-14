@@ -13,7 +13,7 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php //echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model, 'title'); ?>
@@ -42,12 +42,10 @@
 	</div>
 
 	<div id="courses" class="row">
-
-	<?php echo $form->labelEx($model,'course_id'); ?>
-	<?php echo $form->dropDownList($model, 'course_id', array(), 
-			   array('prompt' => 'Pilih mata kuliah')); ?>
-
-	<?php echo $form->error($model, 'course_id'); ?>
+		<?php echo $form->labelEx($model,'course_id'); ?>
+		<?php echo $form->dropDownList($model, 'course_id', array(), 
+				   array('prompt' => 'Pilih mata kuliah')); ?>
+		<?php echo $form->error($model, 'course_id'); ?>
 	</div>
 
 	<div class="row">

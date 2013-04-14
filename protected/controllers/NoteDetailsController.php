@@ -82,7 +82,8 @@ class NoteDetailsController extends Controller
 		$model = $this->loadModel($id);
 
 		$model->delete();
-		unlink('notes/' . $model->id . '.' . Note::getExtensionFromType($model->type));
+		// unlink('notes/' . $model->id . '.' . Note::getExtensionFromType($model->type));
+		unlink('notes/' . $model->id . '.' . $model->extension);
 		
 		Yii::app()->user->setFlash('message', 'Berkas berhasil dihapus.');
 		Yii::app()->user->setFlash('messageType', 'success');
@@ -99,11 +100,10 @@ class NoteDetailsController extends Controller
 
 		$this->updateDownloadInfo($id);
 
-		$extension = Note::getExtensionFromType($model->type);
-		$fileName = $model->id . '.' . $extension;
+		$fileName = $model->id . '.' . $model->extension;
 		$filePath = 'notes/' . $fileName;
 		$mimeType = NULL;
-		if ($extension === 'html')
+		if ($model->extension === 'html')
 		{
 			$mimeType = 'text/html';
 		}
@@ -117,13 +117,14 @@ class NoteDetailsController extends Controller
 	 */
 	public function updateDownloadInfo($id)
 	{
-		$sql = "INSERT INTO bk_download_info (student_id, note_id, timestamp) VALUES (:studentId, :noteId, :timestamp);";
-		$command = Yii::app()->db->createCommand($sql);
-		$command->bindValue(':studentId', Yii::app()->user->id, PDO::PARAM_INT);
-		$command->bindValue(':noteId', $id, PDO::PARAM_INT);
-		$command->bindValue(':timestamp', date('Y-m-d H:i:s'), PDO::PARAM_STR);
+		$model = new DownloadInfo();
+		$model->setAttributes(array(
+			'student_id' => Yii::app()->user->id,
+			'note_id' => $id,
+			'timestamp' => date('Y-m-d H:i:s'),
+		));
 
-		return $command->execute();
+		$model->save();
 	}
 
 	/**
