@@ -15,7 +15,7 @@
  * @property string $edit_timestamp
  *
  * The followings are the available model relations:
- * @property Student[] $bkStudents
+ * @property DownloadInfo[] $downloadInfos
  * @property Course $course
  * @property Student $student
  */
@@ -66,7 +66,7 @@ class Note extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'downloaders' => array(self::MANY_MANY, 'Student', 'bk_download_info(note_id, student_id)'),
+			'downloadInfos' => array(self::HAS_MANY, 'DownloadInfo', 'note_id'),
 			'course' => array(self::BELONGS_TO, 'Course', 'course_id'),
 			'student' => array(self::BELONGS_TO, 'Student', 'student_id'),
 		);

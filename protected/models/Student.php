@@ -11,7 +11,7 @@
  * @property string $last_login_timestamp
  *
  * The followings are the available model relations:
- * @property Note[] $bkNotes
+ * @property DownloadInfo[] $downloadInfos
  * @property Note[] $notes
  */
 class Student extends CActiveRecord
@@ -60,7 +60,7 @@ class Student extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'downloads' => array(self::MANY_MANY, 'Note', 'bk_download_info(student_id, note_id)'),
+			'downloadInfos' => array(self::HAS_MANY, 'DownloadInfo', 'student_id'),
 			'notes' => array(self::HAS_MANY, 'Note', 'student_id'),
 		);
 	}
@@ -99,30 +99,5 @@ class Student extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	/**
-	 * Retrieves download history of this user.
-	 * @return CArrayDataProvider the download history
-	 */
-	public function getDownloadHistory()
-	{
-		$sql = "SELECT * FROM bk_download_info AS info, bk_note AS note WHERE info.student_id=:studentId AND info.note_id=note.id;";
-		$command = Yii::app()->db->createCommand($sql);
-		$command->bindValue(':studentId', Yii::app()->user->id, PDO::PARAM_INT);
-		$dataProvider = new CArrayDataProvider($command->queryAll());
-
-		return $dataProvider;
-	}
-
-	/**
-	 * Retrieves list of files uploaded by this user.
-	 * @return CArrayDataProvider the list of files
-	 */
-	public function getUploadList()
-	{
-		$dataProvider = new CArrayDataProvider($this->notes);
-
-		return $dataProvider;
 	}
 }

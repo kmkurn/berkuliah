@@ -36,8 +36,8 @@ class DashboardController extends Controller
 	public function actionIndex()
 	{
 		$student = Student::model()->findByPk(Yii::app()->user->id);
-		$downloadsDataProvider = $student->getDownloadHistory();
-		$uploadsDataProvider = $student->getUploadList();
+		$downloadsDataProvider = new CArrayDataProvider($student->downloadInfos);
+		$uploadsDataProvider = new CArrayDataProvider($student->notes);
 
 		$downloadsDataProvider->setPagination(array(
 			'pageSize' => 5,
