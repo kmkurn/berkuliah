@@ -8,6 +8,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id' => 'advanced-search-form',
+	'action' => $this->createUrl('index'),
 	'method' => 'get',
 )); ?>
 
