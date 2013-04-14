@@ -5,7 +5,7 @@
 
 <?php if (Yii::app()->user->getState('is_admin')) echo CHtml::checkBox('deleteNote[' . $data->id . ']'); ?>
 
-<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon')); ?>
+<?php echo CHtml::image($data->typeIcon, 'note icon', array('class' => 'note-icon')); ?>
 <br />
 
 <b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>

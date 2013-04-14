@@ -18,10 +18,12 @@
 			'action' => $this->createUrl('index'),
 			'method' => 'get',
 		)); ?>
+
 			<div class="field">
 				<?php echo $form->label($model,'title'); ?>
 				<?php echo $form->textField($model,'title',array('size'=>100,'maxlength'=>90)); ?>
 			</div>
+			
 			<div class="field">
 				<?php echo $form->label($model,'type'); ?>
 				<?php echo $form->dropDownList($model,'type', Note::getTypeNames(), array('prompt' => '(semua)')); ?>

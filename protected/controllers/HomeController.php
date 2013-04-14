@@ -8,7 +8,7 @@ class HomeController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			'accessControl', // perform access control
 			'getStudentId + index', // get student id first on advanced search scenario
 		);
 	}
@@ -21,7 +21,7 @@ class HomeController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow authenticated user to list all files
+			array('allow', // allow authenticated user
 				'actions'=>array('index', 'batchDelete', 'updateCourses'),
 				'users'=>array('@'),
 			),

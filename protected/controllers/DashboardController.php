@@ -31,7 +31,7 @@ class DashboardController extends Controller
 	}
 
 	/**
-	 * Displays this user's history.
+	 * Displays user's history.
 	 */
 	public function actionIndex()
 	{
@@ -71,7 +71,6 @@ class DashboardController extends Controller
 	public function actionUploadPhoto()
 	{
 		$model = new PhotoUploadForm();
-
 
 		if (isset($_POST['PhotoUploadForm']))
 		{

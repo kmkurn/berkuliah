@@ -41,8 +41,7 @@ class DownloadInfo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('student_id, note_id, timestamp', 'required'),
-			array('student_id, note_id', 'numerical', 'integerOnly'=>true),
+			array('student_id, note_id, timestamp', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, student_id, note_id, timestamp', 'safe', 'on'=>'search'),
