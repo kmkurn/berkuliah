@@ -54,7 +54,7 @@
     <?php //require_once('tpl_footer.php'); ?>
     <footer>
         <div class="subnav navbar navbar-fixed-bottom">
-            <div class="navbar-inner">
+            <div class="navbar-inner-footer">
                 <div class="container">
                     Copyright &copy; <?php echo date('Y'); ?> by 
                     <h7><?php echo CHtml::link('Kelompok C3', array('site/page', 'view'=>'tentangKami')); ?></h7>.<br/>
