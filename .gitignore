@@ -1,2 +1,13 @@
-assets/
+# Ignore everything in assets directory except .gitignore
+assets/!.gitignore
+# Ignore everything in notes directory except .gitignore
+notes/!.gitignore
+# Ignore everything in photos directory except .gitignore and user.png
+photos/!.gitignore
+photos/!user.png
+# Ignore everything in runtime directory except .gitignore
 protected/runtime/!.gitignore
+# For Mac OSX
+.DS_Store
+# Ignore log file
+*.log

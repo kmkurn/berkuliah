@@ -49,59 +49,94 @@ class SiteController extends Controller
 	/**
 	 * Displays the contact page
 	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-type: text/plain; charset=UTF-8";
+	// public function actionContact()
+	// {
+	// 	$model=new ContactForm;
+	// 	if(isset($_POST['ContactForm']))
+	// 	{
+	// 		$model->attributes=$_POST['ContactForm'];
+	// 		if($model->validate())
+	// 		{
+	// 			$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
+	// 			$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
+	// 			$headers="From: $name <{$model->email}>\r\n".
+	// 				"Reply-To: {$model->email}\r\n".
+	// 				"MIME-Version: 1.0\r\n".
+	// 				"Content-type: text/plain; charset=UTF-8";
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
+	// 			mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
+	// 			Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+	// 			$this->refresh();
+	// 		}
+	// 	}
+	// 	$this->render('contact',array('model'=>$model));
+	// }
 
 	/**
 	 * Displays the login page
 	 */
 	public function actionLogin()
 	{
-		$model=new LoginForm;
+		Yii::import('application.vendors.CAS.*');
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+		include_once('CAS/Autoload.php');
+		spl_autoload_unregister(array('YiiBase', 'autoload'));
+		spl_autoload_register(array('YiiBase', 'autoload'));
+		include_once('CAS.php');
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
+		phpCAS::setDebug();
+		phpCAS::client(CAS_VERSION_2_0, 'sso.ui.ac.id', 443, 'cas');
+		phpCAS::setNoCasServerValidation();
+		phpCAS::forceAuthentication();
+		phpCAS::checkAuthentication();
+		
+		$username = phpCAS::getUser();
+		$identity = new UserIdentity($username);
+
+		if ($identity->authenticate())
+			Yii::app()->user->login($identity);
+
+		$this->redirect(array('home/index'));
 	}
 
 	/**
-	 * Logs out the current user and redirect to homepage.
+	 * Displays the dummy login page.
+	 */
+	public function actionDummyLogin()
+	{
+		$identity = new DummyUserIdentity();
+
+		if ($identity->authenticate())
+			Yii::app()->user->login($identity);
+
+		$this->redirect(array('home/index'));
+	}
+
+	/**
+	 * Logs out the current user and redirects to homepage.
 	 */
 	public function actionLogout()
+	{
+		Yii::import('application.vendors.CAS.*');
+		
+		include_once('CAS/Autoload.php');
+		spl_autoload_unregister(array('YiiBase', 'autoload'));
+		spl_autoload_register(array('YiiBase', 'autoload'));
+		include_once('CAS.php');
+
+		phpCAS::setDebug();
+		phpCAS::client(CAS_VERSION_2_0, 'sso.ui.ac.id', 443, 'cas');
+		phpCAS::setNoCasServerValidation();
+		phpCAS::logout();
+		
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	/**
+	 * Logs out dummy user.
+	 */
+	public function actionDummyLogout()
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
