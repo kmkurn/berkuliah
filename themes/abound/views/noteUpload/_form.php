@@ -24,7 +24,7 @@ Yii::app()->getClientScript()->registerScript('tiny_mce',
 <?php endif; ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<i class="icon-upload"></i> <strong>UNGGAH CATATAN BARU</strong>'
+	'title' => '<i class="icon-upload"></i> <strong>UNGGAH BERKAS BARU</strong>'
 	));
 ?>
 

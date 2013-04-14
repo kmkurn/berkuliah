@@ -24,7 +24,7 @@ $this->breadcrumbs=array(
 			<?php endif; ?>
 			
 			<?php $this->beginWidget('zii.widgets.CPortlet', array(
-				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN CATATAN</strong>',
+				'title'=>'<i class="icon icon-search"></i> <strong>RINCIAN BERKAS</strong>',
 			)); ?>
 
 			<table class="table table-hover">
