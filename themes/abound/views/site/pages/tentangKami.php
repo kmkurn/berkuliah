@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
   <div class="page-header">
   </div>
   <div class="row-fluid">
-    <div class="span7">
+    <div class="span8">
    <div id="this-carousel-id" class="carousel slide">
     <div class="carousel-inner">
       <div class="item active">
