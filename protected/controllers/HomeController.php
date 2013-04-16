@@ -107,13 +107,13 @@ class HomeController extends Controller
 	 */
 	public function filterGetStudentId($filterChain)
 	{
-		if (isset($_POST['Note']['student_id']))
+		if (isset($_GET['Note']['student_id']))
 		{
-			$username = $_POST['Note']['student_id'];
+			$username = $_GET['Note']['student_id'];
 			$student = Student::model()->findByAttributes(array('username' => $username));
 			if ($student !== NULL)
 			{
-				$_POST['Note']['student_id'] = $student->id;
+				$_GET['Note']['student_id'] = $student->id;
 			}
 		}
 
