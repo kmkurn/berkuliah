@@ -3,18 +3,6 @@
 /* @var $model Note */
 /* @var $form CActiveForm */
 
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/tiny_mce/tiny_mce.js');
-Yii::app()->clientScript->registerScript('tiny_mce',
-	'tinyMCE.init({
-		theme: "advanced",
-		mode: "exact",
-		elements: "NoteUploadForm[raw_file_text]",
-		width: "500",
-		height: "400",
-		relative_urls: false, 
-	    remove_script_host: false
-	});'
-);
 ?>
 
 <?php if (Yii::app()->user->hasFlash('message')): ?>
@@ -95,7 +83,20 @@ Yii::app()->clientScript->registerScript('tiny_mce',
 		<tr>
 			<td><label><em>atau ketikkan catatan Anda</em></label></td>
 			<td>
-				<?php echo $form->textArea($model, 'raw_file_text'); ?>
+				<?php $this->widget('ext.tinymce.ETinyMce', array(
+					'model' => $model,
+					'attribute' => 'raw_file_text',
+					'editorTemplate' => 'full',
+					'htmlOptions' => array(
+						'class' => 'tinymce',
+					),
+					'options' => array(
+						'mode' => 'exact',
+						'theme' => 'advanced',
+						'width' => 500,
+						'height' => 400,
+					),
+				)); ?>
 				<?php echo $form->error($model, 'raw_file_text'); ?>
 			</td>
 		</tr>
