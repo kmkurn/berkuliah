@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * This model represents the input form for uploading a photo.
+ */
 class PhotoUploadForm extends CFormModel
 {
 	public $photo;
@@ -38,30 +41,19 @@ class PhotoUploadForm extends CFormModel
 		}
 
 		// generate random filename
-		$fileName = $this->randomString() . '.' . $this->photo->extensionName;
+		Yii::import('ext.randomness.*');
+		$length = 32;
+		$fileName = Randomness::randomString($length) . '.' . $this->photo->extensionName;
 		$student = Student::model()->findByAttributes(array('photo' => $fileName));
 		while ($student !== NULL)
 		{
-			$fileName = $this->randomString() . '.' . $this->photo->extensionName;
+			$fileName = Randomness::randomString($length) . '.' . $this->photo->extensionName;
 			$student = Student::model()->findByAttributes(array('photo' => $fileName));
 		}
 
+		// save photo
 		$this->photo->saveAs('photos/' . $fileName);
 
 		$student = Student::model()->updateByPk(Yii::app()->user->id, array('photo' => $fileName));
-	}
-
-	/**
-	 * Generates random string for filename.
-	 * @return string the random string
-	 */
-	private function randomString()
-	{
-		$length = 32;
-		$chars = array_merge(range(0,9), range('a','z'), range('A','Z'));
-		shuffle($chars);
-		$randomString = implode(array_slice($chars, 0, $length));
-
-		return $randomString;
 	}
 }
