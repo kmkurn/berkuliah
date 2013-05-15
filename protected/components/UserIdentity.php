@@ -21,18 +21,18 @@ class UserIdentity extends CBaseUserIdentity
 	 */
 	public function authenticate()
 	{
-		$student = Student::model()->findByAttributes(array('username' => $username));
+		$student = Student::model()->findByAttributes(array('username' => $this->username));
 		if (! $student)
 		{
 			$student = new Student();
-			$student->username = $username;
+			$student->username = $this->username;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
 		$student->save();
 
 		$this->id = $student->id;
-		$this->setState('username', $username);
+		$this->setState('username', $this->username);
 		$this->setState('is_admin', $student->is_admin);
 		$this->setState('photo', $student->photo);
 
