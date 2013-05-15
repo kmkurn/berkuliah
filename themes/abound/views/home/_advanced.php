@@ -30,8 +30,8 @@
 			</div>
 
 			<div class="field">
-				<?php echo $form->label($model,'advanced_faculty_id'); ?>
-				<?php echo $form->dropDownList($model,'advanced_faculty_id', CHtml::listData(
+				<?php echo $form->label($model,'faculty_id'); ?>
+				<?php echo $form->dropDownList($model,'faculty_id', CHtml::listData(
 				Faculty::model()->findAll(), 'id', 'name'),
 				array('prompt' => '(semua)',
 					  'ajax' => array('type' => 'POST',

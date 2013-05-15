@@ -47,7 +47,7 @@
 			       CHtml::listData(Faculty::model()->findAll(), 'id', 'name'),
 			       array('prompt' => 'Pilih fakultas',
 			             'ajax' => array('type' => 'POST',
-			             	             'url' => array('noteUpload/updateCourses'),
+			             	             'url' => array('note/updateCourses'),
 			             	             'update' => '#courses',
 			             	             'data' => array('faculty_id' => 'js:this.value')
 			                           		 ))); ?>

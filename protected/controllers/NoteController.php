@@ -1,6 +1,6 @@
 <?php
 
-class NoteDetailsController extends Controller
+class NoteController extends Controller
 {
 	/**
 	 * @return array action filters
@@ -22,7 +22,7 @@ class NoteDetailsController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('index', 'edit', 'delete', 'download'),
+				'actions'=>array('view', 'edit', 'delete', 'upload', 'download', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -35,11 +35,11 @@ class NoteDetailsController extends Controller
 	 * Views the detailed information of a note.
 	 * @param  int $id the note id
 	 */
-	public function actionIndex($id)
+	public function actionView($id)
 	{
 		$model = $this->loadModel($id);
 		
-		$this->render('index', array(
+		$this->render('view', array(
 			'model' => $model, 
 		));
 	}
@@ -61,7 +61,7 @@ class NoteDetailsController extends Controller
 				$model->save();
 				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
 				Yii::app()->user->setFlash('messageType', 'success');
-				$this->redirect(array('index', 'id' => $id));
+				$this->redirect(array('edit', 'id' => $id));
 			}
 			else
 			{
@@ -91,6 +91,45 @@ class NoteDetailsController extends Controller
 	}
 
 	/**
+	 * Uploads a note.
+	 */
+	public function actionUpload()
+	{
+		$model = new Note();
+
+		if (isset($_POST['Note']))
+		{
+			$model->attributes = $_POST['Note'];
+			if ($model->validate())
+			{
+				$model->saveNewCourse();
+				
+				$model->attributes = $model->attributes;
+				$model->student_id = Yii::app()->user->id;
+				$model->upload_timestamp = date('Y-m-d H:i:s');
+				$model->setType();
+
+				$model->save();
+				$model->store();
+
+				Yii::app()->user->setFlash('message', 'Berkas berhasil diunggah.');
+				Yii::app()->user->setFlash('messageType', 'success');
+				$this->redirect(array('home/index'));
+			}
+			else
+			{
+				$model->faculty_id = NULL;
+				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
+				Yii::app()->user->setFlash('messageType', 'danger');
+			}
+		}
+
+		$this->render('upload', array(
+			'model' => $model,
+		));
+	}
+
+	/**
 	 * Downloads a note.
 	 * @param  int $id the note id
 	 */
@@ -108,6 +147,25 @@ class NoteDetailsController extends Controller
 			$mimeType = 'text/html';
 		}
 		Yii::app()->request->sendFile($model->title, file_get_contents($filePath), $mimeType, false);
+	}
+
+	/**
+	 * Performs update courses in dropdown list.
+	 */
+	public function actionUpdateCourses()
+	{
+		if (isset($_POST['faculty_id']))
+		{
+			$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
+			
+			echo CHtml::dropDownList('Note[course_id]', '',
+				CHtml::listData($courses, 'id', 'name'), 
+				   array('prompt' => 'Pilih mata kuliah'));
+		}
+		else
+		{
+			throw new CHttpException(400, 'Your request is invalid.');
+		}
 	}
 
 	/**

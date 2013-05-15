@@ -12,6 +12,6 @@ $this->breadcrumbs=array(
 
 <div class="row-fluid">
 	<div class="span9">
-		<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+		<?php $this->renderPartial('_upload_form', array('model'=>$model)); ?>
 	</div><!-- span9 -->
 </div><!-- row-fluid -->

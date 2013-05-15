@@ -11,7 +11,7 @@
 
 <br />
 
-<?php echo CHtml::link(CHtml::encode($data->title), array('noteDetails/index', 'id'=>$data->id)); ?>
+<?php echo CHtml::link(CHtml::encode($data->title), array('note/view', 'id'=>$data->id)); ?>
 <br />
 
 <i class="icon icon-user"></i> <?php echo CHtml::encode($data->student->username); ?>

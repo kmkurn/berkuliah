@@ -25,7 +25,7 @@
 					),
 					array(
 						'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
-						'url' => array('noteUpload/index'),
+						'url' => array('note/upload'),
 					),
 					// array(
 					// 	'label' => '<i class="icon icon-comment"></i>Minta Berkas',
