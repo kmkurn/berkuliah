@@ -21,7 +21,10 @@
  */
 class Note extends CActiveRecord
 {
-	public $advanced_faculty_id;
+	public $faculty_id;
+	public $new_course_name;
+	public $file;
+	public $raw_file_text;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -49,12 +52,14 @@ class Note extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title', 'required'),
+			array('title, faculty_id', 'required'),
 			array('title', 'length', 'max'=>128),
-			array('course_id, description', 'safe'),
+			array('course_id', 'checkCourse'),
+			array('file', 'checkNote'),
+			array('description, new_course_name, raw_file_text', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp, advanced_faculty_id', 'safe', 'on'=>'search'),
+			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp, faculty_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,7 +92,7 @@ class Note extends CActiveRecord
 			'student_id' => 'Oleh',
 			'upload_timestamp' => 'Waktu Unggah',
 			'edit_timestamp' => 'Terakhir Sunting',
-			'advanced_faculty_id' => 'Fakultas',
+			'faculty_id' => 'Fakultas',
 		);
 	}
 
@@ -113,7 +118,7 @@ class Note extends CActiveRecord
 		$criteria->compare('student_id',$this->student_id);
 		$criteria->compare('upload_timestamp',$this->upload_timestamp,true);
 		$criteria->compare('edit_timestamp',$this->edit_timestamp,true);
-		$criteria->compare('faculty.id',$this->advanced_faculty_id,true);
+		$criteria->compare('faculty.id',$this->faculty_id,true);
 		$criteria->order = 'upload_timestamp DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -140,6 +145,89 @@ class Note extends CActiveRecord
 		
 		return $allowedTypes[$this->type]['extension'];
 	}
+
+
+	/**
+	 * Checks whether the user has selected the course or insert a new course name.
+	 * @param  string $attribute
+	 * @param  array $params
+	 */
+	public function checkCourse($attribute, $params)
+	{
+		if (empty($this->course_id) && empty($this->new_course_name))
+		{
+			$this->addError('course_id', 'Mata Kuliah cannot be blank.');
+		}
+	}
+
+	/**
+	 * Checks whether the uploaded note size less than 500 KB and its type is allowed.
+	 * @param  string $attribute
+	 * @param  array $params
+	 */
+	public function checkNote($attribute, $params)
+	{
+		if (empty($this->raw_file_text))
+		{
+			$validator = new CFileValidator();
+			$validator->attributes = array('file');
+			$validator->maxSize = 500 * 1024;
+
+			$allowedTypes = Note::getAllowedTypes();
+			foreach ($allowedTypes as $info)
+				$validator->types[] = $info['extension'];
+			
+			$validator->validate($this);
+		}
+	}
+
+	/**
+	 * Saves the new course inserted by user.
+	 */
+	public function saveNewCourse()
+	{
+		if (empty($this->course_id))
+		{
+			$course = new Course();
+			$course->name = $this->new_course_name;
+			$course->faculty_id = $this->faculty_id;
+			$course->save();
+			$this->course_id = $course->id;
+		}
+	}
+
+	/**
+	 * Sets the note type.
+	 * @return int the type id of this note
+	 */
+	public function setType()
+	{
+		$extension = 'html';
+		if (empty($this->raw_file_text))
+		{
+			$noteFile = CUploadedFile::getInstance($this, 'file');
+			$extension = $noteFile->extensionName;
+		}
+		$this->type = Note::getTypeFromExtension($extension);
+	}
+
+	/**
+	 * Stores the uploaded note.
+	 */
+	public function store()
+	{
+		if (empty($this->raw_file_text))
+		{
+			$noteFile = CUploadedFile::getInstance($this, 'file');
+			$noteFile->saveAs('notes/' . $this->id . '.' . $noteFile->extensionName);
+		}
+		else
+		{
+			touch('notes/' . $this->id . '.html');
+			file_put_contents('notes/' . $this->id . '.html', $this->raw_file_text);
+		}
+	}
+
 
 	/**
 	 * Retrieves the allowed types extension and their text.

@@ -40,7 +40,7 @@
 				<td></td>
 				<td>
 					<?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary')); ?>
-					<?php echo CHtml::link('Batal', array('index', 'id' => $model->id), array('class' => 'btn')); ?>
+					<?php echo CHtml::link('Batal', array('view', 'id' => $model->id), array('class' => 'btn')); ?>
 				</td>
 			</tr>
 
