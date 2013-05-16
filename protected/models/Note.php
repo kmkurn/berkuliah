@@ -52,14 +52,15 @@ class Note extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, faculty_id', 'required'),
+			array('title, description, faculty_id', 'required', 'on'=>'insert'),
 			array('title', 'length', 'max'=>128),
-			array('course_id', 'checkCourse'),
-			array('file', 'checkNote'),
-			array('description, new_course_name, raw_file_text', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+			array('course_id', 'checkCourse', 'on'=>'insert'),
+			array('file', 'checkNote', 'on'=>'insert'),
+			array('new_course_name, raw_file_text', 'safe', 'on'=>'insert'),
+			
 			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp, faculty_id', 'safe', 'on'=>'search'),
+			array('title', 'safe', 'on'=>'edit'),
+			array('description', 'required', 'on'=>'edit'),
 		);
 	}
 

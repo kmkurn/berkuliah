@@ -51,6 +51,7 @@ class NoteController extends Controller
 	public function actionEdit($id)
 	{
 		$model = $this->loadModel($id);
+		$model->scenario = 'edit';
 		
 		if (isset($_POST['Note']))
 		{
