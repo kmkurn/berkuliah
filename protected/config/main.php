@@ -32,6 +32,7 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
+			'class'=>'BkWebUser',
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
@@ -69,6 +70,12 @@ return array(
 				),
 				*/
 			),
+		),
+		'fbApi'=>array(
+			'class' => 'FacebookApi',
+			'appId' => '246113138860980',
+			'webRoot' => 'http://localhost/berkuliah',
+			'divRoot' => 'fb-root',
 		),
 	),
 
