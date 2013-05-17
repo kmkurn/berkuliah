@@ -113,8 +113,13 @@ class NoteController extends Controller
 				$model->save();
 				$model->store();
 
-				Yii::app()->user->setFlash('message', 'Berkas berhasil diunggah.');
-				Yii::app()->user->setFlash('messageType', 'success');
+				Yii::app()->user->addShareMessage(
+					'Berkas berhasil diunggah!',
+					$model->title,
+					'http://fusharblog.com/wp-content/uploads/2013/04/logo75.png',
+					$model->course->name,
+					$model->description
+				);
 				$this->redirect(array('home/index'));
 			}
 			else
