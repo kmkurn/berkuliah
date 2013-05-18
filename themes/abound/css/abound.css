@@ -19,7 +19,7 @@ body {
 
 .navbar .nav > li > a {
   float:none;
-  padding:10px 15px;
+  padding:6.5px 15px;
   text-decoration:none;
 }
 
@@ -589,4 +589,17 @@ footer {
   width: 918px;
   margin-left: 278px;
   margin-right: 50px;
+}
+
+#header{
+  border-bottom:1px solid #DDD;
+  background-color: #FFFFFF;
+  background-image: -moz-linear-gradient(top, #FFFFFF, #acacac); 
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#acacac));
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #ACACAC);
+  background-image: -o-linear-gradient(top, #FFFFFF, #ACACAC);
+  background-image: linear-gradient(to bottom, #FFFFFF, #ACACAC);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffFFFFFF', endColorstr='#ffACACAC', GradientType=0);
+  padding:10px;
 }
