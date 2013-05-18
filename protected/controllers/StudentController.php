@@ -54,7 +54,7 @@ class StudentController extends Controller
 			{
 				$model->store()->save(false);
 				Yii::app()->user->setState('photo', $model->photo);
-				Yii::app()->user->setFlash('message', 'Foto berhasil diunggah.');
+				Yii::app()->user->setFlash('message', 'Profil berhasil diubah.');
 				Yii::app()->user->setFlash('messageType', 'success');
 			}
 			else
