@@ -1,11 +1,11 @@
 <?php
-/* @var $this DashboardController */
+/* @var $this StudentController */
 /* @var $dataProvider CActiveDataProvider */
 ?>
 
-<h4>Sejarah Pengunggahan</h4>
+<h4>Sejarah Pengunduhan</h4>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_note',
+	'itemView'=>'_downloads',
 )); ?>

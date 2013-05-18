@@ -1,5 +1,5 @@
 <?php
-/* @var $this DashboardController */
+/* @var $this StudentController */
 /* @var $data Note */
 ?>
 
@@ -11,7 +11,7 @@
 				<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon','height'=>'30', 'width'=>'30')); ?>
 			</td>
 			<td>
-				<?php echo CHtml::link(CHtml::encode($data->title), array('noteDetails/index', 'id'=>$data->id)); ?>
+				<?php echo CHtml::link(CHtml::encode($data->title), array('note/view', 'id'=>$data->id)); ?>
 				<br />
 
 				<i class="icon icon-briefcase"></i> <?php echo CHtml::encode($data->course->faculty->name); ?>
