@@ -22,7 +22,7 @@ class NoteController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('view', 'edit', 'delete', 'upload', 'download', 'rate', 'updateCourses'),
+				'actions'=>array('view', 'update', 'delete', 'upload', 'download', 'rate', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -52,10 +52,9 @@ class NoteController extends Controller
 	 * Edits a note.
 	 * @param  int $id the note id
 	 */
-	public function actionEdit($id)
+	public function actionUpdate($id)
 	{
 		$model = $this->loadModel($id);
-		$model->scenario = 'edit';
 		
 		if (isset($_POST['Note']))
 		{
@@ -64,9 +63,10 @@ class NoteController extends Controller
 			{
 				$model->edit_timestamp = date('Y-m-d H:i:s');
 				$model->save();
+
 				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
 				Yii::app()->user->setFlash('messageType', 'success');
-				$this->redirect(array('edit', 'id' => $id));
+				$this->redirect(array('view', 'id' => $model->id));
 			}
 			else
 			{
@@ -75,7 +75,7 @@ class NoteController extends Controller
 			}
 		}
 
-		$this->render('edit', array('model' => $model));
+		$this->render('update', array('model' => $model));
 	}
 
 	/**
