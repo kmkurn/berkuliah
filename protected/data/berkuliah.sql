@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 18, 2013 at 07:27 PM
+-- Generation Time: May 18, 2013 at 09:42 PM
 -- Server version: 5.5.30-MariaDB-log
 -- PHP Version: 5.4.15
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `bk_course` (
   `faculty_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=109 ;
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,6 @@ CREATE TABLE IF NOT EXISTS `bk_note` (
   `title` varchar(128) NOT NULL,
   `description` text,
   `type` int(11) NOT NULL,
-  `location` varchar(64) NOT NULL,
   `course_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `upload_timestamp` datetime NOT NULL,
@@ -94,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `bk_note` (
   PRIMARY KEY (`id`),
   KEY `course_id` (`course_id`),
   KEY `upload_user_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -159,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `bk_student` (
   `faculty_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
