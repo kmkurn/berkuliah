@@ -1,15 +1,4 @@
 <?php
-
-if (Yii::app()->user->hasShareMessages())
-{
-	echo '<div id="' . Yii::app()->fbApi->divRoot . '"></div>' . "\n";
-	$script = Yii::app()->fbApi->getInitScript();
-	Yii::app()->clientScript->registerScript('fb_init', $script);
-}
-
-?>
-
-<?php
 /* @var $this HomeController */
 /* @var $model Note */
 /* @var $usernames array */
@@ -27,6 +16,18 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 		return false;
 	});
 ");
+
+?>
+
+<?php
+
+if (Yii::app()->user->hasShareMessages())
+{
+	echo '<div id="' . Yii::app()->fbApi->divRoot . '"></div>' . "\n";
+	$script = Yii::app()->fbApi->getInitScript();
+	Yii::app()->clientScript->registerScript('fb_init', $script);
+}
+
 ?>
 
 <div class="page-header"></div>
