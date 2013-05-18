@@ -36,6 +36,13 @@ $this->breadcrumbs=array(
 							'dataProvider'=>$uploadsDataProvider,
 						),
 					),
+					'tab3'=>array(
+						'title'=>'Artikel',
+						'view'=>'articles',
+						'data'=>array(
+							'dataProvider'=>$articlesDataProvider,
+						),
+					),
 				),
 			)); ?>
 

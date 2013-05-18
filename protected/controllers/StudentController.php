@@ -101,10 +101,22 @@ class StudentController extends Controller
 			),
 		));
 
+		$articlesDataProvider = new CActiveDataProvider('Testimonial',array(
+			'criteria'=>array(
+				'condition'=>'student_id=:studentId',
+				'params'=>array(
+					':studentId'=>$model->id,
+				),
+			),
+			'pagination'=>array(
+				'pageSize'=>5,
+			),
+		));
 		$this->render('view',array(
 			'model'=>$model,
 			'downloadsDataProvider'=>$downloadsDataProvider,
 			'uploadsDataProvider'=>$uploadsDataProvider,
+			'articlesDataProvider'=>$articlesDataProvider,
 		));
 	}
 
