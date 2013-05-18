@@ -113,23 +113,14 @@ class NoteController extends Controller
 				$model->save();
 				$model->store();
 
-				$message['text'] = 'Berkas berhasil diunggah!';
+				$message['text'] = 'Berkas berhasil diunggah.';
 				$message['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
 				$message['name'] = $model->title;
 				$message['link'] = array('note/view', 'id' => $model->id);
-				$message['picture'] = 'http://fusharblog.com/wp-content/uploads/2013/04/logo75.png';
-				$message['caption'] = $model->course->name;
+				$message['picture'] = 'html.svg';
+				$message['caption'] = $model->course->name . ' | ' . $model->course->faculty->name;
 				$message['description'] = $model->description;
 				Yii::app()->user->addShareMessage($message);
-
-				$msgg['text'] = 'Berkas berhasil diunggah lagi!!!!';
-				$msgg['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
-				$msgg['name'] = $model->title;
-				$msgg['link'] = array('note/view', 'id' => $model->id);
-				$msgg['picture'] = 'http://fusharblog.com/wp-content/uploads/2013/04/logo75.png';
-				$msgg['caption'] = $model->course->name;
-				$msgg['description'] = $model->description;
-				Yii::app()->user->addShareMessage($msgg);
 
 				$this->redirect(array('home/index'));
 			}
