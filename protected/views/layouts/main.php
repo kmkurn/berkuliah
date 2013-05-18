@@ -13,7 +13,7 @@
         Yii::app()->clientScript->registerCoreScript('jquery');
         ?>
         <!-- Fav and Touch and touch icons -->
-        <link rel="shortcut icon" href="<?php echo $baseUrl;?>/img/logoBerkuliah.png">
+        <link rel="shortcut icon" href="<?php echo $baseUrl;?>/images/icons/logo-berkuliah.png">
         <?php  
         $cs->registerCssFile($baseUrl.'/css/bootstrap.min.css');
         $cs->registerCssFile($baseUrl.'/css/bootstrap-responsive.min.css');
