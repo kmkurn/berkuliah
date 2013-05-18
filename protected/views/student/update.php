@@ -13,7 +13,10 @@ $this->breadcrumbs=array(
 <div class="row-fluid">
 	<div class="span9">
 		
-	<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+	<?php $this->renderPartial('_form', array(
+		'model'=>$model,
+		'faculties'=>$faculties,
+	)); ?>
 
 	</div><!-- span9 -->
 </div><!-- row-fluid -->

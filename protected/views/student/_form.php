@@ -24,6 +24,14 @@
 			</tr>
 
 			<tr>
+				<td width="270"><?php echo $form->labelEx($model, 'faculty_id'); ?></td>
+				<td>
+					<?php echo $form->dropDownList($model, 'faculty_id', CHtml::listData($faculties,'id','name')); ?>
+					<?php echo $form->error($model, 'faculty_id'); ?>
+				</td>
+			</tr>
+
+			<tr>
 				<td width="270"><?php echo $form->labelEx($model, 'bio'); ?></td>
 				<td>
 					<?php echo $form->textArea($model, 'bio'); ?>

@@ -66,6 +66,7 @@ class StudentController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'faculties'=>Faculty::model()->findAll(),
 		));
 	}
 
