@@ -74,7 +74,6 @@ return array(
 		'fbApi'=>array(
 			'class' => 'FacebookApi',
 			'appId' => '246113138860980',
-			'webRoot' => 'http://localhost/berkuliah',
 			'divRoot' => 'fb-root',
 		),
 	),

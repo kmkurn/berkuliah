@@ -113,13 +113,14 @@ class NoteController extends Controller
 				$model->save();
 				$model->store();
 
-				Yii::app()->user->addShareMessage(
-					'Berkas berhasil diunggah!',
-					$model->title,
-					'http://fusharblog.com/wp-content/uploads/2013/04/logo75.png',
-					$model->course->name,
-					$model->description
-				);
+				$message['text'] = 'Berkas berhasil diunggah!';
+				$message['name'] = $model->title;
+				$message['link'] = $this->createUrl('note/view', array('id' => $model->id));
+				$message['picture'] = 'http://fusharblog.com/wp-content/uploads/2013/04/logo75.png';
+				$message['caption'] = $model->course->name;
+				$message['description'] = $model->description;
+				
+				Yii::app()->user->addShareMessage($message);
 				$this->redirect(array('home/index'));
 			}
 			else

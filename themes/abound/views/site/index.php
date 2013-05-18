@@ -30,8 +30,29 @@ $this->pageTitle=Yii::app()->name;
         </td>
 
         <td>
-          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/berkuliah" data-widget-id="321252419063390209">Tweets by @berkuliah</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          <?php 
+
+          echo Chtml::link('Tweets by @berkuliah', 'https://twitter.com/berkuliah', array(
+              'class' => 'twitter-timeline',
+              'data-dnt' => 'true',
+              'data-widget-id' => '321252419063390209'
+              ));
+
+          Yii::app()->clientScript->registerScript('berkuliah-tweets',
+            "!function(d,s,id){\n" .
+            "  var js,\n" .
+            "  fjs=d.getElementsByTagName(s)[0],\n" .
+            "  p=/^http:/.test(d.location)?'http':'https';\n" .
+            "  if(!d.getElementById(id)){\n" .
+            "    js=d.createElement(s);\n" .
+            "    js.id=id;\n" .
+            "    js.src=p+'://platform.twitter.com/widgets.js';\n" .
+            "    fjs.parentNode.insertBefore(js,fjs);\n" .
+            "  }\n" .
+            "}(document,'script','twitter-wjs');\n"
+          );
+
+          ?>
         </td>
 
       </tr>

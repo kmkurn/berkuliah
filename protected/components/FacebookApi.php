@@ -6,7 +6,6 @@
 class FacebookApi extends CComponent
 {
 	public $appId;
-	public $webRoot;
 	public $divRoot;
 
 	public function init()
@@ -34,18 +33,18 @@ class FacebookApi extends CComponent
 			"}());\n";
 	}
 
-	public function getShareScript($buttonId, $msg)
+	public function getShareScript($buttonId, $message)
 	{
 		return 
 			"$('#$buttonId').click(function(e){\n" .
 			"	e.preventDefault();\n" .
 			"	FB.ui({\n" .
 			"		method: 'feed',\n" .
-			"		name: '$msg[name]',\n" .
-			"		link: '$this->webRoot',\n" .
-			"		picture: '$msg[picture]',\n" .
-			"		caption: '$msg[caption]',\n" .
-			"		description: '$msg[description]',\n" .
+			"		name: '$message[name]',\n" .
+			"		link: '" . Yii::app()->request->hostInfo . "/$message[link]',\n" .
+			"		picture: '$message[picture]',\n" .
+			"		caption: '$message[caption]',\n" .
+			"		description: '$message[description]',\n" .
 			"		message: ''\n" .
 			"	});\n" .
 			"});\n";
