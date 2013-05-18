@@ -9,9 +9,11 @@
 	'method' => 'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo CHtml::submitButton('Cari', array('class' => 'row buttons')); ?>
-	</div>
-
+	<?php echo $form->textField($model,'title',array(
+		'size' => 60,
+		'maxlength' => 128,
+		'class' => 'search-query span12',
+		'placeholder' => 'Cari judul',
+	)); ?>
+	
 <?php $this->endWidget(); ?>

@@ -5,22 +5,24 @@
 
 <?php if (Yii::app()->user->getState('is_admin')) echo CHtml::checkBox('deleteNote[' . $data->id . ']'); ?>
 
-<?php echo CHtml::image($data->typeIcon, 'note icon', array('class' => 'note-icon')); ?>
+<div id="iconBerkas">
+	<?php echo CHtml::image($data->typeIcon, 'note icon', array('class' => 'note-icon',"width"=>50,"height"=>50)); ?>
+</div>
+
 <br />
 
-<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
-<?php echo CHtml::link(CHtml::encode($data->title), array('noteDetails/index', 'id'=>$data->id)); ?>
+<?php echo CHtml::link(CHtml::encode($data->title), array('note/view', 'id'=>$data->id)); ?>
 <br />
 
-<b><?php echo CHtml::encode($data->getAttributeLabel('course_id')); ?>:</b>
-<?php echo CHtml::encode($data->course->name); ?>
+<i class="icon icon-user"></i> <?php echo CHtml::encode($data->student->username); ?>
 <br />
 
-<b><?php echo CHtml::encode($data->getAttributeLabel('student_id')); ?>:</b>
-<?php echo CHtml::encode($data->student->username); ?>
+<i class="icon icon-briefcase"></i> <?php echo CHtml::encode($data->course->faculty->name); ?>
 <br />
 
-<b><?php echo CHtml::encode($data->getAttributeLabel('upload_timestamp')); ?>:</b>
+<i class="icon icon-book"></i> <?php echo CHtml::encode($data->course->name); ?>
+<br />
+
 <?php // TO-DO: set locale ?>
-<?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
+<i class="icon icon-time"></i> <?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
 <br />

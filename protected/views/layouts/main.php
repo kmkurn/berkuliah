@@ -1,57 +1,66 @@
-<?php /* @var $this Controller */ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BerKuliah - Berbagi Berkas Kuliah</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Berkuliah.com, sarana berbagi catatan dan berkas soal">
+    <meta name="author" content="C3-2013">
 
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
-
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
-
-<body>
-
-	<div class="container" id="page">
-
-		<div id="header">
-			<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-		</div><!-- header -->
-
-		<div id="mainmenu">
-			<?php $this->widget('zii.widgets.CMenu',array(
-				'items'=>array(
-					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-					),
-					)); ?>
-				</div><!-- mainmenu -->
-				<?php if(isset($this->breadcrumbs)):?>
-				<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-					'links'=>$this->breadcrumbs,
-					)); ?><!-- breadcrumbs -->
-				<?php endif?>
-
-				<?php echo $content; ?>
-
-				<div class="clear"></div>
-
-				<div id="footer">
-					Copyright &copy; <?php echo date('Y'); ?> by PPL C3.<br/>
-					All Rights Reserved.<br/>
-					<?php echo Yii::powered(); ?>
-				</div><!-- footer -->
-
-			</div><!-- page -->
-
-		</body>
-		</html>
+        <?php
+        $baseUrl = Yii::app()->request->baseUrl; 
+        $cs = Yii::app()->getClientScript();
+        Yii::app()->clientScript->registerCoreScript('jquery');
+        ?>
+        <!-- Fav and Touch and touch icons -->
+        <link rel="shortcut icon" href="<?php echo $baseUrl;?>/img/logoBerkuliah.png">
+        <?php  
+        $cs->registerCssFile($baseUrl.'/css/bootstrap.min.css');
+        $cs->registerCssFile($baseUrl.'/css/bootstrap-responsive.min.css');
+        $cs->registerCssFile($baseUrl.'/css/abound.css');
+        ?>
+        <!-- styles for style switcher -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/css/style-grey.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style2" href="<?php echo $baseUrl;?>/css/style-brown.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style3" href="<?php echo $baseUrl;?>/css/style-green.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style4" href="<?php echo $baseUrl;?>/css/style-blue.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style5" href="<?php echo $baseUrl;?>/css/style-orange.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style6" href="<?php echo $baseUrl;?>/css/style-purple.css" />
+        <link rel="alternate stylesheet" type="text/css" media="screen" title="style7" href="<?php echo $baseUrl;?>/css/style-red.css" />
+        <?php
+        $cs->registerScriptFile($baseUrl.'/js/bootstrap.min.js');
+        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.sparkline.js');
+        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.flot.min.js');
+        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.flot.pie.min.js');
+        $cs->registerScriptFile($baseUrl.'/js/charts.js');
+        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.knob.js');
+        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.masonry.min.js');
+        $cs->registerScriptFile($baseUrl.'/js/styleswitcher.js');
+        ?>
+  </head>
+  <body>
+    <section id="navigation-main">   
+      <!-- Require the navigation -->
+      <?php require_once('tpl_navigation.php'); ?>
+    </section><!-- navigation-main -->
+    <section class="main-body"><div id="hidecontainerfluid">
+      <div class="container-fluid">
+      <!-- Include content pages -->
+      <?php echo $content; ?>
+      </div><!-- container-fluid -->
+    </div></section>
+    <footer>
+        <div class="subnav navbar navbar-fixed-bottom">
+            <div class="navbar-inner-footer">
+                <div class="container">
+                    Copyright &copy; <?php echo date('Y'); ?> by 
+                    <h7><?php echo CHtml::link('Kelompok C3', array('site/page', 'view'=>'about')); ?></h7>.<br/>
+                    All Rights Reserved.<br/>
+                    <?php echo Yii::powered(); ?>
+                    <br />
+                </div><!-- container -->
+            </div><!-- navbar-inner-footer -->
+        </div><!-- subnav navbar navbar-fixed-bottom -->
+    </footer>
+  </body>
+</html>
