@@ -2,16 +2,12 @@
 
 class BkWebUser extends CWebUser
 {
+	public $shareMessagesCnt;
+
 	public function addShareMessage($message)
 	{
-		$idx = 0;
-		if ($this->hasFlash('current_share_message_index'))
-		{
-			$idx = $this->hasFlash('current_share_message_index') + 1;
-			$this->setFlash('current_share_message_index', $idx);
-		}
-		else
-			$this->setFlash('current_share_message_index', 0);
+		$idx = $this->shareMessagesCnt;
+		$this->shareMessagesCnt++;
 
 		$this->setFlash('share_message' . $idx, $message);
 	}

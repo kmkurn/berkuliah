@@ -41,11 +41,11 @@ class FacebookApi extends CComponent
 			"	FB.ui({\n" .
 			"		method: 'feed',\n" .
 			"		name: '$message[name]',\n" .
-			"		link: '" . Yii::app()->request->hostInfo . "/$message[link]',\n" .
-			"		picture: '$message[picture]',\n" .
+			"		link: '" . Yii::app()->request->hostInfo . CHtml::normalizeUrl($message['link']) . "',\n" .
+			"		picture: '" . Yii::app()->request->hostInfo . Yii::app()->baseUrl . "/images/" . $message['picture'] . "',\n" .
 			"		caption: '$message[caption]',\n" .
 			"		description: '$message[description]',\n" .
-			"		message: ''\n" .
+			"		message: '$message[default_text]'\n" .
 			"	});\n" .
 			"});\n";
 	}
