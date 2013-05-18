@@ -1,9 +1,9 @@
 <?php
 /* @var $this StudentController */
 /* @var $model Student */
+/* @var $faculties array */
 
 $this->breadcrumbs=array(
-	Yii::app()->user->name,
 	'Ubah Profil',
 );
 ?>
