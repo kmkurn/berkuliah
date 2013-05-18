@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
 	<div class="span9">
 		
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
-			'title' => '<i class="icon icon-tasks"></i> Sejarah Kegiatan ' . Yii::app()->user->name,
+			'title' => '<i class="icon icon-tasks"></i> <strong>SEJARAH KEGIATAN ' . Yii::app()->user->name . '</strong>',
 		)); ?>
 
 			<?php $this->widget('CTabView', array(
@@ -39,6 +39,6 @@ $this->breadcrumbs=array(
 			)); ?>
 
 		<?php $this->endWidget(); ?>
-
+		
 	</div><!-- span9 -->
 </div><!-- row-fluid -->

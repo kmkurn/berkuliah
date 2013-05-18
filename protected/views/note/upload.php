@@ -8,10 +8,10 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>Unggah Berkas Baru</h1>
+<div class="page-header"></div>
 
-<?php if (Yii::app()->user->hasFlash('message'))
-	echo '<h3>' . Yii::app()->user->getFlash('message') . "</h3>\n";
-?>
-
-<?php echo $this->renderPartial('_upload_form', array('model'=>$model)); ?>
+<div class="row-fluid">
+	<div class="span9">
+		<?php $this->renderPartial('_upload_form', array('model'=>$model)); ?>
+	</div><!-- span9 -->
+</div><!-- row-fluid -->
