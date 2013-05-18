@@ -1,10 +1,9 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
-
-  <?php echo CHtml::image(Yii::app()->baseUrl . '/images/header.png',' '); ?>
-
+  <div id="header">
+    <?php echo CHtml::image(Yii::app()->baseUrl . '/images/header.png',' '); ?>
+  </div>
   <div class="navbar-inner"> 
     <div class="container">
-
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -12,7 +11,6 @@
       </a>
 
       <div class="nav-collapse">
-
       <?php $this->beginWidget('zii.widgets.CMenu',array(
         'htmlOptions'=>array('class'=>'pull-right nav'),
         'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),

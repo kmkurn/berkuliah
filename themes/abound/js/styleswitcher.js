@@ -3,7 +3,7 @@
 //Usage terms: http://www.dynamicdrive.com/notice.htm
 
 var manual_or_random="manual" //"manual" or "random"
-var randomsetting="3 days" //"eachtime", "sessiononly", or "x days (replace x with desired integer)". Only applicable if mode is random.
+var randomsetting="3 session" //"eachtime", "sessiononly", or "x days (replace x with desired integer)". Only applicable if mode is random.
 
 //////No need to edit beyond here//////////////
 
@@ -45,7 +45,7 @@ return (typeof randomize!="undefined" && altsheets[randomnumber]!="")? altsheets
 
 function chooseStyle(styletitle, days){ //Interface function to switch style sheets plus save "title" attr of selected stylesheet to cookie
 if (document.getElementById){
-setStylesheet(styletitle)
+setStylesheet(styletitle,days)
 setCookie("mysheet", styletitle, days)
 }
 }
