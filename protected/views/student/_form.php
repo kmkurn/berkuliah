@@ -35,6 +35,7 @@
 				<td width="270"><?php echo $form->labelEx($model, 'uploadedPhoto'); ?></td>
 				<td>	
 					<?php echo $form->fileField($model, 'uploadedPhoto'); ?>
+					<span class="hint">Ukuran berkas maksimum 100 KB</span>
 					<?php echo $form->error($model, 'uploadedPhoto'); ?>
 				</td>
 			</tr>

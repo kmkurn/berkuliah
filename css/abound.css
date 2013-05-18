@@ -603,3 +603,7 @@ footer {
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffFFFFFF', endColorstr='#ffACACAC', GradientType=0);
   padding:10px;
 }
+
+span.hint{
+  color: #4f9f6c;
+}
