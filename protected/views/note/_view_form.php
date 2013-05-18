@@ -49,21 +49,25 @@
 				<td width='150'></td>
 				<td></td>
 				<td>
-					<?php echo CHtml::link('Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
-			
+					<?php echo CHtml::link('<i class="icon-search icon-download-alt"></i>Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
-						<?php echo CHtml::link('Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
+						<?php echo CHtml::link('<i class="icon-search icon-edit"></i>Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
 					<?php endif; ?>
-
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
-						<?php echo CHtml::link('Hapus', array('delete', 'id' => $model->id), array(
-							'class' => 'btn btn-danger',
+						<?php echo CHtml::link('<i class="icon-search icon-remove"></i>Hapus',
+							array('delete', 'id' => $model->id),
+							array('class' => 'btn btn-danger',
 							'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?',
+						)); ?>
+					<?php endif; ?>
+					<?php if ($model->student_id === Yii::app()->user->id): ?>
+						<?php echo CHtml::link('<i class="icon-search icon-flag"></i> Laporkan Berkas',
+							array('', 'id' => $model->id),
+							array('class' => 'btn btn-warning',
 						)); ?>
 					<?php endif; ?>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
 <?php $this->endWidget();?>

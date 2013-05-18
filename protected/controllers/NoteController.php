@@ -90,6 +90,11 @@ class NoteController extends Controller
 		Yii::app()->user->setFlash('messageType', 'success');
 		$this->redirect(array('home/index'));
 	}
+	public function actionReport()
+	{
+		$this->redirect(array('home/index'));
+		
+	}
 
 	/**
 	 * Uploads a note.
