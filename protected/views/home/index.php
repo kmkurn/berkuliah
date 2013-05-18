@@ -73,7 +73,7 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 				));
 			?>
 		</div>
-		
+	<br/>
 	<?php $idx = 0; ?>
 	<?php foreach (Yii::app()->user->getShareMessages() as $msg): ?>
 	<div class="alert alert-info">
