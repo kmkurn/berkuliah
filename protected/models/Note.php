@@ -8,7 +8,6 @@
  * @property string $title
  * @property string $description
  * @property integer $type
- * @property string $location
  * @property integer $course_id
  * @property integer $student_id
  * @property string $upload_timestamp
@@ -52,15 +51,18 @@ class Note extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description, faculty_id', 'required', 'on'=>'insert'),
+			array('title, description', 'required'),
 			array('title', 'length', 'max'=>128),
+
 			array('course_id', 'checkCourse', 'on'=>'insert'),
+			array('course_id', 'exist', 'className'=>'Course', 'attributeName'=>'id', 'on'=>'insert'),
+			array('faculty_id', 'required', 'on'=>'insert'),
+			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id', 'on'=>'insert'),
+			array('new_course_name', 'length', 'max'=>128, 'on'=>'insert'),
 			array('file', 'checkNote', 'on'=>'insert'),
-			array('new_course_name, raw_file_text', 'safe', 'on'=>'insert'),
+			array('type, student_id, upload_timestamp, edit_timestamp, raw_file_text', 'safe'),
 			
 			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp, faculty_id', 'safe', 'on'=>'search'),
-			array('title', 'safe', 'on'=>'edit'),
-			array('description', 'required', 'on'=>'edit'),
 		);
 	}
 
