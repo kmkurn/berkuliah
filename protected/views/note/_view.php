@@ -18,7 +18,7 @@
 			<tr>
 				<td><i class="icon icon-user"></i> <?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?></td>
 				<td>:</td>
-				<td><?php echo CHtml::encode($model->student->username); ?></td>
+				<td><?php echo CHtml::link(CHtml::encode($model->student->name), array('student/view', 'id'=>$model->student->id)); ?></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-briefcase"></i> <?php echo CHtml::encode($model->course->getAttributeLabel('faculty_id')); ?></td>
@@ -79,7 +79,7 @@
 				<td>
 					<?php echo CHtml::link('<i class="icon-search icon-download-alt"></i>Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
-						<?php echo CHtml::link('<i class="icon-search icon-edit"></i>Sunting', array('edit', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
+						<?php echo CHtml::link('<i class="icon-search icon-edit"></i>Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
 					<?php endif; ?>
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
 						<?php echo CHtml::link('<i class="icon-search icon-remove"></i>Hapus',
