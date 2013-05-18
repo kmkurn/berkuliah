@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 4.0.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2013 at 11:02 AM
+-- Generation Time: May 18, 2013 at 12:18 PM
 -- Server version: 5.5.30-MariaDB-log
--- PHP Version: 5.4.13
+-- PHP Version: 5.4.15
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,16 +23,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bk_badge`
+--
+
+DROP TABLE IF EXISTS `bk_badge`;
+CREATE TABLE IF NOT EXISTS `bk_badge` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `location` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bk_course`
 --
 
+DROP TABLE IF EXISTS `bk_course`;
 CREATE TABLE IF NOT EXISTS `bk_course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `faculty_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -40,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `bk_course` (
 -- Table structure for table `bk_download_info`
 --
 
+DROP TABLE IF EXISTS `bk_download_info`;
 CREATE TABLE IF NOT EXISTS `bk_download_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
@@ -48,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `bk_download_info` (
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`,`note_id`),
   KEY `note_id` (`note_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -56,11 +72,12 @@ CREATE TABLE IF NOT EXISTS `bk_download_info` (
 -- Table structure for table `bk_faculty`
 --
 
+DROP TABLE IF EXISTS `bk_faculty`;
 CREATE TABLE IF NOT EXISTS `bk_faculty` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -68,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `bk_faculty` (
 -- Table structure for table `bk_note`
 --
 
+DROP TABLE IF EXISTS `bk_note`;
 CREATE TABLE IF NOT EXISTS `bk_note` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
@@ -81,7 +99,56 @@ CREATE TABLE IF NOT EXISTS `bk_note` (
   PRIMARY KEY (`id`),
   KEY `course_id` (`course_id`),
   KEY `upload_user_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_rate`
+--
+
+DROP TABLE IF EXISTS `bk_rate`;
+CREATE TABLE IF NOT EXISTS `bk_rate` (
+  `student_id` int(11) NOT NULL,
+  `note_id` int(11) NOT NULL,
+  `value` double NOT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`student_id`,`note_id`),
+  KEY `note_id` (`note_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_report`
+--
+
+DROP TABLE IF EXISTS `bk_report`;
+CREATE TABLE IF NOT EXISTS `bk_report` (
+  `student_id` int(11) NOT NULL,
+  `note_id` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`student_id`,`note_id`),
+  KEY `note_id` (`note_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_review`
+--
+
+DROP TABLE IF EXISTS `bk_review`;
+CREATE TABLE IF NOT EXISTS `bk_review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `note_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_id` (`student_id`,`note_id`),
+  KEY `note_id` (`note_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -89,14 +156,48 @@ CREATE TABLE IF NOT EXISTS `bk_note` (
 -- Table structure for table `bk_student`
 --
 
+DROP TABLE IF EXISTS `bk_student`;
 CREATE TABLE IF NOT EXISTS `bk_student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  `bio` text,
   `photo` varchar(64) DEFAULT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `last_login_timestamp` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_student_badge`
+--
+
+DROP TABLE IF EXISTS `bk_student_badge`;
+CREATE TABLE IF NOT EXISTS `bk_student_badge` (
+  `student_id` int(11) NOT NULL,
+  `badge_id` int(11) NOT NULL,
+  PRIMARY KEY (`student_id`,`badge_id`),
+  KEY `badge_id` (`badge_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_testimonial`
+--
+
+DROP TABLE IF EXISTS `bk_testimonial`;
+CREATE TABLE IF NOT EXISTS `bk_testimonial` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `student_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_id` (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
@@ -121,3 +222,37 @@ ALTER TABLE `bk_download_info`
 ALTER TABLE `bk_note`
   ADD CONSTRAINT `bk_note_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `bk_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `bk_note_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bk_rate`
+--
+ALTER TABLE `bk_rate`
+  ADD CONSTRAINT `bk_rate_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_rate_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bk_report`
+--
+ALTER TABLE `bk_report`
+  ADD CONSTRAINT `bk_report_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_report_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bk_review`
+--
+ALTER TABLE `bk_review`
+  ADD CONSTRAINT `bk_review_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_review_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bk_student_badge`
+--
+ALTER TABLE `bk_student_badge`
+  ADD CONSTRAINT `bk_student_badge_ibfk_2` FOREIGN KEY (`badge_id`) REFERENCES `bk_badge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_student_badge_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bk_testimonial`
+--
+ALTER TABLE `bk_testimonial`
+  ADD CONSTRAINT `bk_testimonial_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
