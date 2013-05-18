@@ -5,7 +5,7 @@
 <?php endif; ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<i class="icon icon-picture"></i> <strong>PENGATURAN FOTO</strong>',
+	'title' => '<i class="icon icon-picture"></i> <strong>UBAH PROFIL</strong>',
 )); ?>
 
 	<?php $form = $this->beginWidget('CActiveForm', array(
