@@ -6,6 +6,7 @@
 class DummyUserIdentity extends CBaseUserIdentity
 {
 	private $id;
+	private $name;
 
 	/**
 	 * Authenticates a dummy user.
@@ -16,17 +17,18 @@ class DummyUserIdentity extends CBaseUserIdentity
 		$username = 'dummy.user';
 		
 		$student = Student::model()->findByAttributes(array('username' => $username));
-		if (! $student)
+		if ($student === null)
 		{
 			$student = new Student();
 			$student->username = $username;
+			$student->name = $username;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
 		$student->save();
 
 		$this->id = $student->id;
-		$this->setState('username', $username);
+		$this->name = $student->name;
 		$this->setState('is_admin', $student->is_admin);
 		$this->setState('photo', $student->photo);
 
@@ -40,6 +42,6 @@ class DummyUserIdentity extends CBaseUserIdentity
 
 	public function getName()
 	{
-		return $this->getState('username');
+		return $this->name;
 	}
 }
