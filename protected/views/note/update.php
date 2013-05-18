@@ -14,6 +14,6 @@ $this->breadcrumbs=array(
 
 <div class="row-fluid">
 	<div class="span9">
-		<?php $this->renderPartial('_edit_form', array('model'=>$model)); ?>
+		<?php $this->renderPartial('_updateForm', array('model'=>$model)); ?>
 	</div><!-- span9 -->
 </div><!-- row-fluid -->
