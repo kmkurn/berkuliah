@@ -31,8 +31,8 @@
             ), 
             'items'=>array(
               array(
-                'label'=>'<i class="icon icon-picture"></i> Pengaturan Foto',
-                'url'=>array('dashboard/uploadPhoto'),
+                'label'=>'<i class="icon icon-picture"></i> Pengaturan',
+                'url'=>array('student/update', 'id'=>Yii::app()->user->id),
               ),
               array(
                 'label'=>'<i class="icon icon-user icon-off"></i> Logout',
