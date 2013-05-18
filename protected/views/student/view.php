@@ -24,14 +24,14 @@ $this->breadcrumbs=array(
 				'tabs'=>array(
 					'tab1'=>array(
 						'title'=>'Profil',
-						'view'=>'profile',
+						'view'=>'_profile',
 						'data'=>array(
 							'dataProvider'=>$downloadsDataProvider,
 						),
 					),
 					'tab2'=>array(
 						'title'=>'Unggahan',
-						'view'=>'uploads',
+						'view'=>'_uploads',
 						'data'=>array(
 							'dataProvider'=>$uploadsDataProvider,
 						),
