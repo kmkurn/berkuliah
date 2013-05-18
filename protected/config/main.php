@@ -76,6 +76,10 @@ return array(
 			'appId' => '246113138860980',
 			'divRoot' => 'fb-root',
 		),
+		'twitterApi'=>array(
+			'class' => 'TwitterApi',
+			'username' => 'berkuliah',
+		),
 	),
 
 	// application-level parameters that can be accessed

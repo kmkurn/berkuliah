@@ -2,7 +2,7 @@
 
 if (Yii::app()->user->hasShareMessages())
 {
-	echo '<div id="fb-root"></div>' . "\n";
+	echo '<div id="' . Yii::app()->fbApi->divRoot . '"></div>' . "\n";
 	$script = Yii::app()->fbApi->getInitScript();
 	Yii::app()->clientScript->registerScript('fb_init', $script);
 }
@@ -62,16 +62,29 @@ Yii::app()->clientScript->registerScript('advanced-search', "
 			</div>
 		<?php endif; ?>
 
+		<br />
+		<br />
+
 		<?php $idx = 0; ?>
 		<?php foreach (Yii::app()->user->getShareMessages() as $msg): ?>
-			<br />
-			<br />
 			<div class="alert alert-info">
 				<?php echo $msg['text']; ?> 
-				<a href="#" class="btn btn-info btn-small" id="fb_share<?php echo $idx; ?>">Ceritakan via Facebook</a>
+				<?php echo Chtml::link('<i class="icon icon-thumbs-up icon-white"></i> Ceritakan via Facebook', '#', array(
+					'class' => 'btn btn-info btn-small',
+					'style' => 'float: right',
+					'id' => 'fb_share' . $idx,
+				)); ?>
+				<?php echo Chtml::link('<i class="icon icon-edit icon-white"></i> Ceritakan via Twitter', '#', array(
+					'class' => 'btn btn-info btn-small',
+					'style' => 'float: right; margin-right: 10px',
+					'id' => 'twitter_share' . $idx,
+					'data-via' => 'twitterapi',
+					'data-lang' => 'en',
+				)); ?>
 			</div>
 
 			<?php Yii::app()->clientScript->registerScript('fb_share' . $idx, Yii::app()->fbApi->getShareScript('fb_share' . $idx, $msg)); ?>
+			<?php Yii::app()->clientScript->registerScript('twitter_share' . $idx, Yii::app()->twitterApi->getShareScript('twitter_share' . $idx, $msg)); ?>
 			<?php $idx++; ?>
 		<?php endforeach; ?>
 
