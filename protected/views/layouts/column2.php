@@ -21,16 +21,12 @@
 					),
 					array(
 						'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
-						'url' => array('dashboard/index'),
+						'url' => array('student/index'),
 					),
 					array(
 						'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
 						'url' => array('note/upload'),
 					),
-					// array(
-					// 	'label' => '<i class="icon icon-comment"></i>Minta Berkas',
-					// 	'url' => array('/site/page', 'view' => 'interface'),
-					// ),
 				),
 			)); ?>
 		</div><!-- well sidebar-nav -->
