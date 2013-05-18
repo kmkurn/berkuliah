@@ -11,10 +11,16 @@
  * @property string $photo
  * @property integer $is_admin
  * @property string $last_login_timestamp
+ * @property integer $faculty_id
  *
  * The followings are the available model relations:
  * @property DownloadInfo[] $downloadInfos
  * @property Note[] $notes
+ * @property Note[] $rates
+ * @property Note[] $reports
+ * @property Review[] $reviews
+ * @property Badge[] $badges
+ * @property Testimonial[] $testimonials
  */
 class Student extends CActiveRecord
 {
@@ -55,9 +61,11 @@ class Student extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
+			array('name, faculty_id', 'required'),
 			array('name', 'length', 'max'=>128),
 			array('uploadedPhoto', 'file', 'allowEmpty'=>true, 'maxSize'=>100*1024, 'types'=>'jpg, png'),
+			array('faculty_id', 'numerical', 'integerOnly'=>true),
+			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id'),
 			array('username, bio, photo, is_admin, last_login_timestamp', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -80,6 +88,7 @@ class Student extends CActiveRecord
 			'reviews' => array(self::HAS_MANY, 'Review', 'student_id'),
 			'badges' => array(self::MANY_MANY, 'Badge', 'bk_student_badge(student_id, badge_id)'),
 			'testimonials' => array(self::HAS_MANY, 'Testimonial', 'student_id'),
+			'faculty' => array(self::BELONGS_TO, 'Faculty', 'faculty_id'),
 		);
 	}
 
@@ -96,6 +105,7 @@ class Student extends CActiveRecord
 			'uploadedPhoto' => 'Foto Profil',
 			'is_admin' => 'Is Admin',
 			'last_login_timestamp' => 'Terakhir Masuk',
+			'faculty_id' => 'Fakultas',
 		);
 	}
 

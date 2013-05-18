@@ -16,6 +16,8 @@ $this->breadcrumbs=array(
 <div class="row-fluid">
 	<div class="span9">
 		
+		<?php $this->renderPartial('_profile', array('model'=>$model)); ?>
+
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'<i class="icon icon-tasks"></i> <strong>SEJARAH KEGIATAN ' . Yii::app()->user->name . '</strong>',
 		)); ?>
@@ -23,15 +25,15 @@ $this->breadcrumbs=array(
 			<?php $this->widget('CTabView', array(
 				'tabs'=>array(
 					'tab1'=>array(
-						'title'=>'Profil',
-						'view'=>'profile',
+						'title'=>'Sejarah',
+						'view'=>'_history',
 						'data'=>array(
 							'dataProvider'=>$downloadsDataProvider,
 						),
 					),
 					'tab2'=>array(
 						'title'=>'Unggahan',
-						'view'=>'uploads',
+						'view'=>'_uploads',
 						'data'=>array(
 							'dataProvider'=>$uploadsDataProvider,
 						),

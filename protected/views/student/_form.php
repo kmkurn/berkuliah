@@ -1,3 +1,11 @@
+<?php
+/* @var $this StudentController */
+/* @var $model Student */
+/* @var $faculties array */
+/* @var $form CActiveForm */
+
+?>
+
 <?php if (Yii::app()->user->hasFlash('message')): ?>
 	<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 		<?php echo Yii::app()->user->getFlash('message'); ?>
@@ -5,7 +13,7 @@
 <?php endif; ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<i class="icon icon-picture"></i> <strong>PENGATURAN FOTO</strong>',
+	'title' => '<i class="icon icon-picture"></i> <strong>UBAH PROFIL</strong>',
 )); ?>
 
 	<?php $form = $this->beginWidget('CActiveForm', array(
@@ -20,6 +28,14 @@
 				<td>
 					<?php echo $form->textField($model, 'name'); ?>
 					<?php echo $form->error($model, 'name'); ?>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="270"><?php echo $form->labelEx($model, 'faculty_id'); ?></td>
+				<td>
+					<?php echo $form->dropDownList($model, 'faculty_id', CHtml::listData($faculties,'id','name')); ?>
+					<?php echo $form->error($model, 'faculty_id'); ?>
 				</td>
 			</tr>
 

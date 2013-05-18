@@ -20,8 +20,18 @@ class DummyUserIdentity extends CBaseUserIdentity
 		if ($student === null)
 		{
 			$student = new Student();
+			$faculty = Faculty::model()->findByPk(1);
+			if ($faculty === null)
+			{
+				$faculty = new Faculty();
+				$faculty->id = 1;
+				$faculty->name = 'Dummy Faculty';
+				$faculty->save(false);
+			}
+
 			$student->username = $username;
 			$student->name = $username;
+			$student->faculty_id = $faculty->id;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
