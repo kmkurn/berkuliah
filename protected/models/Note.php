@@ -229,6 +229,59 @@ class Note extends CActiveRecord
 		}
 	}
 
+	public function getRatingSum()
+	{
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('SUM(value) AS ratingSum');
+		$cmd->from('bk_rate');
+		$cmd->where('note_id=:X', array(':X' => $this->id));
+
+		$res = $cmd->queryRow();
+		return $res['ratingSum'];
+	}
+
+	public function getRating($student_id)
+	{
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('value');
+		$cmd->from('bk_rate');
+		$cmd->where('note_id=:X AND student_id=:Y', array(':X' => $this->id, ':Y' => $student_id));
+
+		$res = $cmd->queryRow();
+		return $res['value'];
+	}
+
+	public function getRatersCount()
+	{
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('COUNT(*) AS ratersCount');
+		$cmd->from('bk_rate');
+		$cmd->where('note_id=:X', array(':X' => $this->id));
+
+		$res = $cmd->queryRow();
+		return $res['ratersCount'];
+	}
+
+	public function rate($student_id, $rating)
+	{
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('*');
+		$cmd->from('bk_rate');
+		$cmd->where('note_id=:X AND student_id=:Y', array(':X' => $this->id, ':Y' => $student_id));
+		$res = $cmd->queryRow();
+
+		if ($res)
+		{
+			$cmd = Yii::app()->db->createCommand();
+			$cmd->update('bk_rate', array('value' => $rating), 'note_id=:X AND student_id=:Y', array(':X' => $this->id, ':Y' => $student_id));
+		}
+		else
+		{
+			$cmd = Yii::app()->db->createCommand();
+			$cmd->insert('bk_rate', array('note_id' => $this->id, 'student_id' => $student_id, 'value' => $rating));
+		}
+	}
+
 
 	/**
 	 * Retrieves the allowed types extension and their text.
