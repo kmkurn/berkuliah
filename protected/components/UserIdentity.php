@@ -9,6 +9,7 @@ class UserIdentity extends CBaseUserIdentity
 {
 	private $id;
 	private $username;
+	private $name;
 
 	public function __construct($username)
 	{
@@ -22,17 +23,19 @@ class UserIdentity extends CBaseUserIdentity
 	public function authenticate()
 	{
 		$student = Student::model()->findByAttributes(array('username' => $this->username));
-		if (! $student)
+		if ($student === null)
 		{
 			$student = new Student();
 			$student->username = $this->username;
+			$student->name = $this->username;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
 		$student->save();
 
 		$this->id = $student->id;
-		$this->setState('username', $this->username);
+		$this->name = $student->name;
+		
 		$this->setState('is_admin', $student->is_admin);
 		$this->setState('photo', $student->photo);
 
@@ -46,6 +49,6 @@ class UserIdentity extends CBaseUserIdentity
 
 	public function getName()
 	{
-		return $this->getState('username');
+		return $this->name;
 	}
 }
