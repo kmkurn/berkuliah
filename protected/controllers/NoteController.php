@@ -22,7 +22,7 @@ class NoteController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('view', 'edit', 'delete', 'upload', 'download', 'updateCourses'),
+				'actions'=>array('view', 'edit', 'delete', 'upload', 'download', 'rate', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -35,9 +35,13 @@ class NoteController extends Controller
 	 * Views the detailed information of a note.
 	 * @param  int $id the note id
 	 */
+
 	public function actionView($id)
 	{
 		$model = $this->loadModel($id);
+
+		if (isset($_POST['rating']))
+			$model->rate(Yii::app()->user->id, $_POST['rating']);
 		
 		$this->render('view', array(
 			'model' => $model, 
@@ -157,6 +161,13 @@ class NoteController extends Controller
 		Yii::app()->request->sendFile($model->title, file_get_contents($filePath), $mimeType, false);
 	}
 
+	public function actionRate($note_id, $student_id, $rating)
+	{
+		$model = $this->loadModel($note_id);
+		$model->rate($student_id, $rating);
+		$this->redirect(array('note/view', 'id' => $note_id));
+	}
+
 	/**
 	 * Performs update courses in dropdown list.
 	 */
@@ -175,6 +186,7 @@ class NoteController extends Controller
 			throw new CHttpException(400, 'Your request is invalid.');
 		}
 	}
+
 
 	/**
 	 * Stores the download information.

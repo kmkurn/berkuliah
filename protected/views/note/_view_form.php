@@ -46,6 +46,34 @@
 				<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
 			</tr>
 			<tr>
+				<td><i class="icon icon-star"></i> Total Rating</td>
+				<td>:</td>
+				<td>
+				<?php
+					$ratingSum = $model->getRatingSum();
+					$ratersCount = $model->getRatersCount();
+
+					if ( ! $ratingSum)
+						echo 'N/A';
+					else
+						echo '' . ((double)$ratingSum / $ratersCount) . ' (dari ' . $ratersCount . ' pengguna)'; 
+				?>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="icon icon-star"></i> Beri Rating</td>
+				<td>:</td>
+				<td>
+				<?php 
+					echo CHtml::beginForm();
+					$this->widget('CStarRating', array('name'=>'rating', 'value' => $model->getRating(Yii::app()->user->id)));
+					echo '&nbsp;&nbsp;';
+					echo CHtml::submitButton('Beri', array('class' => 'btn btn-mini'));
+					echo CHtml::endForm();
+				?>
+			    </td>
+			</tr>
+			<tr>
 				<td width='150'></td>
 				<td></td>
 				<td>
