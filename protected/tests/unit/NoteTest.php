@@ -195,6 +195,71 @@ class NoteTest extends CDbTestCase
 	}
 
 	/**
+	 * Tests update action.
+	 */
+	public function testUpdate()
+	{
+		$model = $this->notes('note3');
+		$note = Note::model()->findByPk($model->id);
+		$this->assertNotNull($note);
+		$this->assertTrue($note instanceof Note);
+		$this->assertNull($note->edit_timestamp);
+
+		$note->setAttributes(array(
+			'title'=>'Updated Title',
+			'description'=>'Updated description',
+		));
+
+		$this->assertTrue($note->save());
+
+		$updatedNote = Note::model()->findByPk($note->id);
+		$this->assertNotNull($updatedNote);
+		$this->assertTrue($updatedNote instanceof Note);
+		$this->assertEquals($note->title, $updatedNote->title);
+		$this->assertEquals($note->description, $updatedNote->description);
+		$this->assertNotNull($updatedNote->edit_timestamp);
+
+
+		/* Illegal user input */
+
+		// Illegal title
+		$fakeNote = Note::model()->findByPk($model->id);
+		$fakeNote->title = null;
+		$this->assertFalse($fakeNote->validate());
+		Yii::import('ext.randomness.*');
+		$fakeNote->title = Randomness::randomString(200);
+		$this->assertFalse($fakeNote->validate());
+
+		// Illegal description
+		$fakeNote = Note::model()->findByPk($model->id);
+		$fakeNote->description = null;
+		$this->assertFalse($fakeNote->validate());
+	}
+
+	/**
+	 * Tests delete action.
+	 */
+	public function testDelete()
+	{
+		$course = $this->courses('course1');
+		$student = $this->students('student1');
+		$note = new Note();
+		$note->setAttributes(array(
+			'title'=>'Test Note',
+			'description'=>'Test note description.',
+			'course_id'=>$course->id,
+			'faculty_id'=>$course->faculty_id,
+			'raw_file_text'=>'This is the content of the note.',
+		));
+		$note->validate();
+		$note->student_id = $student->id;
+		$note->save(false);
+
+		$this->assertTrue($note->delete());
+		$this->assertFileNotExists(Yii::app()->params['notesDir'] . $note->id . '.' . $note->extension);
+	}
+
+	/**
 	 * Tests download action.
 	 */
 	public function testDownload()
@@ -203,5 +268,36 @@ class NoteTest extends CDbTestCase
 		$note = $this->notes('note1');
 
 		$this->assertTrue($note->downloadedBy($student->id));
+	}
+
+	/**
+	 * Tests search action.
+	 */
+	public function testSearch()
+	{
+		// search by title
+		$note = new Note();
+		$note->title = '1';
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by type
+		$note = new Note();
+		$note->type = 0;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by faculty
+		$note = new Note();
+		$note->faculty_id = 1;
+		$this->assertEquals(2, $note->search()->totalItemCount);
+
+		// search by course
+		$note = new Note();
+		$note->course_id = 1;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by uploader
+		$note = new Note();
+		$note->student_id = 1;
+		$this->assertEquals(1, $note->search()->totalItemCount);
 	}
 }

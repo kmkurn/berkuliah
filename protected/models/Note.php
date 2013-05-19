@@ -62,7 +62,7 @@ class Note extends CActiveRecord
 			array('file', 'checkNote', 'on'=>'insert'),
 			array('type, student_id, upload_timestamp, edit_timestamp, raw_file_text', 'safe'),
 			
-			array('title, description, type, course_id, student_id, upload_timestamp, edit_timestamp, faculty_id', 'safe', 'on'=>'search'),
+			array('title, type, course_id, student_id, faculty_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -115,12 +115,9 @@ class Note extends CActiveRecord
 		);
 
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
 		$criteria->compare('type',$this->type, true);
 		$criteria->compare('course_id',$this->course_id, true);
 		$criteria->compare('student_id',$this->student_id);
-		$criteria->compare('upload_timestamp',$this->upload_timestamp,true);
-		$criteria->compare('edit_timestamp',$this->edit_timestamp,true);
 		$criteria->compare('faculty.id',$this->faculty_id,true);
 		$criteria->order = 'upload_timestamp DESC';
 
@@ -340,6 +337,16 @@ class Note extends CActiveRecord
 			touch($filePath . $this->id . '.html');
 			file_put_contents($filePath . $this->id . '.html', $this->raw_file_text);
 		}
+	}
+
+	/**
+	 * This method is invoked after deleting this model.
+	 */
+	public function afterDelete()
+	{
+		parent::afterDelete();
+
+		unlink(Yii::app()->params['notesDir'] . $this->id . '.' . $this->extension);
 	}
 
 
