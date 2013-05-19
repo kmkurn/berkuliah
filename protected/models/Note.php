@@ -135,7 +135,7 @@ class Note extends CActiveRecord
 	 */
 	public function getTypeIcon()
 	{
-		return Yii::app()->baseUrl . '/images/' . $this->extension . '.svg';
+		return Yii::app()->params['noteIconsDir'] . $this->extension . '.svg';
 	}
 
 	/**
@@ -181,53 +181,6 @@ class Note extends CActiveRecord
 				$validator->types[] = $info['extension'];
 			
 			$validator->validate($this);
-		}
-	}
-
-	/**
-	 * Saves the new course inserted by user.
-	 */
-	public function saveNewCourse()
-	{
-		if (empty($this->course_id))
-		{
-			$course = new Course();
-			$course->name = $this->new_course_name;
-			$course->faculty_id = $this->faculty_id;
-			$course->save();
-			$this->course_id = $course->id;
-		}
-	}
-
-	/**
-	 * Sets the note type.
-	 * @return int the type id of this note
-	 */
-	public function setType()
-	{
-		$extension = 'html';
-		if (empty($this->raw_file_text))
-		{
-			$noteFile = CUploadedFile::getInstance($this, 'file');
-			$extension = $noteFile->extensionName;
-		}
-		$this->type = Note::getTypeFromExtension($extension);
-	}
-
-	/**
-	 * Stores the uploaded note.
-	 */
-	public function store()
-	{
-		if (empty($this->raw_file_text))
-		{
-			$noteFile = CUploadedFile::getInstance($this, 'file');
-			$noteFile->saveAs('notes/' . $this->id . '.' . $noteFile->extensionName);
-		}
-		else
-		{
-			touch('notes/' . $this->id . '.html');
-			file_put_contents('notes/' . $this->id . '.html', $this->raw_file_text);
 		}
 	}
 
@@ -284,6 +237,74 @@ class Note extends CActiveRecord
 		}
 	}
 
+	/**
+	 * This method is invoked after validation.
+	 */
+	public function afterValidate()
+	{
+		parent::afterValidate();
+
+		if (!$this->hasErrors())
+		{
+			if ($this->isNewRecord)
+			{
+				$this->student_id = Yii::app()->user->id;
+				$this->upload_timestamp = date('Y-m-d H:i:s');
+
+				// set types
+				$extension = 'html';
+				if (empty($this->raw_file_text))
+				{
+					$noteFile = CUploadedFile::getInstance($this, 'file');
+					$extension = $noteFile->extensionName;
+				}
+				$this->type = Note::getTypeFromExtension($extension);
+			}
+			else
+			{
+				$this->edit_timestamp = date('Y-m-d H:i:s');
+			}
+		}
+	}
+
+	/**
+	 * This method is invoked before saving.
+	 * @return boolean whether the saving should be executed
+	 */
+	public function beforeSave()
+	{
+		// saves new course
+		if (empty($this->course_id))
+		{
+			$course = new Course();
+			$course->name = $this->new_course_name;
+			$course->faculty_id = $this->faculty_id;
+			$course->save();
+			$this->course_id = $course->id;
+		}
+
+		return parent::beforeSave();
+	}
+
+	/**
+	 * This method is invoked after successfuly saving this model.
+	 */
+	public function afterSave()
+	{
+		parent::afterSave();
+
+		$filePath = Yii::app()->params['notesDir'];
+		if (empty($this->raw_file_text))
+		{
+			$noteFile = CUploadedFile::getInstance($this, 'file');
+			$noteFile->saveAs($filePath . $this->id . '.' . $noteFile->extensionName);
+		}
+		else
+		{
+			touch($filePath . $this->id . '.html');
+			file_put_contents($filePath . $this->id . '.html', $this->raw_file_text);
+		}
+	}
 
 	/**
 	 * Retrieves the allowed types extension and their text.
