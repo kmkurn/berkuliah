@@ -193,4 +193,15 @@ class NoteTest extends CDbTestCase
 		$fakeNote->new_course_name = null;
 		$this->assertFalse($fakeNote->validate());
 	}
+
+	/**
+	 * Tests download action.
+	 */
+	public function testDownload()
+	{
+		$student = $this->students('student1');
+		$note = $this->notes('note1');
+
+		$this->assertTrue($note->downloadedBy($student->id));
+	}
 }
