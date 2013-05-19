@@ -42,6 +42,7 @@ class Course extends CActiveRecord
 		return array(
 			array('name, faculty_id', 'required'),
 			array('faculty_id', 'numerical', 'integerOnly'=>true),
+			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id'),
 			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
