@@ -140,14 +140,15 @@ class Student extends CActiveRecord
 		$photo = CUploadedFile::getInstance($this, 'uploadedPhoto');
 		if ($photo !== null)
 		{
+			$savePath = Yii::app()->params['photosDir'];
 			if ($this->photo !== null)
 			{
-				unlink('photos/' . $this->photo);
+				unlink($savePath . $this->photo);
 			}
 			Yii::import('ext.randomness.*');
 			$fileName = Randomness::randomString(self::MAX_LENGTH - strlen($photo->extensionName) - strlen('' + $this->id) - 1);
 			$fileName = $fileName . $this->id . '.' . $photo->extensionName;
-			$photo->saveAs('photos/' . $fileName);
+			$photo->saveAs($savePath . $fileName);
 
 			$this->photo = $fileName;
 		}
