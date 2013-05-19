@@ -269,4 +269,35 @@ class NoteTest extends CDbTestCase
 
 		$this->assertTrue($note->downloadedBy($student->id));
 	}
+
+	/**
+	 * Tests search action.
+	 */
+	public function testSearch()
+	{
+		// search by title
+		$note = new Note();
+		$note->title = '1';
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by type
+		$note = new Note();
+		$note->type = 0;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by faculty
+		$note = new Note();
+		$note->faculty_id = 1;
+		$this->assertEquals(2, $note->search()->totalItemCount);
+
+		// search by course
+		$note = new Note();
+		$note->course_id = 1;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by uploader
+		$note = new Note();
+		$note->student_id = 1;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+	}
 }
