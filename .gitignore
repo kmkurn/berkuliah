@@ -14,6 +14,9 @@ protected/runtime/!.gitignore
 # Ignore testing configuration file
 protected/config/test.php
 
+# Ignore code coverage report directory except .gitignore
+protected/test/report/!.gitignore
+
 # For Mac OSX
 .DS_Store
 
