@@ -105,18 +105,8 @@ class NoteController extends Controller
 		if (isset($_POST['Note']))
 		{
 			$model->attributes = $_POST['Note'];
-			if ($model->validate())
+			if ($model->save())
 			{
-				$model->saveNewCourse();
-				
-				$model->attributes = $model->attributes;
-				$model->student_id = Yii::app()->user->id;
-				$model->upload_timestamp = date('Y-m-d H:i:s');
-				$model->setType();
-
-				$model->save();
-				$model->store();
-
 				$message['text'] = 'Berkas berhasil diunggah.';
 				$message['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
 				$message['name'] = $model->title;
