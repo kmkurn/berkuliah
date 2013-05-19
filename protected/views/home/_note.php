@@ -1,12 +1,14 @@
 <?php
 /* @var $this NoteController */
 /* @var $data Note */
+
+$baseUrl = Yii::app()->request->baseUrl;
 ?>
 
 <?php if (Yii::app()->user->getState('is_admin')) echo CHtml::checkBox('deleteNote[' . $data->id . ']'); ?>
 
 <div id="iconBerkas">
-	<?php echo CHtml::image($data->typeIcon, 'note icon', array('class' => 'note-icon',"width"=>50,"height"=>50)); ?>
+	<?php echo CHtml::image($baseUrl . '/' . $data->typeIcon, 'note icon', array('class' => 'note-icon',"width"=>50,"height"=>50)); ?>
 </div>
 
 <br />
