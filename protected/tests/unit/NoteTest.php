@@ -175,5 +175,13 @@ class NoteTest extends CDbTestCase
 		$fakeUploadedFile['size'] = array('file'=>1024 * 1024);
 		$_FILES['Note'] = $fakeUploadedFile;
 		$this->assertFalse($fakeNote->validate());
+
+		// Empty file and raw text
+		$fakeNote = new Note();
+		$fakeNote->attributes = $note->attributes;
+		$fakeNote->raw_file_text = null;
+		$fakeNote->file = null;
+		unset($_FILES['Note']);
+		$this->assertFalse($fakeNote->validate());
 	}
 }
