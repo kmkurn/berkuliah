@@ -156,6 +156,8 @@ class NoteTest extends CDbTestCase
 		// Illegal faculty_id
 		$fakeNote = new Note();
 		$fakeNote->attributes = $note->attributes;
+		$fakeNote->faculty_id = null;
+		$this->assertFalse($fakeNote->validate());
 		$fakeNote->faculty_id = 1000;
 		$this->assertFalse($fakeNote->validate());
 
@@ -182,6 +184,13 @@ class NoteTest extends CDbTestCase
 		$fakeNote->raw_file_text = null;
 		$fakeNote->file = null;
 		unset($_FILES['Note']);
+		$this->assertFalse($fakeNote->validate());
+
+		// Empty course_id and new_course_name
+		$fakeNote = new Note();
+		$fakeNote->attributes = $note->attributes;
+		$fakeNote->course_id = null;
+		$fakeNote->new_course_name = null;
 		$this->assertFalse($fakeNote->validate());
 	}
 }
