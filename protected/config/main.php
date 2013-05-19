@@ -94,5 +94,6 @@ return array(
 	'params'=>array(
 		'notesDir'=>'notes/',
 		'noteIconsDir'=>'images/',
+		'photosDir'=>'photos/',
 	),
 );
