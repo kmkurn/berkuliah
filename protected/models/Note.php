@@ -342,6 +342,16 @@ class Note extends CActiveRecord
 		}
 	}
 
+	/**
+	 * This method is invoked after deleting this model.
+	 */
+	public function afterDelete()
+	{
+		parent::afterDelete();
+
+		unlink(Yii::app()->params['notesDir'] . $this->id . '.' . $this->extension);
+	}
+
 
 	/**
 	 * Static helper functions.
