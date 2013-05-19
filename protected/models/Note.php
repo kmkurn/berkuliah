@@ -129,26 +129,10 @@ class Note extends CActiveRecord
 		));
 	}
 
-	/**
-	 * Retrieves the icon file name associated with this note type
-	 * @return string the icon file name
-	 */
-	public function getTypeIcon()
-	{
-		return Yii::app()->params['noteIconsDir'] . $this->extension . '.svg';
-	}
 
 	/**
-	 * Retrieves this model extension.
-	 * @return string the extension
+	 * Inline validators.
 	 */
-	public function getExtension()
-	{
-		$allowedTypes = self::getAllowedTypes();
-		
-		return $allowedTypes[$this->type]['extension'];
-	}
-
 
 	/**
 	 * Checks whether the user has selected the course or insert a new course name.
@@ -182,6 +166,53 @@ class Note extends CActiveRecord
 			
 			$validator->validate($this);
 		}
+	}
+
+
+	/**
+	 * Non-static helper functions.
+	 */
+
+	/**
+	 * Retrieves the icon file name associated with this note type
+	 * @return string the icon file name
+	 */
+	public function getTypeIcon()
+	{
+		return Yii::app()->params['noteIconsDir'] . $this->extension . '.svg';
+	}
+
+	/**
+	 * Retrieves this model extension.
+	 * @return string the extension
+	 */
+	public function getExtension()
+	{
+		$allowedTypes = self::getAllowedTypes();
+
+		return $allowedTypes[$this->type]['extension'];
+	}
+
+	/**
+	 * Updates the download info when a note is downloaded.
+	 * @param  integer $studentId the downloading student id
+	 * @return boolean whether the update is successful
+	 */
+	public function downloadedBy($studentId)
+	{
+		$info = new DownloadInfo();
+		$info->setAttributes(array(
+			'student_id'=>$studentId,
+			'note_id'=>$this->id,
+			'timestamp'=>date('Y-m-d H:i:s'),
+		));
+
+		if (!$info->validate())
+		{
+			return false;
+		}
+
+		return $info->save(false);
 	}
 
 	public function getRatingSum()
@@ -236,6 +267,11 @@ class Note extends CActiveRecord
 			$cmd->insert('bk_rate', array('note_id' => $this->id, 'student_id' => $student_id, 'value' => $rating));
 		}
 	}
+
+
+	/**
+	 * Event handlers.
+	 */
 
 	/**
 	 * This method is invoked after validation.
@@ -305,6 +341,11 @@ class Note extends CActiveRecord
 			file_put_contents($filePath . $this->id . '.html', $this->raw_file_text);
 		}
 	}
+
+
+	/**
+	 * Static helper functions.
+	 */
 
 	/**
 	 * Retrieves the allowed types extension and their text.
