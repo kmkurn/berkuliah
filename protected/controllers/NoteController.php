@@ -138,17 +138,11 @@ class NoteController extends Controller
 	public function actionDownload($id)
 	{
 		$model = $this->loadModel($id);
-
-		$this->updateDownloadInfo($id);
+		$model->downloadedBy(Yii::app()->user->id);
 
 		$fileName = $model->id . '.' . $model->extension;
-		$filePath = 'notes/' . $fileName;
-		$mimeType = NULL;
-		if ($model->extension === 'html')
-		{
-			$mimeType = 'text/html';
-		}
-		Yii::app()->request->sendFile($model->title, file_get_contents($filePath), $mimeType, false);
+		$filePath = Yii::app()->params['notesDir'] . $fileName;
+		Yii::app()->request->sendFile($model->title . '.' . $model->extension, file_get_contents($filePath));
 	}
 
 	public function actionRate($note_id, $student_id, $rating)
@@ -175,24 +169,6 @@ class NoteController extends Controller
 		{
 			throw new CHttpException(400, 'Your request is invalid.');
 		}
-	}
-
-
-	/**
-	 * Stores the download information.
-	 * @param  int $id id of the downloaded note
-	 * @return  int the number of affected rows
-	 */
-	public function updateDownloadInfo($id)
-	{
-		$model = new DownloadInfo();
-		$model->setAttributes(array(
-			'student_id' => Yii::app()->user->id,
-			'note_id' => $id,
-			'timestamp' => date('Y-m-d H:i:s'),
-		));
-
-		$model->save();
 	}
 
 	/**
