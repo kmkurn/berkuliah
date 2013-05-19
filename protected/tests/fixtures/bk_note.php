@@ -17,7 +17,7 @@ return array(
 		'course_id'=>2,
 		'student_id'=>2,
 		'upload_timestamp'=>date('Y-m-d H:i:s'),
-		'edit_timestamp'=>'',
+		'edit_timestamp'=>date('Y-m-d H:i:s'),
 	),
 	'note3'=>array(
 		'title'=>'Test Note 3',
@@ -26,6 +26,6 @@ return array(
 		'course_id'=>3,
 		'student_id'=>2,
 		'upload_timestamp'=>date('Y-m-d H:i:s'),
-		'edit_timestamp'=>date('Y-m-d H:i:s'),
+		'edit_timestamp'=>null,
 	),
 );
