@@ -2,6 +2,8 @@
 
 class CourseTest extends CDbTestCase
 {
+	const INVALID_ID = 1000;
+
 	public $fixtures = array(
 		'faculties'=>'Faculty',
 	);
@@ -18,27 +20,32 @@ class CourseTest extends CDbTestCase
 			'name'=>$courseName,
 			'faculty_id'=>$faculty->id,
 		));
+
 		$this->assertTrue($course->save());
 
 		$newCourse = Course::model()->findByPk($course->id);
 		$this->assertNotNull($newCourse);
 		$this->assertTrue($newCourse instanceof Course);
 		$this->assertEquals($courseName, $newCourse->name);
+	}
 
-		
-		/* Illegal user input test */
-
-		// Illegal faculty_id
+	/**
+	 * Tests create new course with invalid input.
+	 */
+	public function testCreateInvalid()
+	{
+		// Invalid faculty_id
 		$fakeCourse = new Course();
-		$fakeCourse->attributes = $course->attributes;
-		$fakeCourse->faculty_id = 1000;
+		$fakeCourse->name = 'Test Invalid Course';
+		$fakeCourse->faculty_id = self::INVALID_ID;
 		$this->assertFalse($fakeCourse->validate());
 
-		// Illegal name
+		// Lengthy name
+		$faculty = $this->faculties('faculty1');
 		$fakeCourse = new Course();
-		$fakeCourse->attributes = $course->attributes;
+		$fakeCourse->faculty_id = $faculty->id;
 		Yii::import('ext.randomness.*');
-		$fakeCourse->name = Randomness::randomString(200);
+		$fakeCourse->name = Randomness::randomString(Course::MAX_NAME_LENGTH + 1);
 		$this->assertFalse($fakeCourse->validate());
 	}
 }
