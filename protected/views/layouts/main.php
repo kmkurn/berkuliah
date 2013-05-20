@@ -10,7 +10,6 @@
         <?php
         $baseUrl = Yii::app()->request->baseUrl; 
         $cs = Yii::app()->getClientScript();
-        Yii::app()->clientScript->registerCoreScript('jquery');
         ?>
         <!-- Fav and Touch and touch icons -->
         <link rel="shortcut icon" href="<?php echo $baseUrl;?>/images/icons/logo-berkuliah.png">
@@ -20,22 +19,10 @@
         $cs->registerCssFile($baseUrl.'/css/abound.css');
         ?>
         <!-- styles for style switcher -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/css/style-grey.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style2" href="<?php echo $baseUrl;?>/css/style-brown.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style3" href="<?php echo $baseUrl;?>/css/style-green.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style4" href="<?php echo $baseUrl;?>/css/style-blue.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style5" href="<?php echo $baseUrl;?>/css/style-orange.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style6" href="<?php echo $baseUrl;?>/css/style-purple.css" />
-        <link rel="alternate stylesheet" type="text/css" media="screen" title="style7" href="<?php echo $baseUrl;?>/css/style-red.css" />
+        <?php $cs->registerCssFile($baseUrl.'/css/style-grey.css'); ?>
+
         <?php
         $cs->registerScriptFile($baseUrl.'/js/bootstrap.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.sparkline.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.flot.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.flot.pie.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/charts.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.knob.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.masonry.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/styleswitcher.js');
         ?>
   </head>
   <body>
