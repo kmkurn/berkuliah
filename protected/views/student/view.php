@@ -40,9 +40,9 @@ $this->breadcrumbs=array(
 					),
 					'tab3'=>array(
 						'title'=>'Artikel',
-						'view'=>'articles',
+						'view'=>'testimonial',
 						'data'=>array(
-							'dataProvider'=>$articlesDataProvider,
+							'dataProvider'=>$testimonialDataProvider,
 						),
 					),
 				),
