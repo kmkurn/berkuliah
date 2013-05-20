@@ -10,7 +10,6 @@
         <?php
         $baseUrl = Yii::app()->request->baseUrl; 
         $cs = Yii::app()->getClientScript();
-        Yii::app()->clientScript->registerCoreScript('jquery');
         ?>
         <!-- Fav and Touch and touch icons -->
         <link rel="shortcut icon" href="<?php echo $baseUrl;?>/images/icons/logo-berkuliah.png">
@@ -24,12 +23,6 @@
 
         <?php
         $cs->registerScriptFile($baseUrl.'/js/bootstrap.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.sparkline.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.flot.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.flot.pie.min.js');
-        $cs->registerScriptFile($baseUrl.'/js/charts.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.knob.js');
-        $cs->registerScriptFile($baseUrl.'/js/plugins/jquery.masonry.min.js');
         ?>
   </head>
   <body>
