@@ -6,7 +6,7 @@
 <body>
 <div class = "profilPengguna">
 	<?php $this->widget('zii.widgets.CDetailView', array(
-		'cssFile' => Yii::app()->theme->baseUrl .'css/abound.css',
+		'cssFile' => Yii::app()->theme->baseUrl .'/css/abound.css',
 		'data'=>$model,
 		'attributes'=>array(
 			array(
