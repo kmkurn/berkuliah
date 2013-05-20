@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 18, 2013 at 09:42 PM
+-- Generation Time: May 20, 2013 at 05:52 PM
 -- Server version: 5.5.30-MariaDB-log
 -- PHP Version: 5.4.15
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `bk_course` (
   `faculty_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=109 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `bk_download_info` (
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`,`note_id`),
   KEY `note_id` (`note_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -74,6 +74,13 @@ CREATE TABLE IF NOT EXISTS `bk_faculty` (
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `bk_faculty`
+--
+
+INSERT INTO `bk_faculty` (`id`, `name`) VALUES
+(1, 'Fakultas Ilmu Komputer');
 
 -- --------------------------------------------------------
 
@@ -93,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `bk_note` (
   PRIMARY KEY (`id`),
   KEY `course_id` (`course_id`),
   KEY `upload_user_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -158,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `bk_student` (
   `faculty_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -217,22 +224,22 @@ ALTER TABLE `bk_note`
 -- Constraints for table `bk_rate`
 --
 ALTER TABLE `bk_rate`
-  ADD CONSTRAINT `bk_rate_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bk_rate_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bk_rate_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_rate_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bk_report`
 --
 ALTER TABLE `bk_report`
-  ADD CONSTRAINT `bk_report_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bk_report_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bk_report_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_report_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bk_review`
 --
 ALTER TABLE `bk_review`
-  ADD CONSTRAINT `bk_review_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bk_review_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bk_review_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_review_ibfk_2` FOREIGN KEY (`note_id`) REFERENCES `bk_note` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bk_student`
@@ -244,8 +251,8 @@ ALTER TABLE `bk_student`
 -- Constraints for table `bk_student_badge`
 --
 ALTER TABLE `bk_student_badge`
-  ADD CONSTRAINT `bk_student_badge_ibfk_2` FOREIGN KEY (`badge_id`) REFERENCES `bk_badge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bk_student_badge_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bk_student_badge_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `bk_student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bk_student_badge_ibfk_2` FOREIGN KEY (`badge_id`) REFERENCES `bk_badge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bk_testimonial`
