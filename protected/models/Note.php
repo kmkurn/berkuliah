@@ -20,6 +20,15 @@
  */
 class Note extends CActiveRecord
 {
+	/**
+	 * A contant defining the maximum length of $title.
+	 */
+	const MAX_TITLE_LENGTH = 128;
+	/**
+	 * A constant defining the maximum allowed file size.
+	 */
+	const MAX_FILE_SIZE = 512000;
+
 	public $faculty_id;
 	public $new_course_name;
 	public $file;
@@ -52,7 +61,7 @@ class Note extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, description', 'required'),
-			array('title', 'length', 'max'=>128),
+			array('title', 'length', 'max'=>self::MAX_TITLE_LENGTH),
 
 			array('course_id', 'checkCourse', 'on'=>'insert'),
 			array('course_id', 'exist', 'className'=>'Course', 'attributeName'=>'id', 'on'=>'insert'),
@@ -155,7 +164,7 @@ class Note extends CActiveRecord
 		{
 			$validator = new CFileValidator();
 			$validator->attributes = array('file');
-			$validator->maxSize = 500 * 1024;
+			$validator->maxSize = self::MAX_FILE_SIZE;
 
 			$allowedTypes = Note::getAllowedTypes();
 			foreach ($allowedTypes as $info)
