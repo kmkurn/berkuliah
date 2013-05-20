@@ -76,7 +76,7 @@
 			<td><i class="icon icon-file"></i> <?php echo $form->labelEx($model, 'file'); ?> <label>*</label></td>
 			<td>
 				<?php echo $form->fileField($model, 'file'); ?>
-				<span class="hint">Ukuran berkas maksimum 512 KB</span>
+				<span class="hint">Ukuran berkas maksimum 512 KB dan berekstensi .jpg .pdf .txt</span>
 				<?php echo $form->error($model, 'file'); ?>
 			</td>
 		</tr>
