@@ -292,6 +292,34 @@ class Note extends CActiveRecord
 		}
 	}
 
+
+	/**
+	 * Checks whether a student has reported this note
+	 * @param int $student_id the student id 
+	 * @return boolean whether student $student_id has reported this note
+	 */
+	public function isReportedBy($student_id)
+	{
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('*');
+		$cmd->from('bk_report');
+		$cmd->where('note_id=:X AND student_id=:Y', array(':X' => $this->id, ':Y' => $student_id));
+		$res = $cmd->queryRow();
+
+		return $res != NULL;
+	}
+
+
+	/**
+	 * Reports this note
+	 * @param int $student_id the reporting student id 
+	 */
+	public function report($student_id)
+	{
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->insert('bk_report', array('note_id' => $this->id, 'student_id' => $student_id, 'timestamp' => date('Y-m-d H:i:s')));
+	}
+
 	/**
 	 * Adds a review to this note.
 	 * @param Review $review    the review object

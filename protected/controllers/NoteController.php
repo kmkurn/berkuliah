@@ -10,6 +10,7 @@ class NoteController extends Controller
 		return array(
 			'accessControl', // perform access control for viewing note details
 			'checkNoteOwner + edit, delete', // check user before editing or deleting a note
+			'checkReported + report', // check user before reporting a note
 		);
 	}
 
@@ -22,7 +23,7 @@ class NoteController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('view', 'update', 'delete', 'upload', 'download', 'rate', 'updateCourses'),
+				'actions'=>array('view', 'update', 'delete', 'upload', 'download', 'rate', 'report', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -219,6 +220,22 @@ class NoteController extends Controller
 		}
 	}
 
+
+	/**
+	 * Reports a note.
+	 * @param  int $id the note id
+	 */
+	public function actionReport($id)
+	{
+		$model = $this->loadModel($id);
+		$model->report(Yii::app()->user->id);
+
+		Yii::app()->user->setFlash('message', 'Berkas berhasil dilaporkan.');
+		Yii::app()->user->setFlash('messageType', 'success');
+
+		$this->redirect(array('view', 'id' => $id));
+	}
+
 	/**
 	 * Performs update courses in dropdown list.
 	 */
@@ -266,6 +283,25 @@ class NoteController extends Controller
 			if ($model->student_id !== Yii::app()->user->id)
 			{
 				throw new CHttpException(403, 'Berkas ini bukan milik Anda.');
+			}
+		}
+
+		$filterChain->run();
+	}
+
+
+	/**
+	 * A filter to assure a student only report a note once.
+	 * @param  CFilterChain $filterChain the filter chain
+	 */
+	public function filterCheckReported($filterChain)
+	{
+		if (isset($_GET['id']))
+		{
+			$model = $this->loadModel($_GET['id']);
+			if ($model->isReportedBy(Yii::app()->user->id))
+			{
+				throw new CHttpException(403, 'Anda tidak dapat melaporkan berkas lebih dari sekali.');
 			}
 		}
 

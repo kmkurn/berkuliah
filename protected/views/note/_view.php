@@ -95,12 +95,19 @@
 							array('delete', 'id' => $model->id),
 							array('class' => 'btn btn-danger',
 							'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?',
+							'enabled' => false,
 						)); ?>
 					<?php endif; ?>
-					<?php if ($model->student_id === Yii::app()->user->id): ?>
+					<?php if ( ! $model->isReportedBy(Yii::app()->user->id)): ?>
 						<?php echo CHtml::link('<i class="icon-search icon-flag icon-white"></i> Laporkan',
-							array('', 'id' => $model->id),
+							array('report', 'id' => $model->id),
 							array('class' => 'btn btn-warning',
+								'confirm' => 'Apakah Anda yakin ingin melaporkan berkas ini?',
+						)); ?>
+					<?php else : ?>
+						<?php echo CHtml::link('<i class="icon-search icon-flag icon-white"></i> Dilaporkan',
+							'#',
+							array('class' => 'btn btn-warning disabled',
 						)); ?>
 					<?php endif; ?>
 				</td>
