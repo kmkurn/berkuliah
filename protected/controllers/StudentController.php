@@ -52,8 +52,24 @@ class StudentController extends Controller
 			$model->attributes = $_POST['Student'];
 			if ($model->validate())
 			{
-				$model->store()->save(false);
-				Yii::app()->user->setState('photo', $model->photo);
+				$photo = CUploadedFile::getInstance($model, 'file');
+				if ($photo !== null)
+				{
+					$savePath = Yii::app()->params['photosDir'];
+					if ($model->photo !== null)
+						unlink($savePath . $model->photo);
+					Yii::import('ext.randomness.*');
+					$fileName = Randomness::randomString(Student::MAX_FILENAME_LENGTH - strlen($photo->extensionName) - strlen('' + $model->id) - 1);
+					$fileName = $fileName . $model->id . '.' . $photo->extensionName;
+					$photo->saveAs($savePath . $fileName);
+
+					$model->photo = $fileName;
+					Yii::app()->user->setState('photo', $fileName);
+				}
+
+				$model->save(false);
+
+				Yii::app()->user->setName($model->name);
 				Yii::app()->user->setFlash('message', 'Profil berhasil diubah.');
 				Yii::app()->user->setFlash('messageType', 'success');
 			}

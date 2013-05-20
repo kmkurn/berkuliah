@@ -48,11 +48,11 @@
 			</tr>
 
 			<tr>
-				<td width="270"><?php echo $form->labelEx($model, 'uploadedPhoto'); ?></td>
+				<td width="270"><?php echo $form->labelEx($model, 'file'); ?></td>
 				<td>	
-					<?php echo $form->fileField($model, 'uploadedPhoto'); ?>
+					<?php echo $form->fileField($model, 'file'); ?>
 					<span class="hint">Ukuran berkas maksimum 100 KB</span>
-					<?php echo $form->error($model, 'uploadedPhoto'); ?>
+					<?php echo $form->error($model, 'file'); ?>
 				</td>
 			</tr>
 

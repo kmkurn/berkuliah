@@ -9,6 +9,7 @@
  *
  * The followings are the available model relations:
  * @property Course[] $courses
+ * @property Student[] $students
  */
 class Faculty extends CActiveRecord
 {
@@ -55,6 +56,7 @@ class Faculty extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'courses' => array(self::HAS_MANY, 'Course', 'faculty_id'),
+			'students' => array(self::HAS_MANY, 'Student', 'faculty_id'),
 		);
 	}
 

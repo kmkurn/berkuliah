@@ -49,7 +49,7 @@ class NoteController extends Controller
 	}
 
 	/**
-	 * Edits a note.
+	 * Updates a note.
 	 * @param  int $id the note id
 	 */
 	public function actionUpdate($id)
@@ -85,6 +85,7 @@ class NoteController extends Controller
 
 		if ($model->delete())
 		{
+			unlink(Yii::app()->params['notesDir'] . $model->id . '.' . $model->extension);
 			Yii::app()->user->setFlash('message', 'Berkas berhasil dihapus.');
 			Yii::app()->user->setFlash('messageType', 'success');
 		}
@@ -106,8 +107,32 @@ class NoteController extends Controller
 		if (isset($_POST['Note']))
 		{
 			$model->attributes = $_POST['Note'];
-			if ($model->save())
+			if ($model->validate())
 			{
+				// sets extension
+				$extension = 'html';
+				if (empty($model->raw_file_text))
+				{
+					$noteFile = CUploadedFile::getInstance($model, 'file');
+					$extension = $noteFile->extensionName;
+				}
+				$model->type = Note::getTypeFromExtension($extension);
+
+				$model->save(false);
+
+				// saves file
+				$filePath = Yii::app()->params['notesDir'];
+				if (empty($model->raw_file_text))
+				{
+					$noteFile = CUploadedFile::getInstance($model, 'file');
+					$noteFile->saveAs($filePath . $model->id . '.' . $noteFile->extensionName);
+				}
+				else
+				{
+					touch($filePath . $model->id . '.html');
+					file_put_contents($filePath . $model->id . '.html', $model->raw_file_text);
+				}
+
 				$message['text'] = 'Berkas berhasil diunggah.';
 				$message['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
 				$message['name'] = $model->title;
@@ -121,7 +146,7 @@ class NoteController extends Controller
 			}
 			else
 			{
-				$model->faculty_id = NULL;
+				$model->faculty_id = null;
 				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
 				Yii::app()->user->setFlash('messageType', 'danger');
 			}
