@@ -12,9 +12,8 @@
 		<br />
 		<div class="well sidebar-nav">
 			<?php
-			$this->widget('zii.widgets.CMenu', array(
-				'encodeLabel' => false,
-				'items' => array(
+
+			$menus = array(
 					array(
 						'label' => '<i class="icon icon-file"></i> <strong>Daftar Berkas</strong>',
 						'url' => array('home/index'),
@@ -27,7 +26,19 @@
 						'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
 						'url' => array('note/upload'),
 					),
-				),
+			);
+
+			if (Yii::app()->user->getState('is_admin'))
+			{
+				$menus[] = array(
+							'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Artikel</strong>',
+							'url' => array('student/grant'),
+					);
+			}
+
+			$this->widget('zii.widgets.CMenu', array(
+				'encodeLabel' => false,
+				'items' => $menus,
 			)); ?>
 		</div><!-- well sidebar-nav -->
 		<br />
