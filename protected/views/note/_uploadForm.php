@@ -84,20 +84,23 @@
 		<tr>
 			<td><label><em>atau ketikkan catatan Anda</em></label></td>
 			<td>
-				<?php $this->widget('ext.tinymce.ETinyMce', array(
-					'model' => $model,
-					'attribute' => 'raw_file_text',
-					'editorTemplate' => 'full',
-					'htmlOptions' => array(
-						'class' => 'tinymce',
-					),
-					'options' => array(
-						'mode' => 'exact',
-						'theme' => 'advanced',
-						'width' => 500,
-						'height' => 400,
-					),
-				)); ?>
+				<?php
+
+				Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/protected/vendors/tiny_mce/tiny_mce.js');
+				Yii::app()->getClientScript()->registerScript('tiny_mce',
+					'tinyMCE.init({
+						theme: "advanced",
+						mode: "exact",
+						elements: "Note[raw_file_text]",
+						width: "500",
+						height: "400",
+						relative_urls: false, 
+				    	remove_script_host: false
+					});'
+				);
+
+				?>
+				<?php echo $form->textArea($model, 'raw_file_text'); ?>
 				<?php echo $form->error($model, 'raw_file_text'); ?>
 			</td>
 		</tr>
