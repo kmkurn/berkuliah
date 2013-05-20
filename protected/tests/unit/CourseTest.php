@@ -34,6 +34,12 @@ class CourseTest extends CDbTestCase
 	 */
 	public function testCreateInvalid()
 	{
+		// Empty faculty_id
+		$fakeCourse = new Course();
+		$fakeCourse->name = 'Test Invalid Course';
+		$fakeCourse->faculty_id = null;
+		$this->assertFalse($fakeCourse->validate());
+
 		// Invalid faculty_id
 		$fakeCourse = new Course();
 		$fakeCourse->name = 'Test Invalid Course';
