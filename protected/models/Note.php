@@ -292,15 +292,6 @@ class Note extends CActiveRecord
 			{
 				$this->student_id = Yii::app()->user->id;
 				$this->upload_timestamp = date('Y-m-d H:i:s');
-
-				// set types
-				$extension = 'html';
-				if (empty($this->raw_file_text))
-				{
-					$noteFile = CUploadedFile::getInstance($this, 'file');
-					$extension = $noteFile->extensionName;
-				}
-				$this->type = Note::getTypeFromExtension($extension);
 			}
 			else
 			{
@@ -326,36 +317,6 @@ class Note extends CActiveRecord
 		}
 
 		return parent::beforeSave();
-	}
-
-	/**
-	 * This method is invoked after successfuly saving this model.
-	 */
-	public function afterSave()
-	{
-		parent::afterSave();
-
-		$filePath = Yii::app()->params['notesDir'];
-		if (empty($this->raw_file_text))
-		{
-			$noteFile = CUploadedFile::getInstance($this, 'file');
-			$noteFile->saveAs($filePath . $this->id . '.' . $noteFile->extensionName);
-		}
-		else
-		{
-			touch($filePath . $this->id . '.html');
-			file_put_contents($filePath . $this->id . '.html', $this->raw_file_text);
-		}
-	}
-
-	/**
-	 * This method is invoked after deleting this model.
-	 */
-	public function afterDelete()
-	{
-		parent::afterDelete();
-
-		unlink(Yii::app()->params['notesDir'] . $this->id . '.' . $this->extension);
 	}
 
 
