@@ -41,7 +41,8 @@ class Testimonial extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content, status, timestamp, student_id', 'required'),
+			array('status, timestamp, student_id', 'required'),
+			array('content', 'required', 'on'=>'insert'),
 			array('status, student_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

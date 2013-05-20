@@ -126,4 +126,13 @@ class Student extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function grant()
+	{
+		$testi = new Testimonial('grant');
+		$testi->student_id = $this->id;
+		$testi->timestamp = date('Y-m-d H:i:s');
+		$testi->status = 1;
+		$testi->save();
+	}
 }
