@@ -221,7 +221,11 @@ class Note extends CActiveRecord
 		return $info->save(false);
 	}
 
-	public function getRatingSum()
+	/**
+	 * Retrieves the total rating of this note
+	 * @return double the total rating of this note
+	 */
+	public function getTotalRating()
 	{
 		$cmd = Yii::app()->db->createCommand();
 		$cmd->select('SUM(value) AS ratingSum');
@@ -232,6 +236,11 @@ class Note extends CActiveRecord
 		return $res['ratingSum'];
 	}
 
+	/**
+	 * Retrieves the rating of this note given by a student
+	 * @param int student_id the student id
+	 * @return double the rating of this note given by student $student_id
+	 */
 	public function getRating($student_id)
 	{
 		$cmd = Yii::app()->db->createCommand();
@@ -243,6 +252,10 @@ class Note extends CActiveRecord
 		return $res['value'];
 	}
 
+	/**
+	 * Retrieves the number of users that have rated this note
+	 * @return int the number of users that have rated this note
+	 */
 	public function getRatersCount()
 	{
 		$cmd = Yii::app()->db->createCommand();
@@ -254,6 +267,11 @@ class Note extends CActiveRecord
 		return $res['ratersCount'];
 	}
 
+	/**
+	 * Rates this note
+	 * @param int $student_id the student id giving the rating
+	 * @param double rating the rating
+	 */
 	public function rate($student_id, $rating)
 	{
 		$cmd = Yii::app()->db->createCommand();
@@ -265,12 +283,12 @@ class Note extends CActiveRecord
 		if ($res)
 		{
 			$cmd = Yii::app()->db->createCommand();
-			$cmd->update('bk_rate', array('value' => $rating), 'note_id=:X AND student_id=:Y', array(':X' => $this->id, ':Y' => $student_id));
+			$cmd->update('bk_rate', array('value' => $rating, 'timestamp' => date('Y-m-d H:i:s')), 'note_id=:X AND student_id=:Y', array(':X' => $this->id, ':Y' => $student_id));
 		}
 		else
 		{
 			$cmd = Yii::app()->db->createCommand();
-			$cmd->insert('bk_rate', array('note_id' => $this->id, 'student_id' => $student_id, 'value' => $rating));
+			$cmd->insert('bk_rate', array('note_id' => $this->id, 'student_id' => $student_id, 'value' => $rating, 'timestamp' => date('Y-m-d H:i:s')));
 		}
 	}
 
