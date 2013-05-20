@@ -19,6 +19,7 @@ protected/test/report/!.gitignore
 
 # For Mac OSX
 .DS_Store
+protected/.DS_Store
 
 # Ignore log file
 *.log
