@@ -2,23 +2,28 @@
 
 class StudentTest extends CDbTestCase
 {
+	const INVALID_ID = 1000;
+
 	public $fixtures = array(
 		'students'=>'Student',
 		'faculties'=>'Faculty',
 	);
 
+	public $testFile = array(
+		'name'=>'Test.jpg',
+		'tmp_name'=>'',
+		'type'=>'image/jpeg',
+		'size'=>10240,
+		'error'=>0,
+	);
+
 	/**
-	 * Tests update action.
+	 * Tests the student update action.
 	 */
 	public function testUpdate()
 	{
-		$model = $this->students('student1');
 		$faculty = $this->faculties('faculty2');
-
-		$student = Student::model()->findByPk($model->id);
-		$this->assertNotNull($student);
-		$this->assertTrue($student instanceof Student);
-		$this->assertNotEquals($faculty->id, $student->faculty_id);
+		$student = $this->students('student1');
 
 		$studentName = 'Updated Name';
 		$studentBio = 'Updated bio.';
@@ -26,31 +31,82 @@ class StudentTest extends CDbTestCase
 			'name'=>$studentName,
 			'bio'=>$studentBio,
 			'faculty_id'=>$faculty->id,
+			'file'=>new CUploadedFile($this->testFile['name'], $this->testFile['tmp_name'], $this->testFile['type'],
+				$this->testFile['size'], $this->testFile['error']),
 		));
+
 		$this->assertTrue($student->save());
 		
-		$newStudent = Student::model()->findByPk($student->id);
-		$this->assertNotNull($newStudent);
-		$this->assertTrue($newStudent instanceof Student);
-		$this->assertEquals($studentName, $newStudent->name);
-		$this->assertEquals($studentBio, $newStudent->bio);
-		$this->assertEquals($faculty->id, $newStudent->faculty_id);
+		$updatedStudent = Student::model()->findByPk($student->id);
+		$this->assertNotNull($updatedStudent);
+		$this->assertTrue($updatedStudent instanceof Student);
+		$this->assertEquals($studentName, $updatedStudent->name);
+		$this->assertEquals($studentBio, $updatedStudent->bio);
+		$this->assertEquals($faculty->id, $updatedStudent->faculty_id);
+	}
 
+	/**
+	 * Tests the student update action with no photo is uploaded.
+	 */
+	public function testUpdateWithoutPhoto()
+	{
+		$student = $this->students('student1');
+		$studentName = 'Updated Name';
+		$student->name = $studentName;
+		$student->file = null;
 
-		/* Illegal user input */
+		$this->assertTrue($student->save());
 
-		// Illegal name
+		$updatedStudent = Student::model()->findByPk($student->id);
+		$this->assertNotNull($updatedStudent);
+		$this->assertTrue($updatedStudent instanceof Student);
+		$this->assertEquals($studentName, $updatedStudent->name);
+		$this->assertEquals($student->photo, $updatedStudent->photo);
+	}
+
+	/**
+	 * Tests the student update action with invalid input.
+	 */
+	public function testUpdateInvalid()
+	{
+		$model = $this->students('student1');
+
+		// Empty name
 		$fakeStudent = Student::model()->findByPk($model->id);
 		$fakeStudent->name = null;
 		$this->assertFalse($fakeStudent->validate());
-		$fakeStudent->name = Randomness::randomString(200);
+
+		// Lengthy name
+		$fakeStudent = Student::model()->findByPk($model->id);
+		Yii::import('ext.randomness.*');
+		$fakeStudent->name = Randomness::randomString(Student::MAX_NAME_LENGTH + 1);
 		$this->assertFalse($fakeStudent->validate());
 
-		// Illegal faculty_id
+		// Empty faculty_id
 		$fakeStudent = Student::model()->findByPk($model->id);
 		$fakeStudent->faculty_id = null;
 		$this->assertFalse($fakeStudent->validate());
-		$fakeStudent->faculty_id = 1000;
+
+		// Invalid faculty_id
+		$fakeStudent = Student::model()->findByPk($model->id);
+		$fakeStudent->faculty_id = self::INVALID_ID;
+		$this->assertFalse($fakeStudent->validate());
+
+		// Invalid file type
+		$fakeStudent = Student::model()->findByPk($model->id);
+		$fakeFile = $this->testFile;
+		$fakeFile['name'] = 'Test.avi';
+		$fakeFile['type'] = 'video/x-msvideo';
+		$fakeStudent->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
+			$fakeFile['size'], $fakeFile['error']);
+		$this->assertFalse($fakeStudent->validate());
+
+		// Invalid file size
+		$fakeStudent = Student::model()->findByPk($model->id);
+		$fakeFile = $this->testFile;
+		$fakeFile['size'] = Student::MAX_FILE_SIZE * 2;
+		$fakeStudent->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
+			$fakeFile['size'], $fakeFile['error']);
 		$this->assertFalse($fakeStudent->validate());
 	}
 }
