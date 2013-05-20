@@ -171,11 +171,28 @@ class NoteController extends Controller
 		Yii::app()->request->sendFile($model->title . '.' . $model->extension, file_get_contents($filePath));
 	}
 
-	public function actionRate($note_id, $student_id, $rating)
+	/**
+	 * AJAX response for rating AJAX request.
+	 */
+	public function actionRate()
 	{
-		$model = $this->loadModel($note_id);
-		$model->rate($student_id, $rating);
-		$this->redirect(array('note/view', 'id' => $note_id));
+		if (Yii::app()->request->isAjaxRequest)
+		{
+			$note_id = $_POST['note_id'];
+			$student_id = $_POST['student_id'];
+			$rating = $_POST['rating'];
+
+			$model = $this->loadModel($note_id);
+			$model->rate($student_id, $rating);
+
+			$totalRating = $model->getTotalRating();
+			$ratersCount = $model->getRatersCount();
+
+			if ( ! $totalRating)
+				echo 'N/A';
+			else
+				echo '' . ((double)$totalRating / $ratersCount) . ' (dari ' . $ratersCount . ' pengguna)';
+		}
 	}
 
 	/**

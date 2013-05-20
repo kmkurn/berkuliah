@@ -50,13 +50,15 @@
 				<td>:</td>
 				<td>
 				<?php
-					$ratingSum = $model->getRatingSum();
+					$totalRating = $model->getTotalRating();
 					$ratersCount = $model->getRatersCount();
 
-					if ( ! $ratingSum)
+					echo '<span id="total_rating">';
+					if ( ! $totalRating)
 						echo 'N/A';
 					else
-						echo '' . ((double)$ratingSum / $ratersCount) . ' (dari ' . $ratersCount . ' pengguna)'; 
+						echo '' . ((double)$totalRating / $ratersCount) . ' (dari ' . $ratersCount . ' pengguna)';
+					echo '</span>';
 				?>
 				</td>
 			</tr>
@@ -65,11 +67,18 @@
 				<td>:</td>
 				<td>
 				<?php 
-					echo CHtml::beginForm();
-					$this->widget('CStarRating', array('name'=>'rating', 'value' => $model->getRating(Yii::app()->user->id)));
-					echo '&nbsp;&nbsp;';
-					echo CHtml::submitButton('Beri', array('class' => 'btn btn-mini'));
-					echo CHtml::endForm();
+					$this->widget('CStarRating', array(
+							'name'=>'rating',
+							'allowEmpty' => false,
+							'value' => $model->getRating(Yii::app()->user->id),
+							'callback' => 'function() {$.ajax({
+								type: "POST",
+								url: "' . Yii::app()->createUrl('note/rate').'",
+								data: "note_id='.$model->id.'&student_id='.Yii::app()->user->id.'&rating=" + $(this).val(),
+								success: function(msg) {
+									$("#total_rating").html(msg);
+								}
+							})}'));
 				?>
 			    </td>
 			</tr>
