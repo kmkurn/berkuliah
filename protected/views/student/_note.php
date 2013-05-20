@@ -8,7 +8,7 @@
 	<table>
 		<tr>
 			<td width="40px">
-				<?php echo CHtml::image($data->getTypeIcon(), 'note icon', array('class' => 'note-icon','height'=>'30', 'width'=>'30')); ?>
+				<?php echo CHtml::image(Yii::app()->baseUrl . '/' . $data->getTypeIcon(), 'note icon', array('class' => 'note-icon','height'=>'30', 'width'=>'30')); ?>
 			</td>
 			<td>
 				<?php echo CHtml::link(CHtml::encode($data->title), array('note/view', 'id'=>$data->id)); ?>
