@@ -133,7 +133,7 @@ class StudentController extends Controller
 			'model'=>$model,
 			'downloadsDataProvider'=>$downloadsDataProvider,
 			'uploadsDataProvider'=>$uploadsDataProvider,
-			'articlesDataProvider'=>$testimonialDataProvider,
+			'testimonialDataProvider'=>$testimonialDataProvider,
 		));
 	}
 
