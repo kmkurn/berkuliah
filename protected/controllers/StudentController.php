@@ -118,7 +118,7 @@ class StudentController extends Controller
 			),
 		));
 
-		$articlesDataProvider = new CActiveDataProvider('Testimonial',array(
+		$testimonialDataProvider = new CActiveDataProvider('Testimonial',array(
 			'criteria'=>array(
 				'condition'=>'student_id=:studentId',
 				'params'=>array(
@@ -133,7 +133,7 @@ class StudentController extends Controller
 			'model'=>$model,
 			'downloadsDataProvider'=>$downloadsDataProvider,
 			'uploadsDataProvider'=>$uploadsDataProvider,
-			'articlesDataProvider'=>$articlesDataProvider,
+			'articlesDataProvider'=>$testimonialDataProvider,
 		));
 	}
 
