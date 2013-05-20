@@ -607,3 +607,55 @@ footer {
 span.hint{
   color: #4f9f6c;
 }
+
+table.detail-view .null
+{
+  color: #000000;
+}
+
+table.detail-view
+{
+  background: white;
+  border-collapse: collapse;
+  width: 50%;
+  margin: 0;
+}
+
+table.detail-view th, table.detail-view td
+{
+  font-size: 12px;
+  border: 1px white solid;
+  padding: 0.3em 0.6em;
+  vertical-align: top;
+}
+
+table.detail-view th
+{
+  text-align: left;
+  width: 130px;
+  color: #ff535f;
+}
+
+table.detail-view tr.odd
+{
+  background:#daffae;
+}
+
+table.detail-view tr.even
+{
+  background:#73c0ff;
+}
+
+table.detail-view tr.odd th
+{
+}
+
+table.detail-view tr.even th
+{
+}
+.profilPengguna{
+  margin-left: 25%;
+  margin-right: 2%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
