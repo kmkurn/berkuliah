@@ -96,7 +96,7 @@ class NoteTest extends CDbTestCase
 		$this->assertTrue($newNote instanceof Note);
 		$this->assertEquals($note->title, $newNote->title);
 		$this->assertNotNull($newNote->student_id);
-		$this->assertNotNull($newNote->upload_timestamp);
+		$this->assertNotEquals('0000-00-00 00:00:00', $newNote->upload_timestamp);
 	}
 
 	/**
@@ -241,7 +241,7 @@ class NoteTest extends CDbTestCase
 		$note = Note::model()->findByPk($model->id);
 		$this->assertNotNull($note);
 		$this->assertTrue($note instanceof Note);
-		$this->assertNull($note->edit_timestamp);
+		$this->assertNotEquals('0000-00-00 00:00:00', $note->edit_timestamp);
 
 		$note->setAttributes(array(
 			'title'=>'Updated Title',
@@ -255,7 +255,7 @@ class NoteTest extends CDbTestCase
 		$this->assertTrue($updatedNote instanceof Note);
 		$this->assertEquals($note->title, $updatedNote->title);
 		$this->assertEquals($note->description, $updatedNote->description);
-		$this->assertNotNull($updatedNote->edit_timestamp);
+		$this->assertNotEquals('0000-00-00 00:00:00', $updatedNote->edit_timestamp);
 	}
 
 	/**

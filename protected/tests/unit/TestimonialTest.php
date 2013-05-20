@@ -28,7 +28,7 @@ class TestimonialTest extends CDbTestCase
 		$this->assertTrue($newTestimonial instanceof Testimonial);
 		$this->assertEquals($testiContent, $newTestimonial->content);
 		$this->assertEquals(Testimonial::STATUS_NEW, $newTestimonial->status);
-		$this->assertNotNull($newTestimonial->timestamp);
+		$this->assertNotEquals('0000-00-00 00:00:00', $newTestimonial->timestamp);
 	}
 
 	/**
