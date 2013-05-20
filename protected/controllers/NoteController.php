@@ -39,12 +39,36 @@ class NoteController extends Controller
 	public function actionView($id)
 	{
 		$model = $this->loadModel($id);
+		$review = new Review();
 
 		if (isset($_POST['rating']))
 			$model->rate(Yii::app()->user->id, $_POST['rating']);
 		
+		if (isset($_POST['Review']))
+		{
+			$review->attributes = $_POST['Review'];
+			if (!$model->addReview($review, Yii::app()->user->id))
+			{
+				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
+				Yii::app()->user->setFlash('messageType', 'danger');
+			}
+		}
+
+		$dataProvider = new CActiveDataProvider('Review', array(
+			'criteria'=>array(
+				'condition'=>'note_id=:noteId',
+				'order'=>'timestamp ASC',
+				'params'=>array(':noteId'=>$model->id),
+			),
+			'pagination'=>array(
+				'pageSize'=>5,
+			),
+		));
+
 		$this->render('view', array(
 			'model' => $model, 
+			'dataProvider'=>$dataProvider,
+			'review'=>$review,
 		));
 	}
 

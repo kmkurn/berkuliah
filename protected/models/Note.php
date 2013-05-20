@@ -292,6 +292,19 @@ class Note extends CActiveRecord
 		}
 	}
 
+	/**
+	 * Adds a review to this note.
+	 * @param Review $review    the review object
+	 * @param integer $studentId the reviewer id
+	 */
+	public function addReview($review, $studentId)
+	{
+		$review->note_id = $this->id;
+		$review->student_id = $studentId;
+		$review->timestamp = date('Y-m-d H:i:s');
+
+		return $review->save();
+	}
 
 	/**
 	 * Event handlers.
