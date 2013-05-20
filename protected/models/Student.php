@@ -25,15 +25,19 @@
 class Student extends CActiveRecord
 {
 	/**
-	 * A constant defining the max allowed length of photo filename.
+	 * A constant defining the max length of $photo.
 	 */
-	const MAX_LENGTH = 64;
-
+	const MAX_FILENAME_LENGTH = 64;
 	/**
-	 * The uploaded profile photo of this student.
-	 * @var CUploadedFile
+	 * A constant defining the maximum length of $name.
 	 */
-	public $uploadedPhoto;
+	const MAX_NAME_LENGTH = 128;
+	/**
+	 * A constant defining the maximum allowed file size.
+	 */
+	const MAX_FILE_SIZE = 102400;
+
+	public $file;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -58,17 +62,14 @@ class Student extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('name, faculty_id', 'required'),
-			array('name', 'length', 'max'=>128),
-			array('uploadedPhoto', 'file', 'allowEmpty'=>true, 'maxSize'=>100*1024, 'types'=>'jpg, png'),
+			array('name', 'length', 'max'=>self::MAX_NAME_LENGTH),
+			array('file', 'file', 'allowEmpty'=>true, 'maxSize'=>self::MAX_FILE_SIZE, 'types'=>'jpg, png'),
 			array('faculty_id', 'numerical', 'integerOnly'=>true),
 			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id'),
 			array('username, bio, photo, is_admin, last_login_timestamp', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+
 			array('id, username, photo, is_admin, last_login_timestamp', 'safe', 'on'=>'search'),
 		);
 	}
@@ -78,8 +79,6 @@ class Student extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'downloadInfos' => array(self::HAS_MANY, 'DownloadInfo', 'student_id'),
 			'notes' => array(self::HAS_MANY, 'Note', 'student_id'),
@@ -102,7 +101,7 @@ class Student extends CActiveRecord
 			'username' => 'Username',
 			'name' => 'Nama',
 			'bio' => 'Bio',
-			'uploadedPhoto' => 'Foto Profil',
+			'file' => 'Foto Profil',
 			'is_admin' => 'Is Admin',
 			'last_login_timestamp' => 'Terakhir Masuk',
 			'faculty_id' => 'Fakultas',
@@ -115,9 +114,6 @@ class Student extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
@@ -129,30 +125,5 @@ class Student extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	/**
-	 * Saves the profile photo file of this student and set the filename to the photo attribute.
-	 * @return Student this model
-	 */
-	public function store()
-	{
-		$photo = CUploadedFile::getInstance($this, 'uploadedPhoto');
-		if ($photo !== null)
-		{
-			$savePath = Yii::app()->params['photosDir'];
-			if ($this->photo !== null)
-			{
-				unlink($savePath . $this->photo);
-			}
-			Yii::import('ext.randomness.*');
-			$fileName = Randomness::randomString(self::MAX_LENGTH - strlen($photo->extensionName) - strlen('' + $this->id) - 1);
-			$fileName = $fileName . $this->id . '.' . $photo->extensionName;
-			$photo->saveAs($savePath . $fileName);
-
-			$this->photo = $fileName;
-		}
-
-		return $this;
 	}
 }
