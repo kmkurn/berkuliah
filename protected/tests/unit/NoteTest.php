@@ -2,12 +2,41 @@
 
 class NoteTest extends CDbTestCase
 {
+	const INVALID_ID = 1000;
+
 	public $fixtures = array(
 		'notes'=>'Note',
 		'faculties'=>'Faculty',
 		'courses'=>'Course',
 		'students'=>'Student',
 	);
+
+	public $testFile = array(
+		'name'=>'Test.pdf',
+		'tmp_name'=>'',
+		'type'=>'application/pdf',
+		'size'=>102400,
+		'error'=>0,
+	);
+
+	public $noteAttributes;
+
+	/**
+	 * Initialization.
+	 */
+	public function init()
+	{
+		$course = $this->courses('course1');
+
+		$this->noteAttributes = array(
+			'title'=>'Test Note',
+			'description'=>'Test note description.',
+			'course_id'=>$course->id,
+			'faculty_id'=>$course->faculty_id,
+			'file'=>new CUploadedFile($this->testFile['name'],$this->testFile['tmp_name'],$this->testFile['type'],
+				$this->testFile['size'],$this->testFile['error']),
+		);
+	}
 
 	/**
 	 * Tests functions related to note extension.
@@ -47,30 +76,17 @@ class NoteTest extends CDbTestCase
 	}
 
 	/**
-	 * Tests the note upload scenario.
+	 * Tests the note upload action.
 	 */
 	public function testUpload()
 	{
-		$student = $this->students('student1');
-		$course = $this->courses('course1');
-		$uploadedFile = array(
-			'name'=>array('file'=>'Test.pdf'),
-			'type'=>array('file'=>'application/pdf'),
-			'tmp_name'=>array('file'=>''),
-			'error'=>array('file'=>0),
-			'size'=>array('file'=>100 * 1024),
-		);
+		$this->init();
 
-		// Basic flow
+		$student = $this->students('student1');
+
 		$note = new Note();
-		$note->setAttributes(array(
-			'title'=>'Test Note',
-			'description'=>'Test note description.',
-			'course_id'=>$course->id,
-			'faculty_id'=>$course->faculty_id,
-			'file'=>'',
-		));
-		$_FILES['Note'] = $uploadedFile;
+		$note->setAttributes($this->noteAttributes);
+
 		$this->assertTrue($note->validate());
 		$note->student_id = $student->id;
 		$note->save(false);
@@ -79,127 +95,149 @@ class NoteTest extends CDbTestCase
 		$this->assertNotNull($newNote);
 		$this->assertTrue($newNote instanceof Note);
 		$this->assertEquals($note->title, $newNote->title);
-		$this->assertNotNull($newNote->type);
-		$this->assertEquals('pdf', $newNote->getExtension());
 		$this->assertNotNull($newNote->student_id);
 		$this->assertNotNull($newNote->upload_timestamp);
+	}
 
-		// Alternative flow: insert new course
-		$newCourseName = 'Test New Course';
-		$otherNote = new Note();
-		$otherNote->attributes = $note->attributes;
-		$otherNote->setAttributes(array(
-			'course_id'=>null,
-			'faculty_id'=>$course->faculty_id,
-			'file'=>'',
-			'new_course_name'=>$newCourseName,
-		));
-		$this->assertTrue($otherNote->validate());
-		$otherNote->student_id = $student->id;
-		$otherNote->save(false);
+	/**
+	 * Tests the note upload action with new course.
+	 */
+	public function testUploadNewCourse()
+	{
+		$this->init();
+
+		$student = $this->students('student1');
+
+		$courseName = 'Test New Course';
+		$note = new Note();
+		$note->setAttributes($this->noteAttributes);
+		$note->course_id = null;
+		$note->new_course_name = $courseName;
+
+		$this->assertTrue($note->validate());
+		$note->student_id = $student->id;
+		$note->save(false);
 
 		$newCourse = Course::model()->findByAttributes(array(
-			'faculty_id'=>$otherNote->faculty_id,
-			'name'=>$newCourseName,
+			'faculty_id'=>$note->faculty_id,
+			'name'=>$courseName,
 		));
 		$this->assertNotNull($newCourse);
 		$this->assertTrue($newCourse instanceof Course);
-		$newNote = Note::model()->findByPk($otherNote->id);
+
+		$newNote = Note::model()->findByPk($note->id);
 		$this->assertNotNull($newNote);
 		$this->assertTrue($newNote instanceof Note);
 		$this->assertEquals($newCourse->id, $newNote->course_id);
+	}
 
-		// Alternative flow: text-based note
+	/**
+	 * Tests the note upload action with raw text.
+	 */
+	public function testUploadRawText()
+	{
+		$this->init();
+
+		$student = $this->students('student1');
+
 		$text = 'Test note content.';
-		$otherNote = new Note();
-		$otherNote->attributes = $note->attributes;
-		$otherNote->setAttributes(array(
-			'faculty_id'=>$course->faculty_id,
-			'raw_file_text'=>$text,
-		));
-		$this->assertTrue($otherNote->validate());
-		$otherNote->student_id = $student->id;
-		$otherNote->save(false);
+		$note = new Note();
+		$note->setAttributes($this->noteAttributes);
+		$note->file = null;
+		$note->raw_file_text = $text;
 
-		$newNote = Note::model()->findByPk($otherNote->id);
+		$this->assertTrue($note->validate());
+		$note->student_id = $student->id;
+		$note->save(false);
+
+		$newNote = Note::model()->findByPk($note->id);
 		$this->assertNotNull($newNote);
 		$this->assertTrue($newNote instanceof Note);
-		$this->assertEquals('html', $newNote->extension);
-		$newFile = Yii::app()->params['notesDir'] . $newNote->id . '.html';
-		$this->assertFileExists($newFile);
-		$this->assertEquals($text, file_get_contents($newFile));
+	}
 
+	/**
+	 * Tests the note upload action with invalid input.
+	 */
+	public function testUploadInvalid()
+	{
+		$this->init();
 
-		/* Illegal user input test */
-
-		// Illegal title
+		// Empty title
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
+		$fakeNote->setAttributes($this->noteAttributes);
 		$fakeNote->title = null;
 		$this->assertFalse($fakeNote->validate());
+
+		// Lengthy title
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
 		Yii::import('ext.randomness.*');
-		$fakeNote->title = Randomness::randomString(200);
+		$fakeNote->title = Randomness::randomString(Note::MAX_TITLE_LENGTH + 1);
 		$this->assertFalse($fakeNote->validate());
 
-		// Illegal description
+		// Empty description
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
+		$fakeNote->setAttributes($this->noteAttributes);
 		$fakeNote->description = null;
 		$this->assertFalse($fakeNote->validate());
 
-		// Illegal course_id
+		// Invalid course_id
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
-		$fakeNote->course_id = 1000;
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeNote->course_id = self::INVALID_ID;
 		$this->assertFalse($fakeNote->validate());
 
-		// Illegal faculty_id
+		// Empty faculty_id
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
+		$fakeNote->setAttributes($this->noteAttributes);
 		$fakeNote->faculty_id = null;
 		$this->assertFalse($fakeNote->validate());
-		$fakeNote->faculty_id = 1000;
+
+		// Invalid faculty_id
+		$fakeNote->faculty_id = self::INVALID_ID;
 		$this->assertFalse($fakeNote->validate());
 
-		// Illegal file type
+		// Invalid file type
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
-		$fakeUploadedFile = $uploadedFile;
-		$fakeUploadedFile['name'] = array('file'=>'Test.avi');
-		$fakeUploadedFile['type'] = array('file'=>'video/x-msvideo');
-		$_FILES['Note'] = $fakeUploadedFile;
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeFile = $this->testFile;
+		$fakeFile['name'] = 'Fake.avi';
+		$fakeFile['type'] = 'video/x-msvideo';
+		$fakeNote->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
+			$fakeFile['size'], $fakeFile['error']);
 		$this->assertFalse($fakeNote->validate());
 
-		// Illegal file size
+		// Invalid file size
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
-		$fakeUploadedFile = $uploadedFile;
-		$fakeUploadedFile['size'] = array('file'=>1024 * 1024);
-		$_FILES['Note'] = $fakeUploadedFile;
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeFile = $this->testFile;
+		$fakeFile['size'] = Note::MAX_FILE_SIZE * 2;
+		$fakeNote->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
+			$fakeFile['size'], $fakeFile['error']);
 		$this->assertFalse($fakeNote->validate());
 
 		// Empty file and raw text
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
+		$fakeNote->setAttributes($this->noteAttributes);
 		$fakeNote->raw_file_text = null;
 		$fakeNote->file = null;
-		unset($_FILES['Note']);
 		$this->assertFalse($fakeNote->validate());
 
 		// Empty course_id and new_course_name
 		$fakeNote = new Note();
-		$fakeNote->attributes = $note->attributes;
+		$fakeNote->setAttributes($this->noteAttributes);
 		$fakeNote->course_id = null;
 		$fakeNote->new_course_name = null;
 		$this->assertFalse($fakeNote->validate());
 	}
 
 	/**
-	 * Tests update action.
+	 * Tests the note update action.
 	 */
 	public function testUpdate()
 	{
 		$model = $this->notes('note3');
+
 		$note = Note::model()->findByPk($model->id);
 		$this->assertNotNull($note);
 		$this->assertTrue($note instanceof Note);
@@ -218,19 +256,27 @@ class NoteTest extends CDbTestCase
 		$this->assertEquals($note->title, $updatedNote->title);
 		$this->assertEquals($note->description, $updatedNote->description);
 		$this->assertNotNull($updatedNote->edit_timestamp);
+	}
 
+	/**
+	 * Tests the note update action with invalid input.
+	 */
+	public function testUpdateInvalid()
+	{
+		$model = $this->notes('note3');
 
-		/* Illegal user input */
-
-		// Illegal title
+		// Empty title
 		$fakeNote = Note::model()->findByPk($model->id);
 		$fakeNote->title = null;
 		$this->assertFalse($fakeNote->validate());
+
+		// Lengthy title
+		$fakeNote = Note::model()->findByPk($model->id);
 		Yii::import('ext.randomness.*');
-		$fakeNote->title = Randomness::randomString(200);
+		$fakeNote->title = Randomness::randomString(Note::MAX_TITLE_LENGTH + 1);
 		$this->assertFalse($fakeNote->validate());
 
-		// Illegal description
+		// Empty description
 		$fakeNote = Note::model()->findByPk($model->id);
 		$fakeNote->description = null;
 		$this->assertFalse($fakeNote->validate());
@@ -241,22 +287,9 @@ class NoteTest extends CDbTestCase
 	 */
 	public function testDelete()
 	{
-		$course = $this->courses('course1');
-		$student = $this->students('student1');
-		$note = new Note();
-		$note->setAttributes(array(
-			'title'=>'Test Note',
-			'description'=>'Test note description.',
-			'course_id'=>$course->id,
-			'faculty_id'=>$course->faculty_id,
-			'raw_file_text'=>'This is the content of the note.',
-		));
-		$note->validate();
-		$note->student_id = $student->id;
-		$note->save(false);
+		$note = $this->notes('note1');
 
 		$this->assertTrue($note->delete());
-		$this->assertFileNotExists(Yii::app()->params['notesDir'] . $note->id . '.' . $note->extension);
 	}
 
 	/**
