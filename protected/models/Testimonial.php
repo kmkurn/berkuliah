@@ -132,6 +132,27 @@ class Testimonial extends CActiveRecord
 		return $repr[$this->status];
 	}
 
+	/**
+	 * Approves this testimonial.
+	 * @return boolean whether the approval is successful
+	 */
+	public function approve()
+	{
+		$this->status = self::STATUS_APPROVED;
+
+		return $this->save();
+	}
+
+	/**
+	 * Rejects this testimonial.
+	 * @return boolean whether the rejection is successful
+	 */
+	public function reject()
+	{
+		$this->status = self::STATUS_NEW;
+
+		return $this->save();
+	}
 
 	/**
 	 * Propose this testimonial
@@ -156,5 +177,37 @@ class Testimonial extends CActiveRecord
 				$this->timestamp = date('Y-m-d H:i:s');
 			}
 		}
+	}
+
+	/**
+	 * Retrieves the mapping of status and its text.
+	 * @return array the mapping
+	 */
+	public static function getStatusMap()
+	{
+		return array(
+			self::STATUS_NEW => 'Baru',
+			self::STATUS_PENDING => 'Menunggu Persetujuan Admin',
+			self::STATUS_APPROVED => 'Disetujui',
+		);
+	}
+
+	/**
+	 * Retrieves testimonial of the month.
+	 * @return Testimonial the testimonial or null if not found
+	 */
+	public static function getCurrentTestimonial()
+	{
+		$testimonial = Testimonial::model()->find(array(
+			'order'=>'timestamp DESC',
+		));
+
+		$currentMonth = date('m');
+		$testimonialMonth = date('m', strtotime($testimonial->timestamp));
+
+		if ($currentMonth !== $testimonialMonth)
+			return null;
+		else
+			return $testimonial;
 	}
 }
