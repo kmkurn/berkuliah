@@ -108,7 +108,7 @@ class StudentController extends Controller
 
 		$badges = new CArrayDataProvider($model->badges, array(
 			'pagination'=>array(
-				'pageSize'=>$numItems,
+				'pageSize'=>20,
 			),
 		));
 
