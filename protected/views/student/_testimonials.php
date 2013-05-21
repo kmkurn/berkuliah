@@ -1,6 +1,6 @@
 <?php
 /* @var $this StudentController */
-/* @var $dataProvider CActiveDataProvider */
+/* @var $dataProvider CArrayDataProvider */
 ?>
 
 <h4>Artikel Penghargaan</h4>
