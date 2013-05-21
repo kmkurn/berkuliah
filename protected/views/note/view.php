@@ -18,14 +18,9 @@ $this->breadcrumbs=array(
 
 		<?php $this->renderPartial('_view', array('model'=>$model)); ?>
 
-		<?php $this->renderPartial('_reviews', array(
-			'model'=>$model,
-			'dataProvider'=>$dataProvider,
-		)); ?>
+		<?php $this->renderPartial('_reviews', array('model'=>$model,'dataProvider'=>$dataProvider)); ?>
 
-		<?php $this->renderPartial('_reviewForm', array(
-			'model'=>$review,
-		)); ?>
+		<?php $this->renderPartial('_reviewForm', array('note'=>$model,'model'=>$review)); ?>
 
 	</div><!-- span9 -->
 </div><!-- row-fluid -->

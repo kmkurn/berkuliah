@@ -1,6 +1,7 @@
 <?php
 /* @var $this NoteController */
 /* @var $model Review */
+/* @var $note Note */
 
 ?>
 
@@ -8,7 +9,6 @@
 
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id'=>'review-form',
-	'enableClientValidation'=>true,
 )); ?>
 
 	<div class="row">
@@ -17,7 +17,15 @@
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::button('Simpan', array('type'=>'submit', 'class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::ajaxSubmitButton('Simpan',
+			CHtml::normalizeUrl(array('note/review')),
+			array(
+				'data'=>'js:$("#review-form").serialize()+"&note_id='.$note->id.'"',
+				'success'=>'function(msg) {
+					$(".review-items").append(msg);
+				}',
+			),
+			array('class'=>'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
