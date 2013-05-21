@@ -12,7 +12,7 @@ class TestimonialController extends Controller
 			'checkTestimonialOwner + propose', // check user before proposing a testimonial
 		);
 	}
-	
+
 	public function accessRules()
 	{
 		return array(
