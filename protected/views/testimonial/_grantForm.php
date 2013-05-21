@@ -1,6 +1,7 @@
 <?php
 /* @var $this TestimonialController */
 /* @var $model Testimonial */
+/* @var $usernames array */
 
 ?>
 
@@ -23,15 +24,21 @@
 			<tr>
 				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'student_id'); ?></td>
 				<td>
-					<?php echo $form->textField($model, 'student_id'); ?>
-					<?php echo $form->error($model, 'student_id'); ?>
+					<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+						'model'=>$model,
+						'attribute'=>'student_id',
+						'source'=>$usernames,
+					)); ?>
 				</td>
 			</tr>
 
 			<tr>
 				<td></td>
 				<td>
-					<?php echo CHtml::submitButton('Beri Hak', array('class' => 'btn btn-primary')); ?>
+					<?php echo CHtml::submitButton('Beri Hak', array(
+						'class' => 'btn btn-primary',
+						'confirm'=>'Apakah Anda yakin memberikan hak penulisan testimoni pada mahasiswa ini?',
+					)); ?>
 					<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 				</td>
 			</tr>
