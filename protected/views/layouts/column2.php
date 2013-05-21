@@ -34,7 +34,7 @@
 			if (Yii::app()->user->getState('is_admin'))
 			{
 				$menus[] = array(
-					'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Artikel</strong>',
+					'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Testimoni</strong>',
 					'url' => array('testimonial/grant'),
 				);
 			}

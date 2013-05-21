@@ -15,10 +15,9 @@
  */
 class Testimonial extends CActiveRecord
 {
-	/**
-	 * Status of new testimonial.
-	 */
 	const STATUS_NEW = 0;
+	const STATUS_PENDING = 1;
+	const STATUS_APPROVED = 2;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -46,7 +45,6 @@ class Testimonial extends CActiveRecord
 		return array(
 			array('content', 'required'),
 			array('status, timestamp, student_id', 'safe'),
-
 			array('id, content, status, timestamp, student_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -70,10 +68,10 @@ class Testimonial extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'content' => 'Content',
+			'content' => 'Isi',
 			'status' => 'Status',
-			'timestamp' => 'Timestamp',
-			'student_id' => 'Username Mahasiswa',
+			'timestamp' => 'Periode',
+			'student_id' => 'Oleh',
 		);
 	}
 
@@ -106,11 +104,42 @@ class Testimonial extends CActiveRecord
 	 */
 	public function grantTo($student)
 	{
-		$this->content = 'Silakan isi testimonial Anda di sini.';
+		$this->content = 'Silakan isi testimoni Anda di sini.';
 		$this->status = self::STATUS_NEW;
 		$this->student_id = $student->id;
+		$this->timestamp = date('Y-m-d H:i:s');
 
 		return $this->save();
+	}
+
+
+	public static function getStatusMap()
+	{
+		return array(
+			self::STATUS_NEW => 'Baru',
+			self::STATUS_PENDING => 'Menunggu Persetujuan Admin',
+			self::STATUS_APPROVED => 'Disetujui',
+		);
+	}
+
+	/**
+	 * Returns the string representation of status
+	 * @return string the string representation of status
+	 */
+	public function getStatusString()
+	{
+		$repr = self::getStatusMap();
+		return $repr[$this->status];
+	}
+
+
+	/**
+	 * Propose this testimonial
+	 */
+	public function propose()
+	{
+		$this->status = self::STATUS_PENDING;
+		$this->save();
 	}
 
 	/**
