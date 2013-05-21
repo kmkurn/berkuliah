@@ -17,7 +17,7 @@ class TestimonialController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('propose'),
+				'actions'=>array('propose', 'view'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -26,6 +26,28 @@ class TestimonialController extends Controller
 		);
 	}
 
+	public function actionView($id)
+	{   
+		$model = $this->loadModel($id);
+		$this->render('_view', array(
+			'model' => $model,
+		));		
+	}
+/**
+	 * Loads the note model.
+	 * @param  int $id the note id
+	 * @return Note the note object associated with the given id
+	 */
+	public function loadModel($id)
+	{
+		$model = Testimonial::model()->findByPk($id);
+		if ($model === NULL)
+		{
+			throw new CHttpException(404, 'Testimonial yang dimaksud tidak ada.');
+		}
+
+		return $model;
+	}
 	
 	/**
 	 * Propose a testimonial.
@@ -44,27 +66,13 @@ class TestimonialController extends Controller
 			}
 			
 		}
+		
 
-		$this->render('propose', array(
+		$this->render('view', array(
 			'model' => $model,
 		));
 	}
 
-	/**
-	 * Loads the testimonial model.
-	 * @param  int $id the testimonial id
-	 * @return notethe testimonial object associated with the given id
-	 */
-	public function loadModel($id)
-	{
-		$model = Testimonial::model()->findByPk($id);
-		if ($model === NULL)
-		{
-			throw new CHttpException(404, 'Berkas catatan yang dimaksud tidak ada.');
-		}
-
-		return $model;
-	}
 
 	public function filterCheckTestimonialOwner($filterChain)
 	{

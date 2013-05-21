@@ -25,7 +25,7 @@
 		<tr>
 			<td><i class="icon icon-zoom-in"></i> <?php echo $form->labelEx($model, 'content'); ?></td>
 			<td>
-				<?php echo $form->textArea($model, 'content', array('rows' => 20, 'cols' => 70)); ?>
+				<?php echo $form->textArea($model, 'content', array('rows' => 20, 'cols' => 140)); ?>
 				<?php echo $form->error($model, 'content'); ?>
 			</td>
 		</tr>
@@ -33,8 +33,8 @@
 		<tr>
 			<td></td>
 			<td>
-				<?php echo CHtml::button('Unggah', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
-				<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
+				<?php echo CHtml::button('Simpan sebagai draft', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
+				<?php echo CHtml::link('Batal', array('testimonoal/rincian'), array('class' => 'btn')); ?>
 			</td>
 		</tr>
 
