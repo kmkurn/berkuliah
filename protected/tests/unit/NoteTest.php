@@ -333,4 +333,19 @@ class NoteTest extends CDbTestCase
 		$note->student_id = 1;
 		$this->assertEquals(1, $note->search()->totalItemCount);
 	}
+
+	/** 
+	 * Tests rate action.
+	 */
+	public function testRate()
+	{
+		$model = $this->notes('note1');
+		$model->rate(1, 7);
+		$this->assertEquals(7, $model->getRating(1));
+		$model->rate(2, 9);
+		$this->assertEquals(9, $model->getRating(2));
+
+		$this->assertEquals(16, $model->getTotalRating());
+		$this->assertEquals(2, $model->getRatersCount());
+	}
 }
