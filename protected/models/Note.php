@@ -86,6 +86,7 @@ class Note extends CActiveRecord
 			'downloadInfos' => array(self::HAS_MANY, 'DownloadInfo', 'note_id'),
 			'course' => array(self::BELONGS_TO, 'Course', 'course_id'),
 			'student' => array(self::BELONGS_TO, 'Student', 'student_id'),
+			'reportCount' => array(self::STAT, 'Student', 'bk_report(note_id, student_id)'),
 		);
 	}
 
