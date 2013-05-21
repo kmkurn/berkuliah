@@ -48,15 +48,25 @@
 
 					if (Yii::app()->user->getState('is_admin'))
 					{
-
-
+						if ($model->status == Testimonial::STATUS_PENDING)
+						{
+							echo CHtml::link('Terima', array('approve', 'id'=>$model->id), array(
+								'class'=>'btn btn-primary',
+								'confirm'=>'Apakah Anda yakin ingin menerima testimoni ini?',
+							));
+							echo ' ';
+							echo CHtml::link('Tolak', array('reject', 'id'=>$model->id), array(
+								'class'=>'btn btn-danger',
+								'confirm'=>'Apakah Anda yakin ingin menolak testimoni ini?',
+							));
+						}
 					}
 					else
 					{
 						if ($model->status == Testimonial::STATUS_NEW)
 						{
 							echo CHtml::link('<i class="icon-search icon-pencil icon-white"></i> Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-primary'));
-							echo '&nbsp';
+							echo ' ';
 							echo CHtml::link('<i class="icon-search icon-share icon-white"></i> Usulkan', array('propose', 'id' => $model->id), array(
 								'class' => 'btn btn-success',
 								'confirm' => 'Apakah Anda yakin ingin mengusulkan testimoni ini?',
