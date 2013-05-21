@@ -11,12 +11,15 @@
 	'id'=>'review-form',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->textArea($model, 'content'); ?>
-		<?php echo $form->error($model, 'content'); ?>
+	<div class="row-fluid">
+		<div class="span6">
+			<?php echo $form->textArea($model, 'content'); ?>
+			<?php echo $form->error($model, 'content'); ?>
+		</div>
 	</div>
 
-	<div class="row">
+	<div class="row-fluid">
+		<div class="span6">
 		<?php echo CHtml::ajaxSubmitButton('Simpan',
 			CHtml::normalizeUrl(array('note/review')),
 			array(
@@ -26,6 +29,7 @@
 				}',
 			),
 			array('class'=>'btn btn-primary')); ?>
+		</div>
 	</div>
 
 <?php $this->endWidget(); ?>
