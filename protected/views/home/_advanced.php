@@ -2,6 +2,8 @@
 /* @var $this NoteController */
 /* @var $model Note */
 /* @var $form CActiveForm */
+/* @var $username array */
+
 ?>
 
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
