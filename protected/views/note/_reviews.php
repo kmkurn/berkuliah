@@ -5,10 +5,15 @@
 
 ?>
 
-<h3>Tinjauan</h3>
-
+<?php
+$this->beginWidget('zii.widgets.CPortlet', array(
+	'title'=>'<i class="icon icon-comment"></i> <strong>TINJAU ARTIKEL</strong>',
+));
+?>	
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_review',
 	'itemsCssClass'=>'review-items',
 )); ?>
+
+<?php $this->endWidget();?>
