@@ -10,6 +10,7 @@ class TestimonialController extends Controller
 		return array(
 			'accessControl', // perform access control for viewing articles details
 			'checkTestimonialOwner + propose', // check user before proposing a testimonial
+			'checkAdmin + grant', // check user before granting a testimonial
 		);
 	}
 
@@ -17,7 +18,7 @@ class TestimonialController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('propose', 'view'),
+				'actions'=>array('propose', 'grant'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -26,29 +27,42 @@ class TestimonialController extends Controller
 		);
 	}
 
-	public function actionView($id)
-	{   
-		$model = $this->loadModel($id);
-		$this->render('_view', array(
-			'model' => $model,
-		));		
-	}
-/**
-	 * Loads the note model.
-	 * @param  int $id the note id
-	 * @return Note the note object associated with the given id
+	/**
+	 * Displays the form for granting testimonial privilege.
 	 */
-	public function loadModel($id)
+	public function actionGrant()
 	{
-		$model = Testimonial::model()->findByPk($id);
-		if ($model === NULL)
+		$model = new Testimonial();
+		if (isset($_POST['Testimonial']))
 		{
-			throw new CHttpException(404, 'Testimonial yang dimaksud tidak ada.');
+			$username = $_POST['Testimonial']['student_id'];
+			$student = Student::model()->findByAttributes(array('username'=>$username));
+			if ($student === null)
+			{
+				Yii::app()->user->setFlash('message', 'Mahasiswa ' . $username . ' tidak terdaftar.');
+				Yii::app()->user->setFlash('messageType', 'danger');
+			}
+			else
+			{
+				if ($model->grantTo($student))
+				{
+					Yii::app()->user->setFlash('message', 'Hak berhasil diberikan.');
+					Yii::app()->user->setFlash('messageType', 'success');
+					$model->student_id = null;
+				}
+				else
+				{
+					Yii::app()->user->setFlash('message', 'Hak tidak berhasil diberikan.');
+					Yii::app()->user->setFlash('messageType', 'danger');
+				}
+			}
 		}
 
-		return $model;
+		$this->render('grant',array(
+			'model'=>$model,
+		));
 	}
-	
+
 	/**
 	 * Propose a testimonial.
 	 */
@@ -66,13 +80,27 @@ class TestimonialController extends Controller
 			}
 			
 		}
-		
 
-		$this->render('view', array(
+		$this->render('propose', array(
 			'model' => $model,
 		));
 	}
 
+	/**
+	 * Loads the testimonial model.
+	 * @param  int $id the testimonial id
+	 * @return notethe testimonial object associated with the given id
+	 */
+	public function loadModel($id)
+	{
+		$model = Testimonial::model()->findByPk($id);
+		if ($model === NULL)
+		{
+			throw new CHttpException(404, 'Berkas catatan yang dimaksud tidak ada.');
+		}
+
+		return $model;
+	}
 
 	public function filterCheckTestimonialOwner($filterChain)
 	{
@@ -86,5 +114,17 @@ class TestimonialController extends Controller
 		}
 
 		$filterChain->run();
-	}	
+	}
+
+	/**
+	 * A filter to assure only admin can grant testimonial.
+	 * @param  CFilterChain $filterChain the filter chain
+	 */
+	public function filterCheckAdmin($filterChain)
+	{
+		if ( ! Yii::app()->user->getState('is_admin'))
+			throw new CHttpException(403, 'Anda bukan administrator.');
+
+		$filterChain->run();
+	}
 }

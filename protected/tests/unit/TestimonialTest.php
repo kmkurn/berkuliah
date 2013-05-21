@@ -7,42 +7,21 @@ class TestimonialTest extends CDbTestCase
 	);
 
 	/**
-	 * Tests the create testimonial action.
+	 * Tests grant right to write testimonial.
 	 */
-	public function testCreate()
+	public function testGrant()
 	{
-		$student = $this->students('student1');
+		$student = $this->students('student2');
 
-		$testiContent = 'Test testimonial content.';
 		$testimonial = new Testimonial();
-		$testimonial->setAttributes(array(
-			'content'=>$testiContent,
-		));
 
-		$this->assertTrue($testimonial->validate());
-		$testimonial->student_id = $student->id;
-		$testimonial->save(false);
+		$this->assertTrue($testimonial->grantTo($student));
 
 		$newTestimonial = Testimonial::model()->findByPk($testimonial->id);
 		$this->assertNotNull($newTestimonial);
 		$this->assertTrue($newTestimonial instanceof Testimonial);
-		$this->assertEquals($testiContent, $newTestimonial->content);
 		$this->assertEquals(Testimonial::STATUS_NEW, $newTestimonial->status);
 		$this->assertNotEquals('0000-00-00 00:00:00', $newTestimonial->timestamp);
-	}
-
-	/**
-	 * Tests the create testimonial action with invalid input.
-	 */
-	public function testCreateInvalid()
-	{
-		$student = $this->students('student1');
-
-		$testimonial = new Testimonial();
-		$testimonial->setAttributes(array(
-			'content'=>null,
-		));
-
-		$this->assertFalse($testimonial->validate());
+		$this->assertEquals($student->id, $newTestimonial->student_id);
 	}
 }

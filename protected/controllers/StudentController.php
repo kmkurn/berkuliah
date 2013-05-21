@@ -10,7 +10,6 @@ class StudentController extends Controller
 		return array(
 			'accessControl',
 			'checkAuthorized + update',
-			'checkAdmin + grant'
 		);
 	}
 
@@ -23,7 +22,7 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('index', 'view', 'update', 'grant'),
+				'actions'=>array('index', 'view', 'update'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -95,70 +94,34 @@ class StudentController extends Controller
 	{
 		$model = $this->loadModel($id);
 
-		$downloadsDataProvider = new CActiveDataProvider('DownloadInfo', array(
-			'criteria'=>array(
-				'condition'=>'student_id=:studentId',
-				'params'=>array(
-					':studentId'=>$model->id,
-				),
-			),
+		$numItems = Yii::app()->params['itemsPerPage'];
+		$downloads = new CArrayDataProvider($model->downloadInfos, array(
 			'pagination'=>array(
-				'pageSize'=>5,
+				'pageSize'=>$numItems,
+			),
+		));
+		$uploads = new CArrayDataProvider($model->notes, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+		$badges = new CArrayDataProvider($model->badges, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+		$testimonials = new CArrayDataProvider($model->testimonials, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
 			),
 		));
 
-		$uploadsDataProvider = new CActiveDataProvider('Note', array(
-			'criteria'=>array(
-				'condition'=>'student_id=:studentId',
-				'params'=>array(
-					':studentId'=>$model->id,
-				),
-			),
-			'pagination'=>array(
-				'pageSize'=>5,
-			),
-		));
-
-		$testimonialDataProvider = new CActiveDataProvider('Testimonial',array(
-			'criteria'=>array(
-				'condition'=>'student_id=:studentId',
-				'params'=>array(
-					':studentId'=>$model->id,
-				),
-			),
-			'pagination'=>array(
-				'pageSize'=>5,
-			),
-		));
 		$this->render('view',array(
 			'model'=>$model,
-			'downloadsDataProvider'=>$downloadsDataProvider,
-			'uploadsDataProvider'=>$uploadsDataProvider,
-			'testimonialDataProvider'=>$testimonialDataProvider,
-		));
-	}
-
-	/** Displays the form for granting testimonial privilege.
-	 */
-	public function actionGrant()
-	{
-		$model = new ArticleGrantForm();
-		if (isset($_POST['ArticleGrantForm']))
-		{
-			$model->attributes = $_POST['ArticleGrantForm'];
-			if ($model->validate())
-			{
-				$student = Student::model()->find('username=:X', array(':X' => $model->username));
-				$student->grant();
-
-				Yii::app()->user->setFlash('message', 'Hak artikel berhasil diberikan.');
-				Yii::app()->user->setFlash('messageType', 'success');
-				$this->redirect(array('grant'));
-			}
-		}
-
-		$this->render('grant',array(
-			'model'=>$model,
+			'downloads'=>$downloads,
+			'uploads'=>$uploads,
+			'badges'=>$badges,
+			'testimonials'=>$testimonials,
 		));
 	}
 
@@ -191,18 +154,6 @@ class StudentController extends Controller
 				throw new CHttpException(403, 'Anda tidak berhak melakukan operasi ini.');
 			}
 		}
-
-		$filterChain->run();
-	}
-
-	/**
-	 * A filter to assure only admin can grant testimonial.
-	 * @param  CFilterChain $filterChain the filter chain
-	 */
-	public function filterCheckAdmin($filterChain)
-	{
-		if ( ! Yii::app()->user->getState('is_admin'))
-				throw new CHttpException(403, 'Anda bukan administrator.');
 
 		$filterChain->run();
 	}

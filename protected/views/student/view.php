@@ -1,8 +1,10 @@
 <?php
 /* @var $this StudentController */
 /* @var $model Student */
-/* @var $downloadsDataProvider CActiveDataProvider */
-/* @var $uploadsDataProvider CActiveDataProvider */
+/* @var $downloads CArrayDataProvider */
+/* @var $uploads CArrayDataProvider */
+/* @var $badges CArrayDataProvider */
+/* @var $testimonials CArrayDataProvider */
 
 $this->pageTitle='Dasbor ' . $model->name;
 
@@ -28,21 +30,28 @@ $this->breadcrumbs=array(
 						'title'=>'Sejarah',
 						'view'=>'_history',
 						'data'=>array(
-							'dataProvider'=>$downloadsDataProvider,
+							'dataProvider'=>$downloads,
 						),
 					),
 					'tab2'=>array(
 						'title'=>'Unggahan',
 						'view'=>'_uploads',
 						'data'=>array(
-							'dataProvider'=>$uploadsDataProvider,
+							'dataProvider'=>$uploads,
 						),
 					),
 					'tab3'=>array(
-						'title'=>'Testimonial',
-						'view'=>'testimonial',
+						'title'=>'Lencana',
+						'view'=>'_badges',
 						'data'=>array(
-							'dataProvider'=>$testimonialDataProvider,
+							'dataProvider'=>$badges,
+						),
+					),
+					'tab4'=>array(
+						'title'=>'Testimonial',
+						'view'=>'_testimonials',
+						'data'=>array(
+							'dataProvider'=>$testimonials,
 						),
 					),
 				),
