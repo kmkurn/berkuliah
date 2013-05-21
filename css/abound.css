@@ -659,3 +659,9 @@ table.detail-view tr.even th
   margin-bottom: 20px;
   margin-top: 20px;
 }
+
+#tombolSimpanTinjauan{
+  padding:right;
+  float: right;
+  margin-top: 10px;
+}

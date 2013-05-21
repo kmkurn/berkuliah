@@ -17,11 +17,6 @@
 		<div class="span12">
 			<?php echo $form->textArea($model, 'content',array('class'=>'input-block-level','rows'=>'5','cols'=>'50')); ?>
 			<?php echo $form->error($model, 'content'); ?>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-		<div class="span12">
 			<div id="tombolSimpanTinjauan">
 			<?php echo CHtml::ajaxSubmitButton('Simpan',
 				CHtml::normalizeUrl(array('note/review')),
