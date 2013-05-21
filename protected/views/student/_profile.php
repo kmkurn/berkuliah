@@ -12,10 +12,10 @@
 		'title'=>'<i class="icon icon-user"></i> <strong>PROFIL ' .$model->name . '</strong>',
 		)); 
 	?>
-	<table class="table table-hover"><tr><th rowspan="6">
+	<table class="table table-hover"><tr align="center"><th rowspan="6" width="200px">
 	<?php
 	$photo = ($data->student->photo === null) ? 'user.png' : $model->uploadedPhoto;
-	echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, 'fotoku', array("width"=>200));
+	echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, 'fotoku', array("width"=>200,"align"=>center));
 	?>
 	</th>
 	</tr>
