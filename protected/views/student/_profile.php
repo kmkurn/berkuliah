@@ -2,12 +2,14 @@
 <?php
 /* @var $this StudentController */
 /* @var $model Student */
+
 ?>
+
 <body>
 	<div class="row-fluid">
 	<div class="span12">	
 	<?php $this->beginWidget('zii.widgets.CPortlet', array(
-		'title'=>'<i class="icon icon-user"></i> <strong>PROFIL ' . Yii::app()->user->name . '</strong>',
+		'title'=>'<i class="icon icon-user"></i> <strong>PROFIL ' .$model->name . '</strong>',
 		)); 
 	?>
 	<table class="table table-hover"><tr><th rowspan="6">

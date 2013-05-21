@@ -21,7 +21,7 @@ $this->breadcrumbs=array(
 		<?php $this->renderPartial('_profile', array('model'=>$model)); ?>
 
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'<i class="icon icon-tasks"></i> <strong>SEJARAH KEGIATAN ' . Yii::app()->user->name . '</strong>',
+			'title'=>'<i class="icon icon-tasks"></i> <strong>SEJARAH KEGIATAN ' . $model->name . '</strong>',
 		)); ?>
 
 			<?php $this->widget('CTabView', array(
