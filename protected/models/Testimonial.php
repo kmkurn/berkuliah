@@ -112,16 +112,6 @@ class Testimonial extends CActiveRecord
 		return $this->save();
 	}
 
-
-	public static function getStatusMap()
-	{
-		return array(
-			self::STATUS_NEW => 'Baru',
-			self::STATUS_PENDING => 'Menunggu Persetujuan Admin',
-			self::STATUS_APPROVED => 'Disetujui',
-		);
-	}
-
 	/**
 	 * Returns the string representation of status
 	 * @return string the string representation of status
