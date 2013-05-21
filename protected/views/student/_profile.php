@@ -24,7 +24,7 @@
 
 		<tr>
 			<td>
-				<i class="icon icon-align-justify"></i><?php echo $model->getAttributeLabel('username'); ?>
+				<i class="icon icon-tags"></i> <?php echo $model->getAttributeLabel('username'); ?>
 			</td>
 			<td>:</td>
 			<td><?php echo CHtml::encode($model->username); ?></td>
@@ -32,7 +32,7 @@
 
 		<tr>
 			<td>
-				<i class="icon icon-user"></i><?php echo $model->getAttributeLabel('name'); ?>
+				<i class="icon icon-user"></i> <?php echo $model->getAttributeLabel('name'); ?>
 			</td>
 			<td>:</td>
 			<td><?php echo CHtml::encode($model->name); ?></td>
@@ -40,7 +40,7 @@
 
 		<tr>
 			<td>
-				<i class="icon icon-book"></i><?php echo $model->getAttributeLabel('faculty_id'); ?>
+				<i class="icon icon-book"></i> <?php echo $model->getAttributeLabel('faculty_id'); ?>
 			</td>
 			<td>:</td>
 			<td><?php echo CHtml::encode($model->faculty->name); ?></td>
@@ -48,7 +48,7 @@
 
 		<tr>
 			<td>
-				<i class="icon icon-pencil"></i><?php echo $model->getAttributeLabel('bio'); ?>
+				<i class="icon icon-pencil"></i> <?php echo $model->getAttributeLabel('bio'); ?>
 			</td>
 			<td>:</td>
 			<td><?php echo CHtml::encode($model->bio); ?></td>
@@ -56,7 +56,7 @@
 
 		<tr>
 			<td>
-				<i class="icon icon-time"></i><?php echo $model->getAttributeLabel('last_login_timestamp'); ?>
+				<i class="icon icon-time"></i> <?php echo $model->getAttributeLabel('last_login_timestamp'); ?>
 			</td>
 			<td>:</td>
 			<td><?php echo Yii::app()->format->datetime($model->last_login_timestamp); ?></td>
