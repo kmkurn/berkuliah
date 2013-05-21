@@ -50,8 +50,12 @@
   border-left-color: #20317d;
 }
 
-a, a:hover, .sidebar-nav ul > li > a, .sidebar-nav ul > li > a:hover, .summary-number {
+a, .sidebar-nav ul > li > a, .sidebar-nav ul > li > .summary-number {
   color: #0578ED;
+}
+
+.sidebar-nav ul > li > a:hover {
+  color: #4ad3d3;
 }
 
 ul.yiiPager > li > a{
