@@ -11,6 +11,7 @@ class NoteController extends Controller
 			'accessControl', // perform access control for viewing note details
 			'checkNoteOwner + edit, delete', // check user before editing or deleting a note
 			'checkReported + report', // check user before reporting a note
+			'ajaxOnly + review, rate',
 		);
 	}
 
@@ -23,7 +24,7 @@ class NoteController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('view', 'update', 'delete', 'upload', 'download', 'rate', 'report', 'updateCourses'),
+				'actions'=>array('view', 'update', 'delete', 'upload', 'download', 'rate', 'report', 'review', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -42,27 +43,11 @@ class NoteController extends Controller
 		$model = $this->loadModel($id);
 		$review = new Review();
 
-		if (isset($_POST['rating']))
-			$model->rate(Yii::app()->user->id, $_POST['rating']);
-		
-		if (isset($_POST['Review']))
-		{
-			$review->attributes = $_POST['Review'];
-			if (!$model->addReview($review, Yii::app()->user->id))
-			{
-				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
-				Yii::app()->user->setFlash('messageType', 'danger');
-			}
-		}
-
 		$dataProvider = new CActiveDataProvider('Review', array(
 			'criteria'=>array(
 				'condition'=>'note_id=:noteId',
 				'order'=>'timestamp ASC',
 				'params'=>array(':noteId'=>$model->id),
-			),
-			'pagination'=>array(
-				'pageSize'=>5,
 			),
 		));
 
@@ -201,23 +186,35 @@ class NoteController extends Controller
 	 */
 	public function actionRate()
 	{
-		if (Yii::app()->request->isAjaxRequest)
-		{
-			$note_id = $_POST['note_id'];
-			$student_id = $_POST['student_id'];
-			$rating = $_POST['rating'];
+		$note_id = $_POST['note_id'];
+		$student_id = $_POST['student_id'];
+		$rating = $_POST['rating'];
 
-			$model = $this->loadModel($note_id);
-			$model->rate($student_id, $rating);
+		$model = $this->loadModel($note_id);
+		$model->rate($student_id, $rating);
 
-			$totalRating = $model->getTotalRating();
-			$ratersCount = $model->getRatersCount();
+		$totalRating = $model->getTotalRating();
+		$ratersCount = $model->getRatersCount();
 
-			if ( ! $totalRating)
-				echo 'N/A';
-			else
-				echo '' . ((double)$totalRating / $ratersCount) . ' (dari ' . $ratersCount . ' pengguna)';
-		}
+		if ( ! $totalRating)
+			echo 'N/A';
+		else
+			echo '' . ((double)$totalRating / $ratersCount) . ' (dari ' . $ratersCount . ' pengguna)';
+	}
+
+	/**
+	 * AJAX response for review AJAX request.
+	 */
+	public function actionReview()
+	{
+		$noteId = $_POST['note_id'];
+		$model = $this->loadModel($noteId);
+		$review = new Review();
+		$review->attributes = $_POST['Review'];
+
+		$model->addReview($review, Yii::app()->user->id);
+
+		echo $this->renderPartial('_review', array('data'=>$review), true);
 	}
 
 
