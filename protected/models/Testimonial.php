@@ -16,6 +16,11 @@
 class Testimonial extends CActiveRecord
 {
 	/**
+	 * Status of new testimonial.
+	 */
+	const STATUS_NEW = 0;
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Testimonial the static model class
@@ -38,13 +43,10 @@ class Testimonial extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('content, status, timestamp, student_id', 'required'),
-			array('status, student_id', 'numerical', 'integerOnly'=>true),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+			array('content', 'required'),
+			array('status, timestamp, student_id', 'safe'),
+
 			array('id, content, status, timestamp, student_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -71,7 +73,7 @@ class Testimonial extends CActiveRecord
 			'content' => 'Content',
 			'status' => 'Status',
 			'timestamp' => 'Timestamp',
-			'student_id' => 'Student',
+			'student_id' => 'Username Mahasiswa',
 		);
 	}
 
@@ -96,6 +98,24 @@ class Testimonial extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 * Grants this testimonial to a student.
+	 * @param  Student $student the student
+	 * @return boolean whether the grant is successful
+	 */
+	public function grantTo($student)
+	{
+		$this->content = 'Silakan isi testimonial Anda di sini.';
+		$this->status = self::STATUS_NEW;
+		$this->student_id = $student->id;
+
+		return $this->save();
+	}
+
+	/**
+	 * This method is invoked after validation.
+	 */
 	public function afterValidate()
 	{
 		parent::afterValidate();
@@ -104,13 +124,8 @@ class Testimonial extends CActiveRecord
 		{
 			if ($this->isNewRecord)
 			{
-				$this->student_id = Yii::app()->user->id;
 				$this->timestamp = date('Y-m-d H:i:s');
 			}
-			/*else
-			{
-				$this->edit_timestamp = date('Y-m-d H:i:s');
-			}*/
 		}
 	}
 }
