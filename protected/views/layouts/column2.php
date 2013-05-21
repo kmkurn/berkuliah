@@ -20,7 +20,7 @@
 					),
 					array(
 						'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
-						'url' => array('student/index'),
+						'url' => array('student/view', 'id' => Yii::app()->user->id),
 					),
 					array(
 						'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
