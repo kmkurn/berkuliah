@@ -189,8 +189,13 @@ class Testimonial extends CActiveRecord
 	public static function getCurrentTestimonial()
 	{
 		$testimonial = Testimonial::model()->find(array(
+			'condition'=>'status=:status',
+			'params'=>array(':status'=>self::STATUS_APPROVED),
 			'order'=>'timestamp DESC',
 		));
+
+		if ($testimonial === null)
+			return null;
 
 		$currentMonth = date('m');
 		$testimonialMonth = date('m', strtotime($testimonial->timestamp));

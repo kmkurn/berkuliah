@@ -1,13 +1,9 @@
 <?php
 /* @var $this SiteController */
+/* @var $model Testimonial */
 
 $this->pageTitle=Yii::app()->name;
 ?>
-
-<blockquote class="pull-left">
-  <p>Ini adalah situs untuk berbagi berkas kuliah dan arsip soal.</p>
-  <p><small><cite title="Source Title">BerKuliah</cite></small></p>
-</blockquote>
 
 <div class="row-fluid">
   <div class="span9">
@@ -18,13 +14,25 @@ $this->pageTitle=Yii::app()->name;
         <td width="600px">
           <div id="artikel">
 
-            <?php $this->beginWidget('zii.widgets.CPortlet', array(
-              'title' => '<strong>Pengguna Terbaik Bulan Ini: dummy.user</strong>',
-            )); ?>
+            <?php if ($model !== null): ?>
 
-              <?php echo CHtml::image(Yii::app()->baseUrl . '/images/coming-soon.jpg','Coming soon'); ?>
+              <?php $this->beginWidget('zii.widgets.CPortlet', array(
+                'title' => '<strong>Pengguna Terbaik Bulan Ini: ' . $model->student->name . '</strong>',
+              )); ?>
 
-            <?php $this->endWidget();?>
+                <?php $this->renderPartial('_testimonial', array('model'=>$model)); ?>
+
+              <?php $this->endWidget();?>
+
+            <?php else: ?>
+
+              <?php $this->beginWidget('zii.widgets.CPortlet'); ?>
+
+                <?php echo CHtml::image(Yii::app()->baseUrl . '/images/coming-soon.jpg', 'Coming soon'); ?>
+
+              <?php $this->endWidget();?>
+
+            <?php endif; ?>
 
           </div><!-- artikel -->
         </td>

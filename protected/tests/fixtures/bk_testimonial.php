@@ -15,7 +15,7 @@ return array(
 	),
 	'testimonial3'=>array(
 		'content'=>'Test testimonial 3 content.',
-		'status'=>2,
+		'status'=>1,
 		'timestamp'=>'2013-01-02 10:10:10',
 		'student_id'=>3,
 	),

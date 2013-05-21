@@ -7,9 +7,9 @@
 
 <?php
 $this->beginWidget('zii.widgets.CPortlet', array(
-	'title'=>'<i class="icon icon-comment"></i> <strong>TINJAU ARTIKEL</strong>',
-));
-?>	
+	'title'=>'<i class="icon icon-comment"></i> <strong>TINJAUAN ARTIKEL</strong>',
+)); ?>
+
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_review',
