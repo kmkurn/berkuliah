@@ -58,8 +58,14 @@ class TestimonialController extends Controller
 			}
 		}
 
+		$students = Student::model()->findAll();
+		$usernames = array();
+		foreach ($students as $student)
+			$usernames[] = $student->username;
+
 		$this->render('grant',array(
 			'model'=>$model,
+			'usernames'=>$usernames,
 		));
 	}
 
