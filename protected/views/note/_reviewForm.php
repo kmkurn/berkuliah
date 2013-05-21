@@ -4,16 +4,18 @@
 /* @var $note Note */
 
 ?>
-
-<h3>Beri Tinjauan</h3>
-
+<?php
+	$this->beginWidget('zii.widgets.CPortlet', array(
+		'title'=>'<i class="icon icon-edit"></i> <strong>BERI TINJAUAN</strong>',
+	));
+	?>	
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id'=>'review-form',
 )); ?>
 
 	<div class="row-fluid">
 		<div class="span6">
-			<?php echo $form->textArea($model, 'content'); ?>
+			<?php echo $form->textArea($model, 'content',array('class'=>'input-block-level','rows'=>'10','cols'=>'50')); ?>
 			<?php echo $form->error($model, 'content'); ?>
 		</div>
 	</div>
@@ -33,3 +35,5 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<?php $this->endWidget();?>
