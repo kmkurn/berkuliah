@@ -7,13 +7,17 @@
 	<div class="span3">
 		<br />
 		<div id="foto">
-			<?php echo CHtml::image(Yii::app()->baseUrl . '/photos/' . (Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo')), 'fotoku', array("width"=>110)); ?>
+			<?php
+			$photo = Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo');
+			echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, 'fotoku', array("width"=>110));
+			?>
 		</div><!-- foto -->
 		<br />
 		<div class="well sidebar-nav">
 			<?php
 
 			$menus = array(
+<<<<<<< HEAD
 					array(
 						'label' => '<i class="icon icon-file"></i> <strong>Daftar Berkas</strong>',
 						'url' => array('home/index'),
@@ -26,14 +30,28 @@
 						'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
 						'url' => array('note/upload'),
 					),
+=======
+				array(
+					'label' => '<i class="icon icon-file"></i> <strong>Daftar Berkas</strong>',
+					'url' => array('home/index'),
+				),
+				array(
+					'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
+					'url' => array('student/index'),
+				),
+				array(
+					'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
+					'url' => array('note/upload'),
+				),
+>>>>>>> kemal-dev
 			);
 
 			if (Yii::app()->user->getState('is_admin'))
 			{
 				$menus[] = array(
-							'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Artikel</strong>',
-							'url' => array('student/grant'),
-					);
+					'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Artikel</strong>',
+					'url' => array('testimonial/grant'),
+				);
 			}
 
 			$this->widget('zii.widgets.CMenu', array(

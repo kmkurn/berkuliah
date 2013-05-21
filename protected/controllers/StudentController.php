@@ -10,7 +10,6 @@ class StudentController extends Controller
 		return array(
 			'accessControl',
 			'checkAuthorized + update',
-			'checkAdmin + grant'
 		);
 	}
 
@@ -23,7 +22,7 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('index', 'view', 'update', 'grant'),
+				'actions'=>array('index', 'view', 'update'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -138,30 +137,6 @@ class StudentController extends Controller
 		));
 	}
 
-	/** Displays the form for granting testimonial privilege.
-	 */
-	public function actionGrant()
-	{
-		$model = new ArticleGrantForm();
-		if (isset($_POST['ArticleGrantForm']))
-		{
-			$model->attributes = $_POST['ArticleGrantForm'];
-			if ($model->validate())
-			{
-				$student = Student::model()->find('username=:X', array(':X' => $model->username));
-				$student->grant();
-
-				Yii::app()->user->setFlash('message', 'Hak artikel berhasil diberikan.');
-				Yii::app()->user->setFlash('messageType', 'success');
-				$this->redirect(array('grant'));
-			}
-		}
-
-		$this->render('grant',array(
-			'model'=>$model,
-		));
-	}
-
 	/**
 	 * Loads the student model.
 	 * @param  int $id the student id
@@ -191,18 +166,6 @@ class StudentController extends Controller
 				throw new CHttpException(403, 'Anda tidak berhak melakukan operasi ini.');
 			}
 		}
-
-		$filterChain->run();
-	}
-
-	/**
-	 * A filter to assure only admin can grant testimonial.
-	 * @param  CFilterChain $filterChain the filter chain
-	 */
-	public function filterCheckAdmin($filterChain)
-	{
-		if ( ! Yii::app()->user->getState('is_admin'))
-				throw new CHttpException(403, 'Anda bukan administrator.');
 
 		$filterChain->run();
 	}
