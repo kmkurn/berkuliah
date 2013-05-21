@@ -1,5 +1,6 @@
 <?php
 /* @var $this Controller */
+
 ?>
 
 <?php $this->beginContent('//layouts/main'); ?>
@@ -9,7 +10,7 @@
 		<div id="foto">
 			<?php
 			$photo = Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo');
-			echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, 'fotoku', array("width"=>110));
+			echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, Yii::app()->user->name, array('width'=>110));
 			?>
 		</div><!-- foto -->
 		<br />
@@ -23,7 +24,7 @@
 				),
 				array(
 					'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
-					'url' => array('student/index'),
+					'url' => array('student/view', 'id'=>Yii::app()->user->id),
 				),
 				array(
 					'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
