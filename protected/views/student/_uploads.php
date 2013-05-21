@@ -3,7 +3,7 @@
 /* @var $dataProvider CArrayDataProvider */
 ?>
 
-<h4>Sejarah Pengunggahan</h4>
+<h4>Daftar Pengunggahan</h4>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
