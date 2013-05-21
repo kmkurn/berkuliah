@@ -702,3 +702,8 @@ table.detail-view tr.even th
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff6a6a6a', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
+
+#labelBadge{
+  text-align: center;
+  font-weight: bold;
+}
