@@ -29,3 +29,8 @@ $baseUrl = Yii::app()->request->baseUrl;
 <?php // TO-DO: set locale ?>
 <i class="icon icon-time"></i> <?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
 <br />
+
+<?php if (Yii::app()->user->getState('is_admin')): ?>
+	<i class="icon icon-flag"></i> <?php echo CHtml::encode($data->reportCount); ?>
+	<br />
+<?php endif; ?>
