@@ -17,20 +17,6 @@
 			<?php
 
 			$menus = array(
-<<<<<<< HEAD
-					array(
-						'label' => '<i class="icon icon-file"></i> <strong>Daftar Berkas</strong>',
-						'url' => array('home/index'),
-					),
-					array(
-						'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
-						'url' => array('student/view', 'id' => Yii::app()->user->id),
-					),
-					array(
-						'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
-						'url' => array('note/upload'),
-					),
-=======
 				array(
 					'label' => '<i class="icon icon-file"></i> <strong>Daftar Berkas</strong>',
 					'url' => array('home/index'),
@@ -43,7 +29,6 @@
 					'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
 					'url' => array('note/upload'),
 				),
->>>>>>> kemal-dev
 			);
 
 			if (Yii::app()->user->getState('is_admin'))
