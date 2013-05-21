@@ -39,10 +39,10 @@ $this->breadcrumbs=array(
 						),
 					),
 					'tab3'=>array(
-						'title'=>'Testimonial',
+						'title'=>'Testimoni',
 						'view'=>'_testimonials',
 						'data'=>array(
-							'dataProvider'=>$testimonialDataProvider,
+							'dataProvider'=>$testimonialsDataProvider,
 						),
 					),
 				),

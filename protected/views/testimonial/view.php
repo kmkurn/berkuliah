@@ -3,10 +3,12 @@
 /* @var $model Testimonial */
 
 $this->breadcrumbs=array(
-	'Usulkan Artikel',
+	'Dasbor' => array('student/view', 'id'=>$model->id),
+	'Testimoni ' . strftime('%B %Y', strtotime($model->timestamp)),
 );
 
 ?>
+
 
 <div class="page-header"></div>
 
@@ -15,6 +17,6 @@ $this->breadcrumbs=array(
 		<?php $this->renderPartial('_view', array('model'=>$model)); ?>
 	</div><!-- span9 -->
 	<div class="span9">
-		<?php $this->renderPartial('_proposeForm', array('model'=>$model)); ?>
+		<?php //$this->renderPartial('_proposeForm', array('model'=>$model)); ?>
 	</div><!-- span9 -->
 </div><!-- row-fluid -->
