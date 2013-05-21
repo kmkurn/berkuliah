@@ -41,7 +41,7 @@ class Testimonial extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content, status, timestamp, student_id', 'required'),
+			array('content', 'required'),
 			array('status, student_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -95,5 +95,22 @@ class Testimonial extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	public function afterValidate()
+	{
+		parent::afterValidate();
+
+		if (!$this->hasErrors())
+		{
+			if ($this->isNewRecord)
+			{
+				$this->student_id = Yii::app()->user->id;
+				$this->timestamp = date('Y-m-d H:i:s');
+			}
+			/*else
+			{
+				$this->edit_timestamp = date('Y-m-d H:i:s');
+			}*/
+		}
 	}
 }
