@@ -86,7 +86,7 @@
 			<td>
 				<?php
 
-				Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/protected/vendors/tiny_mce/tiny_mce.js');
+				Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/tiny_mce/tiny_mce.js');
 				Yii::app()->getClientScript()->registerScript('tiny_mce',
 					'tinyMCE.init({
 						theme: "advanced",
