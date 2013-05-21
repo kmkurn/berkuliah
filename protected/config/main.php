@@ -19,7 +19,6 @@ return array(
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'c3456',
@@ -31,11 +30,9 @@ return array(
 	// application components
 	'components'=>array(
 		'user'=>array(
-			// enable cookie-based authentication
 			'class'=>'BkWebUser',
-			'allowAutoLogin'=>true,
+			'allowAutoLogin'=>true, // enable cookie-based authentication
 		),
-		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -44,7 +41,6 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		// uncomment the following to use a MySQL database
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=berkuliah',
 			'emulatePrepare' => true,
@@ -92,8 +88,10 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
+		'itemsPerPage'=>5,
 		'notesDir'=>'notes/',
 		'noteIconsDir'=>'images/',
 		'photosDir'=>'photos/',
+		'badgeIconsDir'=>'images/badges/',
 	),
 );

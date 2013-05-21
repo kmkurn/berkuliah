@@ -94,46 +94,34 @@ class StudentController extends Controller
 	{
 		$model = $this->loadModel($id);
 
-		$downloadsDataProvider = new CActiveDataProvider('DownloadInfo', array(
-			'criteria'=>array(
-				'condition'=>'student_id=:studentId',
-				'params'=>array(
-					':studentId'=>$model->id,
-				),
-			),
+		$numItems = Yii::app()->params['itemsPerPage'];
+		$downloads = new CArrayDataProvider($model->downloadInfos, array(
 			'pagination'=>array(
-				'pageSize'=>5,
+				'pageSize'=>$numItems,
+			),
+		));
+		$uploads = new CArrayDataProvider($model->notes, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+		$badges = new CArrayDataProvider($model->badges, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+		$testimonials = new CArrayDataProvider($model->testimonials, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
 			),
 		));
 
-		$uploadsDataProvider = new CActiveDataProvider('Note', array(
-			'criteria'=>array(
-				'condition'=>'student_id=:studentId',
-				'params'=>array(
-					':studentId'=>$model->id,
-				),
-			),
-			'pagination'=>array(
-				'pageSize'=>5,
-			),
-		));
-
-		$testimonialDataProvider = new CActiveDataProvider('Testimonial',array(
-			'criteria'=>array(
-				'condition'=>'student_id=:studentId',
-				'params'=>array(
-					':studentId'=>$model->id,
-				),
-			),
-			'pagination'=>array(
-				'pageSize'=>5,
-			),
-		));
 		$this->render('view',array(
 			'model'=>$model,
-			'downloadsDataProvider'=>$downloadsDataProvider,
-			'uploadsDataProvider'=>$uploadsDataProvider,
-			'testimonialDataProvider'=>$testimonialDataProvider,
+			'downloads'=>$downloads,
+			'uploads'=>$uploads,
+			'badges'=>$badges,
+			'testimonials'=>$testimonials,
 		));
 	}
 

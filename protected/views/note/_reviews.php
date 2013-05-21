@@ -14,6 +14,8 @@ $this->beginWidget('zii.widgets.CPortlet', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_review',
 	'itemsCssClass'=>'review-items',
+	'summaryText'=>'',
+	'emptyText'=>'Belum ada tinjauan.',
 )); ?>
 
 <?php $this->endWidget();?>
