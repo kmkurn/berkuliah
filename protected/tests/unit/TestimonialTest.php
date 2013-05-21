@@ -95,13 +95,18 @@ class TestimonialTest extends CDbTestCase
 	 */
 	public function testCurrentTestimonial()
 	{
-		$testi = Testimonial::getCurrentTestimonial();
+		$this->assertNull(Testimonial::getCurrentTestimonial());
 
-		$this->assertNull($testi);
+		$testi = $this->testimonials('testimonial1');
+		$currentTimestamp = date('Y-m-d H:i:s');
+		$testi->status = Testimonial::STATUS_NEW;
+		$testi->timestamp = $currentTimestamp;
+		$this->assertTrue($testi->save());
+
+		$this->assertNull(Testimonial::getCurrentTestimonial());
 
 		$student = $this->students('student1');
 		$content = 'Test content.';
-		$currentTimestamp = date('Y-m-d H:i:s');
 		$newTesti = new Testimonial();
 		$newTesti->setAttributes(array(
 			'content'=>'Test content.',
