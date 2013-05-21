@@ -111,7 +111,12 @@ class StudentController extends Controller
 				'pageSize'=>$numItems,
 			),
 		));
-		$testimonials = new CArrayDataProvider($model->testimonials, array(
+
+		$testimonialData = $model->testimonials;
+		if (Yii::app()->user->getState('is_admin'))
+			$testimonialData = Testimonial::model()->findAll();
+
+		$testimonials = new CArrayDataProvider($testimonialData, array(
 			'pagination'=>array(
 				'pageSize'=>$numItems,
 			),
