@@ -1,7 +1,6 @@
 <?php
-/* @var $this StudentController */
-/* @var $model Student */
-/* @var $faculties array */
+/* @var $this TestimonialController */
+/* @var $model Testimonial */
 
 $this->breadcrumbs=array(
 	'Beri Hak Artikel',

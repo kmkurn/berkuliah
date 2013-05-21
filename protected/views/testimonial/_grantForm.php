@@ -1,3 +1,9 @@
+<?php
+/* @var $this TestimonialController */
+/* @var $model Testimonial */
+
+?>
+
 <?php if (Yii::app()->user->hasFlash('message')): ?>
 	<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
 		<?php echo Yii::app()->user->getFlash('message'); ?>
@@ -15,10 +21,10 @@
 		<?php $form=$this->beginWidget('CActiveForm'); ?>
 
 			<tr>
-				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'username'); ?></td>
+				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'student_id'); ?></td>
 				<td>
-					<?php echo $form->textField($model, 'username'); ?>
-					<?php echo $form->error($model, 'username'); ?>
+					<?php echo $form->textField($model, 'student_id'); ?>
+					<?php echo $form->error($model, 'student_id'); ?>
 				</td>
 			</tr>
 
