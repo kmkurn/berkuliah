@@ -8,6 +8,6 @@
 <?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_badge',
-	'numColumns'=>5,
+	'numColumns'=>4,
 	'itemsCssClass' => 'table table-bordered',
 )); ?>
