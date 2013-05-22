@@ -5185,12 +5185,12 @@ input[type="submit"].btn.btn-mini {
 
 .pager .next > a,
 .pager .next > span {
-  float: right;
+  float: center;
 }
 
 .pager .previous > a,
 .pager .previous > span {
-  float: left;
+  float: center;
 }
 
 .pager .disabled > a,

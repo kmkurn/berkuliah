@@ -95,8 +95,7 @@ if (Yii::app()->user->hasShareMessages())
 
 		<?php endforeach; ?>
 
-		<br />
-
+		
 		<?php $this->widget('BkTableView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',
