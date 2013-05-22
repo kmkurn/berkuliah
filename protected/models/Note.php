@@ -110,6 +110,7 @@ class Note extends CActiveRecord
 			'upload_timestamp' => 'Waktu Unggah',
 			'edit_timestamp' => 'Terakhir Sunting',
 			'faculty_id' => 'Fakultas',
+			'file' => 'Berkas',
 		);
 	}
 
@@ -171,8 +172,9 @@ class Note extends CActiveRecord
 			$validator = new CFileValidator();
 			$validator->attributes = array('file');
 			$validator->maxSize = self::MAX_FILE_SIZE;
-			$formattedMaxSize = Yii::app()->format->size($validator->maxSize);
-			$validator->message = '{attribute} tidak boleh kosong dan berukuran maksimum ' . $formattedMaxSize . '.';
+			$validator->message = '{attribute} tidak boleh kosong.';
+			$validator->tooLarge = '{attribute} maksimum ' . Yii::app()->format->size(self::MAX_FILE_SIZE) . '.';
+			$validator->wrongType = '{attribute} hanya boleh bertipe PDF atau JPEG';
 
 			$allowedTypes = Note::getAllowedTypes();
 			foreach ($allowedTypes as $info)
