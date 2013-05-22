@@ -8,10 +8,11 @@
 	<div class="span3">
 		<br />
 		<div id="foto">
-			<?php
-			$photo = Yii::app()->user->getState('photo') === null ? 'user.png' : Yii::app()->user->getState('photo');
-			echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, Yii::app()->user->name, array('width'=>110));
-			?>
+			<?php echo CHtml::image(
+				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . Yii::app()->user->profilePhoto,
+				Yii::app()->user->name, 
+				array('width' => 110)
+			); ?>
 		</div><!-- foto -->
 		<br />
 		<div class="well sidebar-nav">
@@ -32,7 +33,7 @@
 				),
 			);
 
-			if (Yii::app()->user->getState('is_admin'))
+			if (Yii::app()->user->isAdmin)
 			{
 				$menus[] = array(
 					'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Testimoni</strong>',

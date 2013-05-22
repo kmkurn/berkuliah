@@ -201,7 +201,7 @@ class TestimonialController extends Controller
 	 */
 	public function filterCheckAdmin($filterChain)
 	{
-		if ( ! Yii::app()->user->getState('is_admin'))
+		if ( ! Yii::app()->user->isAdmin)
 			throw new CHttpException(403, 'Anda bukan administrator.');
 
 		$filterChain->run();

@@ -36,8 +36,12 @@ class UserIdentity extends CBaseUserIdentity
 		$this->id = $student->id;
 		$this->name = $student->name;
 		
-		$this->setState('is_admin', $student->is_admin);
-		$this->setState('photo', $student->photo);
+		$this->setState('isAdmin', $student->is_admin);
+		
+		if ($student->photo)
+			$this->setState('profilePhoto', $student->photo);
+		else
+			$this->setState('profilePhoto', Yii::app()->params['defaultProfilePhoto']);
 
 		return true;
 	}

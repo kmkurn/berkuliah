@@ -93,5 +93,6 @@ return array(
 		'noteIconsDir'=>'images/',
 		'photosDir'=>'photos/',
 		'badgeIconsDir'=>'images/badges/',
+		'defaultProfilePhoto'=>'user.png',
 	),
 );

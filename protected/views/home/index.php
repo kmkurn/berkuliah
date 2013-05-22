@@ -65,7 +65,7 @@ if (Yii::app()->user->hasShareMessages())
 		<br />
 
 			<div id="tombolHapusBerkas">
-				<?php if (Yii::app()->user->getState('is_admin'))
+				<?php if (Yii::app()->user->isAdmin)
 					echo CHtml::submitButton('Hapus Berkas', array(
 						'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
 						'class' => 'btn btn-danger',
@@ -119,7 +119,7 @@ if (Yii::app()->user->hasShareMessages())
 			)); ?>
 		</div>
 
-		<?php if (Yii::app()->user->getState('is_admin')) echo CHtml::endForm(); ?>
+		<?php if (Yii::app()->user->isAdmin) echo CHtml::endForm(); ?>
 
 	</div><!-- span9 -->
 </div><!-- row-fluid -->
