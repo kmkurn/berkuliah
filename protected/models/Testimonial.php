@@ -176,7 +176,7 @@ class Testimonial extends CActiveRecord
 	public static function getStatusMap()
 	{
 		return array(
-			self::STATUS_NEW => 'Baru',
+			self::STATUS_NEW => 'Belum Disetujui',
 			self::STATUS_PENDING => 'Menunggu Persetujuan Admin',
 			self::STATUS_APPROVED => 'Disetujui',
 		);
