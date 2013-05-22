@@ -35,7 +35,7 @@
                 'url'=>array('student/update', 'id'=>Yii::app()->user->id),
               ),
               array(
-                'label'=>'<i class="icon icon-user icon-off"></i> Logout',
+                'label'=>'<i class="icon icon-user icon-off"></i> Keluar',
                 'url'=>array('site/logout'),
                 'visible'=>!Yii::app()->user->isGuest,
               ),
