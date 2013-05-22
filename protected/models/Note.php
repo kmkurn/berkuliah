@@ -33,6 +33,7 @@ class Note extends CActiveRecord
 	public $new_course_name;
 	public $file;
 	public $raw_file_text;
+	public $uploader;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -75,7 +76,7 @@ class Note extends CActiveRecord
 			array('file', 'checkNote', 'on'=>'insert'),
 			array('type, student_id, upload_timestamp, edit_timestamp, raw_file_text', 'safe'),
 			
-			array('title, type, course_id, student_id, faculty_id', 'safe', 'on'=>'search'),
+			array('title, type, course_id, faculty_id, uploader', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -111,6 +112,7 @@ class Note extends CActiveRecord
 			'edit_timestamp' => 'Terakhir Sunting',
 			'faculty_id' => 'Fakultas',
 			'file' => 'Berkas',
+			'uploader' => 'Oleh',
 		);
 	}
 
@@ -127,12 +129,14 @@ class Note extends CActiveRecord
 
 		$criteria->with = array(
 			'course.faculty' => array('select' => 'id, name'),
+			'student' => array('select' => 'username, name'),
 		);
 
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('type',$this->type, true);
 		$criteria->compare('course_id',$this->course_id, true);
-		$criteria->compare('student_id',$this->student_id);
+		$criteria->compare('student.username',$this->uploader, true);
+		$criteria->compare('student.name',$this->uploader, true, 'OR');
 		$criteria->compare('faculty.id',$this->faculty_id,true);
 		$criteria->order = 'upload_timestamp DESC';
 
