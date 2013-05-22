@@ -5,13 +5,26 @@
  */
 class TwitterApi extends CComponent
 {
+	/**
+	 * The Twitter username of this application.
+	 */
 	public $username;
 
+
+	/**
+	 * The initialization method.
+	 */
 	public function init()
 	{
 
 	}
 
+	/**
+	 * Returns the JavaScript script for Twitter share.
+	 * @param string $buttonId the id of the button of Twitter share
+	 * @param array $message the message to be shared
+	 * @return string the script to be used in HTML pages.
+	 */
 	public function getShareScript($buttonId, $message)
 	{
 		return 
