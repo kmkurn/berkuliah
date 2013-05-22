@@ -9,7 +9,8 @@
 		<br />
 		<div id="foto">
 			<?php echo CHtml::image(
-				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . Yii::app()->user->profilePhoto,
+				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
+					(Yii::app()->user->isGuest ? Yii::app()->params['defaultProfilePhoto'] : Yii::app()->user->profilePhoto),
 				Yii::app()->user->name, 
 				array('width' => 110)
 			); ?>
@@ -33,7 +34,7 @@
 				),
 			);
 
-			if (Yii::app()->user->isAdmin)
+			if ( ! Yii::app()->user->isGuest && Yii::app()->user->isAdmin)
 			{
 				$menus[] = array(
 					'label' => '<i class="icon icon-gift"></i> <strong>Beri Hak Testimoni</strong>',

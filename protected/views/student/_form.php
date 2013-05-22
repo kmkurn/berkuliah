@@ -13,48 +13,38 @@
 <?php endif; ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<i class="icon icon-picture"></i> <strong>UBAH PROFIL</strong>',
+	'title' => '<i class="icon icon-cog"></i> <strong>UBAH PROFIL</strong>',
 )); ?>
 
+
 	<?php $form = $this->beginWidget('CActiveForm', array(
-		'id' => 'update-form',
 		'htmlOptions' => array('enctype' => 'multipart/form-data'),
+		'enableClientValidation' => true,
+		'clientOptions' => array(
+			'validateOnSubmit' => true,
+			'successCssClass' => '',
+			'errorCssClass' => 'error',
+		),
 	)); ?>
 
 		<table class='table table-hover'>
 
-			<tr>
-				<td width="270"><?php echo $form->labelEx($model, 'name'); ?></td>
-				<td>
-					<?php echo $form->textField($model, 'name'); ?>
-					<?php echo $form->error($model, 'name'); ?>
-				</td>
-			</tr>
+			<?php echo Yii::app()->format->formatInputField($form, 'textField', $model, 'name', 'icon-user'); ?>
+			<?php echo Yii::app()->format->formatInputField($form, 'dropDownList', $model, 'faculty_id', 'icon-briefcase',
+				array(),
+				array(
+					'data' => CHtml::listData($faculties, 'id', 'name'),
+				)
+			); ?>
 
-			<tr>
-				<td width="270"><?php echo $form->labelEx($model, 'faculty_id'); ?></td>
-				<td>
-					<?php echo $form->dropDownList($model, 'faculty_id', CHtml::listData($faculties,'id','name')); ?>
-					<?php echo $form->error($model, 'faculty_id'); ?>
-				</td>
-			</tr>
+			<?php echo Yii::app()->format->formatInputField($form, 'textArea', $model, 'bio', 'icon-pencil'); ?>
 
-			<tr>
-				<td width="270"><?php echo $form->labelEx($model, 'bio'); ?></td>
-				<td>
-					<?php echo $form->textArea($model, 'bio'); ?>
-					<?php echo $form->error($model, 'bio'); ?>
-				</td>
-			</tr>
-
-			<tr>
-				<td width="270"><?php echo $form->labelEx($model, 'file'); ?></td>
-				<td>	
-					<?php echo $form->fileField($model, 'file'); ?>
-					<span class="hint">Ukuran berkas maksimum 100 KB</span>
-					<?php echo $form->error($model, 'file'); ?>
-				</td>
-			</tr>
+			<?php echo Yii::app()->format->formatInputField($form, 'fileField', $model, 'file', 'icon-picture',
+				array(),
+				array(
+					'hint' => 'Ukuran berkas maksimum 100 KB',
+				)
+			); ?>
 
 			<tr>
 				<td></td>

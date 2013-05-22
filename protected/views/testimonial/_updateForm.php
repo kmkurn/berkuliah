@@ -15,33 +15,40 @@
 	'title' => '<i class="icon-gift"></i> <strong>SUNTING TESTIMONI</strong>'
 )); ?>
 
-	<?php $form = $this->beginWidget('CActiveForm'); ?>
+	<?php $form = $this->beginWidget('CActiveForm', array(
+		'enableClientValidation' => true,
+		'clientOptions' => array(
+			'validateOnSubmit' => true,
+			'successCssClass' => '',
+			'errorCssClass' => 'error',
+		),
+	)); ?>
 
 	<table class='table table-hover'>
-		<tr>
-			<td><i class="icon icon-file"></i> <?php echo $form->labelEx($model, 'content'); ?></td>
-			<td>
-				<?php
 
-				Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/tiny_mce/tiny_mce.js');
-				Yii::app()->getClientScript()->registerScript('tiny_mce',
-					'tinyMCE.init({
-						theme: "advanced",
-						mode: "exact",
-						elements: "Testimonial[content]",
-						width: "500",
-						height: "400",
-						relative_urls: false, 
-				    	remove_script_host: false
-					});'
-				);
+		<?php
 
-				?>
+			Yii::app()->getClientScript()->registerScriptFile(Yii::app()->baseUrl . '/tiny_mce/tiny_mce.js');
+			Yii::app()->getClientScript()->registerScript('tiny_mce',
+				'tinyMCE.init({
+					theme: "advanced",
+					mode: "exact",
+					elements: "Testimonial[content]",
+					width: "500",
+					height: "400",
+					relative_urls: false, 
+			    	remove_script_host: false
+				});'
+			);
 
-				<?php echo $form->textArea($model, 'content', array('rows' => 20, 'cols' => 140)); ?>
-				<?php echo $form->error($model, 'content'); ?>
-			</td>
-		</tr>
+		?>
+
+		<?php echo Yii::app()->format->formatInputField($form, 'textArea', $model, 'content', 'icon-file',
+			array(
+				'rows' => 20,
+				'cols' => 140,
+			)
+		); ?>
 
 		<tr>
 			<td></td>

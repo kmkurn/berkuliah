@@ -16,10 +16,17 @@
 )); ?>
 
 	<label>Isian dengan tanda * harus diisi.</label>
+
+	<?php $form = $this->beginWidget('CActiveForm', array(
+		'enableClientValidation' => true,
+		'clientOptions' => array(
+			'validateOnSubmit' => true,
+			'successCssClass' => '',
+			'errorCssClass' => 'error',
+		),
+	)); ?>
 	
 	<table class='table table-hover'>
-
-		<?php $form=$this->beginWidget('CActiveForm'); ?>
 
 			<tr>
 				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'student_id'); ?></td>
@@ -43,8 +50,8 @@
 				</td>
 			</tr>
 
-		<?php $this->endWidget();?>
 
-	</table>
+		</table>
+	<?php $this->endWidget();?>
 
 <?php $this->endWidget();?>

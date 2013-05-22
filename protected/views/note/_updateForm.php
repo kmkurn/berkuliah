@@ -16,36 +16,38 @@
 
 	<label>Isian dengan tanda * harus diisi.</label>
 	
+	<?php $form = $this->beginWidget('CActiveForm', array(
+		'enableClientValidation' => true,
+		'clientOptions' => array(
+			'validateOnSubmit' => true,
+			'successCssClass' => '',
+			'errorCssClass' => 'error',
+		),
+	)); ?>
+
 	<table class='table table-hover'>
 
-		<?php $form=$this->beginWidget('CActiveForm'); ?>
+		<?php echo Yii::app()->format->formatInputField($form, 'textField', $model, 'title', 'icon-tag',
+			array(
+				'maxlength' => 128,
+			)
+		); ?>
+		<?php echo Yii::app()->format->formatInputField($form, 'textArea', $model, 'description', 'icon-zoom-in',
+			array(
+				'rows' => 6,
+				'cols' => 50,
+			)
+		); ?>
 
-			<tr>
-				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'title'); ?></td>
-				<td>
-					<?php echo $form->textField($model, 'title', array('maxlength'=>128)); ?>
-					<?php echo $form->error($model, 'title'); ?>
-				</td>
-			</tr>
+		<tr>
+			<td></td>
+			<td>
+				<?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary')); ?>
+				<?php echo CHtml::link('Batal', array('view', 'id' => $model->id), array('class' => 'btn')); ?>
+			</td>
+		</tr>
 
-			<tr>
-				<td width="270"><i class="icon icon-zoom-in"></i> <?php echo $form->labelEx($model, 'description'); ?></td>
-				<td>
-					<?php echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
-					<?php echo $form->error($model, 'description'); ?>
-				</td>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td>
-					<?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary')); ?>
-					<?php echo CHtml::link('Batal', array('view', 'id' => $model->id), array('class' => 'btn')); ?>
-				</td>
-			</tr>
-
-		<?php $this->endWidget();?>
-
-	</table>
+		</table>
+	<?php $this->endWidget();?>
 
 <?php $this->endWidget();?>
