@@ -591,7 +591,7 @@ footer {
   margin-right: 50px;
 }
 
-#header{
+#headerBerkuliah{
   border-bottom:1px solid #DDD;
   background-color: #FFFFFF;
   background-image: -moz-linear-gradient(top, #FFFFFF, #acacac); 
@@ -761,4 +761,19 @@ text-decoration: none;
      -moz-border-radius-topright:50px;
      -webkit-border-radius:4px;
 
+}
+
+
+#headerBerkuliah2{
+  border-bottom:1px solid #DDD;
+  background-color: #FFFFFF;
+  background-image: -moz-linear-gradient(top, #FFFFFF, #acacac); 
+  background-image: -webkit-linear-gradient(linear, 0 0, 0 50%, from(#FFFFFF), to(#acacac));
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #ACACAC);
+  background-image: -o-linear-gradient(top, #FFFFFF, #ACACAC);
+  background-image: linear-gradient(to bottom, #FFFFFF, #ACACAC);
+  background-repeat: repeat-y;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffFFFFFF', endColorstr='#ffACACAC', GradientType=0);
+  padding-top:110px;
+  padding-bottom: 10px;
 }

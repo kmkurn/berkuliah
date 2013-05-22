@@ -4,9 +4,6 @@
 
 ?>
 
-<div class="row-fluid">
-	<div class="span12">
-
 	<?php $this->beginWidget('zii.widgets.CPortlet', array(
 		'title'=>'<i class="icon icon-user"></i> <strong>PROFIL ' .$model->name . '</strong>',
 	)); ?>
@@ -67,5 +64,3 @@
 	
 	<?php $this->endWidget(); ?>
 	
-	</div><!-- span12 -->
-</div><!-- row-fluid -->

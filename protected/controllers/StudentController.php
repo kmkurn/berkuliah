@@ -2,6 +2,7 @@
 
 class StudentController extends Controller
 {
+	
 	/**
 	 * @return array action filters
 	 */
