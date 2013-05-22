@@ -63,11 +63,21 @@ class Student extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('name, faculty_id', 'required'),
-			array('name', 'length', 'max'=>self::MAX_NAME_LENGTH),
-			array('file', 'file', 'allowEmpty'=>true, 'maxSize'=>self::MAX_FILE_SIZE, 'types'=>'jpg, png'),
-			array('faculty_id', 'numerical', 'integerOnly'=>true),
-			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id'),
+			array('name', 'required', 'message'=>'{attribute} tidak boleh kosong.'),
+			array('faculty_id', 'required', 'on'=>'update', 'message'=>'{attribute} tidak boleh kosong.'),
+			array('name', 'length', 'max'=>self::MAX_NAME_LENGTH,
+				'message'=>'{attribute} maksimum terdiri dari '.self::MAX_NAME_LENGTH.' karakter.'
+			),
+			array('file', 'file', 'allowEmpty'=>true, 'maxSize'=>self::MAX_FILE_SIZE, 'types'=>'jpg, png',
+				'tooLarge'=>'{attribute} maksimum '.Yii::app()->format->size(self::MAX_FILE_SIZE).'.',
+				'wrongType'=>'{attribute} hanya boleh bertipe JPEG atau PNG',
+			),
+			array('faculty_id', 'numerical', 'integerOnly'=>true,
+				'message'=>'{attribute} tidak valid.'
+			),
+			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id',
+				'message'=>'{attribute} tidak terdaftar.'
+			),
 			array('username, bio, photo, is_admin, last_login_timestamp', 'safe'),
 
 			array('id, username, photo, is_admin, last_login_timestamp', 'safe', 'on'=>'search'),
@@ -101,7 +111,7 @@ class Student extends CActiveRecord
 			'username' => 'Username',
 			'name' => 'Nama',
 			'bio' => 'Bio',
-			'file' => 'Foto Profil',
+			'file' => 'Foto',
 			'is_admin' => 'Is Admin',
 			'last_login_timestamp' => 'Terakhir Masuk',
 			'faculty_id' => 'Fakultas',
