@@ -1,18 +1,34 @@
 <?php
 
 /**
- * FacebookApi respresents Facebook API.
+ * TwitterApi respresents Facebook API.
  */
 class FacebookApi extends CComponent
 {
+	/**
+	 * The Facebook application id of this application.
+	 */
 	public $appId;
+
+	/**
+	 * The id of the div that contains the root of this API.
+	 */
 	public $divRoot;
 
+
+	/**
+	 * The initialization method.
+	 */
 	public function init()
 	{
 
 	}
 
+
+	/**
+	 * Returns the JavaScript initialization script to be placed in HTML pages before using Facebook API.
+	 * @return string the initialization script
+	 */
 	public function getInitScript()
 	{
 		return 
@@ -33,6 +49,12 @@ class FacebookApi extends CComponent
 			"}());\n";
 	}
 
+	/**
+	 * Returns the JavaScript script for Facebook share.
+	 * @param string $buttonId the id of the button of Facebook share
+	 * @param array $message the message to be shared
+	 * @return string the script to be used in HTML pages.
+	 */
 	public function getShareScript($buttonId, $message)
 	{
 		return 
