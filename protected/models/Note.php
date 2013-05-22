@@ -193,7 +193,7 @@ class Note extends CActiveRecord
 	 */
 	public function getTypeIcon()
 	{
-		return Yii::app()->params['noteIconsDir'] . $this->extension . '.svg';
+		return Yii::app()->params['noteIconsDir'] . $this->extension . '.png';
 	}
 
 	/**
