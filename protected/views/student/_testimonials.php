@@ -3,7 +3,7 @@
 /* @var $dataProvider CArrayDataProvider */
 ?>
 
-<?php if (Yii::app()->user->getState('is_admin')): ?>
+<?php if (Yii::app()->user->isAdmin): ?>
 	<h4>Daftar Semua Testimoni</h4>
 <?php else : ?>
 	<h4>Daftar Testimoni</h4>

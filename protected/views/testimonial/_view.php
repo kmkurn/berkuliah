@@ -46,7 +46,7 @@
 				<td>
 					<?php
 
-					if (Yii::app()->user->getState('is_admin'))
+					if (Yii::app()->user->isAdmin)
 					{
 						if ($model->status == Testimonial::STATUS_PENDING)
 						{

@@ -15,10 +15,11 @@
 
 		<tr align="center">
 			<th rowspan="6" width="200px">
-				<?php
-				$photo = ($model->photo === null) ? 'user.png' : $model->photo;
-				echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, CHtml::encode($model->name), array('width'=>200));
-				?>
+				<?php echo CHtml::image(
+					Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . Yii::app()->user->profilePhoto,
+					CHtml::encode($model->name),
+					array('width'=>200)
+				); ?>
 			</th>
 		</tr>
 

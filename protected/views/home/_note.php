@@ -30,7 +30,7 @@ $baseUrl = Yii::app()->request->baseUrl;
 <i class="icon icon-time"></i> <?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
 <br />
 
-<?php if (Yii::app()->user->getState('is_admin')): ?>
+<?php if (Yii::app()->user->isAdmin): ?>
 	<i class="icon icon-flag"></i> <?php echo CHtml::encode($data->reportCount); ?>
 	<br />
 <?php endif; ?>

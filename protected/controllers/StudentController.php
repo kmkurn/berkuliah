@@ -64,7 +64,7 @@ class StudentController extends Controller
 					$photo->saveAs($savePath . $fileName);
 
 					$model->photo = $fileName;
-					Yii::app()->user->setState('photo', $fileName);
+					Yii::app()->user->setState('profilePhoto', $fileName);
 				}
 
 				$model->save(false);
@@ -113,7 +113,7 @@ class StudentController extends Controller
 		));
 
 		$testimonialData = $model->testimonials;
-		if (Yii::app()->user->getState('is_admin'))
+		if (Yii::app()->user->isAdmin)
 			$testimonialData = Testimonial::model()->findAll();
 
 		$testimonials = new CArrayDataProvider($testimonialData, array(
