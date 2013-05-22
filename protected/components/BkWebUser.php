@@ -29,4 +29,21 @@ class BkWebUser extends CWebUser
 
 		return $messages;
 	}
+
+	public function setNotification($type, $message)
+	{
+		$this->setFlash('message', $message);
+		$this->setFlash('messageType', $type);
+	}
+
+	public function getNotification()
+	{
+		if ( ! $this->hasFlash('message'))
+			return '';
+
+		return
+			'<div class="alert alert-' . $this->getFlash('messageType') . '">' .
+				$this->getFlash('message') . 
+			'</div>';
+	}
 }
