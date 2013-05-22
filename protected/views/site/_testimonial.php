@@ -8,7 +8,7 @@
 	<div class="span12">
 
 		<blockquote class="pull-left">
-			<p><?php echo CHtml::encode($model->content); ?></p>
+			<p><?php echo $model->content; ?></p>
 		</blockquote>
 		<br />
 		<blockquote class="pull-right">
