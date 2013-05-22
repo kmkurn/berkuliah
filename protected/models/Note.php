@@ -400,7 +400,7 @@ class Note extends CActiveRecord
 		return array(
 			array('extension' => 'pdf', 'name' => 'PDF'),
 			array('extension' => 'jpg', 'name' => 'Gambar'),
-			array('extension' => 'html', 'name' => 'Teks'),
+			array('extension' => 'htm', 'name' => 'Teks'),
 		);
 	}
 
