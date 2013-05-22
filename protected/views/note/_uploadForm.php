@@ -76,7 +76,7 @@
 		<?php echo Yii::app()->format->formatInputField($form, 'fileField', $model, 'file', 'icon-file',
 			array(),
 			array(
-				'hint' => '(maks ' . Yii::app()->format->size(Note::MAX_FILE_SIZE) . ', jenis berkas JPEG/PDF)',
+				'hint' => ' (maks ' . Yii::app()->format->size(Note::MAX_FILE_SIZE) . ', PDF/JPEG)',
 			)
 		); ?>
 

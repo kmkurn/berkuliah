@@ -38,7 +38,7 @@
 			<?php echo Yii::app()->format->formatInputField($form, 'fileField', $model, 'file', 'icon-picture',
 				array(),
 				array(
-					'hint' => 'Ukuran berkas maksimum 100 KB',
+					'hint' => ' (maks ' . Yii::app()->format->size(Student::MAX_FILE_SIZE) . ', JPEG/PNG)',
 				)
 			); ?>
 
