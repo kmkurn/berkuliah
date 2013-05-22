@@ -64,14 +64,14 @@ if (Yii::app()->user->hasShareMessages())
 		<br />
 		<br />
 
-			<div id="tombolHapusBerkas">
-				<?php if (Yii::app()->user->isAdmin)
-					echo CHtml::submitButton('Hapus Berkas', array(
+			<?php if (Yii::app()->user->isAdmin): ?>
+				<div id="tombolHapusBerkas">
+				<?php echo CHtml::submitButton('Hapus Berkas', array(
 						'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
 						'class' => 'btn btn-danger',
-					));
-				?>
-			</div>
+				)); ?>
+				</div>
+			<?php endif; ?>
 
 		<br/>
 
@@ -101,23 +101,23 @@ if (Yii::app()->user->hasShareMessages())
 
 		<br />
 
-		<?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
+		<?php $this->widget('BkTableView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',
 			'numColumns' => 4,
 			'itemsCssClass' => 'table table-bordered',
 			'emptyText' => 'Hasil pencarian tidak ditemukan.',
+			'itemName' => 'berkas',
 		)); ?>
 
-		<br/>
-
-		<div id="tombolHapusBerkas">
-			<?php if (Yii::app()->user->getState('is_admin'))
-			echo CHtml::submitButton('Hapus Berkas', array(
-				'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
-				'class' => 'btn btn-danger',
-			)); ?>
-		</div>
+		<?php if (Yii::app()->user->isAdmin): ?>
+			<div id="tombolHapusBerkas">
+				<?php echo CHtml::submitButton('Hapus Berkas', array(
+					'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
+					'class' => 'btn btn-danger',
+				)); ?>
+			</div>
+		<?php endif; ?>
 
 		<?php if (Yii::app()->user->isAdmin) echo CHtml::endForm(); ?>
 
