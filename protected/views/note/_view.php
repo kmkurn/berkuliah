@@ -38,12 +38,12 @@
 			<tr>
 				<td><i class="icon icon-time"></i> <?php echo CHtml::encode($model->getAttributeLabel('upload_timestamp')); ?></td>
 				<td>:</td>
-				<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
+				<td><?php echo CHtml::encode(Yii::app()->format->datetime($model->upload_timestamp)); ?></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-time"></i> <?php echo CHtml::encode($model->getAttributeLabel('edit_timestamp')); ?></td>
 				<td>:</td>
-				<td><?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($model->upload_timestamp))); ?></td>
+				<td><?php echo CHtml::encode(Yii::app()->format->datetime($model->upload_timestamp)); ?></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-star"></i> Total Rating</td>
