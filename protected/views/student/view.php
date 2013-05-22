@@ -14,15 +14,14 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="page-header"></div>
-
 <div class="row-fluid">
-	<div class="span9">
-		
+	<div class="span9">	
 		<?php $this->renderPartial('_profile', array('model'=>$model)); ?>
 
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'<i class="icon icon-tasks"></i> <strong>SEJARAH KEGIATAN ' . $model->name . '</strong>',
 		)); ?>
+
 
 			<?php $this->widget('CTabView', array(
 				'cssFile' => Yii::app()->baseUrl .'/css/abound.css',
@@ -57,8 +56,8 @@ $this->breadcrumbs=array(
 					),
 				),
 			)); ?>
-
 		<?php $this->endWidget(); ?>
-		
-	</div><!-- span9 -->
-</div><!-- row-fluid -->
+	</div>
+</div>
+
+

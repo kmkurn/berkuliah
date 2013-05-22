@@ -3,7 +3,6 @@
 /* @var $data DownloadInfo */
 ?>
 
-<div class="view">
 
 	<span>
 		<i class="icon icon-download-alt"></i> Mengunduh berkas 
@@ -11,5 +10,3 @@
 		pada tanggal 
 		<?php echo CHtml::encode(Yii::app()->format->datetime($data->timestamp)); ?>
 	</span>
-
-</div>

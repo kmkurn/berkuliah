@@ -5,7 +5,7 @@
 ?>
 
 <div class="row-fluid">
-	<div class="span12">
+	<div class="span9">
 
 		<blockquote class="pull-left">
 			<p><?php echo $model->content; ?></p>

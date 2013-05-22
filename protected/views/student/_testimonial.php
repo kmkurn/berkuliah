@@ -3,8 +3,6 @@
 /* @var $data Testimonial */
 ?>
 
-<div class="view">
-	
 	<table>
 		<tr>
 			<td>
@@ -16,5 +14,3 @@
 			</td>
 		</tr>
 	</table>
-
-</div>

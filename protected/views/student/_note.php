@@ -3,8 +3,6 @@
 /* @var $data Note */
 ?>
 
-<div class="view">
-	
 	<table>
 		<tr>
 			<td width="40px">
@@ -25,5 +23,3 @@
 			</td>
 		</tr>
 	</table>
-
-</div>

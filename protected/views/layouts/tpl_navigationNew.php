@@ -1,5 +1,6 @@
+
 <div class="navbar navbar-inverse navbar-fixed-top">
-  <div id="headerBerkuliah">
+    <div id="headerBerkuliah2">
     <?php echo CHtml::image(Yii::app()->baseUrl . '/images/header.png',' '); ?>
   </div>
   <div class="navbar-inner"> 
@@ -35,7 +36,7 @@
                 'url'=>array('student/update', 'id'=>Yii::app()->user->id),
               ),
               array(
-                'label'=>'<i class="icon icon-user icon-off"></i> Keluar',
+                'label'=>'<i class="icon icon-user icon-off"></i> Logout',
                 'url'=>array('site/logout'),
                 'visible'=>!Yii::app()->user->isGuest,
               ),
