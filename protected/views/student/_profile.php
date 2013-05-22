@@ -41,7 +41,7 @@
 				<i class="icon icon-book"></i> <?php echo $model->getAttributeLabel('faculty_id'); ?>
 			</td>
 			<td>:</td>
-			<td><?php echo CHtml::encode($model->faculty->name); ?></td>
+			<td><?php echo $model->faculty ? CHtml::encode($model->faculty->name) : '<em>(belum dipilih)</em>'; ?></td>
 		</tr>
 
 		<tr>
