@@ -5,7 +5,8 @@
 
 <h4>Daftar Pengunggahan</h4>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('BkListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_note',
+	'itemName'=>'unggahan',
 )); ?>
