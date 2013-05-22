@@ -4,7 +4,7 @@
 /* @var $usernames array */
 
 $this->breadcrumbs=array(
-	'Beri Hak Artikel',
+	'Beri Hak Testimoni',
 );
 ?>
 

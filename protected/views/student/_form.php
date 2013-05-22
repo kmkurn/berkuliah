@@ -59,7 +59,7 @@
 			<tr>
 				<td></td>
 				<td>
-					<?php echo CHtml::button('Ganti', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
+					<?php echo CHtml::button('Ubah', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
 					<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 				</td>
 			</tr>
