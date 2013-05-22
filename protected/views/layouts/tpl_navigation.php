@@ -31,7 +31,7 @@
             ), 
             'items'=>array(
               array(
-                'label'=>'<i class="icon icon-picture"></i> Pengaturan',
+                'label'=>'<i class="icon icon-cog"></i> Pengaturan',
                 'url'=>array('student/update', 'id'=>Yii::app()->user->id),
               ),
               array(

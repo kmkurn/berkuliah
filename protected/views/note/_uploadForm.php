@@ -18,68 +18,72 @@
 	<label>Isian dengan tanda * harus diisi.</label>
 
 	<?php $form = $this->beginWidget('CActiveForm', array(
-		'id' => 'photo-upload-form',
 		'htmlOptions' => array('enctype' => 'multipart/form-data'),
-	)); ?>
+		'enableClientValidation' => true,
+		'clientOptions' => array(
+			'validateOnSubmit' => true,
+			'successCssClass' => '',
+			'errorCssClass' => 'error',
+		),
+	)); 
+
+	//echo var_dump($form->clientOptions); die(); 
+
+	?>
 
 	<table class='table table-hover'>
 
-		<tr>
-			<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'title'); ?></td>
-			<td>
-				<?php echo $form->textField($model, 'title', array('maxlength'=>128)); ?>
-				<?php echo $form->error($model, 'title'); ?>
-			</td>
-		</tr>
+		<?php echo Yii::app()->format->formatInputField($form, 'textField', $model, 'title', 'icon-tag',
+			array(
+				'maxlength' => 128,
+			)
+		); ?>
+		
+		<?php echo Yii::app()->format->formatInputField($form, 'textArea', $model, 'description', 'icon-zoom-in',
+			array(
+				'rows' => 6,
+				'cols' => 50,
+			)
+		); ?>
+		
+		<?php echo Yii::app()->format->formatInputField($form, 'dropDownList', $model, 'faculty_id', 'icon-briefcase',
+			array(
+				'prompt' => 'Pilih fakultas',
+				'ajax' => array(
+					'type' => 'POST',
+			        'url' => array('note/updateCourses'),
+			        'update' => '#courses',
+			        'data' => array('faculty_id' => 'js:this.value')
+			    )
+			),
+			array(
+				'data' => CHtml::listData(Faculty::model()->findAll(), 'id', 'name'),
+			)
+		); ?>
 
-		<tr>
-			<td><i class="icon icon-zoom-in"></i> <?php echo $form->labelEx($model, 'description'); ?></td>
-			<td>
-				<?php echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
-				<?php echo $form->error($model, 'description'); ?>
-			</td>
-		</tr>
-
-		<tr>
-			<td><i class="icon icon-briefcase"></i> <?php echo $form->labelEx($model, 'faculty_id'); ?></td>
-			<td>
-				<?php echo $form->dropDownList($model, 'faculty_id',
-			       CHtml::listData(Faculty::model()->findAll(), 'id', 'name'),
-			       array('prompt' => 'Pilih fakultas',
-			             'ajax' => array('type' => 'POST',
-			             	             'url' => array('note/updateCourses'),
-			             	             'update' => '#courses',
-			             	             'data' => array('faculty_id' => 'js:this.value')
-			                           		 ))); ?>
-				<?php echo $form->error($model, 'faculty_id'); ?>
-			</td>
-		</tr>
-
-		<tr>
-			<td><i class="icon icon-book"></i> <?php echo $form->labelEx($model, 'course_id'); ?> <label>*</label></td>
-			<td>
-				<span id="courses">
-					<?php echo $form->dropDownList($model, 'course_id', array(), array(
-						'prompt' => 'Pilih mata kuliah',
-					)); ?>
-				</span>
-				<?php echo $form->error($model, 'course_id'); ?>
-			</td>
-		</tr>
+		<?php echo Yii::app()->format->formatInputField($form, 'dropDownList', $model, 'course_id', 'icon-book',
+			array(
+				'prompt' => 'Pilih mata kuliah',
+			),
+			array(
+				'data' => array(),
+				'beforeInput' => '<span id="courses">',
+				'afterInput' => '</span>',
+			)
+		); ?>
 
 		<tr>
 			<td><label><em>atau masukkan mata kuliah baru</em></label></td>
 			<td><?php echo $form->textField($model, 'new_course_name'); ?></td>
 		</tr>
 
-		<tr>
-			<td><i class="icon icon-file"></i> <?php echo $form->labelEx($model, 'file'); ?> <label>*</label></td>
-			<td>
-				<?php echo $form->fileField($model, 'file'); ?>
-				<span class="hint">Ukuran berkas maksimum 512 KB dan berekstensi .jpg .pdf .txt</span>
-				<?php echo $form->error($model, 'file'); ?>
-			</td>
-		</tr>
+
+		<?php echo Yii::app()->format->formatInputField($form, 'fileField', $model, 'file', 'icon-file',
+			array(),
+			array(
+				'hint' => 'Ukuran berkas maksimum 512 KB dan berekstensi .jpg .pdf .txt',
+			)
+		); ?>
 
 		<tr>
 			<td><label><em>atau ketikkan catatan Anda</em></label></td>

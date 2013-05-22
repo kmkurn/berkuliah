@@ -23,4 +23,29 @@ class BkFormatter extends CFormatter
 			'height'=>$this->imageFormat['height'],
 		));
 	}
+
+
+	public function formatInputField($form, $type, $model, $attribute, $icon, $htmlOptions = array(), $otherOptions = array())
+	{
+		echo '<tr>
+				<td>
+					<div class="control-group attribute-' . $attribute . '">
+						<i class="icon ' . $icon . '"></i> ' . $form->labelEx($model, $attribute, array('class' => 'control-label')) . '
+					</div>
+				</td>
+				<td>
+					<div class="control-group attribute-' . $attribute . '">' .
+						@$otherOptions['beforeInput'] . 
+						(isset($otherOptions['data']) ?
+							$form->$type($model, $attribute, $otherOptions['data'], $htmlOptions) : 
+							$form->$type($model, $attribute, $htmlOptions)) . 
+						@$otherOptions['afterInput'] .
+						(isset($otherOptions['hint']) ?
+							'<span class="hint">' . $otherOptions['hint'] . '</span>' :
+							'').
+						$form->error($model, $attribute, array('inputContainer' => '.attribute-' . $attribute)) . '
+					</div>
+				</td>
+			</tr>';
+	}
 }
