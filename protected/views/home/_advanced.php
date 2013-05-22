@@ -50,10 +50,10 @@
 			</div>
 
 			<div class="field">
-				<?php echo $form->label($model,'student_id'); ?>
+				<?php echo $form->label($model,'uploader'); ?>
 				<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 					'model' => $model,
-					'attribute' => 'student_id',
+					'attribute' => 'uploader',
 					'source' => $usernames,
 					'htmlOptions' => array('size' => 10, 'value' => ''),
 				)); ?>
