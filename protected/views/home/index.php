@@ -54,12 +54,8 @@ if (Yii::app()->user->hasShareMessages())
 
 		<?php if (Yii::app()->user->getState('is_admin')) echo CHtml::beginForm(array('batchDelete')); ?>
 
-		<?php if (Yii::app()->user->hasFlash('message')): ?>
 		<br />
-		<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
-			<?php echo Yii::app()->user->getFlash('message'); ?>
-		</div>
-		<?php endif; ?>
+		<?php echo Yii::app()->user->getNotification(); ?>
 
 		<br />
 		<br />

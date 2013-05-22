@@ -6,11 +6,7 @@
 
 ?>
 
-<?php if (Yii::app()->user->hasFlash('message')): ?>
-	<div class="alert alert-<?php echo Yii::app()->user->getFlash('messageType'); ?>">
-		<?php echo Yii::app()->user->getFlash('message'); ?>
-	</div>
-<?php endif; ?>
+<?php echo Yii::app()->user->getNotification(); ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
 	'title' => '<i class="icon icon-cog"></i> <strong>UBAH PROFIL</strong>',
