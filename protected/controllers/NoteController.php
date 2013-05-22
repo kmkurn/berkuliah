@@ -147,7 +147,7 @@ class NoteController extends Controller
 				$message['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
 				$message['name'] = $model->title;
 				$message['link'] = array('note/view', 'id' => $model->id);
-				$message['picture'] = 'htm.svg';
+				$message['picture'] = $model->getTypeIcon();
 				$message['caption'] = $model->course->name . ' | ' . $model->course->faculty->name;
 				$message['description'] = $model->description;
 				Yii::app()->user->addShareMessage($message);
