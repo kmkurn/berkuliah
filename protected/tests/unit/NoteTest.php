@@ -51,11 +51,11 @@ class NoteTest extends CDbTestCase
 		$this->assertEquals(3, count($allowedTypes));
 		$this->assertTrue(in_array(array('extension'=>'pdf', 'name'=>'PDF'), $allowedTypes));
 		$this->assertTrue(in_array(array('extension'=>'jpg', 'name'=>'Gambar'), $allowedTypes));
-		$this->assertTrue(in_array(array('extension'=>'html', 'name'=>'Teks'), $allowedTypes));
+		$this->assertTrue(in_array(array('extension'=>'htm', 'name'=>'Teks'), $allowedTypes));
 
 		$this->assertEquals('pdf', $note1->getExtension());
 		$this->assertEquals('jpg', $note2->getExtension());
-		$this->assertEquals('html', $note3->getExtension());
+		$this->assertEquals('htm', $note3->getExtension());
 
 		$this->assertFileExists($note1->getTypeIcon());
 		$this->assertFileExists($note2->getTypeIcon());
@@ -330,7 +330,7 @@ class NoteTest extends CDbTestCase
 
 		// search by uploader
 		$note = new Note();
-		$note->student_id = 1;
+		$note->uploader = '1';
 		$this->assertEquals(1, $note->search()->totalItemCount);
 	}
 
