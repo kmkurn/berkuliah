@@ -9,7 +9,8 @@
 	<h4>Daftar Testimoni</h4>
 <?php endif; ?>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('BkListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_testimonial',
+	'itemName'=>'testimoni',
 )); ?>

@@ -3,49 +3,15 @@
  * BkTableView class file.
  *
  * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
- * @link 
- * @copyright 
- * @license 
  */
-
-Yii::import('zii.widgets.CListView');
 
 /**
  * BkTableView displays a list of data items in a grid-like view.
- *
- * Unlike {@link CGridView} which displays the data items in a table with rows representing the data
- * and the columns representing the attributes of the data, BkTableView displays each information about
- * a data as a table entry.
- *
- * BkTableView supports everything that is supported by CListView since this class is a subclass of CListView.
- *
- * The minimal code needed to use BkTableView is as follows:
- *
- * <pre>
- * $dataProvider=new CActiveDataProvider('Post');
- *
- * $this->widget('ext.widgets.berkuliah.BkTableView', array(
- *     'dataProvider'=>$dataProvider,
- *     'itemView'=>'_post',   // refers to the partial view named '_post'
- *     'sortableAttributes'=>array(
- *         'title',
- *         'create_time'=>'Post Time',
- *     ),
- *     'numColumns'=>3,
- * ));
- * </pre>
- *
- * The above code first creates a data provider for the <code>Post</code> ActiveRecord class.
- * It then uses BkTableView to display every data item as returned by the data provider in a table with 3 columns.
- * The display is done via the partial view named '_post'. This partial view will be rendered
- * once for every data item. In the view, one can access the current data item via variable <code>$data</code>.
- * For more details, see {@link itemView}.
- *
  * 
  * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
- * @package ext.widgets.berkuliah
+ * @package ext.berkuliah
  */
-class BkTableView extends CListView
+class BkTableView extends BkListView
 {
 	/**
 	 * The number of columns
