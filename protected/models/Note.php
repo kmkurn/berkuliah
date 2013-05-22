@@ -60,14 +60,18 @@ class Note extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description', 'required'),
-			array('title', 'length', 'max'=>self::MAX_TITLE_LENGTH),
+			array('title, description', 'required', 'message'=>'{attribute} tidak boleh kosong.'),
+			array('title', 'length', 'max'=>self::MAX_TITLE_LENGTH,
+				'message'=>'{attribute} maksimum terdiri dari '.self::MAX_TITLE_LENGTH.' karakter.'),
 
 			array('course_id', 'checkCourse', 'on'=>'insert'),
-			array('course_id', 'exist', 'className'=>'Course', 'attributeName'=>'id', 'on'=>'insert'),
-			array('faculty_id', 'required', 'on'=>'insert'),
-			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id', 'on'=>'insert'),
-			array('new_course_name', 'length', 'max'=>128, 'on'=>'insert'),
+			array('course_id', 'exist', 'className'=>'Course', 'attributeName'=>'id', 'on'=>'insert',
+				'message'=>'{attribute} tidak terdaftar.'),
+			array('faculty_id', 'required', 'on'=>'insert', 'message'=>'{attribute} tidak boleh kosong.'),
+			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id', 'on'=>'insert',
+				'message'=>'{attribute} tidak terdaftar.'),
+			array('new_course_name', 'length', 'max'=>Course::MAX_NAME_LENGTH, 'on'=>'insert',
+				'message'=>'{attribute} maksimum terdiri dari '.Course::MAX_NAME_LENGTH.' karakter'),
 			array('file', 'checkNote', 'on'=>'insert'),
 			array('type, student_id, upload_timestamp, edit_timestamp, raw_file_text', 'safe'),
 			
@@ -150,7 +154,8 @@ class Note extends CActiveRecord
 	{
 		if (empty($this->course_id) && empty($this->new_course_name))
 		{
-			$this->addError('course_id', 'Mata Kuliah cannot be blank.');
+			$attributeName = $this->getAttributeLabel('course_id');
+			$this->addError('course_id', $attributeName . ' tidak boleh kosong.');
 		}
 	}
 
@@ -166,6 +171,8 @@ class Note extends CActiveRecord
 			$validator = new CFileValidator();
 			$validator->attributes = array('file');
 			$validator->maxSize = self::MAX_FILE_SIZE;
+			$formattedMaxSize = Yii::app()->format->size($validator->maxSize);
+			$validator->message = '{attribute} tidak boleh kosong dan berukuran maksimum ' . $formattedMaxSize . '.';
 
 			$allowedTypes = Note::getAllowedTypes();
 			foreach ($allowedTypes as $info)

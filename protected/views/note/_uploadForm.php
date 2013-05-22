@@ -77,11 +77,10 @@
 			<td><?php echo $form->textField($model, 'new_course_name'); ?></td>
 		</tr>
 
-
 		<?php echo Yii::app()->format->formatInputField($form, 'fileField', $model, 'file', 'icon-file',
 			array(),
 			array(
-				'hint' => 'Ukuran berkas maksimum 512 KB dan berekstensi .jpg .pdf .txt',
+				'hint' => '(maks ' . Yii::app()->format->size(Note::MAX_FILE_SIZE) . ', jenis berkas JPEG/PDF)',
 			)
 		); ?>
 

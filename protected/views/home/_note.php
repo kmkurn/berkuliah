@@ -26,8 +26,7 @@ $baseUrl = Yii::app()->request->baseUrl;
 <i class="icon icon-book"></i> <?php echo CHtml::encode($data->course->name); ?>
 <br />
 
-<?php // TO-DO: set locale ?>
-<i class="icon icon-time"></i> <?php echo CHtml::encode(strftime('%A, %e %B %Y, %T', strtotime($data->upload_timestamp))); ?>
+<i class="icon icon-time"></i> <?php echo CHtml::encode(Yii::app()->format->datetime($data->upload_timestamp)); ?>
 <br />
 
 <?php if (Yii::app()->user->isAdmin): ?>
