@@ -11,7 +11,7 @@ $this->pageTitle=Yii::app()->name;
 
       <tr>
         
-        <td width="600px">
+        <td width="800px">
           <div id="artikel"><div class="span12">
 
             <?php if ($model !== null): ?>
@@ -36,7 +36,7 @@ $this->pageTitle=Yii::app()->name;
           </div><!-- artikel -->
         </td>
 
-        <td>
+        <td valign="top">
           <?php 
 
           echo Chtml::link('Tweets by @berkuliah', 'https://twitter.com/berkuliah', array(
