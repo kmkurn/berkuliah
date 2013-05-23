@@ -53,7 +53,7 @@ if (Yii::app()->user->hasShareMessages())
 			'usernames' => $usernames,
 		)); ?>
 
-		<?php if (Yii::app()->user->getState('is_admin')) echo CHtml::beginForm(array('batchDelete')); ?>
+		<?php if (Yii::app()->user->isAdmin) echo CHtml::beginForm(array('batchDelete')); ?>
 
 		<br />
 		<?php echo Yii::app()->user->getNotification(); ?>
