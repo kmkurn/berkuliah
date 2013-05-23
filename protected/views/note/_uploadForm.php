@@ -50,7 +50,8 @@
 			        'url' => array('note/updateCourses'),
 			        'update' => '#courses',
 			        'data' => array('faculty_id' => 'js:this.value')
-			    )
+			    ),
+			    'options' => array('1' => array('selected' => 'selected')),
 			),
 			array(
 				'data' => CHtml::listData(Faculty::model()->findAll(), 'id', 'name'),
@@ -62,7 +63,7 @@
 				'prompt' => 'Pilih mata kuliah',
 			),
 			array(
-				'data' => array(),
+				'data' => CHtml::listData(Course::model()->findAllByAttributes(array('faculty_id' => 1)), 'id', 'name'),
 				'beforeInput' => '<span id="courses">',
 				'afterInput' => '</span>',
 			)
