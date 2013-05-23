@@ -565,6 +565,10 @@ footer {
   position: center;
 }
 
+.penulisArtikel{
+  padding-bottom: 0px;
+}
+
 #foto{
   margin-left:43px;
 }
