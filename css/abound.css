@@ -777,3 +777,15 @@ text-decoration: none;
   padding-top:110px;
   padding-bottom: 10px;
 }
+
+.noteTitle {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.noteTitle a {
+}
+
+.noteCell tr td:hover {
+  background-color: #e6e6e6;
+}
