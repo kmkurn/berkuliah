@@ -21,13 +21,15 @@
             'visible'=>!Yii::app()->user->isGuest,
             'label'=>'<i class="icon icon-user icon-white"></i> '. Yii::app()->user->name,
             'url'=>'#',
+            'itemCssClass'=>'item-test',
             'itemOptions'=>array(
               'class'=>'dropdown',
               'tabindex'=>"-1",
             ),
             'linkOptions'=>array(
               'class'=>'dropdown-toggle',
-              'data-toggle'=>"dropdown",
+              'data-toggle'=>'dropdown',
+              'data-hover'=>'dropdown',
             ), 
             'items'=>array(
               array(

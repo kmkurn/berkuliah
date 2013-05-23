@@ -22,7 +22,7 @@
         <?php $cs->registerCssFile($baseUrl.'/css/style-grey.css'); ?>
 
         <?php
-        $cs->registerScriptFile($baseUrl.'/js/bootstrap.min.js');
+        $cs->registerScriptFile($baseUrl.'/js/bootstrap.js');
         ?>
   </head>
   <body>

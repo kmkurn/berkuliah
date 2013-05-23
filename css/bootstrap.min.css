@@ -1684,6 +1684,7 @@ select:focus:invalid:focus {
 .input-prepend .dropdown-menu,
 .input-append .popover,
 .input-prepend .popover {
+  color: #ffffff;
   font-size: 13px;
 }
 
@@ -3073,6 +3074,7 @@ table th[class*="span"],
 
 .dropdown-submenu:hover > a:after {
   border-left-color: #ffffff;
+  display: block;
 }
 
 .dropdown-submenu.pull-left {
@@ -4362,7 +4364,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inner {
-  height: 39px;
+  height: 33px;
   padding-right: 20px;
   padding-left: 20px;
   background-color: #ffffff;
@@ -6191,4 +6193,7 @@ a.badge:focus {
 
 .affix {
   position: fixed;
+}
+a.menu:after, .dropdown-toggle:after {
+    content: none;
 }
