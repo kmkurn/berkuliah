@@ -5150,7 +5150,7 @@ input[type="submit"].btn.btn-mini {
   list-style: none;
   *zoom: 1;
   vertical-align:middle;
-  padding-bottom: 80px; 
+  padding-bottom: 0px; 
 }
 
 .pager:before,
