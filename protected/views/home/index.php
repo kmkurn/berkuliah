@@ -41,7 +41,8 @@ if (Yii::app()->user->hasShareMessages())
 			'model' => $model,
 		)); ?>
 
-		<?php echo CHtml::link('Pencarian lanjutan', '#myModal', array(
+		&nbsp;&nbsp;
+		<?php echo CHtml::link('<i class="icon icon-search"></i> Pencarian lanjutan', '#myModal', array(
 			'role' => 'button',
 			'class' => 'btn',
 			'data-toggle' => 'modal',
@@ -95,7 +96,6 @@ if (Yii::app()->user->hasShareMessages())
 
 		<?php endforeach; ?>
 
-		
 		<?php $this->widget('BkTableView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',

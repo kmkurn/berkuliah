@@ -23,8 +23,9 @@ body {
   text-decoration:none;
 }
 
-.navbar-search .search-query {
+.search-query {
   border-radius:5px;
+  width: 750px;
 }
 
 /* Desktops and laptops ----------- */
@@ -781,9 +782,6 @@ text-decoration: none;
 .noteTitle {
   font-weight: bold;
   font-size: 14px;
-}
-
-.noteTitle a {
 }
 
 .noteCell tr td:hover {
