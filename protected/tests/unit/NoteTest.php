@@ -342,10 +342,41 @@ class NoteTest extends CDbTestCase
 		$model = $this->notes('note1');
 		$model->rate(1, 7);
 		$this->assertEquals(7, $model->getRating(1));
+
 		$model->rate(2, 9);
 		$this->assertEquals(9, $model->getRating(2));
+		$model->rate(2, 3);
+		$this->assertEquals(3, $model->getRating(2));
 
-		$this->assertEquals(16, $model->getTotalRating());
+		$this->assertEquals(10, $model->getTotalRating());
 		$this->assertEquals(2, $model->getRatersCount());
+	}
+
+
+	/** 
+	 * Tests report action.
+	 */
+	public function testReport()
+	{
+		$model = $this->notes('note1');
+		$model->report(1);
+
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('*');
+		$cmd->from('bk_report');
+		$cmd->where('note_id=:X AND student_id=:Y', array(':X' => $model->id, ':Y' => 1));
+
+		$this->assertNotNull($cmd->queryRow());
+	}
+
+	/** 
+	 * Tests isReportedBy method.
+	 */
+	public function testIsReportedBy()
+	{
+		$model = $this->notes('note1');
+		$model->report(2);
+
+		$this->assertTrue($model->isReportedBy(2));
 	}
 }
