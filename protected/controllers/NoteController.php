@@ -120,7 +120,7 @@ class NoteController extends Controller
 			if ($model->validate())
 			{
 				// sets extension
-				$extension = 'html';
+				$extension = 'htm';
 				if (empty($model->raw_file_text))
 				{
 					$noteFile = CUploadedFile::getInstance($model, 'file');
