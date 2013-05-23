@@ -4634,6 +4634,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li {
   float: left;
+  background-color: #46569c;
 }
 
 .navbar .nav > li > a {
