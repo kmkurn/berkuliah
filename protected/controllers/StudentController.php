@@ -96,11 +96,45 @@ class StudentController extends Controller
 		$model = $this->loadModel($id);
 
 		$numItems = Yii::app()->params['itemsPerPage'];
+
 		$downloads = new CArrayDataProvider($model->downloadInfos, array(
 			'pagination'=>array(
 				'pageSize'=>$numItems,
 			),
 		));
+
+		$reviews = new CArrayDataProvider($model->reviews, array(
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+
+		$sql = Yii::app()->db->createCommand()
+			->select(array('id', 'title', 'value', 'note_id', 'timestamp'))
+			->from(array('bk_note note', 'bk_rate rate'))
+			->where(array('and', 'note.student_id=:sid', 'rate.student_id=:sid', 'rate.note_id=note.id'),
+				array(':sid'=>$model->id));
+		$count = count($model->rates);
+		$rates = new CSqlDataProvider($sql, array(
+			'totalItemCount'=>$count,
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+
+		$sql = Yii::app()->db->createCommand()
+			->select(array('id', 'title', 'note_id', 'timestamp'))
+			->from(array('bk_note note', 'bk_report report'))
+			->where(array('and', 'note.student_id=:sid', 'report.student_id=:sid', 'report.note_id=note.id'),
+				array(':sid'=>$model->id));
+		$count = count($model->reports);
+		$reports = new CSqlDataProvider($sql, array(
+			'totalItemCount'=>$count,
+			'pagination'=>array(
+				'pageSize'=>$numItems,
+			),
+		));
+
 		$uploads = new CArrayDataProvider($model->notes, array(
 			'pagination'=>array(
 				'pageSize'=>$numItems,
@@ -127,6 +161,9 @@ class StudentController extends Controller
 		$this->render('view',array(
 			'model'=>$model,
 			'downloads'=>$downloads,
+			'reviews'=>$reviews,
+			'rates'=>$rates,
+			'reports'=>$reports,
 			'uploads'=>$uploads,
 			'badges'=>$badges,
 			'testimonials'=>$testimonials,
