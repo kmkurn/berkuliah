@@ -65,7 +65,7 @@ class Note extends CActiveRecord
 			array('title', 'length', 'max'=>self::MAX_TITLE_LENGTH,
 				'message'=>'{attribute} maksimum terdiri dari '.self::MAX_TITLE_LENGTH.' karakter.'),
 
-			array('course_id', 'checkCourse', 'on'=>'insert'),
+			array('course_id', 'checkCourse', 'on'=>'insert', 'enableClientValidation'=>true, 'clientValidate'=>'clientValidateCourse'),
 			array('course_id', 'exist', 'className'=>'Course', 'attributeName'=>'id', 'on'=>'insert',
 				'message'=>'{attribute} tidak terdaftar.'),
 			array('faculty_id', 'required', 'on'=>'insert', 'message'=>'{attribute} tidak boleh kosong.'),
@@ -78,6 +78,15 @@ class Note extends CActiveRecord
 			
 			array('title, type, course_id, faculty_id, uploader', 'safe', 'on'=>'search'),
 		);
+	}
+
+	/**
+	 * Validates the course_id field.
+	 */
+	public function clientValidateCourse()
+	{
+		$js = "if (value == 0) messages.push('Mata Kuliah tidak boleh kosong.');";
+		return $js;
 	}
 
 	/**
