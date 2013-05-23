@@ -23,8 +23,9 @@ body {
   text-decoration:none;
 }
 
-.navbar-search .search-query {
+.search-query {
   border-radius:5px;
+  width: 750px;
 }
 
 /* Desktops and laptops ----------- */
@@ -783,4 +784,13 @@ text-decoration: none;
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffFFFFFF', endColorstr='#ffACACAC', GradientType=0);
   padding-top:110px;
   padding-bottom: 10px;
+}
+
+.noteTitle {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.noteCell tr td:hover {
+  background-color: #e6e6e6;
 }

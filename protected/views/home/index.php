@@ -41,7 +41,8 @@ if (Yii::app()->user->hasShareMessages())
 			'model' => $model,
 		)); ?>
 
-		<?php echo CHtml::link('Pencarian lanjutan', '#myModal', array(
+		&nbsp;&nbsp;
+		<?php echo CHtml::link('<i class="icon icon-search"></i> Pencarian lanjutan', '#myModal', array(
 			'role' => 'button',
 			'class' => 'btn',
 			'data-toggle' => 'modal',
@@ -52,7 +53,7 @@ if (Yii::app()->user->hasShareMessages())
 			'usernames' => $usernames,
 		)); ?>
 
-		<?php if (Yii::app()->user->getState('is_admin')) echo CHtml::beginForm(array('batchDelete')); ?>
+		<?php if (Yii::app()->user->isAdmin) echo CHtml::beginForm(array('batchDelete')); ?>
 
 		<br />
 		<?php echo Yii::app()->user->getNotification(); ?>
@@ -95,12 +96,11 @@ if (Yii::app()->user->hasShareMessages())
 
 		<?php endforeach; ?>
 
-		
 		<?php $this->widget('BkTableView', array(
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',
 			'numColumns' => 4,
-			'itemsCssClass' => 'table table-bordered',
+			'itemsCssClass' => 'table table-bordered noteCell',
 			'emptyText' => 'Hasil pencarian tidak ditemukan.',
 			'itemName' => 'berkas',
 		)); ?>

@@ -7,6 +7,13 @@
 <div class="row-fluid">
 	<div class="span3">
 		<br />
+		<?php $this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>' ', 
+			'htmlOptions' => array(
+				'style' => 'width: 200px; padding:0'
+			)
+		)); ?>
+		
 		<div id="foto">
 			<?php echo CHtml::image(
 				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
@@ -15,7 +22,8 @@
 				array('width' => 110)
 			); ?>
 		</div><!-- foto -->
-		<br />
+		<?php $this->endWidget(); ?>
+		<hr style="width:200px" />
 		<div class="well sidebar-nav">
 			<?php
 
@@ -25,12 +33,12 @@
 					'url' => array('home/index'),
 				),
 				array(
-					'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
-					'url' => array('student/view', 'id'=>Yii::app()->user->id),
-				),
-				array(
 					'label' => '<i class="icon icon-upload"></i> <strong>Unggah Berkas</strong>',
 					'url' => array('note/upload'),
+				),
+				array(
+					'label' => '<i class="icon icon-tasks"></i> <strong>Dasbor</strong>',
+					'url' => array('student/view', 'id'=>Yii::app()->user->id),
 				),
 			);
 
