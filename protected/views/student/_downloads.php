@@ -3,7 +3,7 @@
 /* @var $data DownloadInfo */
 ?>
 
-<table>
+<table class="table table-hover">
 	<tr>
 		<td>
 		<i class="icon icon-download-alt"></i> Mengunduh berkas 
