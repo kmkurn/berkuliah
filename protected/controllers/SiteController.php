@@ -69,11 +69,24 @@ class SiteController extends Controller
 	}
 
 	/**
-	 * Displays the dummy login page.
+	 * Logs in as a dummy user.
 	 */
 	public function actionDummyLogin()
 	{
-		$identity = new DummyUserIdentity();
+		$identity = new DummyUserIdentity(0);
+
+		if ($identity->authenticate())
+			Yii::app()->user->login($identity);
+
+		$this->redirect(array('home/index'));
+	}
+
+	/**
+	 * Logs in as a dummy admin
+	 */
+	public function actionDummyAdminLogin()
+	{
+		$identity = new DummyUserIdentity(1);
 
 		if ($identity->authenticate())
 			Yii::app()->user->login($identity);

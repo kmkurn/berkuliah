@@ -7,6 +7,24 @@ class DummyUserIdentity extends CBaseUserIdentity
 {
 	private $id;
 	private $name;
+	private $username;
+	private $isAdmin;
+
+
+	public function __construct($isAdmin)
+	{
+		$this->isAdmin = $isAdmin;
+		if ($isAdmin)
+		{
+			$this->username = 'dummy.admin';
+			$this->name = 'Dummy Admin';
+		}
+		else
+		{
+			$this->username = 'dummy.user';
+			$this->name = 'Dummy User';
+		}
+	}
 
 	/**
 	 * Authenticates a dummy user.
@@ -14,9 +32,7 @@ class DummyUserIdentity extends CBaseUserIdentity
 	 */
 	public function authenticate()
 	{
-		$username = 'dummy.user';
-		
-		$student = Student::model()->findByAttributes(array('username' => $username));
+		$student = Student::model()->findByAttributes(array('username' => $this->username));
 		if ($student === null)
 		{
 			$student = new Student();
@@ -29,8 +45,9 @@ class DummyUserIdentity extends CBaseUserIdentity
 				$faculty->save(false);
 			}
 
-			$student->username = $username;
-			$student->name = $username;
+			$student->username = $this->username;
+			$student->name = $this->name;
+			$student->is_admin = $this->isAdmin;
 			$student->faculty_id = $faculty->id;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
