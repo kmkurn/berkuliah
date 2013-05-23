@@ -24,7 +24,7 @@ $this->breadcrumbs=array(
 
 
 			<?php $this->widget('CTabView', array(
-				'cssFile' => Yii::app()->baseUrl .'/css/abound.css',
+				'cssFile' => Yii::app()->baseUrl .'/css/tabView.css',
 				'tabs'=>array(
 					'tab1'=>array(
 						'title'=>'Sejarah',

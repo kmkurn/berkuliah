@@ -3,7 +3,6 @@
 class StudentController extends Controller
 {
 	
-	public $layout='//layouts/column2new';
 	/**
 	 * @return array action filters
 	 */

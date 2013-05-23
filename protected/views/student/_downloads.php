@@ -3,10 +3,13 @@
 /* @var $data DownloadInfo */
 ?>
 
-
-	<span>
+<table class="table table-hover">
+	<tr>
+		<td>
 		<i class="icon icon-download-alt"></i> Mengunduh berkas 
 		<?php echo CHtml::link(CHtml::encode($data->note->title), array('note/view', 'id'=>$data->note->id)); ?> 
 		pada tanggal 
 		<?php echo CHtml::encode(Yii::app()->format->datetime($data->timestamp)); ?>
-	</span>
+		</td>
+	</tr>
+</table>
