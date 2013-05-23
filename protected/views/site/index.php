@@ -11,7 +11,7 @@ $this->pageTitle=Yii::app()->name;
 
       <tr>
         
-        <td width="800px">
+        <td width="600px">
           <div id="artikel"><div class="span12">
 
             <?php if ($model !== null): ?>
