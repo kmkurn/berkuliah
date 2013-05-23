@@ -7,6 +7,7 @@
 <div class="row-fluid">
 	<div class="span3">
 		<br />
+		<?php if (!Yii::app()->user->isGuest): ?>
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>' ', 
 			'htmlOptions' => array(
@@ -14,14 +15,16 @@
 			)
 		)); ?>
 		
-		<div id="foto">
-			<?php echo CHtml::image(
-				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
-					(Yii::app()->user->isGuest ? Yii::app()->params['defaultProfilePhoto'] : Yii::app()->user->profilePhoto),
-				Yii::app()->user->name, 
-				array('width' => 110)
-			); ?>
-		</div><!-- foto -->
+		<?php if (!Yii::app()->user->isGuest): ?>
+			<div id="foto">
+				<?php echo CHtml::image(
+					Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
+						(Yii::app()->user->isGuest ? Yii::app()->params['defaultProfilePhoto'] : Yii::app()->user->profilePhoto),
+					Yii::app()->user->name, 
+					array('width' => 110)
+				); ?>
+			</div><!-- foto -->
+		<?php endif; ?>
 		<?php $this->endWidget(); ?>
 		<hr style="width:200px" />
 		<div class="well sidebar-nav">
@@ -56,6 +59,7 @@
 			)); ?>
 		</div><!-- well sidebar-nav -->
 		<br />
+		<?php endif; ?>
 	</div><!-- span3 -->
 
 	<?php if (isset($this->breadcrumbs)): ?>
