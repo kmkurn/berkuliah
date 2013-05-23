@@ -7,6 +7,13 @@
 <div class="row-fluid">
 	<div class="span3">
 		<br />
+		<?php $this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>' ', 
+			'htmlOptions' => array(
+				'style' => 'width: 200px; padding:0'
+			)
+		)); ?>
+		
 		<div id="foto">
 			<?php echo CHtml::image(
 				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
@@ -15,6 +22,7 @@
 				array('width' => 110)
 			); ?>
 		</div><!-- foto -->
+		<?php $this->endWidget(); ?>
 		<br />
 		<div class="well sidebar-nav">
 			<?php
