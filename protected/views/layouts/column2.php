@@ -23,7 +23,7 @@
 			); ?>
 		</div><!-- foto -->
 		<?php $this->endWidget(); ?>
-		<br />
+		<hr style="width:200px" />
 		<div class="well sidebar-nav">
 			<?php
 
