@@ -3,7 +3,7 @@
 /* @var $data Testimonial */
 ?>
 
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<td>
 				<?php if (Yii::app()->user->getState('is_admin')) : ?>
