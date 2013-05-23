@@ -553,9 +553,17 @@ footer {
   float: left;
   margin-left: 0px;
   margin-top:10px;
-  max-width: 550px;
+  max-width: 560px;
+  min-width: 560px;
 }
 
+#teksArtikel{
+  position: relative;
+}
+
+#fotoArtikel{
+  position: center;
+}
 
 #foto{
   margin-left:43px;

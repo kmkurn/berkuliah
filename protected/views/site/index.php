@@ -12,14 +12,13 @@ $this->pageTitle=Yii::app()->name;
       <tr>
         
         <td width="600px">
-          <div id="artikel">
+          <div id="artikel"><div class="span12">
 
             <?php if ($model !== null): ?>
 
               <?php $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<strong>Pengguna Terbaik Bulan Ini: ' . $model->student->name . '</strong>',
               )); ?>
-
                 <?php $this->renderPartial('_testimonial', array('model'=>$model)); ?>
 
               <?php $this->endWidget();?>
@@ -33,7 +32,7 @@ $this->pageTitle=Yii::app()->name;
               <?php $this->endWidget();?>
 
             <?php endif; ?>
-
+</div>
           </div><!-- artikel -->
         </td>
 
