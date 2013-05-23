@@ -48,5 +48,6 @@ class BkListView extends CListView
 		);
 
 		$this->summaryText = 'Menampilkan {start}-{end} dari {count} ' . $this->itemName;
+		$this->emptyText = "Tidak ada {$this->itemName}.";
 	}
 }

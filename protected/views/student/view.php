@@ -2,6 +2,9 @@
 /* @var $this StudentController */
 /* @var $model Student */
 /* @var $downloads CArrayDataProvider */
+/* @var $reviews CArrayDataProvider */
+/* @var $rates CSqlDataProvider */
+/* @var $reports CSqlDataProvider */
 /* @var $uploads CArrayDataProvider */
 /* @var $badges CArrayDataProvider */
 /* @var $testimonials CArrayDataProvider */
@@ -30,7 +33,10 @@ $this->breadcrumbs=array(
 						'title'=>'Sejarah',
 						'view'=>'_history',
 						'data'=>array(
-							'dataProvider'=>$downloads,
+							'downloadsDataProvider'=>$downloads,
+							'reviewsDataProvider'=>$reviews,
+							'ratesDataProvider'=>$rates,
+							'reportsDataProvider'=>$reports,
 						),
 					),
 					'tab2'=>array(
