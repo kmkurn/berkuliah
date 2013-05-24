@@ -7,6 +7,7 @@ class StudentTest extends CDbTestCase
 	public $fixtures = array(
 		'students'=>'Student',
 		'faculties'=>'Faculty',
+		'badges'=>'Badge',
 	);
 
 	public $testFile = array(
@@ -108,5 +109,17 @@ class StudentTest extends CDbTestCase
 		$fakeStudent->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
 			$fakeFile['size'], $fakeFile['error']);
 		$this->assertFalse($fakeStudent->validate());
+	}
+
+	/**
+	 * Tests adding a badge.
+	 */
+	public function testAddBadge()
+	{
+		$badge = $this->badges('badge2');
+		$student = $this->students('student2');
+
+		$this->assertTrue($student->addBadge($badge));
+		$this->assertTrue($student->hasBadge($badge));
 	}
 }

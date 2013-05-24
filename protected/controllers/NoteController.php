@@ -3,6 +3,17 @@
 class NoteController extends Controller
 {
 	/**
+	 * Initializes this controller.
+	 */
+	public function init()
+	{
+		parent::init();
+
+		// attach a handler to onNewUpload event
+		$this->onNewUpload = array(new BadgeEventHandler(), 'newUpload');
+	}
+
+	/**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -142,6 +153,10 @@ class NoteController extends Controller
 					touch($filePath . $model->id . '.htm');
 					file_put_contents($filePath . $model->id . '.htm', $model->raw_file_text);
 				}
+
+				$event = new UploadEvent($this);
+				$event->student = $model->student;
+				$this->onNewUpload($event);
 
 				$message['text'] = 'Berkas berhasil diunggah.';
 				$message['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
@@ -303,5 +318,14 @@ class NoteController extends Controller
 		}
 
 		$filterChain->run();
+	}
+
+	/**
+	 * Raises a new upload event.
+	 * @param UploadEvent $event the event
+	 */
+	public function onNewUpload($event)
+	{
+		$this->raiseEvent('onNewUpload', $event);
 	}
 }

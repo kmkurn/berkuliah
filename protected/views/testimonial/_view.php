@@ -66,7 +66,7 @@
 							echo CHtml::link('<i class="icon-search icon-share icon-white"></i> Usulkan', array('propose', 'id' => $model->id), array(
 								'class' => 'btn btn-success',
 								'confirm' => 'Apakah Anda yakin ingin mengusulkan testimoni ini?',
-								));
+							));
 						}
 					}
 					

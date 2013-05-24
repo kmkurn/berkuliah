@@ -136,4 +136,37 @@ class Student extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 * Checks whether this student has the given badge.
+	 * @param  Badge $badge the badge
+	 * @return boolean whether this student has the badge
+	 */
+	public function hasBadge($badge)
+	{
+		$badges = $this->badges;
+		foreach ($badges as $val)
+		{
+			if ($val->id === $badge->id)
+				return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Adds a badge to a student.
+	 * @param Badge $badge the badge to be added
+	 * @return boolean whether the addition is successful
+	 */
+	public function addBadge($badge)
+	{
+		$res = Yii::app()->db->createCommand()
+			->insert('bk_student_badge', array(
+				'student_id'=>$this->id,
+				'badge_id'=>$badge->id,
+			));
+
+		return $res > 0;
+	}
 }
