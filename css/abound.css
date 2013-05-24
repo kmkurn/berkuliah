@@ -563,6 +563,11 @@ footer {
 
 #fotoArtikel{
   position: center;
+  float: left;
+  margin-right: 10px;
+  margin-top: 12px;
+  max-width:150px;
+  max-height: 200px;
 }
 
 .penulisArtikel{

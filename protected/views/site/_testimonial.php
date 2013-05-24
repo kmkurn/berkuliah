@@ -7,10 +7,10 @@
 			<tbody class="penulisArtikel">
 				<tr>
 				<td>
-				<div id="fotoArtikel">
+				<div id="fotoArtikel"> 
 					<?php
 					$photo = ($model->student->photo === null) ? 'user.png' : $model->student->photo;
-					echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, $model->student->name, array('width'=>'300','align'=>'left',));
+					echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, $model->student->name, array('max-width'=>'150','align'=>'left',));
 					?>
 				</div>
 					<p><?php echo $model->content; ?></p>
