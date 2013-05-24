@@ -14,6 +14,8 @@ if (Yii::app()->user->hasFlash('badge'))
 	Yii::app()->clientScript->registerScript('badge', '$("#badge-modal").modal("show");');
 ?>
 
+
+
 <?php
 
 if (Yii::app()->user->hasShareMessages())
@@ -72,17 +74,23 @@ if (Yii::app()->user->hasShareMessages())
 		<br/>
 
 		<?php $idx = 0; ?>
-		<?php foreach (Yii::app()->user->getShareMessages() as $msg): ?>
+		<?php foreach (Yii::app()->user->getShareMessages() as $msg):
+			if ($msg['type'] != 'general')
+			{
+				$idx++;
+				continue;
+			}
+		?>
 		<div class="alert alert-info">
-			<?php echo $msg['text']; ?> 
-			<?php echo Chtml::link('<i class="icon icon-thumbs-up icon-white"></i> Ceritakan via Facebook', '#', array(
+			<?php echo $msg['text'] . ' Ceritakan via: '; ?> 
+			<?php echo Chtml::link('<i class="icon icon-thumbs-up icon-white"></i> Facebook', '#', array(
 				'class' => 'btn btn-info btn-small',
-				'style' => 'float: right',
+				//'style' => 'float: right',
 				'id' => 'fb_share' . $idx,
 				)); ?>
-			<?php echo Chtml::link('<i class="icon icon-edit icon-white"></i> Ceritakan via Twitter', '#', array(
+			<?php echo Chtml::link('<i class="icon icon-edit icon-white"></i> Twitter', '#', array(
 				'class' => 'btn btn-info btn-small',
-				'style' => 'float: right; margin-right: 10px',
+				//'style' => 'float: right; margin-right: 10px',
 				'id' => 'twitter_share' . $idx,
 				'data-via' => 'twitterapi',
 				'data-lang' => 'en',
