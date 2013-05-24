@@ -52,7 +52,7 @@ class BkWebUser extends CWebUser
 		$idx = 0;
 		while ($this->hasFlash('share_message' . $idx))
 		{
-			$messages[] = $this->getFlash('share_message' . $idx);
+			$messages[] = $this->getFlash('share_message' . $idx, NULL, false);
 			$idx++;
 		}
 

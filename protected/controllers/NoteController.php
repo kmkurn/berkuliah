@@ -159,6 +159,7 @@ class NoteController extends Controller
 				$this->onNewUpload($event);
 
 				$message['text'] = 'Berkas berhasil diunggah.';
+				$message['type'] = 'general';
 				$message['default_text'] = 'Saya baru saja mengunggah ' . $model->title . ' pada BerKuliah!';
 				$message['name'] = $model->title;
 				$message['link'] = array('note/view', 'id' => $model->id);

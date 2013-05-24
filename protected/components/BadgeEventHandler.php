@@ -30,6 +30,17 @@ class BadgeEventHandler
 		if (!$student->hasBadge($badge) && count($student->notes) === $count)
 		{
 			$student->addBadge($badge);
+
+			$message['text'] = '';
+			$message['type'] = 'badge';
+			$message['default_text'] = 'Saya baru saja mendapatkan lencana ' . $badge->name . ' pada BerKuliah!';
+			$message['name'] = $badge->name;
+			$message['link'] = array('site/index');
+			$message['picture'] = Yii::app()->params['badgeIconsDir'] . $badge->location;
+			$message['caption'] = '10 Unggahan';
+			$message['description'] = 'Saya telah mengunggah 10 buah catatan pada BerKuliah';
+			Yii::app()->user->addShareMessage($message);
+
 			Yii::app()->user->setFlash('badge', $badge);
 
 			return true;
