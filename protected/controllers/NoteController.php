@@ -22,9 +22,9 @@ class NoteController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for viewing note details
-			'checkNoteOwner + edit, delete', // check user before editing or deleting a note
-			'checkReported + report', // check user before reporting a note
-			'ajaxOnly + review, rate',
+			'checkNoteOwner + update', // check user before updating a note
+			'ajaxOnly + review, rate, updateCourses',
+			'postOnly + delete, report',
 		);
 	}
 
