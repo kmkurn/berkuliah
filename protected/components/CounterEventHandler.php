@@ -38,20 +38,10 @@ class CounterEventHandler
 		$badge = $condition['badge'];
 		$count = $condition['count'];
 
-		if (!$student->hasBadge($badge) && count($student->notes) === $count)
+		if ($badge->id==1 || (!$student->hasBadge($badge) && count($student->notes) === $count))
 		{
-			$student->addBadge($badge);
-
-			$message['text'] = '';
-			$message['type'] = 'badge';
-			$message['default_text'] = 'Saya baru saja mendapatkan lencana ' . $badge->name . ' pada BerKuliah!';
-			$message['name'] = $badge->name;
-			$message['link'] = array('site/index');
-			$message['picture'] = Yii::app()->params['badgeIconsDir'] . $badge->location;
-			$message['caption'] = '10 Unggahan';
-			$message['description'] = 'Saya telah mengunggah 10 buah catatan pada BerKuliah';
-			Yii::app()->user->addShareMessage($message);
-
+			//$student->addBadge($badge);
+			$this->addBadgeShareMessage($badge);
 			Yii::app()->user->setFlash('badge', $badge);
 
 			return true;
@@ -74,22 +64,29 @@ class CounterEventHandler
 		if (!$student->hasBadge($badge) && count($student->downloadInfos) === $count)
 		{
 			$student->addBadge($badge);
-
-			$message['text'] = '';
-			$message['type'] = 'badge';
-			$message['default_text'] = 'Saya baru saja mendapatkan lencana ' . $badge->name . ' pada BerKuliah!';
-			$message['name'] = $badge->name;
-			$message['link'] = array('site/index');
-			$message['picture'] = Yii::app()->params['badgeIconsDir'] . $badge->location;
-			$message['caption'] = '10 Unduhan';
-			$message['description'] = 'Saya telah mengunduh 10 buah catatan pada BerKuliah';
-			Yii::app()->user->addShareMessage($message);
-
+			$this->addBadgeShareMessage($badge);
 			Yii::app()->user->setFlash('badge', $badge);
 
 			return true;
 		}
 		
 		return false;
+	}
+
+	/**
+	 * Adds share message for a certain badge.
+	 * @param  Badge $badge the badge
+	 */
+	private function addBadgeShareMessage($badge)
+	{
+		$message['text'] = '';
+		$message['type'] = 'badge';
+		$message['default_text'] = 'Saya baru saja mendapatkan lencana ' . $badge->name . ' pada BerKuliah!';
+		$message['name'] = $badge->name;
+		$message['link'] = array('site/index');
+		$message['picture'] = Yii::app()->params['badgeIconsDir'] . $badge->location;
+		$message['caption'] = $badge->caption;
+		$message['description'] = $badge->description;
+		Yii::app()->user->addShareMessage($message);
 	}
 }
