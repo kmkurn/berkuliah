@@ -43,7 +43,7 @@ class Testimonial extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('content', 'required'),
+			array('content', 'required', 'message'=>'{attribute} tidak boleh kosong.'),
 			array('status, timestamp, student_id', 'safe'),
 			array('id, content, status, timestamp, student_id', 'safe', 'on'=>'search'),
 		);

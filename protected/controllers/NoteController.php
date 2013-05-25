@@ -222,14 +222,17 @@ class NoteController extends Controller
 	 */
 	public function actionReview()
 	{
-		$noteId = $_POST['note_id'];
-		$model = $this->loadModel($noteId);
 		$review = new Review();
 		$review->attributes = $_POST['Review'];
+		if ($review->validate())
+		{
+			$noteId = $_POST['note_id'];
+			$model = $this->loadModel($noteId);
 
-		$model->addReview($review, Yii::app()->user->id);
+			$model->addReview($review, Yii::app()->user->id);
 
-		echo $this->renderPartial('_review', array('data'=>$review), true);
+			echo $this->renderPartial('_review', array('data'=>$review), true);
+		}
 	}
 
 
