@@ -1,7 +1,7 @@
 {
 	"require": {
-		"yiisoft/yii": ">=1.1",
-		"phpunit/php-invoker": "*",
-		"phpunit/phpunit-selenium": ">=1.2"
+		"phpunit/php-invoker": "dev-master",
+		"phpunit/phpunit-selenium": "dev-master",
+		"yiisoft/yii": "dev-master"
 	}
 }
