@@ -82,19 +82,22 @@ if (Yii::app()->user->hasShareMessages())
 			}
 		?>
 		<div class="alert alert-info">
-			<?php echo $msg['text'] . ' Ceritakan via: '; ?> 
-			<?php echo Chtml::link('<i class="icon icon-thumbs-up icon-white"></i> Facebook', '#', array(
-				'class' => 'btn btn-info btn-small',
-				//'style' => 'float: right',
-				'id' => 'fb_share' . $idx,
-				)); ?>
-			<?php echo Chtml::link('<i class="icon icon-edit icon-white"></i> Twitter', '#', array(
-				'class' => 'btn btn-info btn-small',
-				//'style' => 'float: right; margin-right: 10px',
-				'id' => 'twitter_share' . $idx,
-				'data-via' => 'twitterapi',
-				'data-lang' => 'en',
-				)); ?>
+			<?php echo $msg['text'] . '&nbsp; &nbsp;'; ?> 
+			<?php echo CHtml::link(
+				CHtml::image(Yii::app()->request->baseUrl . '/images/facebook.png'),
+				'#',
+				array('id' => 'fb_share' . $idx)
+			); ?>
+
+			<?php echo CHtml::link(
+				CHtml::image(Yii::app()->request->baseUrl . '/images/twitter.png'),
+				'#',
+				array(
+					'id' => 'twitter_share' . $idx,
+					'data-via' => 'twitterapi',
+					'data-lang' => 'en',
+				)
+			); ?>
 		</div>
 
 		<?php Yii::app()->clientScript->registerScript('fb_share' . $idx, Yii::app()->fbApi->getShareScript('fb_share' . $idx, $msg)); ?>

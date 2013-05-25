@@ -64,7 +64,7 @@ class FacebookApi extends CComponent
 			"		method: 'feed',\n" .
 			"		name: '$message[name]',\n" .
 			"		link: '" . Yii::app()->request->hostInfo . CHtml::normalizeUrl($message['link']) . "',\n" .
-			"		picture: '" . Yii::app()->request->hostInfo . Yii::app()->baseUrl . "/images/" . $message['picture'] . "',\n" .
+			"		picture: '" . Yii::app()->request->hostInfo . $message['picture'] . "',\n" .
 			"		caption: '$message[caption]',\n" .
 			"		description: '$message[description]',\n" .
 			"		message: '$message[default_text]'\n" .
