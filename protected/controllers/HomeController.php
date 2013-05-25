@@ -83,8 +83,7 @@ class HomeController extends Controller
 				unlink(Yii::app()->params['notesDir'] . $model->id . '.' . $model->extension);
 			}
 
-			Yii::app()->user->setFlash('message', 'Berkas-berkas berhasil dihapus.');
-			Yii::app()->user->setFlash('messageType', 'success');
+			Yii::app()->user->setNotification('success', 'Berkas-berkas berhasil dihapus.');
 		}
 		$this->redirect(array('index'));
 	}

@@ -23,8 +23,6 @@
 		),
 	)); 
 
-	//echo var_dump($form->clientOptions); die(); 
-
 	?>
 
 	<table class='table table-hover'>

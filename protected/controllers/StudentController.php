@@ -71,13 +71,11 @@ class StudentController extends Controller
 				$model->save(false);
 
 				Yii::app()->user->setName($model->name);
-				Yii::app()->user->setFlash('message', 'Profil berhasil diubah.');
-				Yii::app()->user->setFlash('messageType', 'success');
+				Yii::app()->user->setNotification('success', 'Profil berhasil diubah.');
 			}
 			else
 			{
-				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
-				Yii::app()->user->setFlash('messageType', 'danger');
+				Yii::app()->user->setNotification('danger', 'Terdapat kesalahan pengisian.');
 			}
 		}
 
