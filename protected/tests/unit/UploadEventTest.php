@@ -9,7 +9,7 @@ class UploadEventTest extends CTestCase
 	{
 		$event = new UploadEvent();
 		$mappings = $event->getMappings();
-		$this->assertEquals(3, count($mappings));
+		$this->assertEquals(4, count($mappings));
 		$this->assertTrue(in_array(UploadEvent::BRONZE_COUNT, $mappings));
 		$this->assertTrue(in_array(UploadEvent::SILVER_COUNT, $mappings));
 		$this->assertTrue(in_array(UploadEvent::GOLD_COUNT, $mappings));

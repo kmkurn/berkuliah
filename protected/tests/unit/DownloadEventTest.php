@@ -9,7 +9,7 @@ class DownloadEventTest extends CTestCase
 	{
 		$event = new DownloadEvent();
 		$mappings = $event->getMappings();
-		$this->assertEquals(3, count($mappings));
+		$this->assertEquals(4, count($mappings));
 		$this->assertTrue(in_array(DownloadEvent::BRONZE_COUNT, $mappings));
 		$this->assertTrue(in_array(DownloadEvent::SILVER_COUNT, $mappings));
 		$this->assertTrue(in_array(DownloadEvent::GOLD_COUNT, $mappings));
