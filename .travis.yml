@@ -5,8 +5,8 @@ php:
 - "5.3"
 
 before_script:
-- install-dependencies.sh
-- mysql-schema.sh
+- ./install-dependencies.sh
+- ./mysql-schema.sh
 - cd protected/tests/
 
 script: phpunit --configuration travis/phpunit.xml --coverage-text unit/
