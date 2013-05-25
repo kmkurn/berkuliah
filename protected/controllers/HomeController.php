@@ -80,6 +80,7 @@ class HomeController extends Controller
 			{
 				$model = Note::model()->findByPk($id);
 				$model->delete();
+				unlink(Yii::app()->params['notesDir'] . $model->id . '.' . $model->extension);
 			}
 
 			Yii::app()->user->setFlash('message', 'Berkas-berkas berhasil dihapus.');
