@@ -172,7 +172,7 @@ class TestimonialController extends Controller
 	}
 
 	/**
-	 * A filter to assure only admin can grant testimonial.
+	 * A filter to ensure only admin can grant testimonial.
 	 * @param  CFilterChain $filterChain the filter chain
 	 */
 	public function filterCheckAdmin($filterChain)
@@ -184,7 +184,7 @@ class TestimonialController extends Controller
 	}
 
 	/**
-	 * A filter to assure only new testimonial can be updated.
+	 * A filter to ensure only new testimonial can be updated.
 	 * @param  CFilterChain $filterChain the filter chain
 	 */
 	public function filterCheckNewStatus($filterChain)
@@ -204,7 +204,7 @@ class TestimonialController extends Controller
 	}
 
 	/**
-	 * A filter to assure only pending testimonial can be approved or rejected.
+	 * A filter to ensure only pending testimonial can be approved or rejected.
 	 * @param  CFilterChain $filterChain the filter chain
 	 */
 	public function filterCheckPendingStatus($filterChain)

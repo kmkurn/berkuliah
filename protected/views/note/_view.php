@@ -86,25 +86,28 @@
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
 						<?php echo CHtml::link('<i class="icon-search icon-pencil icon-white"></i> Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
 					<?php endif; ?>
-					<?php if ($model->student_id === Yii::app()->user->id): ?>
-						<?php echo CHtml::link('<i class="icon-search icon-remove icon-white"></i> Hapus',
-							array('delete', 'id' => $model->id),
-							array('class' => 'btn btn-danger',
+					<?php if (Yii::app()->user->isAdmin || $model->student_id === Yii::app()->user->id): ?>
+						<?php echo CHtml::link('<i class="icon-search icon-remove icon-white"></i> Hapus', '#', array(
+							'class' => 'btn btn-danger',
 							'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?',
-							'enabled' => false,
+							'submit' => array('delete', 'id'=>$model->id),
 						)); ?>
 					<?php endif; ?>
-					<?php if ( ! $model->isReportedBy(Yii::app()->user->id)): ?>
-						<?php echo CHtml::link('<i class="icon-search icon-flag icon-white"></i> Laporkan',
-							array('report', 'id' => $model->id),
-							array('class' => 'btn btn-warning',
+					<?php if ($model->student_id !== Yii::app()->user->id): ?>
+
+						<?php if ( ! $model->isReportedBy(Yii::app()->user->id)): ?>
+							<?php echo CHtml::link('<i class="icon-search icon-flag icon-white"></i> Laporkan', '#', array(
+								'class' => 'btn btn-warning',
 								'confirm' => 'Apakah Anda yakin ingin melaporkan berkas ini?',
-						)); ?>
-					<?php else : ?>
-						<?php echo CHtml::link('<i class="icon-search icon-flag icon-white"></i> Dilaporkan',
-							'#',
-							array('class' => 'btn btn-warning disabled',
-						)); ?>
+								'submit' => array('report', 'id'=>$model->id),
+							)); ?>
+						<?php else : ?>
+							<?php echo CHtml::link('<i class="icon-search icon-flag icon-white"></i> Dilaporkan',
+								'#',
+								array('class' => 'btn btn-warning disabled',
+							)); ?>
+						<?php endif; ?>
+
 					<?php endif; ?>
 				</td>
 			</tr>
