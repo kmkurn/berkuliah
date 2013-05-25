@@ -4,6 +4,10 @@ php:
 - "5.4"
 - "5.3"
 
-before_script: cd protected/tests/
+before_script:
+- mysql -e "CREATE DATABASE berkuliah_test;"
+- mysql -u root berkuliah_test < protected/data/berkuliah.sql
+- git clone https://github.com/yiisoft/yii.git
+- cd protected/tests/
 
-script: phpunit --coverage-text unit/
+script: phpunit --configuration travis-phpunit.xml --coverage-text unit/
