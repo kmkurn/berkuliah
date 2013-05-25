@@ -65,5 +65,12 @@ $this->pageTitle=Yii::app()->name;
       </tr>
 
     </table>
+    <div id="twitter_t"></div>
+    <div id="twitter_m">
+       <div id="twitter_container">
+           <ul id="twitter_update_list"></ul>
+       </div>
+    </div>
+    <div id="twitter_b">
   </div><!-- span9 -->
 </div><!-- row-fluid -->
