@@ -9,8 +9,10 @@
 			<tr>
 				<td width="150px">
 				<?php
+				$baseUrl = Yii::app()->baseUrl;
+				$photosDir = Yii::app()->params['photosDir'];
 				$photo = ($data->student->photo === null) ? 'user.png' : $data->student->photo;
-				echo CHtml::image(Yii::app()->baseUrl . '/photos/' . $photo, $data->student->name, array('width'=>60));
+				echo CHtml::image($baseUrl . '/' . $photosDir . $photo, $data->student->name, array('width'=>60));
 				?>
 				</td>
 
