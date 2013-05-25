@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 20, 2013 at 05:52 PM
+-- Generation Time: May 25, 2013 at 10:47 AM
 -- Server version: 5.5.30-MariaDB-log
 -- PHP Version: 5.4.15
 
@@ -29,9 +29,11 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `bk_badge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
+  `caption` varchar(128) NOT NULL,
+  `description` text NOT NULL,
   `location` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -45,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `bk_course` (
   `faculty_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=112 ;
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `bk_download_info` (
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`,`note_id`),
   KEY `note_id` (`note_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -74,13 +76,6 @@ CREATE TABLE IF NOT EXISTS `bk_faculty` (
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `bk_faculty`
---
-
-INSERT INTO `bk_faculty` (`id`, `name`) VALUES
-(1, 'Fakultas Ilmu Komputer');
 
 -- --------------------------------------------------------
 
@@ -100,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `bk_note` (
   PRIMARY KEY (`id`),
   KEY `course_id` (`course_id`),
   KEY `upload_user_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 -- --------------------------------------------------------
 
@@ -165,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `bk_student` (
   `faculty_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `faculty_id` (`faculty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -194,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `bk_testimonial` (
   `student_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Constraints for dumped tables
