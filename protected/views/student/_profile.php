@@ -21,7 +21,7 @@
 		</tr>
 
 		<tr>
-			<td>
+			<td class="firstColumnProfile">
 				<i class="icon icon-tags"></i> <?php echo $model->getAttributeLabel('username'); ?>
 			</td>
 			<td>:</td>

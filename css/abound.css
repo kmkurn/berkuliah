@@ -817,6 +817,18 @@ text-decoration: none;
   text-decoration: none;
 }
 
+.firstColumnProfile {
+  width: 120px;
+}
+
+.firstColumnTestimonial {
+  width: 120px;
+}
+
+.secondColumnTestimonial {
+  width: 20px;
+}
+
 #twitter_t {
   width: 445px;
   height: 34px;

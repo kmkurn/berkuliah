@@ -15,8 +15,8 @@
 	<table class="table table-hover">
 		<tbody>
 			<tr>
-				<td><i class="icon icon-user"></i> <?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?></td>
-				<td>:</td>
+				<td class="firstColumnTestimonial"><i class="icon icon-user"></i> <?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?></td>
+				<td class="secondColumnTestimonial">:</td>
 				<td><span class="label label-info studentUsername"><?php echo CHtml::link(CHtml::encode($model->student->username), array('student/view', 'id'=>$model->student->id)); ?></span></td>
 			</tr>
 			<tr>
