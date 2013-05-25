@@ -85,7 +85,7 @@ class Note extends CActiveRecord
 	 */
 	public function clientValidateCourse()
 	{
-		$js = "if (value == 0 && $(\"#Note_new_course_name\").val() == \"\") messages.push('Mata Kuliah tidak boleh kosong.');";
+		$js = 'if (value == 0 && $("#Note_new_course_name").val() == "") messages.push("Mata Kuliah tidak boleh kosong.");';
 		return $js;
 	}
 
