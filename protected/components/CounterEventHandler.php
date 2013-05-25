@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Event handler for badges.
+ * Event handler for {@link BkCounterEvent}.
+ *
+ * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
  */
 class CounterEventHandler
 {
