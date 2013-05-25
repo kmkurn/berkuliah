@@ -108,7 +108,7 @@
 		<tr>
 			<td></td>
 			<td>
-				<?php echo CHtml::button('Unggah', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
+				<?php echo CHtml::tag('button', array('type' => 'submit', 'class' => 'btn btn-primary'), '<i class="icon icon-upload icon-white"></i> Unggah'); ?>
 				<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 			</td>
 		</tr>
