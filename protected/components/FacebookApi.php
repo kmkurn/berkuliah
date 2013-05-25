@@ -2,6 +2,8 @@
 
 /**
  * TwitterApi respresents Facebook API.
+ *
+ * @author Ashar Fuadi <fushar@gmail.com>
  */
 class FacebookApi extends CComponent
 {

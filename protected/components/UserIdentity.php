@@ -46,11 +46,19 @@ class UserIdentity extends CBaseUserIdentity
 		return true;
 	}
 
+	/**
+	 * Retrieves the unique identifier of the user. In this case, its ID.
+	 * @return integer the user id
+	 */
 	public function getId()
 	{
 		return $this->id;
 	}
 
+	/**
+	 * Retrieves the display name of the user.
+	 * @return string the display name
+	 */
 	public function getName()
 	{
 		return $this->name;

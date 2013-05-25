@@ -1,15 +1,9 @@
 <?php
-/**
- * BkTableView class file.
- *
- * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
- */
 
 /**
  * BkTableView displays a list of data items in a grid-like view.
  * 
  * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
- * @package ext.berkuliah
  */
 class BkTableView extends BkListView
 {

@@ -2,6 +2,8 @@
 
 /**
  * TwitterApi respresents Twitter API.
+ *
+ * @author Ashar Fuadi <fushar@gmail.com>
  */
 class TwitterApi extends CComponent
 {

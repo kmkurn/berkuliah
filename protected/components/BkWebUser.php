@@ -2,6 +2,8 @@
 
 /**
  * This class represents the persistent state for a user of BerKuliah.
+ *
+ * @author Ashar Fuadi <fushar@gmail.com>
  */
 class BkWebUser extends CWebUser
 {
