@@ -1,0 +1,7 @@
+{
+	"require": {
+		"yiisoft/yii": ">=1.1",
+		"phpunit/php-invoker": "*",
+		"phpunit/phpunit-selenium": ">=1.2"
+	}
+}
