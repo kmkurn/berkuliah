@@ -10,7 +10,9 @@ class NoteController extends Controller
 		parent::init();
 
 		// attach a handler to onNewUpload event
-		$this->onNewUpload = array(new BadgeEventHandler(), 'newUpload');
+		$this->onNewUpload = array(new CounterEventHandler(), 'newUpload');
+		// attach a handler to onNewDownload event
+		$this->onNewDownload = array(new CounterEventHandler(), 'newDownload');
 	}
 
 	/**
@@ -191,6 +193,10 @@ class NoteController extends Controller
 		$model = $this->loadModel($id);
 		$model->downloadedBy(Yii::app()->user->id);
 
+		$event = new DownloadEvent($this);
+		$event->student = Student::model()->findByPk(Yii::app()->user->id);
+		$this->onNewDownload($event);
+
 		$fileName = $model->id . '.' . $model->extension;
 		$filePath = Yii::app()->params['notesDir'] . $fileName;
 		Yii::app()->request->sendFile($model->title . '.' . $model->extension, file_get_contents($filePath));
@@ -327,5 +333,14 @@ class NoteController extends Controller
 	public function onNewUpload($event)
 	{
 		$this->raiseEvent('onNewUpload', $event);
+	}
+
+	/**
+	 * Raises a new download event.
+	 * @param DownloadEvent $event the event
+	 */
+	public function onNewDownload($event)
+	{
+		$this->raiseEvent('onNewDownload', $event);
 	}
 }
