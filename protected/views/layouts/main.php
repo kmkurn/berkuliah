@@ -23,6 +23,7 @@
 
         <?php
         $cs->registerScriptFile($baseUrl.'/js/bootstrap.js');
+        $cs->registerScriptFile($baseUrl.'/js/to-top.js');
         ?>
   </head>
   <body>

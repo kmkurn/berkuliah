@@ -21,6 +21,8 @@ $this->breadcrumbs=array(
 		<?php $this->renderPartial('_reviews', array('model'=>$model,'dataProvider'=>$dataProvider)); ?>
 
 		<?php $this->renderPartial('_reviewForm', array('note'=>$model,'model'=>$review)); ?>
-
+	<p id="back-top">
+		<a href="#top"><span></span>Kembali ke atas</a>
+	</p>
 	</div><!-- span9 -->
 </div><!-- row-fluid -->
