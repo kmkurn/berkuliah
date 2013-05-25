@@ -26,6 +26,6 @@ return array(
 		'course_id'=>3,
 		'student_id'=>2,
 		'upload_timestamp'=>date('Y-m-d H:i:s'),
-		'edit_timestamp'=>null,
+		'edit_timestamp'=>date('Y-m-d H:i:s'),
 	),
 );

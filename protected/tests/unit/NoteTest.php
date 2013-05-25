@@ -97,6 +97,7 @@ class NoteTest extends CDbTestCase
 		$this->assertEquals($note->title, $newNote->title);
 		$this->assertNotNull($newNote->student_id);
 		$this->assertNotEquals('0000-00-00 00:00:00', $newNote->upload_timestamp);
+		$this->assertNotEquals('0000-00-00 00:00:00', $newNote->edit_timestamp);
 	}
 
 	/**
