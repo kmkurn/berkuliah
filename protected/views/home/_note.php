@@ -16,8 +16,8 @@ $baseUrl = Yii::app()->request->baseUrl;
 <span class="noteTitle"><?php echo CHtml::link(CHtml::encode($data->title), array('note/view', 'id'=>$data->id)); ?></span>
 <br />
 
-<i class="icon icon-user"></i> <?php echo CHtml::link(CHtml::encode($data->student->name),
-	array('student/view', 'id'=>$data->student->id)); ?>
+<i class="icon icon-user"></i> <span class="label label-info studentUsername"><?php echo CHtml::link(CHtml::encode($data->student->username),
+	array('student/view', 'id'=>$data->student->id)); ?></span>
 <br />
 
 <i class="icon icon-briefcase"></i> <?php echo CHtml::encode($data->course->faculty->name); ?>
