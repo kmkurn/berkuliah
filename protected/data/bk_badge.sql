@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- Dumping data for table `bk_badge`
 --
 
-INSERT INTO `bk_badge` (`id`, `name`, `caption`, `description`, `location`) VALUES
+INSERT INTO `bk_badge` (`name`, `caption`, `description`, `location`) VALUES
 ('First Upload', 'Unggahan Perdana', 'Yeeaay! Selamat, Anda telah berhasil mengunggah berkas kuliah untuk pertama kalinya di Berkuliah! Teruslah mengunggah berkas kuliah Anda karena setiap berkas kuliah Anda akan sangat membantu kelancaran perkuliahan di Fasilkom UI.', 'firstUpload.png'),
 ('Bronze Upload', 'Unggahan Kelima', 'Wow keren parah! Anda telah berhasil mengunggah untuk kelima kalinya di Berkuliah! Teruskan semangatmu untuk membantu perkuliahan di Fasilkom kita tercinta dengan mengunggah setiap berkas kuliah Anda, karena berkas Anda sangat berarti :")', 'bronzeUpload.png'),
 ('Silver Upload', 'Unggahan Ke-20', 'Anda telah berhasil menggunggah berkas untuk ke-20 kalinya di Berkuliah! Kami percaya bahwa tidak ada niat baik yang berakhir sia-sia di muka bumi ini. Unggahan Anda adalah salah satu niat baik yang telah terwujud menjadi sebuah perbuatan mulia. Teruslah semangat untuk mengunggah di Berkuliah!', 'silverUpload.png'),
