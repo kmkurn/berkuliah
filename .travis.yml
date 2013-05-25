@@ -1,0 +1,9 @@
+language: php
+
+php:
+- "5.4"
+- "5.3"
+
+before_script: cd protected/tests/
+
+script: phpunit --coverage-text unit/
