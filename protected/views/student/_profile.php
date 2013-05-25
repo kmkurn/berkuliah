@@ -49,7 +49,7 @@
 				<i class="icon icon-pencil"></i> <?php echo $model->getAttributeLabel('bio'); ?>
 			</td>
 			<td>:</td>
-			<td><?php echo Yii::app()->format->ntext($model->bio); ?></td>
+			<td><?php echo Yii::app()->format->ntext(wordwrap($model->bio, 75, "\n", true)); ?></td>
 		</tr>
 
 		<tr>
