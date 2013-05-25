@@ -25,7 +25,7 @@
 	<table class='table table-hover'>
 
 			<tr>
-				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'student_id'); ?></td>
+				<td width="270"><i class="icon icon-tag"></i> <?php echo $form->labelEx($model, 'student_id'); ?> *</td>
 				<td>
 					<?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 						'model'=>$model,
