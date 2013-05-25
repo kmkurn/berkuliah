@@ -8,6 +8,7 @@ before_script:
 - mysql -e "CREATE DATABASE berkuliah_test;"
 - mysql -u root berkuliah_test < protected/data/berkuliah.sql
 - git clone https://github.com/yiisoft/yii.git
+- pear config-set auto_discover 1
 - pear install phpunit/PHPUnit_Selenium
 - pear install phpunit/PHP_Invoker
 - cd protected/tests/
