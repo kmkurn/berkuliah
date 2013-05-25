@@ -75,7 +75,7 @@ return array(
 		),
 		'twitterApi'=>array(
 			'class' => 'TwitterApi',
-			'username' => 'berkuliah',
+			'username' => 'BerKuliah',
 		),
 		'format'=>array(
 			'class'=>'BkFormatter',
