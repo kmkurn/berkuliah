@@ -18,7 +18,7 @@
 				<i class="icon icon-book"></i> <?php echo CHtml::encode($data->course->name); ?>
 				<br />
 
-				<i class="icon icon-time"></i> <?php echo CHtml::encode(Yii::app()->format->datetime($data->upload_timestamp)); ?>
+				<i class="icon icon-time"></i> <?php echo Yii::app()->format->datetime($data->upload_timestamp); ?>
 				<br />
 			</td>
 		</tr>

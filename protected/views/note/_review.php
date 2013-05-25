@@ -16,7 +16,7 @@
 
 				<td width="800px">
 					<blockquote class="pull-left">
-						<p><?php echo CHtml::encode($data->content); ?></p>
+						<p><?php echo Yii::app()->format->ntext($data->content); ?></p>
 					</blockquote>
 					<br />
 					<blockquote class="pull-right">
