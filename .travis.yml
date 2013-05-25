@@ -5,7 +5,10 @@ php:
 - "5.3"
 
 before_script:
-- composer install
+- git clone https://github.com/yiisoft/yii.git
+- pear channel-discover pear.phpunit.de
+- pear install phpunit/PHP_Invoker
+- pear install phpunit/PHPUnit_Selenium
 - mysql -e "CREATE DATABASE berkuliah_test;"
 - mysql -u root berkuliah_test < protected/data/berkuliah.sql
 - cd protected/tests/
