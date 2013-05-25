@@ -82,6 +82,7 @@ if (Yii::app()->user->hasShareMessages())
 			}
 		?>
 		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<?php echo $msg['text'] . '&nbsp; &nbsp;'; ?> 
 			<?php echo CHtml::link(
 				CHtml::image(Yii::app()->request->baseUrl . '/images/facebook.png'),
