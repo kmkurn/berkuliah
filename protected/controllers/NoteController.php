@@ -251,22 +251,15 @@ class NoteController extends Controller
 	}
 
 	/**
-	 * Performs update courses in dropdown list.
+	 * AJAX response performing update courses in dropdown list.
 	 */
 	public function actionUpdateCourses()
 	{
-		if (isset($_POST['faculty_id']))
-		{
-			$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
-			
-			echo CHtml::dropDownList('Note[course_id]', '',
-				CHtml::listData($courses, 'id', 'name'), 
-				   array('prompt' => 'Pilih mata kuliah'));
-		}
-		else
-		{
-			throw new CHttpException(400, 'Your request is invalid.');
-		}
+		$courses = Course::model()->findAll('faculty_id=:X', array(':X' => (int) $_POST['faculty_id']));
+
+		echo CHtml::dropDownList('Note[course_id]', '',
+			CHtml::listData($courses, 'id', 'name'),
+			   array('prompt' => 'Pilih mata kuliah'));
 	}
 
 	/**
@@ -286,7 +279,7 @@ class NoteController extends Controller
 	}
 
 	/**
-	 * A filter to assure only the note owner can edit or delete the note.
+	 * A filter to ensure only the note owner can update the note.
 	 * @param  CFilterChain $filterChain the filter chain
 	 */
 	public function filterCheckNoteOwner($filterChain)
@@ -297,25 +290,6 @@ class NoteController extends Controller
 			if ($model->student_id !== Yii::app()->user->id)
 			{
 				throw new CHttpException(403, 'Berkas ini bukan milik Anda.');
-			}
-		}
-
-		$filterChain->run();
-	}
-
-
-	/**
-	 * A filter to assure a student only report a note once.
-	 * @param  CFilterChain $filterChain the filter chain
-	 */
-	public function filterCheckReported($filterChain)
-	{
-		if (isset($_GET['id']))
-		{
-			$model = $this->loadModel($_GET['id']);
-			if ($model->isReportedBy(Yii::app()->user->id))
-			{
-				throw new CHttpException(403, 'Anda tidak dapat melaporkan berkas lebih dari sekali.');
 			}
 		}
 
