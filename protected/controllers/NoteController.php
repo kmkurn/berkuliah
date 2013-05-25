@@ -84,14 +84,12 @@ class NoteController extends Controller
 			$model->attributes = $_POST['Note'];
 			if ($model->save())
 			{
-				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
-				Yii::app()->user->setFlash('messageType', 'success');
+				Yii::app()->user->setNotification('success', 'Perubahan berhasil disimpan.');
 				$this->redirect(array('view', 'id' => $model->id));
 			}
 			else
 			{
-				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
-				Yii::app()->user->setFlash('messageType', 'danger');
+				Yii::app()->user->setNotification('danger', 'Terdapat kesalahan pengisian.');
 			}
 		}
 
@@ -109,14 +107,10 @@ class NoteController extends Controller
 		if ($model->delete())
 		{
 			unlink(Yii::app()->params['notesDir'] . $model->id . '.' . $model->extension);
-			Yii::app()->user->setFlash('message', 'Berkas berhasil dihapus.');
-			Yii::app()->user->setFlash('messageType', 'success');
+			Yii::app()->user->setNotification('success', 'Berkas berhasil dihapus.');
 		}
 		else
-		{
-			Yii::app()->user->setFlash('message', 'Berkas tidak dapat dihapus.');
-			Yii::app()->user->setFlash('messageType', 'danger');
-		}
+			Yii::app()->user->setNotification('danger', 'Berkas tidak dapat dihapus.');
 		$this->redirect(array('home/index'));
 	}
 	
@@ -175,8 +169,7 @@ class NoteController extends Controller
 			else
 			{
 				$model->faculty_id = null;
-				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
-				Yii::app()->user->setFlash('messageType', 'danger');
+				Yii::app()->user->setNotification('danger', 'Terdapat kesalahan pengisian.');
 			}
 		}
 
@@ -249,8 +242,7 @@ class NoteController extends Controller
 		$model = $this->loadModel($id);
 		$model->report(Yii::app()->user->id);
 
-		Yii::app()->user->setFlash('message', 'Berkas berhasil dilaporkan.');
-		Yii::app()->user->setFlash('messageType', 'success');
+		Yii::app()->user->setNotification('success', 'Berkas berhasil dilaporkan.');
 
 		$this->redirect(array('view', 'id' => $id));
 	}

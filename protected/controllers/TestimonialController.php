@@ -49,23 +49,16 @@ class TestimonialController extends Controller
 			$username = $_POST['Testimonial']['student_id'];
 			$student = Student::model()->findByAttributes(array('username'=>$username));
 			if ($student === null)
-			{
-				Yii::app()->user->setFlash('message', 'Mahasiswa ' . $username . ' tidak terdaftar.');
-				Yii::app()->user->setFlash('messageType', 'danger');
-			}
+				Yii::app()->user->setNotification('danger', 'Mahasiswa ' . $username . ' tidak terdaftar.');
 			else
 			{
 				if ($model->grantTo($student))
 				{
-					Yii::app()->user->setFlash('message', 'Hak berhasil diberikan.');
-					Yii::app()->user->setFlash('messageType', 'success');
+					Yii::app()->user->setNotification('success', 'Hak berhasil diberikan.');
 					$model->student_id = null;
 				}
 				else
-				{
-					Yii::app()->user->setFlash('message', 'Hak tidak berhasil diberikan.');
-					Yii::app()->user->setFlash('messageType', 'danger');
-				}
+					Yii::app()->user->setFlash('danger', 'Hak tidak berhasil diberikan.');
 			}
 		}
 
@@ -89,8 +82,7 @@ class TestimonialController extends Controller
 		$model = $this->loadModel($id);
 
 		$model->propose();
-		Yii::app()->user->setFlash('message', 'Testimoni berhasil diusulkan.');
-		Yii::app()->user->setFlash('messageType', 'success');
+		Yii::app()->user->setNotification('success', 'Testimoni berhasil diusulkan.');
 		$this->redirect(array('testimonial/view', 'id'=>$id));
 	}
 
@@ -107,15 +99,11 @@ class TestimonialController extends Controller
 			$model->attributes = $_POST['Testimonial'];
 			if ($model->save())
 			{
-				Yii::app()->user->setFlash('message', 'Perubahan berhasil disimpan.');
-				Yii::app()->user->setFlash('messageType', 'success');
+				Yii::app()->user->setNotification('success', 'Perubahan berhasil disimpan.');
 				$this->redirect(array('view', 'id' => $model->id));
 			}
 			else
-			{
-				Yii::app()->user->setFlash('message', 'Terdapat kesalahan pengisian.');
-				Yii::app()->user->setFlash('messageType', 'danger');
-			}
+				Yii::app()->user->setNotification('danger', 'Terdapat kesalahan pengisian.');
 		}
 
 		$this->render('update', array('model' => $model));
@@ -130,15 +118,9 @@ class TestimonialController extends Controller
 		$model = $this->loadModel($id);
 
 		if (!$model->approve())
-		{
-			Yii::app()->user->setFlash('message', 'Testimoni gagal diterima.');
-			Yii::app()->user->setFlash('messageType', 'danger');
-		}
+			Yii::app()->user->setNotification('danger', 'Testimoni gagal diterima.');
 		else
-		{
-			Yii::app()->user->setFlash('message', 'Testimoni berhasil diterima.');
-			Yii::app()->user->setFlash('messageType', 'success');
-		}
+			Yii::app()->user->setNotification('success', 'Testimoni berhasil diterima.');
 
 		$this->redirect(array('view', 'id'=>$model->id));
 	}
@@ -152,15 +134,9 @@ class TestimonialController extends Controller
 		$model = $this->loadModel($id);
 
 		if (!$model->reject())
-		{
-			Yii::app()->user->setFlash('message', 'Testimoni gagal ditolak.');
-			Yii::app()->user->setFlash('messageType', 'danger');
-		}
+			Yii::app()->user->setNotification('danger', 'Testimoni gagal ditolak.');
 		else
-		{
-			Yii::app()->user->setFlash('message', 'Testimoni berhasil ditolak.');
-			Yii::app()->user->setFlash('messageType', 'success');
-		}
+			Yii::app()->user->setNotification('success', 'Testimoni berhasil ditolak.');
 
 		$this->redirect(array('view', 'id'=>$model->id));
 	}
