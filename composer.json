@@ -1,8 +1,0 @@
-{
-	"require": {
-		"phpunit/php-timer": "dev-master",
-		"phpunit/php-invoker": "dev-master",
-		"phpunit/phpunit-selenium": "dev-master",
-		"yiisoft/yii": "dev-master"
-	}
-}
