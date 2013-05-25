@@ -110,7 +110,7 @@ class StudentController extends Controller
 		$sql = Yii::app()->db->createCommand()
 			->select(array('id', 'title', 'value', 'note_id', 'timestamp'))
 			->from(array('bk_note note', 'bk_rate rate'))
-			->where(array('and', 'note.student_id=:sid', 'rate.student_id=:sid', 'rate.note_id=note.id'),
+			->where(array('and', 'rate.student_id=:sid', 'rate.note_id=note.id'),
 				array(':sid'=>$model->id));
 		$count = count($model->rates);
 		$rates = new CSqlDataProvider($sql, array(
@@ -123,7 +123,7 @@ class StudentController extends Controller
 		$sql = Yii::app()->db->createCommand()
 			->select(array('id', 'title', 'note_id', 'timestamp'))
 			->from(array('bk_note note', 'bk_report report'))
-			->where(array('and', 'note.student_id=:sid', 'report.student_id=:sid', 'report.note_id=note.id'),
+			->where(array('and', 'report.student_id=:sid', 'report.note_id=note.id'),
 				array(':sid'=>$model->id));
 		$count = count($model->reports);
 		$reports = new CSqlDataProvider($sql, array(
