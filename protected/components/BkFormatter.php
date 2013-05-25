@@ -2,6 +2,8 @@
 
 /**
  * A custom formatter class.
+ *
+ * @author Ashar Fuadi <fushar@gmail.com>
  */
 class BkFormatter extends CFormatter
 {

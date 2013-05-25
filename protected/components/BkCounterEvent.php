@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * An abstract class representing counter events which will be handled by {@link CounterEventHandler}.
+ *
+ * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
+ */
 abstract class BkCounterEvent extends CEvent
 {
 	/**
