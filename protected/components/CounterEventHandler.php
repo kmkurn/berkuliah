@@ -84,7 +84,7 @@ class CounterEventHandler
 		$message['default_text'] = 'Saya baru saja mendapatkan lencana ' . $badge->name . ' pada BerKuliah!';
 		$message['name'] = $badge->name;
 		$message['link'] = array('site/index');
-		$message['picture'] = Yii::app()->params['badgeIconsDir'] . $badge->location;
+		$message['picture'] = Yii::app()->params['badgeIconsDir'] . 'FB_' . $badge->location;
 		$message['caption'] = $badge->caption;
 		$message['description'] = $badge->description;
 		Yii::app()->user->addShareMessage($message);
