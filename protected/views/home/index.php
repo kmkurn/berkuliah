@@ -57,12 +57,12 @@ if (Yii::app()->user->hasShareMessages())
 		<?php if (Yii::app()->user->isAdmin) echo CHtml::beginForm(array('batchDelete')); ?>
 
 		<br />
+		<br />
+
 		<?php echo Yii::app()->user->getNotification(); ?>
 
-		<br />
-		<br />
-
 			<?php if (Yii::app()->user->isAdmin): ?>
+				
 				<div id="tombolHapusBerkas">
 				<?php echo CHtml::submitButton('Hapus Berkas', array(
 						'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
