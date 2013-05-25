@@ -41,4 +41,14 @@ class BkFormatter extends CFormatter
 				</td>
 			</tr>';
 	}
+
+	public function formatText($value)
+	{
+		return wordwrap(CHtml::encode($value), 30, '<br />', true);
+	}
+
+	public function formatNtext($value)
+	{
+		return parent::formatNtext(wordwrap($value, 75, "\n", true));
+	}
 }

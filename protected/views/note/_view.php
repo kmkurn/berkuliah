@@ -9,7 +9,7 @@
 			<tr>
 				<td><i class="icon icon-tag"></i> <?php echo CHtml::encode($model->getAttributeLabel('title')); ?></td>
 				<td width='2px'>:</td>
-				<td><strong><?php echo CHtml::encode($model->title); ?></strong></td>
+				<td><strong><?php echo Yii::app()->format->text($model->title); ?></strong></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-user"></i> <?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?></td>
