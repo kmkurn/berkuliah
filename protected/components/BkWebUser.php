@@ -80,7 +80,7 @@ class BkWebUser extends CWebUser
 			return '';
 
 		return
-			'<div class="alert alert-' . $this->getFlash('messageType') . '">' .
+			'<div class="alert alert-' . $this->getFlash('messageType') . '">' .'<button type="button" class="close" data-dismiss="alert">&times;</button>'.
 				$this->getFlash('message') . 
 			'</div>';
 	}
