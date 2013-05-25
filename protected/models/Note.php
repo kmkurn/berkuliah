@@ -236,12 +236,7 @@ class Note extends CActiveRecord
 			'timestamp'=>date('Y-m-d H:i:s'),
 		));
 
-		if (!$info->validate())
-		{
-			return false;
-		}
-
-		return $info->save(false);
+		return $info->save();
 	}
 
 	/**
