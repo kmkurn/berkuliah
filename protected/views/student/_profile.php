@@ -25,7 +25,7 @@
 				<i class="icon icon-tags"></i> <?php echo $model->getAttributeLabel('username'); ?>
 			</td>
 			<td>:</td>
-			<td><?php echo CHtml::encode($model->username); ?></td>
+			<td><span class="label label-info studentUsername"><?php echo CHtml::encode($model->username); ?></span></td>
 		</tr>
 
 		<tr>

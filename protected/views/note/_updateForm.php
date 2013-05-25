@@ -38,7 +38,7 @@
 		<tr>
 			<td></td>
 			<td>
-				<?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary')); ?>
+				<?php echo CHtml::tag('button', array('type' => 'submit', 'class' => 'btn btn-primary'), '<i class="icon icon-hdd icon-white"></i> Simpan'); ?>
 				<?php echo CHtml::link('Batal', array('view', 'id' => $model->id), array('class' => 'btn')); ?>
 			</td>
 		</tr>

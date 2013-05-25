@@ -9,7 +9,7 @@
 <?php echo Yii::app()->user->getNotification(); ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<i class="icon icon-cog"></i> <strong>UBAH PROFIL</strong>',
+	'title' => '<i class="icon icon-cog"></i> <strong>PENGATURAN</strong>',
 )); ?>
 
 
@@ -45,7 +45,7 @@
 			<tr>
 				<td></td>
 				<td>
-					<?php echo CHtml::button('Ubah', array('type' => 'submit', 'class' => 'btn btn-primary')); ?>
+					<?php echo CHtml::tag('button', array('type' => 'submit', 'class' => 'btn btn-primary'), '<i class="icon icon-hdd icon-white"></i> Simpan'); ?>
 					<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 				</td>
 			</tr>

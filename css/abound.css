@@ -811,3 +811,8 @@ text-decoration: none;
 .noteCell tr td:hover {
   background-color: #e6e6e6;
 }
+
+.studentUsername a {
+  color: white;
+  text-decoration: none;
+}
