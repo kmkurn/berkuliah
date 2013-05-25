@@ -79,10 +79,6 @@ return array(
 		),
 		'format'=>array(
 			'class'=>'BkFormatter',
-			'imageFormat'=>array(
-				'width'=>100,
-				'height'=>100,
-			),
 			'datetimeFormat'=>'d-m-Y, H:i:s',
 		),
 	),
