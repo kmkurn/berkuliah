@@ -1,6 +1,6 @@
 <?php
 
-class UploadEvent extends CEvent
+class UploadEvent extends BkCounterEvent
 {
 	const BRONZE_ID = 1;
 	const SILVER_ID = 2;
@@ -13,36 +13,15 @@ class UploadEvent extends CEvent
 	public $student;
 
 	/**
-	 * Retrieves the condition of a given name.
-	 * @param  string $name the condition name
-	 * @return array the condition
+	 * Returns the mappings for this event.
+	 * @return array the mappings
 	 */
-	public static function getCondition($name)
-	{
-		$conditions = self::conditions();
-
-		return $conditions[$name];
-	}
-
-	/**
-	 * Retrieves all conditions.
-	 * @return array the conditions
-	 */
-	public static function conditions()
+	public function getMappings()
 	{
 		return array(
-			'bronze'=>array(
-				'badge'=>Badge::model()->findByPk(self::BRONZE_ID),
-				'count'=>self::BRONZE_COUNT,
-			),
-			'silver'=>array(
-				'badge'=>Badge::model()->findByPk(self::SILVER_ID),
-				'count'=>self::SILVER_COUNT,
-			),
-			'gold'=>array(
-				'badge'=>Badge::model()->findByPk(self::GOLD_ID),
-				'count'=>self::GOLD_COUNT,
-			),
+			self::BRONZE_ID=>self::BRONZE_COUNT,
+			self::SILVER_ID=>self::SILVER_COUNT,
+			self::GOLD_ID=>self::GOLD_COUNT,
 		);
 	}
 }
