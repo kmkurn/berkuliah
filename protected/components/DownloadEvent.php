@@ -1,10 +1,10 @@
 <?php
 
-class UploadEvent extends BkCounterEvent
+class DownloadEvent extends BkCounterEvent
 {
-	const BRONZE_ID = 1;
-	const SILVER_ID = 2;
-	const GOLD_ID = 3;
+	const BRONZE_ID = 4;
+	const SILVER_ID = 5;
+	const GOLD_ID = 6;
 
 	const BRONZE_COUNT = 5;
 	const SILVER_COUNT = 20;
