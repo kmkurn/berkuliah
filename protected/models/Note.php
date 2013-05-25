@@ -367,12 +367,15 @@ class Note extends CActiveRecord
 		{
 			if ($this->isNewRecord)
 			{
+				$currentTimestamp = date('Y-m-d H:i:s');
 				$this->student_id = Yii::app()->user->id;
-				$this->upload_timestamp = date('Y-m-d H:i:s');
+				$this->upload_timestamp = $currentTimestamp;
+				$this->edit_timestamp = $currentTimestamp;
 			}
 			else
 			{
-				$this->edit_timestamp = date('Y-m-d H:i:s');
+				$currentTimestamp = date('Y-m-d H:i:s');
+				$this->edit_timestamp = $currentTimestamp;
 			}
 		}
 	}
