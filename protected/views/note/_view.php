@@ -86,12 +86,11 @@
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
 						<?php echo CHtml::link('<i class="icon-search icon-pencil icon-white"></i> Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
 					<?php endif; ?>
-					<?php if ($model->student_id === Yii::app()->user->id): ?>
-						<?php echo CHtml::link('<i class="icon-search icon-remove icon-white"></i> Hapus',
-							array('delete', 'id' => $model->id),
-							array('class' => 'btn btn-danger',
+					<?php if (Yii::app()->user->isAdmin || $model->student_id === Yii::app()->user->id): ?>
+						<?php echo CHtml::link('<i class="icon-search icon-remove icon-white"></i> Hapus', '#', array(
+							'class' => 'btn btn-danger',
 							'confirm' => 'Apakah Anda yakin ingin menghapus berkas ini?',
-							'enabled' => false,
+							'submit' => array('delete', 'id'=>$model->id),
 						)); ?>
 					<?php endif; ?>
 					<?php if ( ! $model->isReportedBy(Yii::app()->user->id)): ?>
