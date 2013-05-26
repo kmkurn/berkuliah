@@ -38,13 +38,8 @@ class DownloadInfo extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('student_id, note_id, timestamp', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, student_id, note_id, timestamp', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,8 +48,6 @@ class DownloadInfo extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'student' => array(self::BELONGS_TO, 'Student', 'student_id'),
 			'note' => array(self::BELONGS_TO, 'Note', 'note_id'),
@@ -72,26 +65,5 @@ class DownloadInfo extends CActiveRecord
 			'note_id' => 'Note',
 			'timestamp' => 'Timestamp',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('student_id',$this->student_id);
-		$criteria->compare('note_id',$this->note_id);
-		$criteria->compare('timestamp',$this->timestamp,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 }

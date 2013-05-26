@@ -25,15 +25,15 @@
 class Student extends CActiveRecord
 {
 	/**
-	 * A constant defining the max length of $photo.
+	 * Maximum filename length of $photo.
 	 */
 	const MAX_FILENAME_LENGTH = 64;
 	/**
-	 * A constant defining the maximum length of $name.
+	 * Maximum length of $name.
 	 */
 	const MAX_NAME_LENGTH = 128;
 	/**
-	 * A constant defining the maximum allowed file size.
+	 * Maximum allowed file size for $photo in bytes.
 	 */
 	const MAX_FILE_SIZE = 102400;
 
@@ -79,8 +79,6 @@ class Student extends CActiveRecord
 				'message'=>'{attribute} tidak terdaftar.'
 			),
 			array('username, bio, photo, is_admin, last_login_timestamp', 'safe'),
-
-			array('id, username, photo, is_admin, last_login_timestamp', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -116,25 +114,6 @@ class Student extends CActiveRecord
 			'last_login_timestamp' => 'Terakhir Masuk',
 			'faculty_id' => 'Fakultas',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('photo',$this->photo,true);
-		$criteria->compare('is_admin',$this->is_admin);
-		$criteria->compare('last_login_timestamp',$this->last_login_timestamp,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 
 	/**

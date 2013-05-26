@@ -9,7 +9,7 @@
  * @property string $location
  *
  * The followings are the available model relations:
- * @property Student[] $bkStudents
+ * @property Student[] $students
  */
 class Badge extends CActiveRecord
 {
@@ -36,15 +36,7 @@ class Badge extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('name, location', 'required'),
-			array('name, location', 'length', 'max'=>64),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, location', 'safe', 'on'=>'search'),
-		);
+		return array(); // no user input for this model
 	}
 
 	/**
@@ -52,10 +44,8 @@ class Badge extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'bkStudents' => array(self::MANY_MANY, 'Student', 'bk_student_badge(badge_id, student_id)'),
+			'students' => array(self::MANY_MANY, 'Student', 'bk_student_badge(badge_id, student_id)'),
 		);
 	}
 
@@ -69,25 +59,5 @@ class Badge extends CActiveRecord
 			'name' => 'Name',
 			'location' => 'Location',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('location',$this->location,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 }
