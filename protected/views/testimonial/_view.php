@@ -59,7 +59,7 @@
 							));
 						}
 					}
-					else
+					else if (Yii::app()->user->id == $model->student_id)
 					{
 						if ($model->status == Testimonial::STATUS_NEW)
 						{
