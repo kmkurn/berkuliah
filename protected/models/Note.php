@@ -17,15 +17,16 @@
  * @property DownloadInfo[] $downloadInfos
  * @property Course $course
  * @property Student $student
+ * @property integer $reportCount
  */
 class Note extends CActiveRecord
 {
 	/**
-	 * A contant defining the maximum length of $title.
+	 * Maximum length of $title.
 	 */
 	const MAX_TITLE_LENGTH = 128;
 	/**
-	 * A constant defining the maximum allowed file size.
+	 * Maximum allowed file size in bytes.
 	 */
 	const MAX_FILE_SIZE = 512000;
 
@@ -58,8 +59,6 @@ class Note extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('title, description', 'required', 'message'=>'{attribute} tidak boleh kosong.'),
 			array('title', 'length', 'max'=>self::MAX_TITLE_LENGTH,
@@ -94,8 +93,6 @@ class Note extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'downloadInfos' => array(self::HAS_MANY, 'DownloadInfo', 'note_id'),
 			'course' => array(self::BELONGS_TO, 'Course', 'course_id'),
@@ -131,9 +128,6 @@ class Note extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->with = array(
@@ -153,11 +147,6 @@ class Note extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
-
-	/**
-	 * Inline validators.
-	 */
 
 	/**
 	 * Checks whether the user has selected the course or insert a new course name.
@@ -196,11 +185,6 @@ class Note extends CActiveRecord
 			$validator->validate($this);
 		}
 	}
-
-
-	/**
-	 * Non-static helper functions.
-	 */
 
 	/**
 	 * Retrieves the icon file name associated with this note type
@@ -310,7 +294,6 @@ class Note extends CActiveRecord
 		}
 	}
 
-
 	/**
 	 * Checks whether a student has reported this note
 	 * @param int $student_id the student id 
@@ -326,7 +309,6 @@ class Note extends CActiveRecord
 
 		return $res != NULL;
 	}
-
 
 	/**
 	 * Reports this note
@@ -351,10 +333,6 @@ class Note extends CActiveRecord
 
 		return $review->save();
 	}
-
-	/**
-	 * Event handlers.
-	 */
 
 	/**
 	 * This method is invoked after validation.
@@ -398,11 +376,6 @@ class Note extends CActiveRecord
 
 		return parent::beforeSave();
 	}
-
-
-	/**
-	 * Static helper functions.
-	 */
 
 	/**
 	 * Retrieves the allowed types extension and their text.

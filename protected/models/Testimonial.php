@@ -45,7 +45,6 @@ class Testimonial extends CActiveRecord
 		return array(
 			array('content', 'required', 'message'=>'{attribute} tidak boleh kosong.'),
 			array('status, timestamp, student_id', 'safe'),
-			array('id, content, status, timestamp, student_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,8 +53,6 @@ class Testimonial extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'student' => array(self::BELONGS_TO, 'Student', 'student_id'),
 		);
@@ -73,28 +70,6 @@ class Testimonial extends CActiveRecord
 			'timestamp' => 'Periode',
 			'student_id' => 'Oleh',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('content',$this->content,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('timestamp',$this->timestamp,true);
-		$criteria->compare('student_id',$this->student_id);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 
 	/**
