@@ -1,16 +1,37 @@
 <?php
 
 /**
- * DummyUserIdentity represents the data of a dummy user.
+ * A class representing the identity of a dummy user.
+ * 
+ * @author Ashar Fuadi <fushar@gmail.com>
  */
 class DummyUserIdentity extends CBaseUserIdentity
 {
+	/**
+	 * The id of the dummy user.
+	 */
 	private $id;
+
+	/**
+	 * The display name of the dummy user.
+	 */
 	private $name;
+
+	/**
+	 * The username of the dummy user.
+	 */
 	private $username;
+
+	/**
+	 * Whether the dummy user is an admin.
+	 */
 	private $isAdmin;
 
 
+	/**
+	 * Constructs a new identity instance.
+	 * @param boolean $isAdmin whether the dummy user is an admin.
+	 */
 	public function __construct($isAdmin)
 	{
 		$this->isAdmin = $isAdmin;
@@ -66,11 +87,19 @@ class DummyUserIdentity extends CBaseUserIdentity
 		return true;
 	}
 
+	/**
+	 * Retrieves the unique identifier of the user. In this case, its ID.
+	 * @return integer the user id
+	 */
 	public function getId()
 	{
 		return $this->id;
 	}
 
+	/**
+	 * Retrieves the display name of the user.
+	 * @return string the display name
+	 */
 	public function getName()
 	{
 		return $this->name;

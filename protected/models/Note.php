@@ -30,10 +30,29 @@ class Note extends CActiveRecord
 	 */
 	const MAX_FILE_SIZE = 512000;
 
+	/**
+	 * The faculty id
+	 */
 	public $faculty_id;
+
+	/**
+	 * The name of the new course specified by user
+	 */
 	public $new_course_name;
+
+	/**
+	 * The to-be-uploaded note file instance
+	 */
 	public $file;
+
+	/**
+	 * The content of the note specified by user
+	 */
 	public $raw_file_text;
+
+	/**
+	 * The student uploading this note
+	 */
 	public $uploader;
 
 	/**

@@ -37,6 +37,9 @@ class Student extends CActiveRecord
 	 */
 	const MAX_FILE_SIZE = 102400;
 
+	/**
+	 * The to-be-uploaded profile photo file instance
+	 */
 	public $file;
 
 	/**

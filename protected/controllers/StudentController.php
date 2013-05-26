@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /student/ pages in the application.
+ */
 class StudentController extends Controller
 {
 	

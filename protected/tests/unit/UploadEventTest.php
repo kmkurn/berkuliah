@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Unit test for UploadEvent component.
+ */
 class UploadEventTest extends CTestCase
 {
 	/**

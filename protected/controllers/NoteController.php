@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /note/ pages in the application.
+ */
 class NoteController extends Controller
 {
 	/**

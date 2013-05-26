@@ -1,3 +1,10 @@
+<?php
+/* @var $this NoteController */
+/* @var $model Note */
+/* @var $form CActiveForm */
+
+?>
+
 <?php echo Yii::app()->user->getNotification(); ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(

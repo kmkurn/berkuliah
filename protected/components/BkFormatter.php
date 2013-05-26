@@ -20,7 +20,7 @@ class BkFormatter extends CFormatter
 	 */
 	public function formatInputField($form, $type, $model, $attribute, $icon, $htmlOptions = array(), $otherOptions = array())
 	{
-		echo '<tr>
+		return '<tr>
 				<td>
 					<div class="control-group attribute-' . $attribute . '">
 						<i class="icon ' . $icon . '"></i> ' . $form->labelEx($model, $attribute, array('class' => 'control-label')) . '
@@ -42,11 +42,21 @@ class BkFormatter extends CFormatter
 			</tr>';
 	}
 
+	/**
+	 * Formats a long text so that it gets wrapped at column 27 no matter what, using <br> tag.
+	 * @param  string $value the long text
+	 * @return string the resulting formatted text.
+	 */
 	public function formatText($value)
 	{
 		return wordwrap(CHtml::encode($value), 27, '<br />', true);
 	}
 
+	/**
+	 * Formats a long text so that it gets wrapped at column 75 no matter what, using "\n" character.
+	 * @param  string $value the long text
+	 * @return string the resulting formatted text.
+	 */
 	public function formatNtext($value)
 	{
 		return parent::formatNtext(wordwrap($value, 75, "\n", true));

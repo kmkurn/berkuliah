@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Unit test for Testimonial model.
+ */
 class TestimonialTest extends CDbTestCase
 {
 	public $fixtures = array(

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /testimonial/ pages in the application.
+ */
 class TestimonialController extends Controller
 {
 	/**
@@ -16,6 +19,11 @@ class TestimonialController extends Controller
 		);
 	}
 
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
 	public function accessRules()
 	{
 		return array(
@@ -29,7 +37,10 @@ class TestimonialController extends Controller
 		);
 	}
 
-
+	/**
+	 * Views the detailed information of a testimonial.
+	 * @param  int $id the testimonial id
+	 */
 	public function actionView($id)
 	{   
 		$model = $this->loadModel($id);
@@ -76,6 +87,7 @@ class TestimonialController extends Controller
 
 	/**
 	 * Propose a testimonial.
+	 * @param int $id the testimonial id
 	 */
 	public function actionPropose($id)
 	{
@@ -144,7 +156,7 @@ class TestimonialController extends Controller
 	/**
 	 * Loads the testimonial model.
 	 * @param  int $id the testimonial id
-	 * @return notethe testimonial object associated with the given id
+	 * @return Note the testimonial object associated with the given id
 	 */
 	public function loadModel($id)
 	{
@@ -157,6 +169,10 @@ class TestimonialController extends Controller
 		return $model;
 	}
 
+	/**
+	 * A filter to ensure only the owner can access a testimonial
+	 * @param  CFilterChain $filterChain the filter chain
+	 */
 	public function filterCheckTestimonialOwner($filterChain)
 	{
 		if (isset($_GET['id']))

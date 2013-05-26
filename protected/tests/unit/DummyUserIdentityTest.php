@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Unit test for DummyUserIdentity component.
+ */
 class DummyUserIdentityTest extends CDbTestCase
 {
 	/**
