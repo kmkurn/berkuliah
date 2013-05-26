@@ -1,5 +1,5 @@
 <?php
-/* @var $this NoteController */
+/* @var $this HomeController */
 /* @var $data Note */
 
 $baseUrl = Yii::app()->request->baseUrl;

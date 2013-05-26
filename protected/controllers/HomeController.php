@@ -90,38 +90,6 @@ class HomeController extends Controller
 	}
 
 	/**
-	 * Performs the AJAX validation.
-	 * @param Note $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='note-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Retrieves student id based on username
-	 * @param  CFilterChain $filterChain the filter chain
-	 */
-	public function filterGetStudentId($filterChain)
-	{
-		if (isset($_GET['Note']['student_id']))
-		{
-			$username = $_GET['Note']['student_id'];
-			$student = Student::model()->findByAttributes(array('username' => $username));
-			if ($student !== NULL)
-			{
-				$_GET['Note']['student_id'] = $student->id;
-			}
-		}
-
-		$filterChain->run();
-	}
-
-	/**
 	 * Performs update courses in dropdown list.
 	 */
 	public function actionUpdateCourses()

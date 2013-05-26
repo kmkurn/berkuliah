@@ -157,7 +157,7 @@ class TestimonialController extends Controller
 		return $model;
 	}
 
-	public function filterCheckTestimonialOwner($filterChain)
+	public function filterCheckOwner($filterChain)
 	{
 		if (isset($_GET['id']))
 		{

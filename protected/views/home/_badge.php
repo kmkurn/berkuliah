@@ -54,5 +54,5 @@
 
 		<?php endforeach; ?>
 		<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">OK</button>
-	</div>
-</div>
+	</div><!-- modal-header -->
+</div><!-- badge-modal -->
