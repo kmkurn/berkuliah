@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /home/ pages in the application.
+ */
 class HomeController extends Controller
 {
 	/**

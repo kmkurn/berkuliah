@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * Unit test for Review model.
+ */
 class ReviewTest extends CDbTestCase
 {
+	/**
+	 * A dummy id representing invalid review id.
+	 */
 	const INVALID_ID = 1000;
 
+	/**
+	 * The fixtures of this test.
+	 */
 	public $fixtures = array(
 		'notes'=>'Note',
 		'students'=>'Student',

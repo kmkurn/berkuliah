@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Unit test for CounterEventHandler component.
+ */
 class CounterEventHandlerTest extends CDbTestCase
 {
+	/**
+	 * The fixtures of this test.
+	 */
 	public $fixtures = array(
 		'students'=>'Student',
 		'badges'=>'Badge',

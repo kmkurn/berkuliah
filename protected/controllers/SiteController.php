@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /site/ pages in the application.
+ */
 class SiteController extends Controller
 {
 	/**

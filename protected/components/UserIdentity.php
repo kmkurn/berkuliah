@@ -1,16 +1,31 @@
 <?php
 
 /**
- * UserIdentity represents the data needed to identity a user.
- * It contains the authentication method that checks if the provided
- * data can identity the user.
+ * A class representing the identity of a user.
+ * 
+ * @author Ashar Fuadi <fushar@gmail.com>
  */
 class UserIdentity extends CBaseUserIdentity
 {
+	/**
+	 * The id of the dummy user.
+	 */
 	private $id;
-	private $username;
+
+	/**
+	 * The display name of the dummy user.
+	 */
 	private $name;
 
+	/**
+	 * The JUITA username of the dummy user.
+	 */
+	private $username;
+
+	/**
+	 * Constructs a new identity instance.
+	 * @param string $username the username of the user
+	 */
 	public function __construct($username)
 	{
 		$this->username = $username;

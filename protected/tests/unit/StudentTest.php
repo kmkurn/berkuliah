@@ -1,15 +1,27 @@
 <?php
 
+/**
+ * Unit test for Student model.
+ */
 class StudentTest extends CDbTestCase
 {
+	/**
+	 * A dummy id representing invalid review id.
+	 */
 	const INVALID_ID = 1000;
 
+	/**
+	 * The fixtures of this test.
+	 */
 	public $fixtures = array(
 		'students'=>'Student',
 		'faculties'=>'Faculty',
 		'badges'=>'Badge',
 	);
 
+	/**
+	 * The attributes of a test file for profile photo.
+	 */
 	public $testFile = array(
 		'name'=>'Test.jpg',
 		'tmp_name'=>'',

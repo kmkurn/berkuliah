@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * Unit test for Note model.
+ */
 class NoteTest extends CDbTestCase
 {
+	/**
+	 * A dummy id representing invalid note id.
+	 */
 	const INVALID_ID = 1000;
 
+	/**
+	 * The fixtures of this test.
+	 */
 	public $fixtures = array(
 		'notes'=>'Note',
 		'faculties'=>'Faculty',
@@ -11,6 +20,9 @@ class NoteTest extends CDbTestCase
 		'students'=>'Student',
 	);
 
+	/**
+	 * The attributes of a test file for upload.
+	 */
 	public $testFile = array(
 		'name'=>'Test.pdf',
 		'tmp_name'=>'',
@@ -19,6 +31,9 @@ class NoteTest extends CDbTestCase
 		'error'=>0,
 	);
 
+	/**
+	 * The test note attributes.
+	 */
 	public $noteAttributes;
 
 	/**

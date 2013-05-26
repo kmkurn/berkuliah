@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TwitterApi respresents Twitter API.
+ * A class representing Twitter API.
  *
  * @author Ashar Fuadi <fushar@gmail.com>
  */

@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * Unit test for Course model.
+ */
 class CourseTest extends CDbTestCase
 {
+	/**
+	 * A dummy id representing invalid course id.
+	 */
 	const INVALID_ID = 1000;
 
+	/**
+	 * The fixtures of this test.
+	 */
 	public $fixtures = array(
 		'faculties'=>'Faculty',
 	);

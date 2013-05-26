@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Unit test for DownloadEvent component.
+ */
 class DownloadEventTest extends CTestCase
 {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Unit test for Badge model.
+ */
 class BadgeTest extends CDbTestCase
 {
 	/**
