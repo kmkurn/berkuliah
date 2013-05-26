@@ -1,12 +1,19 @@
 language: php
 
 php:
-- "5.4"
-- "5.3"
+    - "5.4"
+    - "5.3"
 
 before_script:
-- ./install-dependencies.sh
-- ./mysql-schema.sh
-- cd protected/tests/
+    - ./install-dependencies.sh
+    - ./mysql-schema.sh
+    - cd protected/tests/
 
-script: phpunit --configuration travis/phpunit.xml --coverage-text unit/
+script: phpunit --configuration travis/phpunit.xml unit/
+
+notification:
+    email:
+        - kemskems12@gmail.com
+        - fushar@gmail.com
+        - annisa.prida@gmail.com
+        - mmeerrcciiaa@gmail.com
