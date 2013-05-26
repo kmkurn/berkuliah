@@ -40,9 +40,9 @@ class CounterEventHandler
 		$badge = $condition['badge'];
 		$count = $condition['count'];
 
-		if (!$student->hasBadge($badge) && count($student->notes) === $count)
+		if ($badge->id == 1 || (!$student->hasBadge($badge) && count($student->notes) === $count))
 		{
-			$student->addBadge($badge);
+			//$student->addBadge($badge);
 			$this->addBadgeShareMessage($badge);
 			Yii::app()->user->setFlash('badge', $badge);
 
@@ -86,8 +86,8 @@ class CounterEventHandler
 		$message['default_text'] = 'Saya baru saja mendapatkan lencana ' . $badge->name . ' pada BerKuliah!';
 		$message['name'] = $badge->name;
 		$message['link'] = array('site/index');
-		$message['picture'] = Yii::app()->params['badgeIconsDir'] . 'FB_' . $badge->location;
-		$message['caption'] = $badge->caption;
+		$message['picture'] = Yii::app()->params['badgeIconsDir'] . $badge->location;
+		$message['caption'] = $badge->caption . ' @ BerKuliah';
 		$message['description'] = $badge->description;
 		Yii::app()->user->addShareMessage($message);
 	}
