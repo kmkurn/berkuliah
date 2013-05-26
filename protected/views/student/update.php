@@ -3,8 +3,10 @@
 /* @var $model Student */
 /* @var $faculties array */
 
+$this->pageTitle = 'Pengaturan Profil';
+
 $this->breadcrumbs=array(
-	'Ubah Profil',
+	'Pengaturan Profil',
 );
 ?>
 	

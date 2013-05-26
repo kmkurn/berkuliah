@@ -3,6 +3,8 @@
 /* @var $model Testimonial */
 /* @var $usernames array */
 
+$this->pageTitle = 'Beri Hak Testimoni';
+
 $this->breadcrumbs=array(
 	'Beri Hak Testimoni',
 );

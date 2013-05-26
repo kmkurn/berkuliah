@@ -9,7 +9,7 @@
 <?php echo Yii::app()->user->getNotification(); ?>
 
 <?php $this->beginWidget('zii.widgets.CPortlet', array(
-	'title' => '<i class="icon icon-cog"></i> <strong>PENGATURAN</strong>',
+	'title' => '<i class="icon icon-cog"></i> <strong>PENGATURAN PROFIL</strong>',
 )); ?>
 
 

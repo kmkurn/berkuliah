@@ -2,7 +2,8 @@
 /* @var $this SiteController */
 /* @var $model Testimonial */
 
-$this->pageTitle=Yii::app()->name;
+$this->pageTitle = 'Beranda';
+
 ?>
 
 <div class="row-fluid">

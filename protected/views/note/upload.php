@@ -2,6 +2,8 @@
 /* @var $this NoteController */
 /* @var $model Note */
 
+$this->pageTitle = 'Unggah Berkas';
+
 $this->breadcrumbs=array(
 	'Unggah Berkas',
 );

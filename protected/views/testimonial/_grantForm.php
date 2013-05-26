@@ -38,10 +38,12 @@
 			<tr>
 				<td></td>
 				<td>
-					<?php echo CHtml::submitButton('Beri Hak', array(
+					<?php echo CHtml::tag('button', array(
+						'type' => 'submit',
 						'class' => 'btn btn-primary',
-						'confirm'=>'Apakah Anda yakin memberikan hak penulisan testimoni pada mahasiswa ini?',
-					)); ?>
+						'onclick'=>'alert("Apakah Anda yakin memberikan hak penulisan testimoni pada mahasiswa ini?");'
+						), '<i class="icon icon-gift icon-white"></i> Beri Hak'); ?>
+				
 					<?php echo CHtml::link('Batal', array('home/index'), array('class' => 'btn')); ?>
 				</td>
 			</tr>
