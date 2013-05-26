@@ -2,6 +2,8 @@
 /* @var $this NoteController */
 /* @var $model Note */
 
+$this->pageTitle = 'Sunting Berkas';
+
 $this->breadcrumbs=array(
 	'Daftar Berkas' => array('home/index'),
 	$model->title => array('view', 'id' => $model->id),

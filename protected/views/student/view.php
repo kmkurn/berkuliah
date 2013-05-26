@@ -9,10 +9,10 @@
 /* @var $badges CArrayDataProvider */
 /* @var $testimonials CArrayDataProvider */
 
-$this->pageTitle='Dasbor ' . $model->name;
+$this->pageTitle = $model->username;
 
 $this->breadcrumbs=array(
-	'Dasbor',
+	$model->username,
 );
 ?>
 

@@ -4,7 +4,7 @@
 /* @var $usernames array */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->pageTitle = Yii::app()->name;
+$this->pageTitle = 'Daftar Berkas';
 
 $this->breadcrumbs=array(
 	'Daftar Berkas',
@@ -12,11 +12,6 @@ $this->breadcrumbs=array(
 
 if (Yii::app()->user->hasFlash('badge'))
 	Yii::app()->clientScript->registerScript('badge', '$("#badge-modal").modal("show");');
-?>
-
-
-
-<?php
 
 if (Yii::app()->user->hasShareMessages())
 {

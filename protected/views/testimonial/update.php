@@ -2,9 +2,12 @@
 /* @var $this TestimonialController */
 /* @var $model Testimonial */
 
+$this->pageTitle = 'Sunting Testimoni';
+
 $this->breadcrumbs=array(
-	'Dasbor' => array('student/view', 'id'=>$model->id),
-	'Testimoni ' . strftime('%B %Y', strtotime($model->timestamp)),
+	$model->student->username => array('student/view', 'id'=>$model->student->id),
+	'Testimoni ' . strftime('%B %Y', strtotime($model->timestamp)) => array('testimonial/view', 'id'=>$model->id),
+	'Sunting',
 );
 
 ?>

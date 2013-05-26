@@ -4,6 +4,8 @@
 /* @var $dataProvider CActiveDataProvider */
 /* @var $review Review */
 
+$this->pageTitle = 'Rincian Berkas';
+
 $this->breadcrumbs=array(
 	'Daftar Berkas' => array('home/index'),
 	$model->title,

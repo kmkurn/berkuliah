@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>BerKuliah - Berbagi Berkas Kuliah</title>
+    <title><?php echo $this->pageTitle . ' | ' . Yii::app()->name; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Berkuliah.com, sarana berbagi catatan dan berkas soal">
     <meta name="author" content="C3-2013">
