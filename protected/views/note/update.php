@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Daftar Berkas' => array('home/index'),
-	$model->title => array('index', 'id' => $model->id),
+	$model->title => array('view', 'id' => $model->id),
 	'Sunting',
 );
 
