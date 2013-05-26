@@ -40,9 +40,9 @@ class CounterEventHandler
 		$badge = $condition['badge'];
 		$count = $condition['count'];
 
-		if ($badge->id == 1 || (!$student->hasBadge($badge) && count($student->notes) === $count))
+		if (!$student->hasBadge($badge) && count($student->notes) === $count)
 		{
-			//$student->addBadge($badge);
+			$student->addBadge($badge);
 			$this->addBadgeShareMessage($badge);
 			Yii::app()->user->setFlash('badge', $badge);
 
