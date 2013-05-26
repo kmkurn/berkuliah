@@ -23,7 +23,7 @@
         $cs->registerCssFile($baseUrl.'/css/bootstrap-responsive.min.css');
         $cs->registerCssFile($baseUrl.'/css/abound.css');
         ?>
-        <!-- styles for style switcher -->
+
         <?php $cs->registerCssFile($baseUrl.'/css/style-grey.css'); ?>
 
         <?php

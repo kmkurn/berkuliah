@@ -1,5 +1,5 @@
 <?php
-/* @var $this NoteController */
+/* @var $this HomeController */
 /* @var $model Note */
 /* @var $form CActiveForm */
 /* @var $username array */

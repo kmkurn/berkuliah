@@ -46,26 +46,29 @@
 					{
 						if ($model->status == Testimonial::STATUS_PENDING)
 						{
-							echo CHtml::link('Terima', array('approve', 'id'=>$model->id), array(
+							echo CHtml::link('Terima', '#', array(
 								'class'=>'btn btn-primary',
 								'confirm'=>'Apakah Anda yakin ingin menerima testimoni ini?',
+								'submit'=>array('approve', 'id'=>$model->id),
 							));
 							echo ' ';
-							echo CHtml::link('Tolak', array('reject', 'id'=>$model->id), array(
+							echo CHtml::link('Tolak', '#', array(
 								'class'=>'btn btn-danger',
 								'confirm'=>'Apakah Anda yakin ingin menolak testimoni ini?',
+								'submit'=>array('reject', 'id'=>$model->id),
 							));
 						}
 					}
-					else
+					else if (Yii::app()->user->id == $model->student_id)
 					{
 						if ($model->status == Testimonial::STATUS_NEW)
 						{
 							echo CHtml::link('<i class="icon-search icon-pencil icon-white"></i> Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-primary'));
 							echo ' ';
-							echo CHtml::link('<i class="icon-search icon-share icon-white"></i> Usulkan', array('propose', 'id' => $model->id), array(
+							echo CHtml::link('<i class="icon-search icon-share icon-white"></i> Usulkan', '#', array(
 								'class' => 'btn btn-success',
 								'confirm' => 'Apakah Anda yakin ingin mengusulkan testimoni ini?',
+								'submit' => array('propose', 'id'=>$model->id),
 							));
 						}
 					}

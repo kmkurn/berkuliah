@@ -12,10 +12,10 @@ class TestimonialController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for viewing articles details
-			'checkTestimonialOwner + propose, update', // check user before proposing a testimonial
-			'checkAdmin + grant, approve, reject', // check user before granting, approving, or rejecting a testimonial
-			'checkNewStatus + update', // check status before updating a testimonial
-			'checkPendingStatus + approve, reject', // check status before approving or rejecting a testimonial
+			'checkOwner + update',
+			'checkAdmin + grant',
+			'checkNewStatus + update',
+			'postOnly + propose, approve, reject',
 		);
 	}
 
@@ -173,7 +173,7 @@ class TestimonialController extends Controller
 	 * A filter to ensure only the owner can access a testimonial
 	 * @param  CFilterChain $filterChain the filter chain
 	 */
-	public function filterCheckTestimonialOwner($filterChain)
+	public function filterCheckOwner($filterChain)
 	{
 		if (isset($_GET['id']))
 		{
@@ -209,26 +209,6 @@ class TestimonialController extends Controller
 		{
 			$model = $this->loadModel($_GET['id']);
 			$status = Testimonial::STATUS_NEW;
-			if ($model->status != $status)
-			{
-				$statusMap = Testimonial::getStatusMap();
-				throw new CHttpException(403, 'Testimoni ini statusnya bukan "'.$statusMap[$status].'".');
-			}
-		}
-
-		$filterChain->run();
-	}
-
-	/**
-	 * A filter to ensure only pending testimonial can be approved or rejected.
-	 * @param  CFilterChain $filterChain the filter chain
-	 */
-	public function filterCheckPendingStatus($filterChain)
-	{
-		if (isset($_GET['id']))
-		{
-			$model = $this->loadModel($_GET['id']);
-			$status = Testimonial::STATUS_PENDING;
 			if ($model->status != $status)
 			{
 				$statusMap = Testimonial::getStatusMap();
