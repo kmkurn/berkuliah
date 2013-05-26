@@ -9,7 +9,8 @@ class HomeController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control
-			'getStudentId + index', // get student id first on advanced search scenario
+			'ajaxOnly + updateCourses',
+			'postOnly + batchDelete',
 		);
 	}
 
