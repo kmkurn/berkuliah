@@ -160,7 +160,7 @@ class NoteController extends Controller
 				$message['name'] = $model->title;
 				$message['link'] = array('note/view', 'id' => $model->id);
 				$message['picture'] = Yii::app()->params['noteIconsDir'] . $model->getTypeIcon();
-				$message['caption'] = $model->course->name . ' | ' . $model->course->faculty->name;
+				$message['caption'] = $model->course->name;
 				$message['description'] = $model->description;
 				Yii::app()->user->addShareMessage($message);
 
