@@ -25,7 +25,7 @@ Yii::app()->clientScript->registerScript('carousel',
         <div class="developer">
           <div class="team-photo">
             <a href="https://twitter.com/kemaalmaulana"><?php echo CHtml::image(Yii::app()->baseUrl . '/images/kemal2.png','Kemal'); ?></a>
-            <h6> Kemaal Maulana </h6>
+            <h6> Kemal Maulana </h6>
             <h6> Project Manager </h6>
           </div>
           <div class="team-photo">
@@ -44,8 +44,9 @@ Yii::app()->clientScript->registerScript('carousel',
             <h6> User Interface Designer </h6>
           </div>
         </div>
+        <br />
         <div style="clear:both"></div>
-          <h4> Terima kasih kepada: </h4>
+          <h3> Terima kasih kepada: </h3>
          <div class="thanks-to"> 
           <div class="team-photo">
           <a href="https://twitter.com/bagofair"><?php echo CHtml::image(Yii::app()->baseUrl . '/images/dhika.jpg','Dhika'); ?></a>
