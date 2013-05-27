@@ -59,6 +59,6 @@ class BkFormatter extends CFormatter
 	 */
 	public function formatNtext($value)
 	{
-		return parent::formatNtext(wordwrap($value, 75, "\n", true));
+		return wordwrap($value, 75, "\n", true);
 	}
 }
