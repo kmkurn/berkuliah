@@ -142,7 +142,7 @@ class SiteController extends Controller
 	 */
 	public function filterCheckDebugMode($filterChain)
 	{
-		if (defined('YII_DEBUG'))
+		if ( ! defined('YII_DEBUG'))
 			throw new CHttpException(404);
 
 		$filterChain->run();
