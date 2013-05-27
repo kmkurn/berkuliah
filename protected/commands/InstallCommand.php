@@ -40,6 +40,7 @@ class InstallCommand extends CConsoleCommand
 			'protected/runtime',
 			'notes',
 			'assets',
+			'photos',
 		);
 
 		foreach ($dirs as $dir)
@@ -91,12 +92,12 @@ class InstallCommand extends CConsoleCommand
 			'protected/data/bk_faculty.sql',
 			'protected/data/bk_course.sql',
 			'protected/data/bk_badge.sql',
-			);
+		);
 
 		foreach ($sqls as $sql)
 		{
 			echo "Executing $sql... ";
-			$content = file_get_contents($sql);
+			$content = @file_get_contents($sql);
 			$cmd = Yii::app()->db->createCommand($content);
 
 			try
