@@ -18,6 +18,17 @@ class SiteController extends Controller
 		);
 	}
 
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'checkDebugMode + dummyLogin, dummyAdminLogin', // check debug mode
+		);
+	}
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -122,5 +133,18 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+
+	/**
+	 * A filter to ensure that an action only available in debug mode.
+	 * @param  CFilterChain $filterChain the filter chain
+	 */
+	public function filterCheckDebugMode($filterChain)
+	{
+		if (defined('YII_DEBUG'))
+			throw new CHttpException(404);
+
+		$filterChain->run();
 	}
 }
