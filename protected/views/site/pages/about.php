@@ -1,7 +1,7 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->name . ' - Tentang Kami';
+$this->pageTitle='Tentang Kami';
 $this->breadcrumbs=array(
 	'Tentang Kami',
 );
