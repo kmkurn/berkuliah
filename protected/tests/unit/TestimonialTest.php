@@ -35,10 +35,11 @@ class TestimonialTest extends CDbTestCase
 	public function testGetStatusMap()
 	{
 		$repr = Testimonial::getStatusMap();
-		$this->assertEquals(3, count($repr));
+		$this->assertEquals(4, count($repr));
 		$this->assertTrue(array_key_exists(Testimonial::STATUS_NEW, $repr));
 		$this->assertTrue(array_key_exists(Testimonial::STATUS_PENDING, $repr));
 		$this->assertTrue(array_key_exists(Testimonial::STATUS_APPROVED, $repr));
+		$this->assertTrue(array_key_exists(Testimonial::STATUS_REJECTED, $repr));
 	}
 
 	/**
@@ -90,7 +91,7 @@ class TestimonialTest extends CDbTestCase
 
 		$this->assertTrue($testi->reject());
 		$updatedTesti = Testimonial::model()->findByPk($testi->id);
-		$this->assertEquals(Testimonial::STATUS_NEW, $testi->status);
+		$this->assertEquals(Testimonial::STATUS_REJECTED, $testi->status);
 	}
 
 	/**

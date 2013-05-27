@@ -18,6 +18,7 @@ class Testimonial extends CActiveRecord
 	const STATUS_NEW = 0;
 	const STATUS_PENDING = 1;
 	const STATUS_APPROVED = 2;
+	const STATUS_REJECTED = 3;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -114,7 +115,7 @@ class Testimonial extends CActiveRecord
 	 */
 	public function reject()
 	{
-		$this->status = self::STATUS_NEW;
+		$this->status = self::STATUS_REJECTED;
 
 		return $this->save();
 	}
@@ -151,9 +152,10 @@ class Testimonial extends CActiveRecord
 	public static function getStatusMap()
 	{
 		return array(
-			self::STATUS_NEW => 'Belum Disetujui',
-			self::STATUS_PENDING => 'Menunggu Persetujuan Admin',
+			self::STATUS_NEW => 'Belum Diusulkan',
+			self::STATUS_PENDING => 'Menunggu Persetujuan',
 			self::STATUS_APPROVED => 'Disetujui',
+			self::STATUS_REJECTED => 'Belum Disetujui',
 		);
 	}
 
