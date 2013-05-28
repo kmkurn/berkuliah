@@ -61,7 +61,7 @@
 				'prompt' => 'Pilih mata kuliah',
 			),
 			array(
-				'data' => CHtml::listData(Course::model()->findAllByAttributes(array('faculty_id' => 1)), 'id', 'name'),
+				'data' => CHtml::listData(Course::model()->findAllByAttributes(array('faculty_id' => 1), array('order' => 'name ASC')), 'id', 'name'),
 				'beforeInput' => '<span id="courses">',
 				'afterInput' => '</span>',
 			)
