@@ -142,8 +142,8 @@ class SiteController extends Controller
 	 */
 	public function filterCheckDebugMode($filterChain)
 	{
-		if ( ! defined('YII_DEBUG'))
-			throw new CHttpException(404);
+		if (! YII_DEBUG)
+			throw new CHttpException(404, 'Fitur ini tidak tersedia.');
 
 		$filterChain->run();
 	}
