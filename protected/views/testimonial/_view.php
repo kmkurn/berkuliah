@@ -32,7 +32,7 @@
 			<tr>
 				<td><i class="icon icon-file"></i> <?php echo CHtml::encode($model->getAttributeLabel('content')); ?></td>
 				<td>:</td>
-				<td><?php echo Yii::app()->format->ntext($model->content); ?></td>
+				<td><?php echo Yii::app()->format->wrap($model->content, BkFormatter::TEXT_WRAP_LENGTH); ?></td>
 			</tr>
 
 		
