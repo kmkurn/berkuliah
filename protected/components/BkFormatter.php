@@ -8,6 +8,15 @@
 class BkFormatter extends CFormatter
 {
 	/**
+	 * Maximum length of title before wrapping.
+	 */
+	const TITLE_WRAP_LENGTH = 27;
+	/**
+	 * Maximum length of text before wrapping.
+	 */
+	const TEXT_WRAP_LENGTH = 75;
+
+	/**
 	 * Formats a set of input field that consists of label, input, and error message.
 	 * @param  CActiveForm $form the form
 	 * @param  string $type the input field method
@@ -43,22 +52,14 @@ class BkFormatter extends CFormatter
 	}
 
 	/**
-	 * Formats a long text so that it gets wrapped at column 27 no matter what, using <br> tag.
-	 * @param  string $value the long text
-	 * @return string the resulting formatted text.
+	 * Formats a long text so that it gets wrapped at column $length no matter what, using <br /> tag.
+	 * @param string $value the long text
+	 * @param integer $length the column length
+	 * @return string the resulting formatted text
+	 * @author Kemal Maulana Kurniawan <kemskems12@gmail.com>
 	 */
-	public function formatText($value)
+	public function formatWrap($value, $length)
 	{
-		return wordwrap(CHtml::encode($value), 27, '<br />', true);
-	}
-
-	/**
-	 * Formats a long text so that it gets wrapped at column 75 no matter what, using "\n" character.
-	 * @param  string $value the long text
-	 * @return string the resulting formatted text.
-	 */
-	public function formatNtext($value)
-	{
-		return wordwrap($value, 75, "\n", true);
+		return wordwrap($value, $length, '<br />', true);
 	}
 }
