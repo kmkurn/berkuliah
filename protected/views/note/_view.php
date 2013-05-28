@@ -73,6 +73,7 @@
 					$this->widget('CStarRating', array(
 							'name'=>'rating',
 							'allowEmpty' => false,
+							'starCount' => 10,
 							'value' => $model->getRating(Yii::app()->user->id),
 							'callback' => 'function() {$.ajax({
 								type: "POST",
