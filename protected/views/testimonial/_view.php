@@ -46,13 +46,14 @@
 					{
 						if ($model->status == Testimonial::STATUS_PENDING)
 						{
-							echo CHtml::link('Terima', '#', array(
+							echo CHtml::link('<i class="icon icon-ok icon-white"></i> Terima', '#', array(
 								'class'=>'btn btn-primary',
 								'confirm'=>'Apakah Anda yakin ingin menerima testimoni ini?',
 								'submit'=>array('approve', 'id'=>$model->id),
 							));
+
 							echo ' ';
-							echo CHtml::link('Tolak', '#', array(
+							echo CHtml::link('<i class="icon icon-remove icon-white"></i> Tolak', '#', array(
 								'class'=>'btn btn-danger',
 								'confirm'=>'Apakah Anda yakin ingin menolak testimoni ini?',
 								'submit'=>array('reject', 'id'=>$model->id),
