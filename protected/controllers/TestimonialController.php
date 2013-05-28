@@ -208,11 +208,10 @@ class TestimonialController extends Controller
 		if (isset($_GET['id']))
 		{
 			$model = $this->loadModel($_GET['id']);
-			$status = Testimonial::STATUS_NEW;
-			if ($model->status != $status)
+			if ($model->status != Testimonial::STATUS_NEW && $model->status != Testimonial::STATUS_REJECTED)
 			{
 				$statusMap = Testimonial::getStatusMap();
-				throw new CHttpException(403, 'Testimoni ini statusnya bukan "'.$statusMap[$status].'".');
+				throw new CHttpException(403, 'Testimoni ini statusnya bukan "'.$statusMap[Testimonial::STATUS_NEW].'" atau "' . $statusMap[Testimonial::STATUS_REJECTED] . '".');
 			}
 		}
 
