@@ -62,7 +62,7 @@
 					}
 					else if (Yii::app()->user->id == $model->student_id)
 					{
-						if ($model->status == Testimonial::STATUS_NEW)
+						if ($model->status == Testimonial::STATUS_NEW || $model->status == Testimonial::STATUS_REJECTED)
 						{
 							echo CHtml::link('<i class="icon-search icon-pencil icon-white"></i> Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-primary'));
 							echo ' ';
