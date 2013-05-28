@@ -10,9 +10,6 @@ $this->breadcrumbs=array(
 	'Daftar Berkas',
 );
 
-if (Yii::app()->user->hasFlash('badge'))
-	Yii::app()->clientScript->registerScript('badge', '$("#badge-modal").modal("show");');
-
 if (Yii::app()->user->hasShareMessages())
 {
 	echo '<div id="' . Yii::app()->fbApi->divRoot . '"></div>' . "\n";
@@ -28,10 +25,6 @@ if (Yii::app()->user->hasShareMessages())
 
 <div class="row-fluid">
 	<div class="span9">
-
-		<?php if (Yii::app()->user->hasFlash('badge')): ?>
-		<?php $this->renderPartial('_badge', array('badge'=>Yii::app()->user->getFlash('badge'))); ?>
-		<?php endif; ?>
 
 		<?php $this->renderPartial('_basic', array(
 			'model' => $model,

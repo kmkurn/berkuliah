@@ -1,5 +1,5 @@
 <?php
-/* @var $this HomeController */
+/* @var $this Controller */
 /* @var $badge Badge */
 
 ?>

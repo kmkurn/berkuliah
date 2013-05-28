@@ -1,6 +1,8 @@
 <?php
 /* @var $this Controller */
 
+if (Yii::app()->user->hasFlash('badge'))
+	Yii::app()->clientScript->registerScript('badge', '$("#badge-modal").modal("show");');
 ?>
 
 <?php $this->beginContent('//layouts/main'); ?>
@@ -68,6 +70,10 @@
 			'homeLink' => CHtml::link('Beranda', $this->createUrl('site/index')),
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
+
+	<?php if (Yii::app()->user->hasFlash('badge')): ?>
+	<?php $this->renderPartial('//common/_badge', array('badge'=>Yii::app()->user->getFlash('badge'))); ?>
+	<?php endif; ?>
 
 	<!-- Include content pages -->
 	<?php echo $content; ?>
