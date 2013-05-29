@@ -16,7 +16,7 @@
 			<tr>
 				<td><i class="icon icon-tag"></i> <?php echo CHtml::encode($model->getAttributeLabel('title')); ?></td>
 				<td width='2px'>:</td>
-				<td><strong><?php echo Yii::app()->format->text($model->title); ?></strong></td>
+				<td><strong><?php echo Yii::app()->format->wrap(CHtml::encode($model->title), BkFormatter::TITLE_WRAP_LENGTH); ?></strong></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-user"></i> <?php echo CHtml::encode($model->getAttributeLabel('student_id')); ?></td>
@@ -36,7 +36,7 @@
 			<tr>
 				<td><i class="icon icon-zoom-in"></i> <?php echo CHtml::encode($model->getAttributeLabel('description')); ?></td>
 				<td>:</td>
-				<td><?php echo Yii::app()->format->ntext($model->description); ?></td>
+				<td><?php echo Yii::app()->format->wrap(CHtml::encode($model->description), BkFormatter::TEXT_WRAP_LENGTH); ?></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-time"></i> <?php echo CHtml::encode($model->getAttributeLabel('upload_timestamp')); ?></td>

@@ -13,7 +13,7 @@ $baseUrl = Yii::app()->request->baseUrl;
 
 <br />
 
-<span class="noteTitle"><?php echo CHtml::link(Yii::app()->format->text($data->title), array('note/view', 'id'=>$data->id)); ?></span>
+<span class="noteTitle"><?php echo CHtml::link(Yii::app()->format->wrap(CHtml::encode($data->title), BkFormatter::TITLE_WRAP_LENGTH), array('note/view', 'id'=>$data->id)); ?></span>
 <br />
 
 <i class="icon icon-user"></i> <span class="label label-info studentUsername"><?php echo CHtml::link(CHtml::encode($data->student->username),
