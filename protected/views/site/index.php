@@ -6,6 +6,10 @@ $this->pageTitle = 'Beranda';
 
 ?>
 
+Beranda
+
+<div class="page-header"></div>
+
 <div class="row-fluid">
   <div class="span9">
     <table>
@@ -13,12 +17,12 @@ $this->pageTitle = 'Beranda';
       <tr>
         
         <td width="600px">
-          <div id="artikel"><div class="span12">
+          <div id="artikel" class="span12">
 
             <?php if ($model !== null): ?>
 
               <?php $this->beginWidget('zii.widgets.CPortlet', array(
-                'title' => '<strong>Pengguna Terbaik Bulan Ini: ' . $model->student->name . '</strong>',
+                'title' => '<strong>TESTIMONI ' . $model->student->name . '</strong>',
               )); ?>
                 <?php $this->renderPartial('_testimonial', array('model'=>$model)); ?>
 
@@ -33,14 +37,14 @@ $this->pageTitle = 'Beranda';
               <?php $this->endWidget();?>
 
             <?php endif; ?>
-</div>
+
           </div><!-- artikel -->
         </td>
 
-        <td valign="top">
+        <td>
           <?php 
 
-          echo Chtml::link('Tweets by @berkuliah', 'https://twitter.com/berkuliah', array(
+          echo Chtml::link('Tweets by @BerKuliah', 'https://twitter.com/BerKuliah', array(
               'class' => 'twitter-timeline',
               'data-dnt' => 'true',
               'data-widget-id' => '321252419063390209'

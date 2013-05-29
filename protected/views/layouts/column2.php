@@ -9,7 +9,6 @@ if (Yii::app()->user->hasFlash('badge'))
 <div class="row-fluid">
 	<div class="span3">
 		<br />
-		<?php if (!Yii::app()->user->isGuest): ?>
 		<?php $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>' ', 
 			'htmlOptions' => array(
@@ -17,19 +16,20 @@ if (Yii::app()->user->hasFlash('badge'))
 			)
 		)); ?>
 		
-		<?php if (!Yii::app()->user->isGuest): ?>
-			<div id="foto">
-				<?php echo CHtml::image(
-					Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
-						(Yii::app()->user->isGuest ? Yii::app()->params['defaultProfilePhoto'] : Yii::app()->user->profilePhoto),
-					Yii::app()->user->name, 
-					array('width' => 110)
-				); ?>
-			</div><!-- foto -->
-		<?php endif; ?>
+		<div id="foto">
+			<?php echo CHtml::image(
+				Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . 
+					(Yii::app()->user->isGuest ? Yii::app()->params['defaultProfilePhoto'] : Yii::app()->user->profilePhoto),
+				'photo', 
+				array('width' => 110)
+			); ?>
+		</div><!-- foto -->
+
 		<?php $this->endWidget(); ?>
 		<hr style="width:200px" />
-		<div class="well sidebar-nav">
+
+		<?php if (!Yii::app()->user->isGuest): ?>
+			<div class="well sidebar-nav">
 			<?php
 
 			$menus = array(
@@ -59,8 +59,7 @@ if (Yii::app()->user->hasFlash('badge'))
 				'encodeLabel' => false,
 				'items' => $menus,
 			)); ?>
-		</div><!-- well sidebar-nav -->
-		<br />
+			</div><!-- well sidebar-nav -->
 		<?php endif; ?>
 	</div><!-- span3 -->
 
