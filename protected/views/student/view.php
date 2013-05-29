@@ -7,7 +7,7 @@
 /* @var $reports CSqlDataProvider */
 /* @var $uploads CArrayDataProvider */
 /* @var $badges CArrayDataProvider */
-/* @var $testimonials CArrayDataProvider */
+/* @var $testimonials CActiveDataProvider */
 
 $this->pageTitle = $model->username;
 
