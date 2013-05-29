@@ -28,4 +28,13 @@ return array(
 		'upload_timestamp'=>date('Y-m-d H:i:s'),
 		'edit_timestamp'=>date('Y-m-d H:i:s'),
 	),
+	'note4'=>array(
+		'title'=>'Test Note 4',
+		'description'=>'This is a test note 4 description.',
+		'type'=>2,
+		'course_id'=>10,
+		'student_id'=>4,
+		'upload_timestamp'=>date('Y-m-d H:i:s'),
+		'edit_timestamp'=>date('Y-m-d H:i:s'),
+	),
 );

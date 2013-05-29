@@ -13,7 +13,7 @@
 		<tr align="center">
 			<th rowspan="6" width="200px">
 				<?php echo CHtml::image(
-					Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . Yii::app()->user->profilePhoto,
+					Yii::app()->baseUrl . '/' . Yii::app()->params['photosDir'] . $model->photo,
 					CHtml::encode($model->name),
 					array('width'=>200)
 				); ?>
