@@ -39,6 +39,22 @@ class Testimonial extends CActiveRecord
 	}
 
 	/**
+	 * Defines student scope.
+	 * @param  integer $id the student id
+	 * @return Testimonial this model
+	 */
+	public function student($id)
+	{
+		$this->getDbCriteria()->mergeWith(array(
+			'order'=>'timestamp DESC',
+			'condition'=>'student_id=:id',
+			'params'=>array(':id'=>$id),
+		));
+
+		return $this;
+	}
+
+	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()

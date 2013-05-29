@@ -149,11 +149,11 @@ class StudentController extends Controller
 		));
 
 		if (Yii::app()->user->isAdmin)
-			$testimonialData = Testimonial::model()->findAll();
+			$finder = Testimonial::model();
 		else
-			$testimonialData = $model->testimonials;
+			$finder = Testimonial::model()->student($model->id);
 
-		$testimonials = new CArrayDataProvider($testimonialData, array(
+		$testimonials = new CActiveDataProvider($finder, array(
 			'pagination'=>array(
 				'pageSize'=>$numItems,
 			),

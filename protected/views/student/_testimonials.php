@@ -1,6 +1,6 @@
 <?php
 /* @var $this StudentController */
-/* @var $dataProvider CArrayDataProvider */
+/* @var $dataProvider CActiveDataProvider */
 ?>
 
 <?php if (Yii::app()->user->isAdmin): ?>
