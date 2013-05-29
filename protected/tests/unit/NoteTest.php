@@ -347,7 +347,7 @@ class NoteTest extends CDbTestCase
 		// search by uploader
 		$note = new Note();
 		$note->uploader = '1';
-		$this->assertEquals(1, $note->search()->totalItemCount);
+		$this->assertEquals(2, $note->search()->totalItemCount);
 	}
 
 	/** 

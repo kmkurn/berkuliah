@@ -28,4 +28,13 @@ return array(
 		'last_login_timestamp'=>date('Y-m-d H:i:s'),
 		'faculty_id'=>2,
 	),
+	'student4'=>array(
+		'username'=>'test10',
+		'name'=>'Test Student 10',
+		'bio'=>'Test bio 4.',
+		'photo'=>'test4.jpeg',
+		'is_admin'=>0,
+		'last_login_timestamp'=>date('Y-m-d H:i:s'),
+		'faculty_id'=>2,
+	),
 );
