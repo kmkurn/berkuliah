@@ -71,7 +71,7 @@ class Student extends CActiveRecord
 			array('name', 'length', 'max'=>self::MAX_NAME_LENGTH,
 				'message'=>'{attribute} maksimum terdiri dari '.self::MAX_NAME_LENGTH.' karakter.'
 			),
-			array('file', 'file', 'allowEmpty'=>true, 'maxSize'=>self::MAX_FILE_SIZE, 'types'=>'jpg, png',
+			array('file', 'file', 'allowEmpty'=>true, 'maxSize'=>self::MAX_FILE_SIZE, 'types'=>'jpg, jpeg, png',
 				'tooLarge'=>'{attribute} maksimum '.Yii::app()->format->size(self::MAX_FILE_SIZE).'.',
 				'wrongType'=>'{attribute} hanya boleh bertipe JPEG atau PNG',
 			),
