@@ -49,7 +49,7 @@
 				<i class="icon icon-pencil"></i> <?php echo $model->getAttributeLabel('bio'); ?>
 			</td>
 			<td>:</td>
-			<td><?php echo Yii::app()->format->wrap(CHtml::encode($model->bio), BkFormatter::TEXT_WRAP_LENGTH); ?></td>
+			<td><?php echo Yii::app()->format->wrap(nl2br(CHtml::encode($model->bio)), BkFormatter::TEXT_WRAP_LENGTH); ?></td>
 		</tr>
 
 		<tr>
