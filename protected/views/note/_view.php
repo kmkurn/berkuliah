@@ -36,7 +36,7 @@
 			<tr>
 				<td><i class="icon icon-zoom-in"></i> <?php echo CHtml::encode($model->getAttributeLabel('description')); ?></td>
 				<td>:</td>
-				<td><?php echo Yii::app()->format->wrap(CHtml::encode($model->description), BkFormatter::TEXT_WRAP_LENGTH); ?></td>
+				<td><?php echo Yii::app()->format->wrap(nl2br(CHtml::encode($model->description)), BkFormatter::TEXT_WRAP_LENGTH); ?></td>
 			</tr>
 			<tr>
 				<td><i class="icon icon-time"></i> <?php echo CHtml::encode($model->getAttributeLabel('upload_timestamp')); ?></td>
