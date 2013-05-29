@@ -829,6 +829,11 @@ text-decoration: none;
   width: 20px;
 }
 
+.notePhotoIcon {
+  width: 18px;
+  height: 18px;
+}
+
 #twitter_t {
   width: 445px;
   height: 34px;
