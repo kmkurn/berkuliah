@@ -18,6 +18,7 @@ return CMap::mergeArray(
 		'params'=>array(
 			'noteIconsDir'=>dirname(__FILE__).'/../../images/',
 			'badgeIconsDir'=>dirname(__FILE__).'/../../images/badges/',
+			'defaultProfilePhoto'=>'user.png',
 		),
 	)
 );
