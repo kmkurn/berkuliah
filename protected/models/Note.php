@@ -154,12 +154,12 @@ class Note extends CActiveRecord
 			'student' => array('select' => 'username, name'),
 		);
 
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('type',$this->type, true);
-		$criteria->compare('course_id',$this->course_id, true);
-		$criteria->compare('student.username',$this->uploader, true);
-		$criteria->compare('student.name',$this->uploader, true, 'OR');
-		$criteria->compare('faculty.id',$this->faculty_id,true);
+		$criteria->compare('title', $this->title, true);
+		$criteria->compare('type', $this->type);
+		$criteria->compare('course_id', $this->course_id);
+		$criteria->compare('student.username', $this->uploader, true);
+		$criteria->compare('student.name', $this->uploader, true, 'OR');
+		$criteria->compare('faculty.id', $this->faculty_id, true);
 		$criteria->order = 'upload_timestamp DESC';
 
 		return new CActiveDataProvider($this, array(
