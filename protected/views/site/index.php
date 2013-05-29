@@ -18,7 +18,7 @@ $this->pageTitle = 'Beranda';
             <?php if ($model !== null): ?>
 
               <?php $this->beginWidget('zii.widgets.CPortlet', array(
-                'title' => '<strong>Pengguna Terbaik Bulan Ini: ' . $model->student->name . '</strong>',
+                'title' => '<strong>TESTIMONI ' . $model->student->name . '</strong>',
               )); ?>
                 <?php $this->renderPartial('_testimonial', array('model'=>$model)); ?>
 
