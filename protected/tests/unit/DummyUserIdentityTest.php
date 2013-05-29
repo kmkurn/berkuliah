@@ -5,6 +5,10 @@
  */
 class DummyUserIdentityTest extends CDbTestCase
 {
+	public $fixtures = array(
+		'students'=>'Student',
+	);
+
 	/**
 	 * Tests the dummy login action.
 	 */
@@ -18,7 +22,7 @@ class DummyUserIdentityTest extends CDbTestCase
 		$this->assertEquals('Dummy User', $student->name);
 		$this->assertTrue($student->is_admin == 0);
 		$this->assertTrue($student->faculty->id == 1);
-		$this->assertNull($student->photo);
+		$this->assertEquals(Yii::app()->params['defaultProfilePhoto'], $student->photo);
 	}
 
 
@@ -35,6 +39,6 @@ class DummyUserIdentityTest extends CDbTestCase
 		$this->assertEquals('Dummy Admin', $student->name);
 		$this->assertTrue($student->is_admin == 1);
 		$this->assertTrue($student->faculty->id == 1);
-		$this->assertNull($student->photo);
+		$this->assertEquals(Yii::app()->params['defaultProfilePhoto'], $student->photo);
 	}
 }
