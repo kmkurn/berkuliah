@@ -43,6 +43,7 @@ class UserIdentity extends CBaseUserIdentity
 			$student = new Student();
 			$student->username = $this->username;
 			$student->name = $this->username;
+			$student->photo = Yii::app()->params['defaultProfilePhoto'];
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
@@ -52,11 +53,7 @@ class UserIdentity extends CBaseUserIdentity
 		$this->name = $student->name;
 		
 		$this->setState('isAdmin', $student->is_admin);
-		
-		if ($student->photo)
-			$this->setState('profilePhoto', $student->photo);
-		else
-			$this->setState('profilePhoto', Yii::app()->params['defaultProfilePhoto']);
+		$this->setState('profilePhoto', $student->photo);
 
 		return true;
 	}
