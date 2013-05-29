@@ -8,7 +8,10 @@ $baseUrl = Yii::app()->request->baseUrl;
 <?php if (Yii::app()->user->isAdmin) echo CHtml::checkBox('deleteNote[' . $data->id . ']'); ?>
 
 <div id="iconBerkas">
-	<?php echo CHtml::image($baseUrl . '/' . $data->typeIcon, 'note icon', array('class' => 'note-icon',"width"=>50,"height"=>50)); ?>
+
+	<?php echo CHtml::link(CHtml::image($baseUrl . '/' . $data->typeIcon, 'note icon', array('class' => 'noteIcon')),
+		array('note/view', 'id'=>$data->id)
+		); ?>
 </div>
 
 <br />

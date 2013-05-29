@@ -808,7 +808,16 @@ text-decoration: none;
   font-size: 14px;
 }
 
-.noteCell tr td:hover {
+.noteIcon {
+  width: 50px;
+  height: 50px;
+}
+
+.noteCell{
+  border: 1px solid #dddddd;
+}
+
+.noteCell:hover {
   background-color: #e6e6e6;
 }
 

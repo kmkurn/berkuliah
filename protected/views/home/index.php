@@ -99,7 +99,8 @@ if (Yii::app()->user->hasShareMessages())
 			'dataProvider'=>$dataProvider,
 			'itemView'=>'_note',
 			'numColumns' => 4,
-			'itemsCssClass' => 'table table-bordered noteCell',
+			'itemsCssClass' => 'table table-bordered',
+			'dataCssClass' => 'noteCell',
 			'emptyText' => 'Hasil pencarian tidak ditemukan.',
 			'itemName' => 'berkas',
 		)); ?>
