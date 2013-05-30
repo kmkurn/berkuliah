@@ -67,11 +67,6 @@
 			)
 		); ?>
 
-		<tr>
-			<td><label><em>atau masukkan mata kuliah baru</em></label></td>
-			<td><?php echo $form->textField($model, 'new_course_name'); ?></td>
-		</tr>
-
 		<?php echo Yii::app()->format->formatInputField($form, 'fileField', $model, 'file', 'icon-file',
 			array(),
 			array(
