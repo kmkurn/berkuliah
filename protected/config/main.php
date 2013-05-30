@@ -42,13 +42,6 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=berkuliah',
-			'emulatePrepare' => true,
-			'username' => 'berkuliah',
-			'password' => 'c3456',
-			'charset' => 'utf8',
-		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
