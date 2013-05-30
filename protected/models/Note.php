@@ -36,11 +36,6 @@ class Note extends CActiveRecord
 	public $faculty_id;
 
 	/**
-	 * The name of the new course specified by user
-	 */
-	public $new_course_name;
-
-	/**
 	 * The to-be-uploaded note file instance
 	 */
 	public $file;
@@ -83,28 +78,17 @@ class Note extends CActiveRecord
 			array('title', 'length', 'max'=>self::MAX_TITLE_LENGTH,
 				'message'=>'{attribute} maksimum terdiri dari '.self::MAX_TITLE_LENGTH.' karakter.'),
 
-			array('course_id', 'checkCourse', 'on'=>'insert', 'enableClientValidation'=>true, 'clientValidate'=>'clientValidateCourse'),
+			array('course_id', 'required', 'on'=>'insert', 'message'=>'{attribute} tidak boleh kosong.'),
 			array('course_id', 'exist', 'className'=>'Course', 'attributeName'=>'id', 'on'=>'insert',
 				'message'=>'{attribute} tidak terdaftar.'),
 			array('faculty_id', 'required', 'on'=>'insert', 'message'=>'{attribute} tidak boleh kosong.'),
 			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id', 'on'=>'insert',
 				'message'=>'{attribute} tidak terdaftar.'),
-			array('new_course_name', 'length', 'max'=>Course::MAX_NAME_LENGTH, 'on'=>'insert',
-				'message'=>'{attribute} maksimum terdiri dari '.Course::MAX_NAME_LENGTH.' karakter'),
 			array('file', 'checkNote', 'on'=>'insert'),
 			array('type, student_id, upload_timestamp, edit_timestamp, raw_file_text', 'safe'),
 			
 			array('title, type, course_id, faculty_id, uploader', 'safe', 'on'=>'search'),
 		);
-	}
-
-	/**
-	 * Validates the course_id field.
-	 */
-	public function clientValidateCourse()
-	{
-		$js = 'if (value == 0 && $("#Note_new_course_name").val() == "") messages.push("Mata Kuliah tidak boleh kosong.");';
-		return $js;
 	}
 
 	/**
@@ -165,20 +149,6 @@ class Note extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	/**
-	 * Checks whether the user has selected the course or insert a new course name.
-	 * @param  string $attribute
-	 * @param  array $params
-	 */
-	public function checkCourse($attribute, $params)
-	{
-		if (empty($this->course_id) && empty($this->new_course_name))
-		{
-			$attributeName = $this->getAttributeLabel('course_id');
-			$this->addError('course_id', $attributeName . ' tidak boleh kosong.');
-		}
 	}
 
 	/**
@@ -375,25 +345,6 @@ class Note extends CActiveRecord
 				$this->edit_timestamp = $currentTimestamp;
 			}
 		}
-	}
-
-	/**
-	 * This method is invoked before saving.
-	 * @return boolean whether the saving should be executed
-	 */
-	public function beforeSave()
-	{
-		// saves new course
-		if (empty($this->course_id))
-		{
-			$course = new Course();
-			$course->name = $this->new_course_name;
-			$course->faculty_id = $this->faculty_id;
-			$course->save();
-			$this->course_id = $course->id;
-		}
-
-		return parent::beforeSave();
 	}
 
 	/**

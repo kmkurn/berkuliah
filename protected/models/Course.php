@@ -15,11 +15,6 @@
 class Course extends CActiveRecord
 {
 	/**
-	 * Maximum length of $name.
-	 */
-	const MAX_NAME_LENGTH = 128;
-
-	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Course the static model class
@@ -42,12 +37,7 @@ class Course extends CActiveRecord
 	 */
 	public function rules()
 	{
-		return array(
-			array('name, faculty_id', 'required'),
-			array('faculty_id', 'numerical', 'integerOnly'=>true),
-			array('faculty_id', 'exist', 'className'=>'Faculty', 'attributeName'=>'id'),
-			array('name', 'length', 'max'=>self::MAX_NAME_LENGTH),
-		);
+		return array(); // no user input for this model
 	}
 
 	/**

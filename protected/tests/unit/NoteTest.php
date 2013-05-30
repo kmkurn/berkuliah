@@ -116,38 +116,6 @@ class NoteTest extends CDbTestCase
 	}
 
 	/**
-	 * Tests the note upload action with new course.
-	 */
-	public function testUploadNewCourse()
-	{
-		$this->init();
-
-		$student = $this->students('student1');
-
-		$courseName = 'Test New Course';
-		$note = new Note();
-		$note->setAttributes($this->noteAttributes);
-		$note->course_id = null;
-		$note->new_course_name = $courseName;
-
-		$this->assertTrue($note->validate());
-		$note->student_id = $student->id;
-		$note->save(false);
-
-		$newCourse = Course::model()->findByAttributes(array(
-			'faculty_id'=>$note->faculty_id,
-			'name'=>$courseName,
-		));
-		$this->assertNotNull($newCourse);
-		$this->assertTrue($newCourse instanceof Course);
-
-		$newNote = Note::model()->findByPk($note->id);
-		$this->assertNotNull($newNote);
-		$this->assertTrue($newNote instanceof Note);
-		$this->assertEquals($newCourse->id, $newNote->course_id);
-	}
-
-	/**
 	 * Tests the note upload action with raw text.
 	 */
 	public function testUploadRawText()
@@ -237,13 +205,6 @@ class NoteTest extends CDbTestCase
 		$fakeNote->setAttributes($this->noteAttributes);
 		$fakeNote->raw_file_text = null;
 		$fakeNote->file = null;
-		$this->assertFalse($fakeNote->validate());
-
-		// Empty course_id and new_course_name
-		$fakeNote = new Note();
-		$fakeNote->setAttributes($this->noteAttributes);
-		$fakeNote->course_id = null;
-		$fakeNote->new_course_name = null;
 		$this->assertFalse($fakeNote->validate());
 	}
 
