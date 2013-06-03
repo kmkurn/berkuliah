@@ -105,6 +105,33 @@ class SiteController extends Controller
 		$this->redirect(array('home/index'));
 	}
 
+
+	/**
+	 * Logs in using LDAP.
+	 */
+	public function actionLdap()
+	{
+		$model = new LoginForm();
+
+		if (isset($_POST['LoginForm']))
+		{
+			$model->attributes = $_POST['LoginForm'];
+			if ($model->validate())
+			{
+				$identity = new UserIdentity($model->username, $model->password);
+				if ($identity->authenticate())
+				{
+					Yii::app()->user->login($identity);
+					$this->redirect(array('home/index'));
+				}
+				else
+					Yii::app()->user->setNotification('danger', $identity->errorMessage);
+			}
+		}
+
+		$this->render('login', array('model' => $model));
+	}
+
 	/**
 	 * Logs out the current user and redirects to homepage.
 	 */
