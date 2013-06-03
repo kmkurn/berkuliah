@@ -49,7 +49,7 @@
             ),
           ),
           array(
-            'label'=>'<i class="icon icon-user icon-user icon-white"></i> Masuk',
+            'label'=>'<i class="icon icon-user icon-off icon-white"></i> Masuk',
             'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest,
           ), 
         ),
