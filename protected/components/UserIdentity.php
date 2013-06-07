@@ -8,26 +8,6 @@
 class UserIdentity extends CBaseUserIdentity
 {
 	/**
-	 * Fasilkom UI's LDAP host address.
-	 */
-	const LDAP_HOST = 'ldap://152.118.29.6';
-
-	/**
-	 * Fasilkom UI's LDAP port.
-	 */
-	const LDAP_PORT = 389;
-
-	/**
-	 * Fasilkom UI's LDAP option.
-	 */
-	const LDAP_OPTION = LDAP_OPT_PROTOCOL_VERSION;
-
-	/**
-	 * Fasilkom UI's LDAP option.
-	 */
-	const LDAP_VALUE = 3;
-
-	/**
 	 * The id of the user.
 	 */
 	private $id;
@@ -43,18 +23,12 @@ class UserIdentity extends CBaseUserIdentity
 	private $username;
 
 	/**
-	 * The JUITA username of the user.
-	 */
-	private $password;
-
-	/**
 	 * Constructs a new identity instance.
 	 * @param string $username the username of the user
 	 */
-	public function __construct($username, $password)
+	public function __construct($username)
 	{
 		$this->username = $username;
-		$this->password = $password;
 	}
 
 	/**
@@ -63,51 +37,14 @@ class UserIdentity extends CBaseUserIdentity
 	 */
 	public function authenticate()
 	{
-		$conn = @ldap_connect(self::LDAP_HOST, self::LDAP_PORT);
-		if (!$conn)
-		{
-			$this->errorMessage = 'Tidak dapat menghubungi LDAP UI.';
-			return false;
-		}
-
-		$opt = @ldap_set_option($conn, self::LDAP_OPTION, self::LDAP_VALUE);
-
-		$filter = 'uid=' . $this->username;
-		$base_dn = 'o=Universitas Indonesia,c=ID';
-
-		$result = @ldap_search($conn, $base_dn, $filter);
-		if (!$result)
-		{
-			ldap_close($conn);
-			$this->errorMessage = 'Terjadi kesalahan saat menghubungi LDAP UI.';
-			return false;
-		}
-
-		$info = ldap_get_entries($conn, $result);
-		if ($info['count'] == 0)
-		{
-			ldap_close($conn);
-			$this->errorMessage = 'Username atau password tidak ditemukan';
-			return false;
-		}
-
-		$dn  = $info[0]["dn"];
-		$ret = @ldap_bind($conn, $dn, $this->password);
-		
-		if (!$ret)
-		{
-			ldap_close($conn);
-			$this->errorMessage = 'Username atau password tidak ditemukan';
-			return false;
-		}
-
 		$student = Student::model()->findByAttributes(array('username' => $this->username));
 		if ($student === null)
 		{
 			$student = new Student();
 			$student->username = $this->username;
-			$student->name = $this->username;
+			$student->name = self::humanize($this->username);
 			$student->photo = Yii::app()->params['defaultProfilePhoto'];
+			$student->faculty_id = 1;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
@@ -138,5 +75,24 @@ class UserIdentity extends CBaseUserIdentity
 	public function getName()
 	{
 		return $this->name;
+	}
+
+	/**
+	 * Humanize username.
+	 * @param string $username the username
+	 * @return string the human-readable username
+	 */
+	public static function humanize($username)
+	{
+		$names = explode('.', $username);
+		$res = array();
+		foreach ($names as $name)
+		{
+			$n = strlen($name);
+			while (is_numeric($name[$n - 1]))
+				$n--;
+			$res[] = substr($name, 0, $n);
+		}
+		return ucwords(implode(' ', $res));
 	}
 }
