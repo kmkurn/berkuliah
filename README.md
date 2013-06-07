@@ -36,5 +36,8 @@ This project is released under the [MIT license](http://opensource.org/licenses/
 
 ## Changelog
 
-1. June 7, 2013
+2. June 7, 2013 (1.0.1)
+    - Fixed bugs related to profile photo
+
+1. June 7, 2013 (1.0.0)
     - Initial public release
