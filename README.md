@@ -19,7 +19,7 @@ Find a bug? Just [open a new issue](https://github.com/kemskems/berkuliah/issues
 
 ## Contributing
 
-Please refer to our [wiki pages](https://github.com/kemskems/berkuliah/wiki) to get more information about how to contribute to this project.
+Please refer to our [How to Contribute](https://github.com/kemskems/berkuliah/wiki/How-To-Contribute) wiki page to get more information about how to contribute to this project.
 
 ## Authors
 
