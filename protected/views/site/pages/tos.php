@@ -6,6 +6,14 @@ $this->breadcrumbs = array(
 	'Ketentuan Layanan',
 );
 
+Yii::app()->clientScript->registerScript('carousel',
+  "$(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 2800
+    });
+  });"
+);
+
 ?>
 
 <div class="page-header"></div>
