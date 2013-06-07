@@ -940,6 +940,8 @@ color: #1D2E7B;
 }
 
 #logo-tengah{
-  margin-left:450px;
+  margin-left:400px;
+  margin-right: 400px;
+  position: relative;
   margin-bottom: -20px;
 }
