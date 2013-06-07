@@ -40,12 +40,14 @@
 					             	             'url' => array('home/updateCourses'),
 					             	             'update' => '#courses',
 					             	             'data' => array('faculty_id' => 'js:this.value')
-					                           		 ))); ?>
+					                           		 ),
+					  'options' => array('1' => array('selected' => 'selected')),
+				)); ?>
 			</div>
 
 			<div class="field" id="courses">
 				<?php echo $form->label($model,'course_id'); ?>
-				<?php echo $form->dropDownList($model,'course_id', array(),
+				<?php echo $form->dropDownList($model,'course_id', CHtml::listData(Course::model()->findAllByAttributes(array('faculty_id' => 1), array('order' => 'name ASC')), 'id', 'name'),
 				array('prompt' => '(semua)')); ?>
 			</div>
 
@@ -60,10 +62,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<?php echo CHtml::button('Cari', array(
-					'class' => 'btn btn-primary',
-					'type' => 'submit',
-				)); ?>
+				<?php echo CHtml::tag('button', array('type' => 'submit', 'class' => 'btn btn-primary'), '<i class="icon icon-search icon-white"></i> Cari'); ?>
+				
 				<?php echo CHtml::button('Batal', array(
 					'class' => 'btn',
 					'data-dismiss' => 'modal',
