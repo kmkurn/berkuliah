@@ -22,25 +22,27 @@ Yii::app()->clientScript->registerScript('carousel',
   <div class="span9">
     <div class="content-about">
         
-       <ol> <li> <a href="#about-berkuliah">  Tentang Berkulliah </a></li>
-       <li><a href="#team">Tim Kami</a></li></ol>
+      <ol>
+        <li><a href="#about-berkuliah">Tentang BerKuliah</a></li>
+        <li><a href="#team">Tim Kami</a></li>
+      </ol>
       
-        </div>
+    </div>
        <div id="about-berkuliah">
         <h3 class="title-about">Tentang BerKuliah</h3>
         
         <div class="teks-about">
           <p>
-              BerKuliah.com merupakan sebuah sistem informasi untuk berbagi berkas kuliah. Berkas kuliah yang 
+              BerKuliah merupakan sebuah sistem informasi untuk berbagi berkas kuliah. Berkas kuliah yang 
               dimaksud dapat berupa catatan materi kuliah maupun arsip soal ujian, baik dalam format PDF, 
               gambar, maupun teks. Aplikasi ini diperuntukkan bagi pemilik akun JUITA (Jaringan UI Terpadu). 
           </p>
           <p>
               Pada umumnya, jika seorang mahasiswa membutuhkan berkas kuliah mahasiswa lain, maka ia akan 
               memfotokopinya. Dengan adanya aplikasi ini, pengguna dapat mengunduh dan mempelajari berkas 
-              kuliah yang telah diunggah pengguna lain secara digital. Dengan demikian, diharapkan kertasTkertas 
+              kuliah yang telah diunggah pengguna lain secara digital. Dengan demikian, diharapkan kertas-kertas 
               fotokopi berkas kuliah yang sering dihasilkan mahasiswa dapat berkurang secara signifikan dan 
-              penghematan kertas besarTbesaran dapat tercapai. 
+              penghematan kertas besar-besaran dapat tercapai. 
           </p>
           <p>
               Melalui aplikasi ini pula, pengguna dapat mencari berkas kuliah yang dibuat pengguna lain dengan 

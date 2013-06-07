@@ -6240,6 +6240,7 @@ a.menu:after, .dropdown-toggle:after {
   margin-left: auto;
   margin-right: auto;
   width: 500px;
+  text-align: justify;
 }
 
 
