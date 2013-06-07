@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /site/ pages in the application.
+ */
 class SiteController extends Controller
 {
 	/**
@@ -8,18 +11,24 @@ class SiteController extends Controller
 	public function actions()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
-			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
 		);
 	}
+
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'checkDebugMode + dummyLogin, dummyAdminLogin', // check debug mode
+		);
+	}
+
 
 	/**
 	 * This is the default 'index' action that is invoked
@@ -27,9 +36,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->render('index', array('model'=>Testimonial::getCurrentTestimonial()));
 	}
 
 	/**
@@ -45,32 +52,6 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
-
-	/**
-	 * Displays the contact page
-	 */
-	// public function actionContact()
-	// {
-	// 	$model=new ContactForm;
-	// 	if(isset($_POST['ContactForm']))
-	// 	{
-	// 		$model->attributes=$_POST['ContactForm'];
-	// 		if($model->validate())
-	// 		{
-	// 			$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-	// 			$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-	// 			$headers="From: $name <{$model->email}>\r\n".
-	// 				"Reply-To: {$model->email}\r\n".
-	// 				"MIME-Version: 1.0\r\n".
-	// 				"Content-type: text/plain; charset=UTF-8";
-
-	// 			mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-	// 			Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-	// 			$this->refresh();
-	// 		}
-	// 	}
-	// 	$this->render('contact',array('model'=>$model));
-	// }
 
 	/**
 	 * Displays the login page
@@ -100,17 +81,31 @@ class SiteController extends Controller
 	}
 
 	/**
-	 * Displays the dummy login page.
+	 * Logs in as a dummy user.
 	 */
 	public function actionDummyLogin()
 	{
-		$identity = new DummyUserIdentity();
+		$identity = new DummyUserIdentity(0);
 
 		if ($identity->authenticate())
 			Yii::app()->user->login($identity);
 
 		$this->redirect(array('home/index'));
 	}
+
+	/**
+	 * Logs in as a dummy admin
+	 */
+	public function actionDummyAdminLogin()
+	{
+		$identity = new DummyUserIdentity(1);
+
+		if ($identity->authenticate())
+			Yii::app()->user->login($identity);
+
+		$this->redirect(array('home/index'));
+	}
+
 
 	/**
 	 * Logs out the current user and redirects to homepage.
@@ -140,5 +135,18 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+
+	/**
+	 * A filter to ensure that an action only available in debug mode.
+	 * @param  CFilterChain $filterChain the filter chain
+	 */
+	public function filterCheckDebugMode($filterChain)
+	{
+		if (! YII_DEBUG)
+			throw new CHttpException(404, 'Fitur ini tidak tersedia.');
+
+		$filterChain->run();
 	}
 }

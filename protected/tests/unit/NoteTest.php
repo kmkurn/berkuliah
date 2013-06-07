@@ -1,82 +1,359 @@
 <?php
 
+/**
+ * Unit test for Note model.
+ */
 class NoteTest extends CDbTestCase
 {
+	/**
+	 * A dummy id representing invalid note id.
+	 */
+	const INVALID_ID = 1000;
+
+	/**
+	 * The fixtures of this test.
+	 */
 	public $fixtures = array(
-		'notes' => 'Note',
+		'notes'=>'Note',
+		'faculties'=>'Faculty',
+		'courses'=>'Course',
+		'students'=>'Student',
 	);
 
-	public function testCreate()
+	/**
+	 * The attributes of a test file for upload.
+	 */
+	public $testFile = array(
+		'name'=>'Test.pdf',
+		'tmp_name'=>'',
+		'type'=>'application/pdf',
+		'size'=>102400,
+		'error'=>0,
+	);
+
+	/**
+	 * The test note attributes.
+	 */
+	public $noteAttributes;
+
+	/**
+	 * Initialization.
+	 */
+	public function init()
 	{
-		$newNoteTitle = 'Test New Note';
-		$newNote = new Note;
-		$newNote->setAttributes(
-			array(
-				'title' => $newNoteTitle,
-				'description' => 'This is a new note description.',
-				'type' => 0,
-				'location' => '',
-				'course_id' => 3,
-				'student_id' => 3,
-				'upload_timestamp' => '',
-				'edit_timestamp' => '',
-			)
+		$course = $this->courses('course1');
+
+		$this->noteAttributes = array(
+			'title'=>'Test Note',
+			'description'=>'Test note description.',
+			'course_id'=>$course->id,
+			'faculty_id'=>$course->faculty_id,
+			'file'=>new CUploadedFile($this->testFile['name'],$this->testFile['tmp_name'],$this->testFile['type'],
+				$this->testFile['size'],$this->testFile['error']),
 		);
-		$this->assertTrue($newNote->save(FALSE));
-
-		$retrievedNote = Note::model()->findByPk($newNote->id);
-		$this->assertTrue($retrievedNote instanceof Note);
-		$this->assertEquals($retrievedNote->title, $newNoteTitle);
 	}
 
-	public function testRead()
+	/**
+	 * Tests functions related to note extension.
+	 */
+	public function testExtension()
 	{
-		$note = $this->notes('note1');
-		$retrievedNote = Note::model()->findByPk($note->id);
-		$this->assertTrue($retrievedNote instanceof Note);
-		$this->assertEquals($retrievedNote->title, $note->title);
+		$note1 = $this->notes('note1');
+		$note2 = $this->notes('note2');
+		$note3 = $this->notes('note3');
+
+		$allowedTypes = Note::getAllowedTypes();
+		$this->assertEquals(3, count($allowedTypes));
+		$this->assertTrue(in_array(array('extension'=>'pdf', 'name'=>'PDF'), $allowedTypes));
+		$this->assertTrue(in_array(array('extension'=>'jpg', 'name'=>'Gambar'), $allowedTypes));
+		$this->assertTrue(in_array(array('extension'=>'htm', 'name'=>'Teks'), $allowedTypes));
+
+		$this->assertEquals('pdf', $note1->getExtension());
+		$this->assertEquals('jpg', $note2->getExtension());
+		$this->assertEquals('htm', $note3->getExtension());
+
+		$this->assertFileExists($note1->getTypeIcon());
+		$this->assertFileExists($note2->getTypeIcon());
+		$this->assertFileExists($note3->getTypeIcon());
+
+		$typeNames = Note::getTypeNames();
+		$this->assertEquals(3, count($typeNames));
+		$this->assertTrue(in_array('PDF', $typeNames));
+		$this->assertTrue(in_array('Gambar', $typeNames));
+		$this->assertTrue(in_array('Teks', $typeNames));
+
+		for ($i = 0; $i < count($allowedTypes); $i++)
+		{
+			$type = $allowedTypes[$i];
+			$this->assertEquals($i, Note::getTypeFromExtension($type['extension']));
+		}
+		$this->assertEquals(-1, Note::getTypeFromExtension('mp3'));
 	}
 
+	/**
+	 * Tests the note upload action.
+	 */
+	public function testUpload()
+	{
+		$this->init();
+
+		$student = $this->students('student1');
+
+		$note = new Note();
+		$note->setAttributes($this->noteAttributes);
+
+		$this->assertTrue($note->validate());
+		$note->student_id = $student->id;
+		$note->save(false);
+
+		$newNote = Note::model()->findByPk($note->id);
+		$this->assertNotNull($newNote);
+		$this->assertTrue($newNote instanceof Note);
+		$this->assertEquals($note->title, $newNote->title);
+		$this->assertNotNull($newNote->student_id);
+		$this->assertNotEquals('0000-00-00 00:00:00', $newNote->upload_timestamp);
+		$this->assertNotEquals('0000-00-00 00:00:00', $newNote->edit_timestamp);
+	}
+
+	/**
+	 * Tests the note upload action with raw text.
+	 */
+	public function testUploadRawText()
+	{
+		$this->init();
+
+		$student = $this->students('student1');
+
+		$text = 'Test note content.';
+		$note = new Note();
+		$note->setAttributes($this->noteAttributes);
+		$note->file = null;
+		$note->raw_file_text = $text;
+
+		$this->assertTrue($note->validate());
+		$note->student_id = $student->id;
+		$note->save(false);
+
+		$newNote = Note::model()->findByPk($note->id);
+		$this->assertNotNull($newNote);
+		$this->assertTrue($newNote instanceof Note);
+	}
+
+	/**
+	 * Tests the note upload action with invalid input.
+	 */
+	public function testUploadInvalid()
+	{
+		$this->init();
+
+		// Empty title
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeNote->title = null;
+		$this->assertFalse($fakeNote->validate());
+
+		// Lengthy title
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		Yii::import('ext.randomness.*');
+		$fakeNote->title = Randomness::randomString(Note::MAX_TITLE_LENGTH + 1);
+		$this->assertFalse($fakeNote->validate());
+
+		// Empty description
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeNote->description = null;
+		$this->assertFalse($fakeNote->validate());
+
+		// Invalid course_id
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeNote->course_id = self::INVALID_ID;
+		$this->assertFalse($fakeNote->validate());
+
+		// Empty faculty_id
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeNote->faculty_id = null;
+		$this->assertFalse($fakeNote->validate());
+
+		// Invalid faculty_id
+		$fakeNote->faculty_id = self::INVALID_ID;
+		$this->assertFalse($fakeNote->validate());
+
+		// Invalid file type
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeFile = $this->testFile;
+		$fakeFile['name'] = 'Fake.avi';
+		$fakeFile['type'] = 'video/x-msvideo';
+		$fakeNote->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
+			$fakeFile['size'], $fakeFile['error']);
+		$this->assertFalse($fakeNote->validate());
+
+		// Invalid file size
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeFile = $this->testFile;
+		$fakeFile['size'] = Note::MAX_FILE_SIZE * 2;
+		$fakeNote->file = new CUploadedFile($fakeFile['name'], $fakeFile['tmp_name'], $fakeFile['type'],
+			$fakeFile['size'], $fakeFile['error']);
+		$this->assertFalse($fakeNote->validate());
+
+		// Empty file and raw text
+		$fakeNote = new Note();
+		$fakeNote->setAttributes($this->noteAttributes);
+		$fakeNote->raw_file_text = null;
+		$fakeNote->file = null;
+		$this->assertFalse($fakeNote->validate());
+	}
+
+	/**
+	 * Tests the note update action.
+	 */
 	public function testUpdate()
 	{
-		$updatedNote = $this->notes('note2');
-		$updatedNote->description = 'This is an updated note description.';
-		$this->assertTrue($updatedNote->save(FALSE));
+		$model = $this->notes('note3');
 
-		$retrievedNote = Note::model()->findByPk($updatedNote->id);
-		$this->assertTrue($retrievedNote instanceof Note);
-		$this->assertEquals($retrievedNote->description, $updatedNote->description);
+		$note = Note::model()->findByPk($model->id);
+		$this->assertNotNull($note);
+		$this->assertTrue($note instanceof Note);
+		$this->assertNotEquals('0000-00-00 00:00:00', $note->edit_timestamp);
+
+		$note->setAttributes(array(
+			'title'=>'Updated Title',
+			'description'=>'Updated description',
+		));
+
+		$this->assertTrue($note->save());
+
+		$updatedNote = Note::model()->findByPk($note->id);
+		$this->assertNotNull($updatedNote);
+		$this->assertTrue($updatedNote instanceof Note);
+		$this->assertEquals($note->title, $updatedNote->title);
+		$this->assertEquals($note->description, $updatedNote->description);
+		$this->assertNotEquals('0000-00-00 00:00:00', $updatedNote->edit_timestamp);
 	}
 
+	/**
+	 * Tests the note update action with invalid input.
+	 */
+	public function testUpdateInvalid()
+	{
+		$model = $this->notes('note3');
+
+		// Empty title
+		$fakeNote = Note::model()->findByPk($model->id);
+		$fakeNote->title = null;
+		$this->assertFalse($fakeNote->validate());
+
+		// Lengthy title
+		$fakeNote = Note::model()->findByPk($model->id);
+		Yii::import('ext.randomness.*');
+		$fakeNote->title = Randomness::randomString(Note::MAX_TITLE_LENGTH + 1);
+		$this->assertFalse($fakeNote->validate());
+
+		// Empty description
+		$fakeNote = Note::model()->findByPk($model->id);
+		$fakeNote->description = null;
+		$this->assertFalse($fakeNote->validate());
+	}
+
+	/**
+	 * Tests delete action.
+	 */
 	public function testDelete()
 	{
-		$deletedNote = $this->notes('note3');
-		$this->assertTrue($deletedNote->delete());
+		$note = $this->notes('note1');
 
-		$retrievedNote = Note::model()->findByPk($deletedNote->id);
-		$this->assertEquals($retrievedNote, NULL);
+		$this->assertTrue($note->delete());
 	}
 
-	public function testGetTypeOptions()
+	/**
+	 * Tests download action.
+	 */
+	public function testDownload()
 	{
+		$student = $this->students('student1');
 		$note = $this->notes('note1');
-		$options = $note->getTypeOptions();
-		$this->assertTrue(is_array($options));
-		$this->assertEquals(count($options), 3);
-		$this->assertTrue(in_array('PDF', $options));
-		$this->assertTrue(in_array('Gambar', $options));
-		$this->assertTrue(in_array('Teks', $options));
+
+		$this->assertTrue($note->downloadedBy($student->id));
 	}
 
-	public function testGetTypeText()
+	/**
+	 * Tests search action.
+	 */
+	public function testSearch()
 	{
-		$note = $this->notes('note1');
-		$this->assertEquals($note->getTypeText(), 'PDF');
-		$note = $this->notes('note2');
-		$this->assertEquals($note->getTypeText(), 'Gambar');
-		$note = $this->notes('note3');
-		$this->assertEquals($note->getTypeText(), 'Teks');
-		$note->type = 4;
-		$this->assertEquals($note->getTypeText(), 'Jenis tidak diketahui');
+		// search by title
+		$note = new Note();
+		$note->title = '1';
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by type
+		$note = new Note();
+		$note->type = 0;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by faculty
+		$note = new Note();
+		$note->faculty_id = 1;
+		$this->assertEquals(2, $note->search()->totalItemCount);
+
+		// search by course
+		$note = new Note();
+		$note->course_id = 1;
+		$this->assertEquals(1, $note->search()->totalItemCount);
+
+		// search by uploader
+		$note = new Note();
+		$note->uploader = '1';
+		$this->assertEquals(2, $note->search()->totalItemCount);
+	}
+
+	/** 
+	 * Tests rate action.
+	 */
+	public function testRate()
+	{
+		$model = $this->notes('note1');
+		$model->rate(1, 7);
+		$this->assertEquals(7, $model->getRating(1));
+
+		$model->rate(2, 9);
+		$this->assertEquals(9, $model->getRating(2));
+		$model->rate(2, 3);
+		$this->assertEquals(3, $model->getRating(2));
+
+		$this->assertEquals(10, $model->getTotalRating());
+		$this->assertEquals(2, $model->getRatersCount());
+	}
+
+
+	/** 
+	 * Tests report action.
+	 */
+	public function testReport()
+	{
+		$model = $this->notes('note1');
+		$model->report(1);
+
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select('*');
+		$cmd->from('bk_report');
+		$cmd->where('note_id=:X AND student_id=:Y', array(':X' => $model->id, ':Y' => 1));
+
+		$this->assertNotNull($cmd->queryRow());
+	}
+
+	/** 
+	 * Tests isReportedBy method.
+	 */
+	public function testIsReportedBy()
+	{
+		$model = $this->notes('note1');
+		$model->report(2);
+
+		$this->assertTrue($model->isReportedBy(2));
 	}
 }

@@ -4,54 +4,117 @@
 /* @var $usernames array */
 /* @var $dataProvider CActiveDataProvider */
 
+$this->pageTitle = 'Daftar Berkas';
+
 $this->breadcrumbs=array(
 	'Daftar Berkas',
 );
 
-$this->menu=array(
-	array('label'=>'Unggah Berkas', 'url'=>array('noteUpload/index')),
-);
+if (Yii::app()->user->hasShareMessages())
+{
+	echo '<div id="' . Yii::app()->fbApi->divRoot . '"></div>' . "\n";
+	$script = Yii::app()->fbApi->getInitScript();
+	Yii::app()->clientScript->registerScript('fb_init', $script);
+}
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-");
 ?>
 
-<?php $this->renderPartial('_basic', array(
-	'model' => $model,
-)); ?>
+<div class="page-header"></div>
 
-<br />
+<br/>
 
-<?php echo CHtml::link('Pencarian Mode Lanjutan','#',array('class'=>'search-button')); ?>
+<div class="row-fluid">
+	<div class="span9">
 
-<div class="search-form" style="display:none">
+		<?php $this->renderPartial('_basic', array(
+			'model' => $model,
+		)); ?>
 
-	<?php $this->renderPartial('_advanced', array(
-		'model' => $model,
-		'usernames' => $usernames,
-	)); ?>
+		&nbsp;&nbsp;
+		<?php echo CHtml::link('<i class="icon icon-search"></i> Pencarian lanjutan', '#myModal', array(
+			'role' => 'button',
+			'class' => 'btn',
+			'data-toggle' => 'modal',
+		)); ?>
 
-</div>
+		<?php $this->renderPartial('_advanced', array(
+			'model' => $model,
+			'usernames' => $usernames,
+		)); ?>
 
-<?php if (Yii::app()->user->hasFlash('message')) :?>
-	<h3><?php echo Yii::app()->user->getFlash('message'); ?></h3>
-<?php endif; ?>
+		<?php if (Yii::app()->user->isAdmin) echo CHtml::beginForm(array('batchDelete')); ?>
 
+		<br />
+		<br />
 
-<?php if (Yii::app()->user->getState('is_admin'))
-		echo CHtml::beginForm(array('batchDelete')); ?>
+		<?php echo Yii::app()->user->getNotification(); ?>
 
-<?php $this->widget('ext.widgets.berkuliah.BkTableView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_note',
-	'numColumns' => 4,
-)); ?>
+			<?php if (Yii::app()->user->isAdmin): ?>
+				
+				<div id="tombolHapusBerkas">
+				<?php echo CHtml::submitButton('Hapus Berkas', array(
+						'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
+						'class' => 'btn btn-danger',
+				)); ?>
+				</div>
+			<?php endif; ?>
 
-<?php if (Yii::app()->user->getState('is_admin'))
-		echo CHtml::submitButton('Hapus Berkas', array('onclick' => 'return confirm("Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?");'));
-		echo CHtml::endForm();
-?>
+		<br/>
+
+		<?php $idx = 0; ?>
+		<?php foreach (Yii::app()->user->getShareMessages() as $msg):
+			if ($msg['type'] != 'general')
+			{
+				$idx++;
+				continue;
+			}
+		?>
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<?php echo $msg['text'] . '&nbsp; &nbsp;'; ?> 
+			<?php echo CHtml::link(
+				CHtml::image(Yii::app()->request->baseUrl . '/images/facebook.png'),
+				'#',
+				array('id' => 'fb_share' . $idx)
+			); ?>
+
+			<?php echo CHtml::link(
+				CHtml::image(Yii::app()->request->baseUrl . '/images/twitter.png'),
+				'#',
+				array(
+					'id' => 'twitter_share' . $idx,
+					'data-via' => 'twitterapi',
+					'data-lang' => 'en',
+				)
+			); ?>
+		</div>
+
+		<?php Yii::app()->clientScript->registerScript('fb_share' . $idx, Yii::app()->fbApi->getShareScript('fb_share' . $idx, $msg)); ?>
+		<?php Yii::app()->clientScript->registerScript('twitter_share' . $idx, Yii::app()->twitterApi->getShareScript('twitter_share' . $idx, $msg)); ?>
+		<?php $idx++; ?>
+
+		<?php endforeach; ?>
+
+		<?php $this->widget('BkTableView', array(
+			'dataProvider'=>$dataProvider,
+			'itemView'=>'_note',
+			'numColumns' => 4,
+			'itemsCssClass' => 'table table-bordered',
+			'dataCssClass' => 'noteCell',
+			'emptyText' => 'Hasil pencarian tidak ditemukan.',
+			'itemName' => 'berkas',
+		)); ?>
+
+		<?php if (Yii::app()->user->isAdmin): ?>
+			<div id="tombolHapusBerkasBawah">
+				<?php echo CHtml::submitButton('Hapus Berkas', array(
+					'confirm' => 'Anda yakin ingin menghapus berkas-berkas yang telah Anda pilih?',
+					'class' => 'btn btn-danger',
+				)); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if (Yii::app()->user->isAdmin) echo CHtml::endForm(); ?>
+
+	</div><!-- span9 -->
+</div><!-- row-fluid -->

@@ -1,57 +1,72 @@
-<?php /* @var $this Controller */ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+<?php
+/* @var $this Controller */
 
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
+?>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><?php echo $this->pageTitle . ' | ' . Yii::app()->name; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Berkuliah.com, sarana berbagi catatan dan berkas soal">
+    <meta name="author" content="C3-2013">
 
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
+        <?php
+        $baseUrl = Yii::app()->request->baseUrl; 
+        $cs = Yii::app()->getClientScript();
+        ?>
+        <!-- Fav and Touch and touch icons -->
+        <link rel="shortcut icon" href="<?php echo $baseUrl;?>/images/icons/logo-berkuliah.png">
+        <?php  
+        $cs->registerCssFile($baseUrl.'/css/bootstrap-modified.css');
+        $cs->registerCssFile($baseUrl.'/css/bootstrap-responsive.min.css');
+        $cs->registerCssFile($baseUrl.'/css/abound.css');
+        ?>
 
-<body>
+        <?php $cs->registerCssFile($baseUrl.'/css/style-grey.css'); ?>
 
-	<div class="container" id="page">
+        <?php
+        $cs->registerScriptFile($baseUrl.'/js/bootstrap.js');
+        $cs->registerScriptFile($baseUrl.'/js/to-top.js');
+        ?>
+  </head>
+  <body>
+    <section id="navigation-main">   
+      <!-- Require the navigation -->
+      <?php require_once('tpl_navigation.php'); ?>
+    </section><!-- navigation-main -->
+    <section class="main-body"><div id="hidecontainerfluid">
+      <div class="container-fluid">
+      <!-- Include content pages -->
+      <?php echo $content; ?>
+      </div><!-- container-fluid -->
+    </div></section>
+    <footer>
+        <div class="subnav navbar navbar-fixed-bottom">
+            <div class="navbar-inner-footer">
+                <div class="container">
 
-		<div id="header">
-			<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-		</div><!-- header -->
+                  <div id="footer-left">
+                      <?php echo CHtml::link('Ketentuan Layanan', array('site/page', 'view'=>'tos')); ?>
+                      <b>&middot;</b>
+                      <?php echo CHtml::link('Tentang Kami', array('site/page', 'view'=>'about')); ?>
+                  </div>
 
-		<div id="mainmenu">
-			<?php $this->widget('zii.widgets.CMenu',array(
-				'items'=>array(
-					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-					),
-					)); ?>
-				</div><!-- mainmenu -->
-				<?php if(isset($this->breadcrumbs)):?>
-				<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-					'links'=>$this->breadcrumbs,
-					)); ?><!-- breadcrumbs -->
-				<?php endif?>
+                  <div id="footer-middle">
+                      <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/icons/logo-berkuliah.png','logo', array('width' => '30', 'height'=>'30',));?>
+                      <br />
+                      <?php echo Yii::powered(); ?>
+                  </div>
 
-				<?php echo $content; ?>
+                  <div id="footer-right">
+                      Hak Cipta &copy; <?php echo date('Y'); ?> BerKuliah
+                  </div>
+                 
+                </div><!-- container -->
 
-				<div class="clear"></div>
-
-				<div id="footer">
-					Copyright &copy; <?php echo date('Y'); ?> by PPL C3.<br/>
-					All Rights Reserved.<br/>
-					<?php echo Yii::powered(); ?>
-				</div><!-- footer -->
-
-			</div><!-- page -->
-
-		</body>
-		</html>
+            </div><!-- navbar-inner-footer -->
+        </div><!-- subnav navbar navbar-fixed-bottom -->
+    </footer>
+  </body>
+</html>

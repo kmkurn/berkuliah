@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * A class representing the /home/ pages in the application.
+ */
 class HomeController extends Controller
 {
 	/**
@@ -9,7 +12,8 @@ class HomeController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control
-			'getStudentId + index', // get student id first on advanced search scenario
+			'ajaxOnly + updateCourses',
+			'postOnly + batchDelete',
 		);
 	}
 
@@ -80,44 +84,12 @@ class HomeController extends Controller
 			{
 				$model = Note::model()->findByPk($id);
 				$model->delete();
+				unlink(Yii::app()->params['notesDir'] . $model->id . '.' . $model->extension);
 			}
 
-			Yii::app()->user->setFlash('message', 'Berkas-berkas berhasil dihapus.');
-			Yii::app()->user->setFlash('messageType', 'success');
+			Yii::app()->user->setNotification('success', 'Berkas-berkas berhasil dihapus.');
 		}
 		$this->redirect(array('index'));
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param Note $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='note-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
-
-	/**
-	 * Retrieves student id based on username
-	 * @param  CFilterChain $filterChain the filter chain
-	 */
-	public function filterGetStudentId($filterChain)
-	{
-		if (isset($_GET['Note']['student_id']))
-		{
-			$username = $_GET['Note']['student_id'];
-			$student = Student::model()->findByAttributes(array('username' => $username));
-			if ($student !== NULL)
-			{
-				$_GET['Note']['student_id'] = $student->id;
-			}
-		}
-
-		$filterChain->run();
 	}
 
 	/**
