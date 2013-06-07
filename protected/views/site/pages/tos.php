@@ -39,7 +39,7 @@ $this->breadcrumbs = array(
         <p>BerKuliah tidak memiliki hak cipta atau kepemilikan atas semua materi yang Anda berikan menggunakan Layanan ini. Profil Anda dan materi yang Anda unggah tetap menjadi hak milik Anda. Namun, dengan menggunakan Layanan ini, Anda setuju bahwa pengguna lain dapat melihat profil Anda dan mengunduh materi yang telah Anda unggah secara bebas.</p>
       </li>
       <li>
-        <p>Layanan ini dirilis dibawah lisensi MIT sehingga Anda dapat dengan bebas menduplikasi, menyalin, atau menggunakan berapapun porsi dari HTML, CSS, JavaScript, atau elemen-elemen desain tanpa ada izin tertulis kepada BerKuliah.</p>
+        <p>Layanan ini dirilis dibawah <?php echo CHtml::link('lisensi MIT', 'https://github.com/kemskems/berkuliah/blob/develop/LICENSE.txt'); ?> sehingga Anda dapat dengan bebas menduplikasi, menyalin, atau menggunakan berapapun porsi dari HTML, CSS, JavaScript, atau elemen-elemen desain tanpa ada izin tertulis kepada BerKuliah.</p>
       </li>
     </ol>
 
