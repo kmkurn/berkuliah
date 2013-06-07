@@ -42,8 +42,9 @@ class UserIdentity extends CBaseUserIdentity
 		{
 			$student = new Student();
 			$student->username = $this->username;
-			$student->name = $this->username;
+			$student->name = self::humanize($this->username);
 			$student->photo = Yii::app()->params['defaultProfilePhoto'];
+			$student->faculty_id = 1;
 		}
 		$student->last_login_timestamp = date('Y-m-d H:i:s');
 
@@ -74,5 +75,24 @@ class UserIdentity extends CBaseUserIdentity
 	public function getName()
 	{
 		return $this->name;
+	}
+
+	/**
+	 * Humanize username.
+	 * @param string $username the username
+	 * @return string the human-readable username
+	 */
+	public static function humanize($username)
+	{
+		$names = explode('.', $username);
+		$res = array();
+		foreach ($names as $name)
+		{
+			$n = strlen($name);
+			while (is_numeric($name[$n - 1]))
+				$n--;
+			$res[] = substr($name, 0, $n);
+		}
+		return ucwords(implode(' ', $res));
 	}
 }
