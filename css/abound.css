@@ -501,7 +501,6 @@ div.form > form  .row {
 /*Footer*/
 footer {
 	margin-top:10px;
-	text-align:center;
 }
 /*Style switcher*/
 .style-switcher
@@ -930,4 +929,17 @@ Back to top button
 }
 #back-top a:hover span {
   background-color: #777;
+}
+
+#detail{
+color: #1D2E7B;
+}
+
+#tengah{
+  text-align: center;
+}
+
+#logo-tengah{
+  margin-left:450px;
+  margin-bottom: -20px;
 }
