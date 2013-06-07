@@ -935,11 +935,20 @@ Back to top button
 color: #1D2E7B;
 }
 
-#tengah{
+#footer-left {
+  width: 33%;
+  display: inline-block;
+  text-align: left;
+}
+
+#footer-middle {
+  width: 33%;
+  display: inline-block;
   text-align: center;
 }
 
-#logo-tengah{
-  margin-left:450px;
-  margin-bottom: -20px;
+#footer-right {
+  width: 33%;
+  display: inline-block;
+  text-align: right;
 }
