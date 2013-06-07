@@ -60,8 +60,10 @@ class StudentController extends Controller
 				if ($photo !== null)
 				{
 					$savePath = Yii::app()->params['photosDir'];
-					if ($model->photo !== null)
+					if ($model->photo != Yii::app()->params['defaultProfilePhoto'])
+					{
 						unlink($savePath . $model->photo);
+					}
 					Yii::import('ext.randomness.*');
 					$fileName = Randomness::randomString(Student::MAX_FILENAME_LENGTH - strlen($photo->extensionName) - strlen('' + $model->id) - 1);
 					$fileName = $fileName . $model->id . '.' . $photo->extensionName;
