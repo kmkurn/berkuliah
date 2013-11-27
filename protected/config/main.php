@@ -68,6 +68,30 @@ return array(
 			'class'=>'BkFormatter',
 			'datetimeFormat'=>'d-m-Y, H:i:s',
 		),
+        'hybridAuth'=>array(
+            'class'=>'ext.widgets.hybridAuth.CHybridAuth',
+            'enabled'=>true, // enable or disable this component
+            'config'=>array(
+                 "base_url" => "http://162.243.144.83/index.php/hybridauth/endpoint", 
+                 "providers" => array(
+//                       "Google" => array(
+//                            "enabled" => false,
+//                            "keys" => array("id" => "", "secret" => ""),
+//                        ),
+                       "Facebook" => array(
+                            "enabled" => true,
+                            "keys" => array("id" => "413237445470927", "secret" => "958deedb053bd042b0b6b3abcddce396"),
+                        ),
+//                       "Twitter" => array(
+//                            "enabled" => false,
+//                            "keys" => array("key" => "", "secret" => "")
+//                       ),
+                 ),
+                 "debug_mode" => false,
+                 "debug_file" => "debug.log",
+             ),
+         ),//end hybridAuth
+
 	),
 
 	// application-level parameters that can be accessed
