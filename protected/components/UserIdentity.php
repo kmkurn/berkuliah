@@ -35,14 +35,16 @@ class UserIdentity extends CBaseUserIdentity
 	 * Authenticates a user.
 	 * @return boolean whether authentication succeeds.
 	 */
-	public function authenticate()
+	public function authenticate($type=null)
 	{
+                $former_username = $this->username;
+                if ($type == "social") $this->username = 'f-' . $this->username;
 		$student = Student::model()->findByAttributes(array('username' => $this->username));
 		if ($student === null)
 		{
 			$student = new Student();
 			$student->username = $this->username;
-			$student->name = self::humanize($this->username);
+			$student->name = ($type == 'social') ? $this->username : self::humanize($former_username);
 			$student->photo = Yii::app()->params['defaultProfilePhoto'];
 			$student->faculty_id = 1;
 		}

@@ -57,7 +57,7 @@ return array(
 		),
 		'fbApi'=>array(
 			'class' => 'FacebookApi',
-			'appId' => '246113138860980',
+			'appId' => 'FACEBOOK_APP_ID',
 			'divRoot' => 'fb-root',
 		),
 		'twitterApi'=>array(
@@ -72,7 +72,7 @@ return array(
             'class'=>'ext.widgets.hybridAuth.CHybridAuth',
             'enabled'=>true, // enable or disable this component
             'config'=>array(
-                 "base_url" => "http://162.243.144.83/index.php/hybridauth/endpoint", 
+                 "base_url" => "http://162.243.144.83/index.php/path/to/hybriadauth", 
                  "providers" => array(
 //                       "Google" => array(
 //                            "enabled" => false,
@@ -80,7 +80,7 @@ return array(
 //                        ),
                        "Facebook" => array(
                             "enabled" => true,
-                            "keys" => array("id" => "413237445470927", "secret" => "958deedb053bd042b0b6b3abcddce396"),
+                            "keys" => array("id" => "VAR_APP_ID", "secret" => "VAR_APP_SECRET"),
                         ),
 //                       "Twitter" => array(
 //                            "enabled" => false,
