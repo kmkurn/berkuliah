@@ -60,7 +60,7 @@
                   </div>
 
                   <div id="footer-right">
-                      Hak Cipta &copy; <?php echo date('Y'); ?> BerKuliah
+                      Hak Cipta &copy; <?php echo date('Y'); ?> BerKuliah. Edited by PMPL OKE with permission from former developer.
                   </div>
                  
                 </div><!-- container -->
