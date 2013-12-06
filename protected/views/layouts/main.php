@@ -60,7 +60,7 @@
                   </div>
 
                   <div id="footer-right">
-                      Hak Cipta &copy; <?php echo date('Y'); ?> BerKuliah. <br /> Disunting oleh PMPL OKE dengan izin dari pengembang terdahulu.
+                      Hak Cipta &copy; <?php echo date('Y'); ?> BerKuliah. <br /> Disunting oleh PMPL-OKE dengan izin dari pengembang terdahulu.
                   </div>
                  
                 </div><!-- container -->
