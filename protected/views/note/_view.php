@@ -91,6 +91,9 @@
 				<td></td>
 				<td>
 					<?php echo CHtml::link('<i class="icon-search icon-download-alt icon-white"></i> Unduh', array('download', 'id' => $model->id), array('class' => 'btn btn-primary')); ?>
+					<?php if (strtolower($model->extension) == "pdf"): ?>
+					  <?php echo CHtml::link('<i class="icon-search icon-download-alt icon-white"></i> Pratinjau', array('preview', 'id' => $model->id), array('class' => 'btn btn-primary', 'target' => '_window')); ?>
+					<?php endif; ?>
 					<?php if ($model->student_id === Yii::app()->user->id): ?>
 						<?php echo CHtml::link('<i class="icon-search icon-pencil icon-white"></i> Sunting', array('update', 'id' => $model->id), array('class' => 'btn btn-success')); ?>
 					<?php endif; ?>

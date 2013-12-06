@@ -59,16 +59,21 @@ Lakukan instalasi program berikut:
 
 # Instalasi Preview Engine
 
-Engine Preview tersedia oleh FlexPaper. FlexPaper memiliki dependency ke SWFTools. Lakukan instalasi [SWFTools](http://www.swftools.org/download.html) terlebih dahulu. Untuk Windows, cukup unduh [binarynya](http://www.swftools.org/swftools-0.9.0.exe) saja. Untuk linux:
+Engine Preview tersedia oleh FlexPaper. FlexPaper memiliki dependency ke SWFTools. Lakukan instalasi [SWFTools](http://www.swftools.org/download.html) terlebih dahulu. 
 
-	# Default Digital Ocean Image prerequisites
-	# Ternyata tidak diinstall by default
-	apt-get install software-properties-common
-	apt-get install python-software-properties
+- Untuk Windows, cukup unduh [binarynya](http://www.swftools.org/swftools-0.9.0.exe) saja. Kemudian masukkan folder yang mengandung `pdf2swf` ke PATH (ada di folder tempat instalasi)
+- Untuk linux:
 
-	# Actual installation
-	sudo add-apt-repository ppa:guilhem-fr/swftools
-	sudo apt-get update
-	sudo apt-get install swftools
+		# Default Digital Ocean Image prerequisites
+		# Ternyata tidak diinstall by default
+		apt-get install software-properties-common
+		apt-get install python-software-properties
+	
+		# Actual installation
+		sudo add-apt-repository ppa:guilhem-fr/swftools
+		sudo apt-get update
+		sudo apt-get install swftools
 
-Kemudian lakukan instalasi di `http://localhost/flexpaper/php` (Jangan lupa Apache / Uniform Servernya dihidupkan terlebih dahulu)
+Kemudian lakukan instalasi di `http://localhost/flexpaper/php` (Jangan lupa Apache / Uniform Servernya dihidupkan terlebih dahulu). Jika ditanya apakah ingin split-view, pilih NO (pilih yang single-view). Kemudian jika ditanya lokasi PDF dan generated file, masukkan **absolute path** ke `flexpaper/pdf` dan `flexpaper/swf`.
+
+Jika instalasi di Windows ternyata bermasalah, mohon cek `flexpaper/php/config/config.ini.win.php`. Pastikan `"cmd.conversion.singledoc"` menampilkan entri yang benar. Pada beberapa kasus, stringnya kurang `\`.
