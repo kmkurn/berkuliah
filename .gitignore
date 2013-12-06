@@ -24,3 +24,5 @@ protected/.DS_Store
 
 # Ignore log file
 *.log
+flexpaper/php/config/config.ini.nix.example.php
+flexpaper/php/config/config.ini.win.example.php

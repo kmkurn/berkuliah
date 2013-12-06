@@ -48,15 +48,19 @@
               ),
             ),
           ),
-          array(
-            'label'=>'<i class="icon icon-user icon-off icon-white"></i> Masuk',
-            'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest,
-          ), 
+//          array(
+//            'label'=>'<i class="icon icon-user icon-off icon-white"></i> Masuk',
+//            'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest,
+//          ), 
         ),
       )); ?>
 
       <?php $this->endWidget('zii.widgets.CMenu'); ?>
-
+<?php $this->widget('ext.widgets.hybridAuth.SocialLoginButtonWidget', array(
+   'enabled'=>Yii::app()->hybridAuth->enabled,
+   'providers'=>Yii::app()->hybridAuth->getAllowedProviders(),
+   'route'=>'hybridauth/authenticate',
+)); ?>
       </div><!-- nav-collapse -->
 
     </div><!-- container -->

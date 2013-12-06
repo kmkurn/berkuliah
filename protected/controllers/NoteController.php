@@ -40,7 +40,7 @@ class NoteController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user
-				'actions'=>array('view', 'update', 'delete', 'upload', 'download', 'rate', 'report', 'review', 'updateCourses'),
+				'actions'=>array('preview', 'view', 'update', 'delete', 'upload', 'download', 'rate', 'report', 'review', 'updateCourses'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -73,6 +73,32 @@ class NoteController extends Controller
 			'review'=>$review,
 		));
 	}
+
+	/**
+	 * Preview the document, using Flexpaper
+	 * @param  int $id the note id
+	 */
+
+	public function actionPreview($id)
+	{
+		$model = $this->loadModel($id);
+		$review = new Review();
+
+		$dataProvider = new CActiveDataProvider('Review', array(
+			'criteria'=>array(
+				'condition'=>'note_id=:noteId',
+				'order'=>'timestamp ASC',
+				'params'=>array(':noteId'=>$model->id),
+			),
+		));
+
+		$this->render('preview', array(
+			'model' => $model, 
+			'dataProvider'=>$dataProvider,
+			'review'=>$review,
+		));
+	}
+
 
 	/**
 	 * Updates a note.
