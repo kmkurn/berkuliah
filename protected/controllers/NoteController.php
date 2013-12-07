@@ -68,7 +68,8 @@ class NoteController extends Controller
 		));
 
 		$this->render('view', array(
-			'model' => $model, 
+			'model' => $model,
+			'downloadInfoModel' => DownloadInfo::model(),
 			'dataProvider'=>$dataProvider,
 			'review'=>$review,
 		));

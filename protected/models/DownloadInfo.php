@@ -66,4 +66,24 @@ class DownloadInfo extends CActiveRecord
 			'timestamp' => 'Timestamp',
 		);
 	}
+	
+	// Added part from PMPL 2013: unique downloader count START
+	/**
+	 * @return count of unique downloader of note with $note_id
+	 */
+	public function uniqueDownloader($note_id){
+		return count(
+			self::Model()->findAll(
+				array(
+					'condition'=> 'note_id=:nid',
+					'select'=>'student_id,note_id',
+					'distinct'=>true,
+					'params'=>array(
+						'nid'=>$note_id
+					)
+				)
+			)
+		);
+	}
+	// Added part from PMPL 2013: unique downloader count END
 }
