@@ -24,6 +24,17 @@ $this->breadcrumbs=array(
 		<?php $this->renderPartial('_reviews', array('model'=>$model,'dataProvider'=>$dataProvider)); ?>
 
 		<?php $this->renderPartial('_reviewForm', array('note'=>$model,'model'=>$review)); ?>
+		
+		Rekomendasi Dokumen untuk Anda:
+		<?php $this->widget('BkTableView', array(
+			'dataProvider'=>$dataProvider2,
+			'itemView'=>'_note',
+			'numColumns' => 4,
+			'itemsCssClass' => 'table table-bordered',
+			'dataCssClass' => 'noteCell',
+			'emptyText' => 'Hasil pencarian tidak ditemukan.',
+			'itemName' => 'berkas',
+		)); ?>
 	<p id="back-top">
 		<a href="#top"><span></span>Kembali ke atas</a>
 	</p>
