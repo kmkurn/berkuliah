@@ -56,6 +56,7 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
+/*
 	public function actionLogin()
 	{
 		Yii::import('application.vendors.CAS.*');
@@ -78,7 +79,7 @@ class SiteController extends Controller
 			Yii::app()->user->login($identity);
 
 		$this->redirect(array('home/index'));
-	}
+	}*/
 
 	/**
 	 * Logs in as a dummy user.
@@ -112,6 +113,7 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
+/*
 		Yii::import('application.vendors.CAS.*');
 		
 		include_once('CAS/Autoload.php');
@@ -123,7 +125,7 @@ class SiteController extends Controller
 		phpCAS::client(CAS_VERSION_2_0, 'sso.ui.ac.id', 443, 'cas');
 		phpCAS::setNoCasServerValidation();
 		phpCAS::logout();
-		
+*/		
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}

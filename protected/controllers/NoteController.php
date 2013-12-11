@@ -66,10 +66,51 @@ class NoteController extends Controller
 				'params'=>array(':noteId'=>$model->id),
 			),
 		));
+		
+		/*
+			Insert ke akses info
+		*/
+		$command = Yii::app()->db->createCommand();
+		$command->insert('akses_info', array(
+			'user_id'=>Yii::app()->user->id,
+			'note_id'=>$id,
+		));
+		
+		/*
+			Cari note rekomendasi
+			select * 
+			from bk_note 
+			where id 
+				in (
+				select note_id 
+				from akses_info 
+				where note_id <> 4 and user_id 
+					in (
+					select user_id 
+					from akses_info 
+					where note_id=4))
+		*/
+		$criteria = new CDbCriteria();
+		$criteria->select = "*";
+		$criteria->distinct= true;
+		$criteria->limit=4;
+		$criteria->condition .= "id in (select distinct note_id 
+								FROM akses_info a, (SELECT user_id, timestamp
+													FROM akses_info
+													WHERE note_id = $id
+													GROUP BY user_id) awas
+								WHERE a.timestamp >= date_sub(awas.timestamp, INTERVAL 1 week) and note_id <> $id and a.user_id = awas.user_id);";
+		
+		
+		$dataProvider2=new CActiveDataProvider('Note', array(
+				'criteria' => $criteria,
+			));
 
 		$this->render('view', array(
-			'model' => $model, 
+			'model' => $model,
+			'downloadInfoModel' => DownloadInfo::model(),
 			'dataProvider'=>$dataProvider,
+			'dataProvider2'=>$dataProvider2,
 			'review'=>$review,
 		));
 	}
